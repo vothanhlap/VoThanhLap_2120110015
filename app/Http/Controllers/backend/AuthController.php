@@ -8,20 +8,25 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    function getlogin(){
+   public function getlogin(){
       return view ('backend.auth.login');
     }
 
-    function postlogin(Request $request){
-          $username = $request ->username;
-          $password = $request ->password;
-          if(Auth::attempt(['email' => $username, 'password' => $password])){
-           
-            echo 'thanh cong';
+
+   public function postlogin(Request $request){
+          $username =$request->username;
+          $password = $request->password;
+          $data=['username'=>$username,'password'=>$password];
+          if(Auth::attempt($data)){
+
+            echo 'Thanh cong';
+            //return redirect()->route('admin.dashboard');
           }
-          else
-          {
-            echo ' khong thanh cong';
+          else{
+
+            echo 'That bai';
+            //echo($password);
+           //return redirect('login');
           }
     }
 }

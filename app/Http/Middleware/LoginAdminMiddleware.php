@@ -16,20 +16,12 @@ class LoginAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
-            $user = Auth::user();
-            //xet quyen
-            if($user->roles ==1){
+        if(Auth::check()){  
                 return $next($request);
-            }
-            else
-            {
-                return redirect('admin/login');
-            }
         }
         else{
-             return redirect('admin/login');
+             return redirect('login');
         }
-        return $next($request);
+        
     }
 }

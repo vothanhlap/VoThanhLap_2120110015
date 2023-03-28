@@ -16,14 +16,14 @@ use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\frontend\SiteController;
 
 Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
-Route::get('lien-he', [LienheController::class, 'index'])->name('frontend.lien-he'); //link cố định( ví dụ)
+
 // khai bao route dang nhap - dang xuat
-route::get('admin/login', [AuthController::class, 'getlogin'])->name('getlogin');
-Route::post('admin/login', [AuthController::class,'postlogin']);
+route::get('login', [AuthController::class, 'getlogin'])->name('login');
+Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
 
 //khai bao route cho quan ly
 route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
-    route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard'); //name dung de goi o view
+route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard'); //name dung de goi o view
 
     //category
       Route::resource('category', CategoryController::class);
@@ -108,6 +108,6 @@ route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
 
 
 
-// Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');
+Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');
 
 

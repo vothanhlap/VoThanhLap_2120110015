@@ -22,11 +22,11 @@
         <h3 class="text-danger text-uppercase">ĐĂNG NHẬP ADMIN</h3>
     </div>
     <div class="card-body">
-      <form action="{{ asset('postlogin')}}" method="post">
+      <form action="{{ route('postlogin')}}" method="post">
         @method('POST')
         @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Tên đăng nhập">
+          <input type="text" name="username"  class="form-control" placeholder="Tên đăng nhập">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Mật khẩu">
+          <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
