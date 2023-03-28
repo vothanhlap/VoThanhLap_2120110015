@@ -123,7 +123,7 @@
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('product.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p style="color:greenyellow">Danh Sách Sản Phẩm </p>
                                     </a>
@@ -152,7 +152,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('topic.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p style="color:greenyellow">Danh Sách Đề Tài </p>
                                     </a>

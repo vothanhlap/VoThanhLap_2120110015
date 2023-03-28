@@ -14,7 +14,7 @@ class TopicStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:2',
+            'title' => 'required|min:2',
             'metakey' => 'required',
             'metadesc' => 'required',
         ];
@@ -23,8 +23,8 @@ class TopicStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Bạn chưa nhập tên.',
-            'name.min' => 'Tên có ít nhất 2 ký tự.',
+            'title.required' => 'Bạn chưa nhập tên.',
+            'title.min' => 'Tên có ít nhất 2 ký tự.',
             'metakey.required' => 'Chưa nhập từ khóa tìm kiếm.',
             'metadesc.required' => 'Chưa nhập mô tả.',
         ];

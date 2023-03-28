@@ -4,143 +4,135 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 use App\Models\Topic;
 use App\Models\Link;
+use Illuminate\Support\Str;
 use App\Http\Requests\TopicStoreRequest;
 use App\Http\Requests\TopicUpdateRequest;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class TopicController extends Controller
 {
-    #GET:admin/topic, admin/topic/index
+    #GET: admin/topic , admin/topic/index
     public function index()
     {
-        $list_topic = Topic::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
+        $list_topic  = Topic::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
         return view('backend.topic.index', compact('list_topic'));
     }
-    #GET:admin/topic/trash
-    public function trash()
-    {
-        $list_topic = Topic::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
-        return view('backend.topic.trash', compact('list_topic'));
-    }
-
-    #GET: admin/topic/create
+    #GET: admin/topic/create , admin/topic/index
     public function create()
     {
-        $list_topic = Topic::where('status', '!=', 0)->get();
+        $list_topic  = Topic::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
         $html_parent_id = '';
         $html_sort_order = '';
-
         foreach ($list_topic as $item) {
-            $html_parent_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
-            $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->name . '</option>';
+            $html_parent_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
+            $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->title . '</option>';
         }
         return view('backend.topic.create', compact('html_parent_id', 'html_sort_order'));
     }
 
-
-    public function store(TopicStoreRequest $request)
+    // thêm
+    public function store(topicStoreRequest $request)
     {
-        $topic = new Topic; //tạo mới mẫu tin
-        $topic->name = $request->name;
-        $topic->slug = Str::slug($topic->name = $request->name, '-');
+        $topic = new topic();
+        $topic->title = $request->title;
+        $topic->slug = Str::slug($topic->title = $request->title, '-');
         $topic->metakey = $request->metakey;
         $topic->metadesc = $request->metadesc;
         $topic->parent_id = $request->parent_id;
         $topic->sort_order = $request->sort_order;
         $topic->status = $request->status;
-        $topic->created_at = date('Y-m-d H:i:s');
+        $topic->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $topic->created_by = 1;
-        //upload image
+        //Upload file
         if ($request->has('image')) {
-            $path_dir = "public/images/topic/";
-            $file =  $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $topic->slug . '.' . $extension;
+            $path_dir = "images/topic"; // nơi lưu trữ
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
+            $filename = $topic->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
             $file->move($path_dir, $filename);
-            //echo $filename;
+
             $topic->image = $filename;
         }
-        //end upload
+        // End upload
         if ($topic->save()) {
             $link = new Link();
             $link->slug = $topic->slug;
             $link->table_id = $topic->id;
             $link->type = 'topic';
             $link->save();
-            return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Thêm chủ đề thành công!']);
-        }
-        return redirect()->route('topic.index')->with('message', ['type' => 'dangers', 'msg' => 'Thêm chủ đề không thành công!']);
+            return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Thêm mẫu tin thành công !']);
+        } else
+            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Thêm mẫu tin không thành công !']);
     }
 
     public function show(string $id)
     {
         $topic = Topic::find($id);
         if ($topic == null) {
-            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
+            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        } else {
+            return view('backend.topic.show', compact('topic'));
         }
-        return view('backend.topic.show', compact('topic'));
     }
 
     public function edit(string $id)
     {
         $topic = Topic::find($id);
-        $list_topic = Topic::where('status', '!=', 0)->get();
+        $list_topic  = Topic::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
         $html_parent_id = '';
         $html_sort_order = '';
-
         foreach ($list_topic as $item) {
-            $html_parent_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
-            $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->name . '</option>';
+            $html_parent_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
+            $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->title . '</option>';
         }
         return view('backend.topic.edit', compact('topic', 'html_parent_id', 'html_sort_order'));
     }
 
-    public function update(TopicUpdateRequest $request, string $id)
+    public function update(topicUpdateRequest $request, $id)
     {
-        $topic = Topic::find($id); //lấy mẫu tin
-        $topic->name = $request->name;
-        $topic->slug = Str::slug($topic->name = $request->name, '-');
+        $topic = Topic::find($id);
+        $topic->title = $request->title;
+        $topic->slug = Str::slug($topic->title = $request->title, '-');
         $topic->metakey = $request->metakey;
         $topic->metadesc = $request->metadesc;
         $topic->parent_id = $request->parent_id;
         $topic->sort_order = $request->sort_order;
         $topic->status = $request->status;
-        $topic->updated_at = date('Y-m-d H:i:s');
-        $topic->created_by = 1;
-        //upload image
+        $topic->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $topic->updated_by = 1;
+        // Upload file
         if ($request->has('image')) {
-            $path_dir = "public/images/topic/";
-            if (File::exists(public_path($path_dir . $topic->image))) {
-                File::delete(public_path($path_dir . $topic->image));
+            $path_dir = "images/topic/";
+            if (File::exists(($path_dir . $topic->image))) {
+                File::delete(($path_dir . $topic->image));
             }
-            $file =  $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $topic->slug . '.' . $extension;
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
+            $filename = $topic->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
             $file->move($path_dir, $filename);
-            //echo $filename;
             $topic->image = $filename;
         }
-        //end upload
+        //end upload file
         if ($topic->save()) {
-            if ($link = Link::where([['type', '=', 'topic'], ['table_id', '=', $id]])->first()) {
-                $link->slug = $topic->slug;
-                $link->save();
-            }
-            return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Cập nhật chủ đề thành công!']);
-        }
-        return redirect()->route('topic.index')->with('message', ['type' => 'dangers', 'msg' => 'Cập nhật chủ đề không thành công!']);
+            $link = Link::where([['type', '=', 'topic'], ['table_id', '=', $id]])->first();
+            $link->slug = $topic->slug;
+            $link->save();
+            return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Sửa mẫu tin thành công !']);
+        } else
+            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Sửa mẫu tin không thành công !']);
     }
 
-    #GET:admin/topic/destroy/{id}
+    #GET: admin/topic/destroy/
+    // Xóa hẳn
     public function destroy(string $id)
     {
         $topic = Topic::find($id);
         //thong tin hinh xoa
-        $path_dir = "public/images/topic/";
+        $path_dir = "images/topic/";
         $path_image_delete = $path_dir . $topic->image;
         if ($topic == null) {
             return redirect()->route('topic.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
@@ -150,51 +142,60 @@ class TopicController extends Controller
             if (File::exists($path_image_delete)) {
                 File::delete($path_image_delete);
             }
-            //xoa link
-            if ($link = Link::where([['type', '=', 'topic'], ['table_id', '=', $id]])->first()) {
-                $link->delete();
-            }
-            return redirect()->route('topic.trash')->with('message', ['type' => 'success', 'msg' => 'Xóa chủ đề thành công!']);
         }
-        return redirect()->route('topic.trash')->with('message', ['type' => 'dangers', 'msg' => 'Xóa chủ đề không thành công!']);
+        $link = Link::where([['type', '=', 'topic'], ['table_id', '=', $id]])->first();
+        $link->delete();
+        return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Xóa mẫu tin thành công !']);
     }
-    #GET:admin/topic/status/{id}
+
+    #GET: admin/topic/status/
     public function status($id)
     {
         $topic = Topic::find($id);
         if ($topic == null) {
-            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
+            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
         }
         $topic->status = ($topic->status == 1) ? 2 : 1;
-        $topic->updated_at = date('Y-m-d H:i:s');
+        $topic->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $topic->updated_by = 1;
         $topic->save();
-        return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công!']);
+        return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công !']);
     }
-    #GET:admin/topic/delete/{id}
+
+    #GET: admin/topic/delete/
+    // xóa vào thùng rác
     public function delete($id)
     {
         $topic = Topic::find($id);
         if ($topic == null) {
-            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Xóa vào thùng rác không thành công!']);
+            return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        } else {
+            $topic->status = 0;
+            $topic->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+            $topic->updated_by = 1;
+            $topic->save();
+            return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Xóa vào thùng rác thành công !']);
         }
-        $topic->status = 0;
-        $topic->updated_at = date('Y-m-d H:i:s');
-        $topic->updated_by = 1;
-        $topic->save();
-        return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Xóa vào thùng rác thành công!']);
     }
-    #GET:admin/topic/restore/{id}
+    #GET:admin/topic/trash
+    public function trash()
+    {
+        $list_topic = Topic::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
+        return view('backend.topic.trash', compact('list_topic'));
+    }
+    #GET: admin/topic/restore/
+    // Khôi phục
     public function restore($id)
     {
         $topic = Topic::find($id);
         if ($topic == null) {
-            return redirect()->route('topic.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
+            return redirect()->route('topic.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        } else {
+            $topic->status = 2;
+            $topic->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+            $topic->updated_by = 1;
+            $topic->save();
+            return redirect()->route('topic.trash')->with('message', ['type' => 'success', 'msg' => 'Khôi phục thành công !']);
         }
-        $topic->status = 2;
-        $topic->updated_at = date('Y-m-d H:i:s');
-        $topic->updated_by = 1;
-        $topic->save();
-        return redirect()->route('topic.trash')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công!']);
     }
 }

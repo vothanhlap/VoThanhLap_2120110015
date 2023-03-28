@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\MenuController;
+use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\DashboardController;
 //fontend
@@ -16,16 +17,18 @@ use App\Http\Controllers\frontend\SiteController;
 
 Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
 Route::get('lien-he', [LienheController::class, 'index'])->name('frontend.lien-he'); //link cố định( ví dụ)
-
+// khai bao route dang nhap - dang xuat
+route::get('admin/login', [AuthController::class, 'getlogin'])->name('getlogin');
+route::post('admin/login', [AuthController::class, 'xuly'])->name('xuly');
 
 //khai bao route cho quan ly
-route::prefix('admin')->group(function () {
+route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
     route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard'); //name dung de goi o view
 
     //category
-    Route::resource('category', CategoryController::class);
-    route::get('category_trash', [CategoryController::class, 'trash'])->name('category.trash');
-    route::prefix('category')->group(function () {
+      Route::resource('category', CategoryController::class);
+      route::get('category_trash', [CategoryController::class, 'trash'])->name('category.trash');
+       route::prefix('category')->group(function () {
         route::get('status/{category}', [CategoryController::class, 'status'])->name('category.status');
         route::get('delete/{category}', [CategoryController::class, 'delete'])->name('category.delete');
         route::get('restore/{category}', [CategoryController::class, 'restore'])->name('category.restore');
@@ -105,6 +108,6 @@ route::prefix('admin')->group(function () {
 
 
 
-Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');
+// Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');
 
 
