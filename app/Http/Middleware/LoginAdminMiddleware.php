@@ -19,14 +19,17 @@ class LoginAdminMiddleware
         if(Auth::check()){
             $user = Auth::user();
             //xet quyen
-            if(user->access==1){
+            if($user->roles ==1){
                 return $next($request);
-            }else{
+            }
+            else
+            {
                 return redirect('admin/login');
             }
         }
         else{
              return redirect('admin/login');
         }
+        return $next($request);
     }
 }

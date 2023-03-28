@@ -19,7 +19,7 @@ Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
 Route::get('lien-he', [LienheController::class, 'index'])->name('frontend.lien-he'); //link cố định( ví dụ)
 // khai bao route dang nhap - dang xuat
 route::get('admin/login', [AuthController::class, 'getlogin'])->name('getlogin');
-route::post('admin/login', [AuthController::class, 'xuly'])->name('xuly');
+Route::post('admin/login', [AuthController::class,'postlogin']);
 
 //khai bao route cho quan ly
 route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {

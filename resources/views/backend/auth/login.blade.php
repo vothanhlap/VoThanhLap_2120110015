@@ -22,7 +22,8 @@
         <h3 class="text-danger text-uppercase">ĐĂNG NHẬP ADMIN</h3>
     </div>
     <div class="card-body">
-      <form action="{{ asset('login')}}" method="post">
+      <form action="{{ asset('postlogin')}}" method="post">
+        @method('POST')
         @csrf
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Tên đăng nhập">

@@ -1,1 +1,5 @@
-<h1>XIN CHAO</h1>
+@extends('layouts.site')
+@section('title', 'Trang chu')
+@section('content')
+        
+@endsection

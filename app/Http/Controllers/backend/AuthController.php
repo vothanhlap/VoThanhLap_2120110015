@@ -12,7 +12,7 @@ class AuthController extends Controller
       return view ('backend.auth.login');
     }
 
-    function xuly(Request $request){
+    function postlogin(Request $request){
           $username = $request ->username;
           $password = $request ->password;
           if(Auth::attempt(['email' => $username, 'password' => $password])){
