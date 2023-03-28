@@ -16,7 +16,7 @@ class AuthController extends Controller
    public function postlogin(Request $request){
           $username =$request->username;
           $password = $request->password;
-          $data=['username'=>$username,'password'=>$password];
+          $data=['name'=>$username,'password'=>$password];
           if(Auth::attempt($data)){
 
             echo 'Thanh cong';
@@ -24,8 +24,8 @@ class AuthController extends Controller
           }
           else{
 
-            echo 'That bai';
-            //echo($password);
+            //echo 'That bai';
+            echo bcryct($password);
            //return redirect('login');
           }
     }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('httt_users', function (Blueprint $table) {
+        Schema::create('vtl_user', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255)->comment('Họ ');
             $table->string('username',255);

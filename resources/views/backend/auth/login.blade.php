@@ -26,7 +26,7 @@
         @method('POST')
         @csrf
         <div class="input-group mb-3">
-          <input type="text" name="username"  class="form-control" placeholder="Tên đăng nhập">
+          <input type="text" name="username"   class="form-control" placeholder="Tên đăng nhập">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
