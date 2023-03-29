@@ -6,6 +6,7 @@
   <!-- Content Header (Page header) -->
   <div class="content-header">
       <div class="container-fluid">
+        @includeIf('backend.message_alert')
           <div class="row mb-2">
               <div class="col-sm-6">
                   <h1 class="m-0 text-danger">BẢNG ĐIỀU KHIỂN</h1>
@@ -24,9 +25,9 @@
                   <!-- small box -->
                   <div class="small-box bg-info">
                       <div class="inner">
-                          <h3>150</h3>
+                          <h3>{{$product_count}}</h3>
 
-                          <p>New Orders</p>
+                          <p>Số lượng kho</p>
                       </div>
                       <div class="icon">
                           <i class="ion ion-bag"></i>
@@ -118,7 +119,7 @@
                       </div><!-- /.card-body -->
                   </div>
                   <!-- /.card -->
-                  <!-- DIRECT CHAT -->
+                  {{-- <!-- DIRECT CHAT -->
                   <div class="card direct-chat direct-chat-primary">
                       <div class="card-header">
                           <h3 class="card-title">Direct Chat</h3>
@@ -314,8 +315,8 @@
                       </div>
                       <!-- /.card-footer-->
                   </div>
-                  <!--/.direct-chat -->
-                  <!-- TO DO List -->
+                  <!--/.direct-chat --> --}}
+                  {{-- <!-- TO DO List -->
                   <div class="card">
                       <div class="card-header">
                           <h3 class="card-title">
@@ -444,7 +445,7 @@
                           <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
                       </div>
                   </div>
-                  <!-- /.card -->
+                  <!-- /.card --> --}}
               </section>
               <!-- /.Left col -->
               <!-- right col (We are only adding the ID to make the widgets sortable)-->

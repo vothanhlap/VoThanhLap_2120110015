@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('httt_users');
+        Schema::dropIfExists('vtl_user');
     }
 };

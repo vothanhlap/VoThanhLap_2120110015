@@ -22,8 +22,8 @@ route::get('login', [AuthController::class, 'getlogin'])->name('login');
 Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
 
 //khai bao route cho quan ly
-//'middleware'=>'LoginAdmin'
-route::group(['prefix'=>'admin'] ,function () {
+//
+route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
 route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard'); //name dung de goi o view
 
     //category

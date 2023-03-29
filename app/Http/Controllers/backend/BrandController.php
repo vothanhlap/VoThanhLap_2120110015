@@ -11,39 +11,44 @@ use Carbon\Carbon;
 use App\Models\Brand;
 use App\Http\Requests\BrandStoreRequest;
 use App\Http\Requests\BrandUpdateRequest;
-
+use Illuminate\Support\Facades\Auth;
 
 class BrandController extends Controller
 {
     #GET:admin/brand, admin/brand/index
     public function index()
     {
+        $user_name = Auth::user()->name;
         $list_brand = Brand::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
-        return view('backend.brand.index', compact('list_brand'));
+        return view('backend.brand.index', compact('list_brand','user_name'));
     }
     #GET:admin/brand/trash
     public function trash()
     {
+        $user_name = Auth::user()->name;
         $list_brand = Brand::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
-        return view('backend.brand.trash', compact('list_brand'));
+        return view('backend.brand.trash', compact('list_brand','user_name'));
     }
 
     #GET: admin/brand/create
     public function create()
     {
+        $user_name = Auth::user()->name;
         $list_brand = Brand::where('status', '!=', 0)->get();
         $html_sort_order = '';
 
         foreach ($list_brand as $item) {
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->name . '</option>';
         }
-        return view('backend.brand.create', compact('html_sort_order'));
+        return view('backend.brand.create', compact('html_sort_order','user_name'));
     }
 
 
     public function store(BrandStoreRequest $request)
     {
+       
         $brand = new Brand; //tạo mới mẫu tin
+        $user_name = Auth::user()->name;
         $brand->name = $request->name;
         $brand->slug = Str::slug($brand->name = $request->name, '-');
         $brand->metakey = $request->metakey;
@@ -51,7 +56,7 @@ class BrandController extends Controller
         $brand->sort_order = $request->sort_order;
         $brand->status = $request->status;
         $brand->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $brand->created_by = 1;
+        $brand->created_by =$user_name ;
         //upload image
         if ($request->has('image')) {
             $path_dir = "images/brand/";
@@ -76,15 +81,17 @@ class BrandController extends Controller
 
     public function show(string $id)
     {
+        $user_name = Auth::user()->name;
         $brand = Brand::find($id);
         if ($brand == null) {
             return redirect()->route('brand.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
         }
-        return view('backend.brand.show', compact('brand'));
+        return view('backend.brand.show', compact('brand','user_name'));
     }
 
     public function edit(string $id)
     {
+        $user_name = Auth::user()->name;
         $brand = Brand::find($id);
         $list_brand = Brand::where('status', '!=', 0)->get();
         $html_sort_order = '';
@@ -92,11 +99,12 @@ class BrandController extends Controller
         foreach ($list_brand as $item) {
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->name . '</option>';
         }
-        return view('backend.brand.edit', compact('brand', 'html_sort_order'));
+        return view('backend.brand.edit', compact('user_name','brand', 'html_sort_order'));
     }
 
     public function update(BrandUpdateRequest $request, string $id)
     {
+        $user_name = Auth::user()->name;
         $brand = Brand::find($id); //lấy mẫu tin
         $brand->name = $request->name;
         $brand->slug = Str::slug($brand->name = $request->name, '-');
@@ -105,7 +113,7 @@ class BrandController extends Controller
         $brand->sort_order = $request->sort_order;
         $brand->status = $request->status;
         $brand->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $brand->updated_by = 1;
+        $brand->updated_by = $user_name;
         //upload image
         if ($request->has('image')) {
             $path_dir = "images/brand/";
@@ -133,6 +141,7 @@ class BrandController extends Controller
     #GET:admin/brand/destroy/{id}
     public function destroy(string $id)
     {
+        $user_name = Auth::user()->name;
         $brand = Brand::find($id);
         //thong tin hinh xoa
         $path_dir = "images/brand/";
@@ -156,26 +165,28 @@ class BrandController extends Controller
     #GET:admin/brand/status/{id}
     public function status($id)
     {
+        $user_name = Auth::user()->name;
         $brand = Brand::find($id);
         if ($brand == null) {
             return redirect()->route('brand.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
         }
         $brand->status = ($brand->status == 1) ? 2 : 1;
         $brand->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $brand->updated_by = 1;
+        $brand->updated_by = $user_name;
         $brand->save();
         return redirect()->route('brand.index')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công!']);
     }
     #GET:admin/brand/delete/{id}
     public function delete($id)
     {
+        $user_name = Auth::user()->name;
         $brand = Brand::find($id);
         if ($brand == null) {
             return redirect()->route('brand.index')->with('message', ['type' => 'danger', 'msg' => 'Xóa vào thùng rác không thành công!']);
         }
         $brand->status = 0;
         $brand->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $brand->updated_by = 1;
+        $brand->updated_by = $user_name;
         $brand->save();
         return redirect()->route('brand.index')->with('message', ['type' => 'success', 'msg' => 'Xóa vào thùng rác thành công!']);
     }
@@ -188,7 +199,7 @@ class BrandController extends Controller
         }
         $brand->status = 2;
         $brand->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $brand->updated_by = 1;
+        $brand->updated_by = $user_name;
         $brand->save();
         return redirect()->route('brand.trash')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công!']);
     }

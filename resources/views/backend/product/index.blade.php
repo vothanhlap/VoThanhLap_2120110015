@@ -52,8 +52,10 @@
                                src="{{ asset('images/product/' . $product->image) }}"
                                 alt="$product->image"></td>
                               <td class="text-center">{{ $product->name }}</td>
-                              <td class="text-center">{{ $product->name }}</td>
-                              <td class="text-center">{{ $product->name }}</td>
+                              <td></td>
+                              <td></td>
+                              {{-- <td class="text-center">{{ $product->name }}</td> --}}
+                              {{-- <td class="text-center">{{ $product->name }}</td> --}}
                               <td class="text-center">{{ $product->created_at }}</td>
                               <td class="text-center">
                                   @if ($product->status == 1)
