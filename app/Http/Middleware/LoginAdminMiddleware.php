@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginAdminMiddleware
 {
@@ -17,10 +18,19 @@ class LoginAdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::check()){  
-                return $next($request);
+           $user = Auth::user();
+           //Xet quyen
+           if($user->roles == 1){
+               return $next ($request);
+           }
+           else
+           {
+            return redirect->route('login');
+           }
+         
         }
         else{
-             return redirect('login');
+            return redirect('login');
         }
         
     }

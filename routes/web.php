@@ -21,9 +21,11 @@ Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
 route::get('login', [AuthController::class, 'getlogin'])->name('login');
 Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
 
+
 //khai bao route cho quan ly
 //
 route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
+    route::get('login', [AuthController::class, 'logout'])->name('logout');
 route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard'); //name dung de goi o view
 
     //category

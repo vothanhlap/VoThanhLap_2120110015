@@ -61,7 +61,7 @@
             </a>
         </li>
         <li class="nav-item left">
-            <a class="nav-link text-success" style="text-transform:uppercase" data-slide="true" href="{{route('login')}}"
+            <a class="nav-link text-success" style="text-transform:uppercase" data-slide="true" href="{{route('logout')}}"
                 role="button">
                 <i class="fas fa-sign-out-alt"></i>
                 Đăng Xuất

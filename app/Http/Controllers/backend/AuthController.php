@@ -15,28 +15,31 @@ class AuthController extends Controller
    {
         
           $username =$request->username;
-          $password = $request->password;
-          $data=['username'=>$username,'password'=>$password];
+          $password = $request->password;   
+            $data=['username'=>$username,'password'=>$password];
           if(Auth::attempt($data)){
 
             //echo 'Thanh cong';
             return redirect()->route('admin.dashboard')->with('message', ['type' => 'success', 'msg' => 'Đăng nhập tài khoản thành công!']);
           }
           else{
-            return redirect('login');
-           //echo 'That bai';
+           return redirect('login');
+          //echo 'That bai';
             // var_dump($data);
-            // echo bcrypt($password);
+          //  echo bcrypt($password);
           
           }
           
     }
     public function  logout(){
-      if(Auth::check()){
-        Auth::logout();
-      }else
-      {
-        return redirect('login');
+         if(Auth::check()){
+          Auth::logout(); 
+          return redirect('login');
+         }
+         else
+         {
+          return redirect('login');
+         }
       }
-    }
+    
 }

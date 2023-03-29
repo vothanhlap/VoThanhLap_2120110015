@@ -11,11 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use  Notifiable;
-    protected $table='vtl_user';
-
-    
+    protected $table='vtl_user';  
     protected $fillable = [
-        'email','password', 'roles'
+        'password','username'
     ];
 
    
