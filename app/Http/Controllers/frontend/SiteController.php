@@ -11,6 +11,7 @@ use App\Models\Category;
 
 class SiteController extends Controller
 {
+    
     public function index($slug = null)
     {
          if($slug == null){
