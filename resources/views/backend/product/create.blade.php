@@ -13,7 +13,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-6">
-                                <strong class="text-danger text-uppercase">THÊM sản phẩm SẢN PHẨM</strong>
+                                <strong class="text-danger text-uppercase">THÊM SẢN PHẨM</strong>
                             </div>
                             <div class="col-md-6 text-right">
                                 <button type="submit" class="btn btn-sm btn-success">

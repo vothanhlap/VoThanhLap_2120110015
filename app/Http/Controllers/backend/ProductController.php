@@ -38,7 +38,12 @@ class ProductController extends Controller
     public function trash()
     {
         $user_name = Auth::user()->name;
-        $list_product = Product::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
+        $list_product = Product::join('vtl_product_image', 'vtl_product_image.product_id', '=', 'vtl_product.id')
+        ->join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
+        ->join('vtl_category','vtl_category.id','=','vtl_product.category_id')
+        ->select('vtl_product.*', 'vtl_brand.name as braname', 'vtl_category.name as catname')
+        ->where('vtl_product.status', '=', 0)
+        ->orderBy('vtl_product.created_at', 'desc')->get();
         return view('backend.product.trash', compact('user_name','list_product'));
     }
 
@@ -98,8 +103,7 @@ class ProductController extends Controller
             if (strlen($request->price) && strlen($request->qty)) {
                 $product_store = new ProductStore();
                 $product_store->product_id = $product->id;
-                $product_store->price
-                 = $request->price;
+                $product_store->price_buy = $request->price_buy;
                 $product_store->qty = $request->qty;
                 $product_store->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
                 $product_store->created_by = $user_name;
@@ -107,18 +111,21 @@ class ProductController extends Controller
             }
 
             //khuyến mãi
-            // if (strlen($request->price_sale) && strlen($request->date_begin) && strlen($request->date_end)) {
-            //     $product_sale = new ProductSale();
-            //     $product_sale->product_id = $product->id;
-            //     $product_sale->price_sale = $request->price_sale;
-            //     $product_sale->date_begin = $request->date_begin;
-            //     $product_sale->date_end = $request->date_end;
-            //     $product_sale->save();
-            // }
-            
+            if (strlen($request->price_sale) && strlen($request->date_begin) && strlen($request->date_end)) {
+                $product_sale = new ProductSale();
+                $product_sale->product_id = $product->id;
+                $product_sale->price_sale = $request->price_sale;
+                $product_sale->date_begin = $request->date_begin;
+                $product_sale->date_end = $request->date_end;
+                $product_sale->save();
+            }
+            return redirect()->route('product.index')->with('message', ['type' => 'success', 'msg' => 'Thêm sản phẩm thành công!']);
+    
         }
-        return redirect()->route('product.index')->with('message', ['type' => 'dangers', 'msg' => 'Thêm sản phẩm không thành công!']);
+        return redirect()->route('product.index')->with('message', ['type' => 'danger', 'msg' => 'Thêm sản phẩm không thành công!']);
     }
+   
+   
 
     public function show(string $id)
     {
@@ -134,46 +141,55 @@ class ProductController extends Controller
     {
         $user_name = Auth::user()->name;
         $product = Product::find($id);
-        $list_product = Product::where('status', '!=', 0)->get();
-        $html_parent_id = '';
-        $html_sort_order = '';
-
-        foreach ($list_product as $item) {
-            $html_parent_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
-            $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->name . '</option>';
+        $list_category = Category::where('status', '!=', 0)->get();
+        $list_brand = Brand::where('status', '!=', 0)->get();
+        $html_brand_id = '';
+        $html_category_id = '';
+        foreach ($list_category as $item) {
+            $html_category_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
         }
-        return view('backend.product.edit', compact('product','user_name', 'html_parent_id', 'html_sort_order'));
+        foreach ($list_brand as $item) {
+            $html_brand_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
+        }
+        return view('backend.product.edit', compact('product','user_name', 'html_brand_id', 'html_category_id'));
     }
 
     public function update(ProductUpdateRequest $request, string $id)
     {
         $user_name = Auth::user()->name;
         $product = Product::find($id); //lấy mẫu tin
+        $product->category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
         $product->name = $request->name;
         $product->slug = Str::slug($product->name = $request->name, '-');
+        $product->price_buy = $request->price_buy;
+        $product->detail = $request->detail;
         $product->metakey = $request->metakey;
         $product->metadesc = $request->metadesc;
-        $product->parent_id = $request->parent_id;
-        $product->sort_order = $request->sort_order;
-        $product->status = $request->status;
         $product->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $product->created_by = $user_name;
+        $product->update_by = $user_name;
+        $product->status = $request->status;
         //upload image
-        if ($request->has('image')) {
-            $path_dir = "images/product/";
-            if (File::exists(public_path($path_dir . $product->image))) {
-                File::delete(public_path($path_dir . $product->image));
+        if ($product->save()) {
+            //upload image nhieu anh
+            if ($request->has('image')) {
+                $path_dir = "images/product/";
+                $array_file =  $request->file('image');
+                $i = 1;
+                foreach ($array_file as $file) {
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $product->slug . "-" . $i . '.' . $extension;
+                    $file->move($path_dir, $filename);
+                    //echo $filename;
+                    $product = ProductImage::find($id); //lấy mẫu tin`
+                    $product_image->product_id = $product->id;
+                    $product_image->image = $filename;
+                    $product_image->save();
+                    $i++;
+                }
             }
-            $file =  $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $product->slug . '.' . $extension;
-            $file->move($path_dir, $filename);
-            //echo $filename;
-            $product->image = $filename;
         }
-        //end upload
-        $product->save();
-        return redirect()->route('product.index')->with('message', ['type' => 'dangers', 'msg' => 'Cập nhật sản phẩm không thành công!']);
+        return redirect()->route('product.index')->with('message', ['type' => 'danger', 'msg' => 'Cập nhật sản phẩm không thành công!']);       
     }
 
     #GET:admin/product/destroy/{id}
@@ -182,7 +198,7 @@ class ProductController extends Controller
         $user_name = Auth::user()->name;
         $product = Product::find($id);
         //thong tin hinh xoa
-        $path_dir = "public/images/product/";
+        $path_dir = "images/product/";
         $path_image_delete = $path_dir . $product->image;
         if ($product == null) {
             return redirect()->route('product.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
