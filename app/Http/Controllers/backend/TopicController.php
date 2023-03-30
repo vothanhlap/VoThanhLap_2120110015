@@ -11,18 +11,21 @@ use App\Http\Requests\TopicStoreRequest;
 use App\Http\Requests\TopicUpdateRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
     #GET: admin/topic , admin/topic/index
     public function index()
     {
+        $user_name = Auth::user()->name;
         $list_topic  = Topic::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
-        return view('backend.topic.index', compact('list_topic'));
+        return view('backend.topic.index', compact('list_topic','user_name'));
     }
     #GET: admin/topic/create , admin/topic/index
     public function create()
     {
+        $user_name = Auth::user()->name;
         $list_topic  = Topic::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
         $html_parent_id = '';
         $html_sort_order = '';
@@ -30,12 +33,13 @@ class TopicController extends Controller
             $html_parent_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->title . '</option>';
         }
-        return view('backend.topic.create', compact('html_parent_id', 'html_sort_order'));
+        return view('backend.topic.create', compact('user_name','html_parent_id', 'html_sort_order'));
     }
 
     // thêm
     public function store(topicStoreRequest $request)
     {
+        $user_name = Auth::user()->name;
         $topic = new topic();
         $topic->title = $request->title;
         $topic->slug = Str::slug($topic->title = $request->title, '-');
@@ -45,7 +49,7 @@ class TopicController extends Controller
         $topic->sort_order = $request->sort_order;
         $topic->status = $request->status;
         $topic->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $topic->created_by = 1;
+        $topic->created_by = $user_name;
         //Upload file
         if ($request->has('image')) {
             $path_dir = "images/topic"; // nơi lưu trữ
@@ -70,16 +74,19 @@ class TopicController extends Controller
 
     public function show(string $id)
     {
+        $user_name = Auth::user()->name;
         $topic = Topic::find($id);
         if ($topic == null) {
             return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
         } else {
-            return view('backend.topic.show', compact('topic'));
+            return view('backend.topic.show', compact('topic','user_name'));
         }
     }
 
     public function edit(string $id)
     {
+
+        $user_name = Auth::user()->name;
         $topic = Topic::find($id);
         $list_topic  = Topic::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
         $html_parent_id = '';
@@ -88,11 +95,12 @@ class TopicController extends Controller
             $html_parent_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->title . '</option>';
         }
-        return view('backend.topic.edit', compact('topic', 'html_parent_id', 'html_sort_order'));
+        return view('backend.topic.edit', compact('user_name','topic', 'html_parent_id', 'html_sort_order'));
     }
 
     public function update(topicUpdateRequest $request, $id)
     {
+        $user_name = Auth::user()->name;
         $topic = Topic::find($id);
         $topic->title = $request->title;
         $topic->slug = Str::slug($topic->title = $request->title, '-');
@@ -102,7 +110,7 @@ class TopicController extends Controller
         $topic->sort_order = $request->sort_order;
         $topic->status = $request->status;
         $topic->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $topic->updated_by = 1;
+        $topic->updated_by = $user_name;
         // Upload file
         if ($request->has('image')) {
             $path_dir = "images/topic/";
@@ -130,6 +138,7 @@ class TopicController extends Controller
     // Xóa hẳn
     public function destroy(string $id)
     {
+        $user_name = Auth::user()->name;
         $topic = Topic::find($id);
         //thong tin hinh xoa
         $path_dir = "images/topic/";
@@ -151,13 +160,14 @@ class TopicController extends Controller
     #GET: admin/topic/status/
     public function status($id)
     {
+        $user_name = Auth::user()->name;
         $topic = Topic::find($id);
         if ($topic == null) {
             return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
         }
         $topic->status = ($topic->status == 1) ? 2 : 1;
         $topic->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $topic->updated_by = 1;
+        $topic->updated_by = $user_name;
         $topic->save();
         return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công !']);
     }
@@ -166,13 +176,14 @@ class TopicController extends Controller
     // xóa vào thùng rác
     public function delete($id)
     {
+        $user_name = Auth::user()->name;
         $topic = Topic::find($id);
         if ($topic == null) {
             return redirect()->route('topic.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
         } else {
             $topic->status = 0;
             $topic->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-            $topic->updated_by = 1;
+            $topic->updated_by = $user_name;
             $topic->save();
             return redirect()->route('topic.index')->with('message', ['type' => 'success', 'msg' => 'Xóa vào thùng rác thành công !']);
         }
@@ -180,8 +191,9 @@ class TopicController extends Controller
     #GET:admin/topic/trash
     public function trash()
     {
+        $user_name = Auth::user()->name;
         $list_topic = Topic::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
-        return view('backend.topic.trash', compact('list_topic'));
+        return view('backend.topic.trash', compact('user_name','list_topic'));
     }
     #GET: admin/topic/restore/
     // Khôi phục

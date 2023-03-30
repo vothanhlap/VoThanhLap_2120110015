@@ -11,6 +11,7 @@ use App\Http\Requests\SliderStoreRequest;
 use App\Http\Requests\SliderUpdateRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class SliderController extends Controller
 {
@@ -26,13 +27,11 @@ class SliderController extends Controller
     {
         $user_name = Auth::user()->name;
         $list_slider  = Slider::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
-        $html_parent_id = '';
         $html_sort_order = '';
         foreach ($list_slider as $item) {
-            $html_parent_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->name . '</option>';
         }
-        return view('backend.slider.create', compact('html_parent_id', 'html_sort_order','user_name'));
+        return view('backend.slider.create', compact('html_sort_order','user_name'));
     }
 
     // thêm
@@ -42,9 +41,9 @@ class SliderController extends Controller
         $slider = new slider();
         $slider->name = $request->name;
         $slider->slug = Str::slug($slider->name = $request->name, '-');
-        $slider->metakey = $request->metakey;
-        $slider->metadesc = $request->metadesc;
-        $slider->parent_id = $request->parent_id;
+        $slider->link = $request->link;
+        $slider->posistion = $request->posistion;
+        $slider->types = $request->types;
         $slider->sort_order = $request->sort_order;
         $slider->status = $request->status;
         $slider->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
@@ -102,9 +101,9 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         $slider->name = $request->name;
         $slider->slug = Str::slug($slider->name = $request->name, '-');
-        $slider->metakey = $request->metakey;
-        $slider->metadesc = $request->metadesc;
-        $slider->parent_id = $request->parent_id;
+        $slider->link = $request->link;
+        $slider->posistion = $request->posistion;
+        $slider->types = $request->types;
         $slider->sort_order = $request->sort_order;
         $slider->status = $request->status;
         $slider->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');

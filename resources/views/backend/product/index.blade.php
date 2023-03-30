@@ -52,10 +52,10 @@
                                src="{{ asset('images/product/' . $product->image) }}"
                                 alt="$product->image"></td>
                               <td class="text-center">{{ $product->name }}</td>
-                              <td></td>
-                              <td></td>
-                              {{-- <td class="text-center">{{ $product->name }}</td> --}}
-                              {{-- <td class="text-center">{{ $product->name }}</td> --}}
+                              {{-- <td></td>
+                              <td></td> --}}
+                              <td class="text-center">{{ $product->catname }}</td> 
+                               <td class="text-center">{{ $product->braname }}</td>
                               <td class="text-center">{{ $product->created_at }}</td>
                               <td class="text-center">
                                   @if ($product->status == 1)
@@ -79,8 +79,7 @@
                                   </a>
                                   <a href="{{ route('product.edit', ['product' => $product->id]) }}"
                                       class="btn btn-info btn-sm">
-                                      <i class="fas fa-pencil-alt">
-                                      </i>
+                                      <i class="fas fa-edit"></i>
                                   </a>
                                   <a href="{{ route('product.delete', ['product' => $product->id]) }}"
                                       class="btn btn-danger btn-sm">

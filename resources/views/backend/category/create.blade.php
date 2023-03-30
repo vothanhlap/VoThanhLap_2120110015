@@ -20,7 +20,7 @@
                                     <i class="fas fa-save"></i> Lưu[Thêm]
                                 </button>
                                 <a href="{{ route('category.index') }}"class="btn btn-sm btn-info">
-                                    <i class="fas fa-trash"></i> Quay lại danh sách
+                                      <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
                                 </a>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'thùng rác chủ đề bài viết')
+@section('title', 'thùng rác slider')
 @section('header')
 <link rel="stylesheet" href="{{ asset('public/jquery.dataTables.min.css') }}">
 @endsection
@@ -19,10 +19,12 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <strong class="text-danger text-uppercase">THÙNG RÁC CHỦ ĐỀ BÀI VIẾT</strong>
+                        <strong class="text-danger text-uppercase">THÙNG RÁC SLIDER</strong>
                     </div>
                     <div class="col-md-6 text-right">       
-                                <a href="{{ route('topic.index') }}"class="btn btn-sm btn-success">
+                                <button class="btn btn-sm btn-danger" type="submit">
+                                    <i class="far fa-file-times"></i>Xóa</button>
+                                <a href="{{ route('slider.index') }}"class="btn btn-sm btn-success">
                                     <i class="fas fa-long-arrow-alt-left"></i> Quay về danh sách
                                 </a>
                         </div>
@@ -34,34 +36,34 @@
                         <thead>
                             <tr>
                                 <th style="width:30px" class="text-center">#</th>
-                                <th style="width:90px" class="text-center">Hình đại diện</th>
-                                <th style="width:100px" class="text-center">Chủ đề bài viết</th>
-                                <th style="width:100px" class="text-center">slug</th>
-                                <th style="width:100px" class="text-center">Ngày đăng</th>
-                                <th style="width:150px" class="text-center">Chức năng</th>
-                                <th style="width:30px" class="text-center">ID</th>
+                            <th style="width:90px" class="text-center">Hình đại diện</th>
+                            <th style="width:100px" class="text-center">Tên Sliders</th>
+                            <th style="width:100px" class="text-center">slug</th>
+                            <th style="width:100px" class="text-center">Ngày đăng</th>
+                            <th style="width:150px" class="text-center">Chức năng</th>
+                            <th style="width:30px" class="text-center">ID</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($list_topic as $topic)
+                            @foreach ($list_slider as $slider)
                                 <tr>
                                     <td>
                                         <input type="checkbox">
                                     </td>
                                     <td>
-                                        <img class="img-fluid" src="{{ asset('images/topic/' . $topic->image) }}"
-                                            alt="{{ $topic->image }}">
+                                        <img class="img-fluid" src="{{ asset('images/slider/' . $slider->image) }}"
+                                            alt="{{ $slider->image }}">
                                     </td>
-                                    <td>{{ $topic->name }}</td>
-                                    <td>{{ $topic->slug }}</td>
-                                    <td class="text-center">{{ $topic->created_at }}</td>
+                                    <td>{{ $slider->name }}</td>
+                                    <td>{{ $slider->slug }}</td>
+                                    <td class="text-center">{{ $slider->created_at }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('topic.restore', ['topic' => $topic->id]) }}"
+                                        <a href="{{ route('slider.restore', ['slider' => $slider->id]) }}"
                                             class="btn btn-sm btn-success"><i class="fas fa-undo"></i></a>
-                                        <a href="{{ route('topic.destroy', ['topic' => $topic->id]) }}"
+                                        <a href="{{ route('slider.destroy', ['slider' => $slider->id]) }}"
                                             class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> </a>
                                     </td>
-                                    <td>{{ $topic->id }}</td>
+                                    <td>{{ $slider->id }}</td>
                                 </tr>
                             @endforeach
     
@@ -110,7 +112,7 @@
                             <i class="far fa-file-times"></i>Xóa</button>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="{{ route('topic.index') }}"class="btn btn-sm btn-success">
+                        <a href="{{ route('slider.index') }}"class="btn btn-sm btn-success">
                             <i class="fas fa-long-arrow-alt-left"></i> Quay về danh sách
                         </a>
                     </div>
@@ -132,25 +134,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($list_topic as $topic)
+                        @foreach ($list_slider as $slider)
                             <tr>
                                 <td>
                                     <input type="checkbox">
                                 </td>
                                 <td>
-                                    <img class="img-fluid" src="{{ asset('images/topic/' . $topic->image) }}"
-                                        alt="{{ $topic->image }}">
+                                    <img class="img-fluid" src="{{ asset('images/slider/' . $slider->image) }}"
+                                        alt="{{ $slider->image }}">
                                 </td>
-                                <td>{{ $topic->name }}</td>
-                                <td>{{ $topic->slug }}</td>
-                                <td class="text-center">{{ $topic->created_at }}</td>
+                                <td>{{ $slider->name }}</td>
+                                <td>{{ $slider->slug }}</td>
+                                <td class="text-center">{{ $slider->created_at }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('topic.restore', ['topic' => $topic->id]) }}"
+                                    <a href="{{ route('slider.restore', ['slider' => $slider->id]) }}"
                                         class="btn btn-sm btn-success"><i class="fas fa-undo"></i></a>
-                                    <a href="{{ route('topic.destroy', ['topic' => $topic->id]) }}"
+                                    <a href="{{ route('slider.destroy', ['slider' => $slider->id]) }}"
                                         class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> </a>
                                 </td>
-                                <td>{{ $topic->id }}</td>
+                                <td>{{ $slider->id }}</td>
                             </tr>
                         @endforeach
 

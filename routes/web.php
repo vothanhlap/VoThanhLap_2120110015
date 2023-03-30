@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 //backed
 use App\Http\Controllers\backend\CategoryController;
+use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\TopicController;
 use App\Http\Controllers\backend\PostController;
@@ -37,7 +38,15 @@ route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         route::get('restore/{category}', [CategoryController::class, 'restore'])->name('category.restore');
         route::get('destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
-
+   //contact
+   Route::resource('contact', ContactController::class);
+   route::get('contact_trash', [ContactController::class, 'trash'])->name('contact.trash');
+    route::prefix('contact')->group(function () {
+     route::get('status/{contact}', [ContactController::class, 'status'])->name('contact.status');
+     route::get('delete/{contact}', [ContactController::class, 'delete'])->name('contact.delete');
+     route::get('restore/{contact}', [ContactController::class, 'restore'])->name('contact.restore');
+     route::get('destroy/{contact}', [ContactController::class, 'destroy'])->name('contact.destroy');
+ });
     //brand
     Route::resource('brand', BrandController::class);
     route::get('brand_trash', [BrandController::class, 'trash'])->name('brand.trash');

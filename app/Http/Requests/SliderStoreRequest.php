@@ -15,8 +15,8 @@ class SliderStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2',
-            'metakey' => 'required',
-            'metadesc' => 'required',
+            'link' => 'required',
+            'posistion' => 'required',
         ];
     }
     public function messages(): array
@@ -24,8 +24,8 @@ class SliderStoreRequest extends FormRequest
         return [
             'name.required' => 'Bạn chưa nhập tên.',
             'name.min' => 'Tên có ít nhất 2 ký tự.',
-            'metakey.required' => 'Chưa nhập từ khóa tìm kiếm.',
-            'metadesc.required' => 'Chưa nhập mô tả.',
+            'link.required' => 'Bạn chưa nhập link.',
+            'posistion.required' => 'Bạn chưa nhập posistion.',
         ];
     }
 }

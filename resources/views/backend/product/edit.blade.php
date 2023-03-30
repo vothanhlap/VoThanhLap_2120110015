@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Lưu[Cập nhật]</button>
-                <a href="{{ route('product.index') }}" class="btn btn-sm btn-info"><i class="fas fa-reply"></i> Quay về dánh sách</a>
+                <a href="{{ route('product.index') }}" class="btn btn-sm btn-info"><i class="fas fa-long-arrow-alt-left"></i> Quay về dánh sách</a>
             </div>
            </div>
           </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="parent_id">sản phẩm cha</label>
+                        <label for="parent_id">Danh mục cha</label>
                         <select name="parent_id" id="parent_id" name="parent_id" class="form-control">
                             <option value="0">--Cấp cha--</option>
                             {{!! $html_parent_id !!}}
@@ -97,9 +97,7 @@
 
         </div>
           <!-- /.card-body -->
-          <div class="card-footer">
-            Footer
-          </div>
+         
           <!-- /.card-footer-->
         </div>
         <!-- /.card -->

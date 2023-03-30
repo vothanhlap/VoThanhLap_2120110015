@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('title', 'Thêm thương hiệu sản phẩm')
+@section('title', 'Thêm slider')
 @section('content')
-    <form action="{{ route('brand.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('slider.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -13,14 +13,14 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-6">
-                                <strong class="text-danger text-uppercase">THÊM thương hiệu sản phẩm</strong>
+                                <strong class="text-danger text-uppercase">THÊM SLIDER</strong>
                             </div>
                             <div class="col-md-6 text-right">
                                 <button type="submit" class="btn btn-sm btn-success">
                                     <i class="fas fa-save"></i> Lưu[Thêm]
                                 </button>
-                                <a href="{{ route('brand.index') }}"class="btn btn-sm btn-info">
-                                    <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
+                                <a href="{{ route('slider.index') }}"class="btn btn-sm btn-info">
+                                      <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
                                 </a>
                             </div>
                         </div>
@@ -31,9 +31,9 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="mb-3">
-                                    <label for="name">Tên thương hiệu sản phẩm</label>
+                                    <label for="name">Tên slider</label>
                                     <input type="text" name="name" value="{{ old('name') }}" id="name"
-                                        class="form-control" placeholder="Nhập tên thương hiệu sản phẩm">
+                                        class="form-control" placeholder="Nhập tên slider">
                                     @if ($errors->has('name'))
                                         <div class="text-danger">
                                             {{ $errors->first('name') }}
@@ -41,25 +41,26 @@
                                     @endif
                                 </div>
                                 <div class="mb-3">
-                                    <label for="metakey">Từ khóa</label>
-                                    <textarea name="metakey" rows="3" id="metakey" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
-                                    @if ($errors->has('metakey'))
+                                    <label for="link">Link</label>
+                                    <textarea name="link" rows="2" id="link" class="form-control" placeholder="Nhập link">{{ old('link') }}</textarea>
+                                    @if ($errors->has('link'))
                                         <div class="text-danger">
-                                            {{ $errors->first('metakey') }}
+                                            {{ $errors->first('link') }}
                                         </div>
                                     @endif
                                 </div>
                                 <div class="mb-3">
-                                    <label for="metadesc">Mô tả</label>
-                                    <textarea name="metadesc" rows="3" id="metadesc" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc') }}</textarea>
-                                    @if ($errors->has('metadesc'))
+                                    <label for="posistion">posistion</label>
+                                    <textarea name="posistion" rows="3" id="posistion" class="form-control" placeholder="Nhập posistion">{{ old('posistion') }}</textarea>
+                                    @if ($errors->has('posistion'))
                                         <div class="text-danger">
-                                            {{ $errors->first('metadesc') }}
+                                            {{ $errors->first('posistion') }}
                                         </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-3">
+                               
                                 <div class="mb-3">
                                     <label for="sort_order">Vị trí sắp xếp</label>
                                     <select class="form-control" name="sort_order" id="sort_order">

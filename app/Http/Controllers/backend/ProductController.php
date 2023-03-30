@@ -12,11 +12,12 @@ use App\Models\Category;
 use App\Models\ProductImage;
 use App\Models\ProductSale;
 use App\Models\ProductOption;
-use App\Models\ProductValue;
+// use App\Models\ProductValue;
 use App\Models\ProductStore;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
+use Carbon\Carbon;
 
 
 class ProductController extends Controller
@@ -24,19 +25,27 @@ class ProductController extends Controller
     #GET:admin/product, admin/product/index
     public function index()
     {
-        $list_product = Product::join('vtl_product_image', 'vtl_product_image.product_id', '=', 'vtl_product.id')->where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
-        return view('backend.product.index', compact('list_product'));
+        $user_name = Auth::user()->name;
+        $list_product = Product::join('vtl_product_image', 'vtl_product_image.product_id', '=', 'vtl_product.id')
+        ->join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
+        ->join('vtl_category','vtl_category.id','=','vtl_product.category_id')
+        ->select('vtl_product.*', 'vtl_brand.name as braname', 'vtl_category.name as catname')
+        ->where('vtl_product.status', '!=', 0)
+        ->orderBy('vtl_product.created_at', 'desc')->get();
+        return view('backend.product.index', compact('user_name','list_product'));
     }
     #GET:admin/product/trash
     public function trash()
     {
+        $user_name = Auth::user()->name;
         $list_product = Product::where('status', '=', 0)->orderBy('created_at', 'desc')->get();
-        return view('backend.product.trash', compact('list_product'));
+        return view('backend.product.trash', compact('user_name','list_product'));
     }
 
     #GET: admin/product/create
     public function create()
     {
+        $user_name = Auth::user()->name;
         $list_category = Category::where('status', '!=', 0)->get();
         $list_brand = Brand::where('status', '!=', 0)->get();
 
@@ -48,12 +57,13 @@ class ProductController extends Controller
         foreach ($list_brand as $item) {
             $html_brand_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
         }
-        return view('backend.product.create', compact('html_category_id', 'html_brand_id'));
+        return view('backend.product.create', compact('user_name','html_category_id', 'html_brand_id'));
     }
 
 
     public function store(ProductStoreRequest $request)
     {
+        $user_name = Auth::user()->name;
         $product = new Product; //tạo mới mẫu tin
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
@@ -63,73 +73,13 @@ class ProductController extends Controller
         $product->detail = $request->detail;
         $product->metakey = $request->metakey;
         $product->metadesc = $request->metadesc;
-        $product->created_at = date('Y-m-d H:i:s');
-        $product->created_by = 1;
+        $product->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $product->created_by = $user_name;
         $product->status = $request->status;
-
-        // // Kiểm tra xem người dùng có upload hình ảnh Đại diện hay không?
-        // if ($request->hasFile('avatar')) {
-        //     $file = $request->avatar;
-
-        //     // Lưu tên hình vào column sp_hinh
-        //     $product->avatar = $file->getClientOriginalName();
-
-        //     // Chép file vào thư mục "storate/public/images/product/"
-        //     $fileSaved = $file->storeAs('public/images/product', $product->avatar);
-        // }
-        // if ($product->save()) {
-        //     // Lưu hình ảnh liên quan
-        //     if ($request->hasFile('image')) {
-        //         $files = $request->image;
-
-        //         // duyệt từng ảnh và thực hiện lưu
-        //         foreach ($request->image as $index => $file) {
-
-        //             $file->storeAs('public/images/product', $file->getClientOriginalName());
-
-        //             // Tạo đối tưọng HinhAnh
-        //             $image = new ProductImage();
-        //             $image->product_id = $product->id;
-        //             $image->id = ($index + 1);
-        //             $image->image = $file->getClientOriginalName();
-        //             $image->save();
-        //         }
-        //     }
-        //     //khuyến mãi
-        //     if (strlen($request->price_sale) && strlen($request->date_begin) && strlen($request->date_end)) {
-        //         $product_sale = new ProductSale();
-        //         $product_sale->product_id = $product->id;
-        //         $product_sale->price_sale = $request->price_sale;
-        //         $product_sale->date_begin = $request->date_begin;
-        //         $product_sale->date_end = $request->date_end;
-        //         $product_sale->save();
-        //     }
-        //     //Nhập kho
-        //     if (strlen($request->price) && strlen($request->qty)) {
-        //         $product_store = new ProductStore();
-        //         $product_store->product_id = $product->id;
-        //         $product_store->price = $request->price;
-        //         $product_store->qty = $request->qty;
-        //         $product_store->created_at = date('Y-m-d H:i:s');
-        //         $product_store->created_by = 1;
-        //         $product_store->save();
-        //     }
-        // }
-
-
-        // //upload avatar
-        // if ($request->has('avatar')) {
-        //     $path_dir = "public/images/product/";
-        //     $avatar =  $request->file('avatar');
-        //     $ext = $avatar->getClientOriginalExtension();
-        //     $avatarname = $product->slug . '-avatar-' . '.' . $ext;
-        //     $avatar->move($path_dir, $avatarname);
-        //     $product->image = $avatarname;
-        // }
         if ($product->save()) {
             //upload image nhieu anh
             if ($request->has('image')) {
-                $path_dir = "public/images/product/";
+                $path_dir = "images/product/";
                 $array_file =  $request->file('image');
                 $i = 1;
                 foreach ($array_file as $file) {
@@ -144,40 +94,45 @@ class ProductController extends Controller
                     $i++;
                 }
             }
-            //khuyến mãi
-            if (strlen($request->price_sale) && strlen($request->date_begin) && strlen($request->date_end)) {
-                $product_sale = new ProductSale();
-                $product_sale->product_id = $product->id;
-                $product_sale->price_sale = $request->price_sale;
-                $product_sale->date_begin = $request->date_begin;
-                $product_sale->date_end = $request->date_end;
-                $product_sale->save();
-            }
             //Nhập kho
             if (strlen($request->price) && strlen($request->qty)) {
                 $product_store = new ProductStore();
                 $product_store->product_id = $product->id;
-                $product_store->price = $request->price;
+                $product_store->price
+                 = $request->price;
                 $product_store->qty = $request->qty;
-                $product_store->created_at = date('Y-m-d H:i:s');
-                $product_store->created_by = 1;
+                $product_store->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+                $product_store->created_by = $user_name;
                 $product_store->save();
             }
+
+            //khuyến mãi
+            // if (strlen($request->price_sale) && strlen($request->date_begin) && strlen($request->date_end)) {
+            //     $product_sale = new ProductSale();
+            //     $product_sale->product_id = $product->id;
+            //     $product_sale->price_sale = $request->price_sale;
+            //     $product_sale->date_begin = $request->date_begin;
+            //     $product_sale->date_end = $request->date_end;
+            //     $product_sale->save();
+            // }
+            
         }
         return redirect()->route('product.index')->with('message', ['type' => 'dangers', 'msg' => 'Thêm sản phẩm không thành công!']);
     }
 
     public function show(string $id)
     {
+        $user_name = Auth::user()->name;
         $product = Product::find($id);
         if ($product == null) {
             return redirect()->route('product.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
         }
-        return view('backend.product.show', compact('product'));
+        return view('backend.product.show', compact('user_name','product'));
     }
 
     public function edit(string $id)
     {
+        $user_name = Auth::user()->name;
         $product = Product::find($id);
         $list_product = Product::where('status', '!=', 0)->get();
         $html_parent_id = '';
@@ -187,11 +142,12 @@ class ProductController extends Controller
             $html_parent_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->name . '</option>';
         }
-        return view('backend.product.edit', compact('product', 'html_parent_id', 'html_sort_order'));
+        return view('backend.product.edit', compact('product','user_name', 'html_parent_id', 'html_sort_order'));
     }
 
     public function update(ProductUpdateRequest $request, string $id)
     {
+        $user_name = Auth::user()->name;
         $product = Product::find($id); //lấy mẫu tin
         $product->name = $request->name;
         $product->slug = Str::slug($product->name = $request->name, '-');
@@ -200,11 +156,11 @@ class ProductController extends Controller
         $product->parent_id = $request->parent_id;
         $product->sort_order = $request->sort_order;
         $product->status = $request->status;
-        $product->updated_at = date('Y-m-d H:i:s');
-        $product->created_by = 1;
+        $product->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $product->created_by = $user_name;
         //upload image
         if ($request->has('image')) {
-            $path_dir = "public/images/product/";
+            $path_dir = "images/product/";
             if (File::exists(public_path($path_dir . $product->image))) {
                 File::delete(public_path($path_dir . $product->image));
             }
@@ -223,6 +179,7 @@ class ProductController extends Controller
     #GET:admin/product/destroy/{id}
     public function destroy(string $id)
     {
+        $user_name = Auth::user()->name;
         $product = Product::find($id);
         //thong tin hinh xoa
         $path_dir = "public/images/product/";
@@ -242,39 +199,42 @@ class ProductController extends Controller
     #GET:admin/product/status/{id}
     public function status($id)
     {
+        $user_name = Auth::user()->name;
         $product = Product::find($id);
         if ($product == null) {
             return redirect()->route('product.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
         }
         $product->status = ($product->status == 1) ? 2 : 1;
-        $product->updated_at = date('Y-m-d H:i:s');
-        $product->updated_by = 1;
+        $product->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $product->updated_by = $user_name;
         $product->save();
         return redirect()->route('product.index')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công!']);
     }
     #GET:admin/product/delete/{id}
     public function delete($id)
     {
+        $user_name = Auth::user()->name;
         $product = Product::find($id);
         if ($product == null) {
             return redirect()->route('product.index')->with('message', ['type' => 'danger', 'msg' => 'Xóa vào thùng rác không thành công!']);
         }
         $product->status = 0;
-        $product->updated_at = date('Y-m-d H:i:s');
-        $product->updated_by = 1;
+        $product->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $product->updated_by = $user_name;
         $product->save();
         return redirect()->route('product.index')->with('message', ['type' => 'success', 'msg' => 'Xóa vào thùng rác thành công!']);
     }
     #GET:admin/product/restore/{id}
     public function restore($id)
     {
+        $user_name = Auth::user()->name;
         $product = Product::find($id);
         if ($product == null) {
             return redirect()->route('product.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
         }
         $product->status = 2;
-        $product->updated_at = date('Y-m-d H:i:s');
-        $product->updated_by = 1;
+        $product->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $product->updated_by = $user_name;
         $product->save();
         return redirect()->route('product.trash')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công!']);
     }

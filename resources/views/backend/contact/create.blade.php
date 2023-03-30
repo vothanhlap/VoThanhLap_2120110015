@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('title', 'Thêm thương hiệu sản phẩm')
+@section('title', 'Thêm danh mục sản phẩm')
 @section('content')
-    <form action="{{ route('brand.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('contact.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -13,14 +13,14 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-6">
-                                <strong class="text-danger text-uppercase">THÊM thương hiệu sản phẩm</strong>
+                                <strong class="text-danger text-uppercase">THÊM DANH MỤC SẢN PHẨM</strong>
                             </div>
                             <div class="col-md-6 text-right">
                                 <button type="submit" class="btn btn-sm btn-success">
                                     <i class="fas fa-save"></i> Lưu[Thêm]
                                 </button>
-                                <a href="{{ route('brand.index') }}"class="btn btn-sm btn-info">
-                                    <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
+                                <a href="{{ route('contact.index') }}"class="btn btn-sm btn-info">
+                                      <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
                                 </a>
                             </div>
                         </div>
@@ -31,9 +31,9 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="mb-3">
-                                    <label for="name">Tên thương hiệu sản phẩm</label>
+                                    <label for="name">Tên danh mục</label>
                                     <input type="text" name="name" value="{{ old('name') }}" id="name"
-                                        class="form-control" placeholder="Nhập tên thương hiệu sản phẩm">
+                                        class="form-control" placeholder="Nhập tên danh mục">
                                     @if ($errors->has('name'))
                                         <div class="text-danger">
                                             {{ $errors->first('name') }}
@@ -60,6 +60,13 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="parent_id">Danh mục cha</label>
+                                    <select class="form-control" name="parent_id" id="parent_id">
+                                        <option value="0">-- Cấp cha --</option>
+                                        {!! $html_parent_id !!}
+                                    </select>
+                                </div>
                                 <div class="mb-3">
                                     <label for="sort_order">Vị trí sắp xếp</label>
                                     <select class="form-control" name="sort_order" id="sort_order">

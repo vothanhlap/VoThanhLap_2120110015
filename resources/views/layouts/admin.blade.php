@@ -182,13 +182,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('slider.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p style="color:greenyellow"> Danh Sách Slider </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('contact.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p style="color:greenyellow">Danh Sách Liên Hệ</p>
                             </a>
