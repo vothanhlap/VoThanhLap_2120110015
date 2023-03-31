@@ -7,15 +7,17 @@
           <li data-target="#carousel1_indicator" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{{asset('public/frontend/images/banners/slide1.jpg')}}" alt="First slide"> 
-          </div>
-          <div class="carousel-item">
-            <img src="{{asset('public/frontend/images/banners/slide2.jpg')}}" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img src="{{asset('public/frontend/images/banners/slide3.jpg')}}" alt="Third slide">
-          </div>
+          @foreach ($list_slider as $slider)
+             @if ($loop->first)
+             <div class="carousel-item active">
+              <img src="{{asset('images/slider/'.$slider->image)}}" alt="First slide"> 
+            </div>
+             @else
+             <div class="carousel-item">
+              <img src="{{asset('images/slider/'.$slider->image)}}" alt="Second slide">
+            </div> 
+             @endif
+          @endforeach
         </div>
         <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

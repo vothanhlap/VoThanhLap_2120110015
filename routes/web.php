@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 //frontend
-use App\Http\Controllers\frontend\SliderController;
 use App\Http\Controllers\frontend\LienheController;
 use App\Http\Controllers\frontend\SanphamController;
 //backed
+use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\ProductController;
@@ -21,7 +21,7 @@ use App\Http\Controllers\frontend\SiteController;
 
 Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
 Route::get('lien-he', [LienheController::class, 'index'])->name('contact.index');
-Route::get('san-pham', [SanphamController::class, 'index'])->name('product.index');
+Route::get('san-pham', [SanphamController::class, 'product'])->name('product.index');
 
 // khai bao route dang nhap - dang xuat
 route::get('login', [AuthController::class, 'getlogin'])->name('login');

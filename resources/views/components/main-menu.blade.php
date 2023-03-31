@@ -2,7 +2,7 @@
     <ul class="navbar-nav">
         @foreach ($list_menu as $menu)
         <li class="nav-item ">
-            <a class="nav-link " data-toggle="dropdown" href="{{$menu->link}}"> <i class="fa fa-bars text-muted mr-2"></i> {{$menu->name}} </a>
+            <a class="nav-link " data-toggle="dropdown" href="{{$menu->link}}"> <i class="text-muted mr-2"></i> {{$menu->name}} </a>
           </li>
         @endforeach
     </ul>

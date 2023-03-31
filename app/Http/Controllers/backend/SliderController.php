@@ -42,7 +42,7 @@ class SliderController extends Controller
         $slider->name = $request->name;
         $slider->slug = Str::slug($slider->name = $request->name, '-');
         $slider->link = $request->link;
-        $slider->posistion = $request->posistion;
+        $slider->position = $request->position;
         $slider->types = $request->types;
         $slider->sort_order = $request->sort_order;
         $slider->status = $request->status;
@@ -102,7 +102,7 @@ class SliderController extends Controller
         $slider->name = $request->name;
         $slider->slug = Str::slug($slider->name = $request->name, '-');
         $slider->link = $request->link;
-        $slider->posistion = $request->posistion;
+        $slider->position = $request->position;
         $slider->types = $request->types;
         $slider->sort_order = $request->sort_order;
         $slider->status = $request->status;

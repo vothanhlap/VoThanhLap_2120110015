@@ -11,7 +11,7 @@ class SliderUpdateRequest extends FormRequest
         return [
             'name' => 'required|min:2',
             'link' => 'required',
-            'posistion' => 'required',
+            'position' => 'required',
        
         ];
     }
@@ -21,7 +21,7 @@ class SliderUpdateRequest extends FormRequest
             'name.required' => 'Bạn chưa nhập tên.',
             'name.min' => 'Tên có ít nhất 2 ký tự.',
             'link.required' => 'Bạn chưa nhập link.',
-            'posistion.required' => 'Bạn chưa nhập posistion.',
+            'position.required' => 'Bạn chưa nhập posistion.',
         ];
     }
 }

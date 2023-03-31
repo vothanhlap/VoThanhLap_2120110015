@@ -5,6 +5,7 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\Slider;
 
 class Slidershow extends Component
 {
@@ -21,7 +22,7 @@ class Slidershow extends Component
      */
     public function render(): View|Closure|string
     {
-       
-        return view('components.slidershow');
+       $list_slider = Slider::where([['status','=','1'],['position','=','slideshow']])->orderBy('created_at','desc')->get();
+        return view('components.slidershow', compact('list_slider'));
     }
 }

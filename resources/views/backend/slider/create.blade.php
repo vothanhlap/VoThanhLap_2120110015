@@ -50,11 +50,11 @@
                                     @endif
                                 </div>
                                 <div class="mb-3">
-                                    <label for="posistion">posistion</label>
-                                    <textarea name="posistion" rows="3" id="posistion" class="form-control" placeholder="Nhập posistion">{{ old('posistion') }}</textarea>
-                                    @if ($errors->has('posistion'))
+                                    <label for="position">position</label>
+                                    <textarea name="position" rows="3" id="position" class="form-control" placeholder="Nhập position">{{ old('position') }}</textarea>
+                                    @if ($errors->has('position'))
                                         <div class="text-danger">
-                                            {{ $errors->first('posistion') }}
+                                            {{ $errors->first('position') }}
                                         </div>
                                     @endif
                                 </div>

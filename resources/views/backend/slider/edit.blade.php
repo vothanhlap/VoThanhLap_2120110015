@@ -12,7 +12,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6">
-                                        <strong class="text-danger text-uppercase">CẬP NHẬT DANH MỤC SẢN PHẨM</strong>                
+                                        <strong class="text-danger text-uppercase">CẬP NHẬT SLIDER</strong>                
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <button type="submit" class="btn btn-sm btn-success">
@@ -49,11 +49,11 @@
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="posistion" class="text-danger">Mô tả</label>
-                                        <textarea name="posistion" id="posistion" rows="4" class="form-control" placeholder="Nhập posistion">{{ old('posistion', $slider->posistion) }}</textarea>
-                                        @if ($errors->has('posistion'))
+                                        <label for="position" class="text-danger">Mô tả</label>
+                                        <textarea name="position" id="position" rows="4" class="form-control" placeholder="Nhập position">{{ old('position', $slider->position) }}</textarea>
+                                        @if ($errors->has('position'))
                                             <div class="text-danger">
-                                                {{ $errors->first('posistion') }}
+                                                {{ $errors->first('position') }}
                                             </div>
                                         @endif
                                     </div>
