@@ -98,7 +98,16 @@
 		</div> <!-- row.// -->
 	</div> <!-- container.// -->
 </section> <!-- header-main .// -->
-@includeIf('frontend.menu.nav')
+
+<nav class="navbar navbar-main navbar-expand-lg border-bottom">
+    <div class="container">
+  
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  <x-main-menu/>
+    </div> <!-- container .// -->
+  </nav>
 </header> <!-- section-header.// -->
 
 
@@ -109,15 +118,15 @@
 	<div class="card-body">
 
 <div class="row">
-	@includeIf('frontend.menu.nav_left')
+	<x-navleft/>
 	<div class="col-md-9 col-xl-7 col-lg-7">
 
 <!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
-@includeIf('frontend.slider.slider')
+<x-slidershow/>
 <!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->	
 
 	</div> <!-- col.// -->
-	@includeIf('frontend.menu.nav_right')
+	<x-popular-category/>
 </div> <!-- row.// -->
 
 	</div> <!-- card-body.// -->

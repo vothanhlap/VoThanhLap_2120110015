@@ -2,12 +2,15 @@
     <h6>DANH MỤC SẢN PHẨM</h6>
     <nav class="nav-home-aside">
         <ul class="menu-category">
-            <li><a href="#">Fashion and clothes</a></li>
-            <li class="has-submenu"><a href="#">More items</a>
+            @foreach ($list_category as $item)
+            <li><a href="#">{{$item->name}}</a></li>
+            @endforeach
+           
+            {{-- <li class="has-submenu"><a href="#">More items</a>
                 <ul class="submenu">
                     <li><a href="#">Submenu name</a></li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
     </nav>
 </aside> <!-- col.// -->
