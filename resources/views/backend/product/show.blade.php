@@ -70,7 +70,7 @@
                   </tr>
                   <tr>
                     <td>Số lượng</td>
-                    <td>{{ $product->number }}</td>
+                    <td>{{ $product->soluong }}</td>
                   </tr>
                   <tr>
                     <td>Gía bán</td>

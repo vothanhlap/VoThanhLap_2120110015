@@ -48,9 +48,9 @@
                       @foreach ($list_product as $product)
                           <tr>
                               <td class="text-center"><input type="checkbox"></td>
-                              <td><img class="img-fluid"
-                               src="{{ asset('images/product/' . $product->image) }}"
-                                alt="$product->image"></td>
+                              <td>
+                               <img class="img-fluid" src="{{ asset('images/product/' .$product->image)}}" alt="{{$product->name}}">
+                            </td>
                               <td class="text-center">{{ $product->name }}</td>
                               {{-- <td></td>
                               <td></td> --}}

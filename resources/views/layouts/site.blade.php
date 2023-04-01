@@ -62,9 +62,8 @@
 						<a href="#" class="widget-view">
 							<div class="icon-area">
 								<i class="fa fa-user"></i>
-								<span class="notify">3</span>
 							</div>
-							<small class="text"> My profile </small>
+							<small class="text">Khách hàng</small>
 						</a>
 					</div>
 					<div class="widget-header mr-3">
@@ -73,23 +72,25 @@
 								<i class="fa fa-comment-dots"></i>
 								<span class="notify">1</span>
 							</div>
-							<small class="text"> Message </small>
+							<small class="text">Trò chuyện</small>
 						</a>
 					</div>
-					<div class="widget-header mr-3">
+					{{-- <div class="widget-header mr-3">
 						<a href="#" class="widget-view">
 							<div class="icon-area">
+								
 								<i class="fa fa-store"></i>
 							</div>
 							<small class="text"> Orders </small>
 						</a>
-					</div>
+					</div> --}}
 					<div class="widget-header">
 						<a href="#" class="widget-view">
 							<div class="icon-area">
+								<span class="notify">3</span>
 								<i class="fa fa-shopping-cart"></i>
 							</div>
-							<small class="text"> Cart </small>
+							<small class="text">Giỏ hàng</small>
 						</a>
 					</div>
 				</div> <!-- widgets-wrap.// -->

@@ -11,4 +11,6 @@ class ProductImage extends Model
     protected $table = 'vtl_product_image';
     public $timestamps = false;
 
+    
+
 }
