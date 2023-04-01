@@ -27,6 +27,6 @@ class navleft extends Component
           
         ];
         $list_category = Category::where($data)->orderBy('created_at','asc')->get();
-        return view('components.navleft',compact('list_category'));
+        return view('components.menu.navleft',compact('list_category'));
     }
 }

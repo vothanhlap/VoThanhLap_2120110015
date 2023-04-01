@@ -28,6 +28,6 @@ class MainMenu extends Component
             ['posistion','=','mainmenu'],
         ];
         $list_menu = Menu::where($menu)->orderBy('sort_orders','asc')->get();
-        return view('components.main-menu',compact('list_menu'));
+        return view('components.menu.main-menu',compact('list_menu'));
     }
 }
