@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Cập nhật mục sản phẩm')
+@section('title', 'Cập nhật slider')
 @section('content')
     <form action="{{ route('slider.update', ['slider' => $slider->id]) }}" method="post" enctype="multipart/form-data">
         @method('PUT')

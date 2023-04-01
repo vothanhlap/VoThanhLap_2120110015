@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('title', 'Cập nhật mục sản phẩm')
+@section('title', 'Cập nhật trang đơn')
 @section('content')
-    <form action="{{ route('contact.update', ['contact' => $contact->id]) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('page.update', ['page' => $page->id]) }}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="content-wrapper">
@@ -12,14 +12,14 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6">
-                                        <strong class="text-danger text-uppercase">CẬP NHẬT liên hệ</strong>                
+                                        <strong class="text-danger text-uppercase">CẬP NHẬT TRANG ĐƠN</strong>                
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <button type="submit" class="btn btn-sm btn-success">
                                         <i class="fas fa-save"></i> Lưu[Cập nhật]
                                     </button>
-                                    <a href="{{ route('contact.index') }}"class="btn btn-sm btn-info">
-                                          <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
+                                    <a href="{{ route('page.index') }}"class="btn btn-sm btn-info">
+                                        <i class="fas fa-long-arrow-alt-left"></i> Quay về danh sách
                                     </a>
                                 </div>
                             </div>
@@ -30,18 +30,18 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="mb-3">
-                                        <label for="name " class="text-danger">Tên danh mục</label>
-                                        <input type="text" name="name" value="{{ old('name', $contact->name) }}"
-                                            id="name" class="form-control" placeholder="Nhập tên danh mục">
-                                        @if ($errors->has('name'))
+                                        <label for="title " class="text-danger">Tên trang đơn</label>
+                                        <input type="text" name="title" value="{{ old('title', $page->title) }}"
+                                            id="title" class="form-control" placeholder="Nhập tên trang đơn">
+                                        @if ($errors->has('title'))
                                             <div class="text-danger">
-                                                {{ $errors->first('name') }}
+                                                {{ $errors->first('title') }}
                                             </div>
                                         @endif
                                     </div>
                                     <div class="mb-3">
                                         <label for="metakey  " class="text-danger">Từ khóa</label>
-                                        <textarea name="metakey" id="metakey" rows="4" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey', $contact->metakey) }}</textarea>
+                                        <textarea name="metakey" id="metakey" rows="4" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey', $page->metakey) }}</textarea>
                                         @if ($errors->has('metakey'))
                                             <div class="text-danger">
                                                 {{ $errors->first('metakey') }}
@@ -50,10 +50,19 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="metadesc" class="text-danger">Mô tả</label>
-                                        <textarea name="metadesc" id="metadesc" rows="4" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc', $contact->metadesc) }}</textarea>
+                                        <textarea name="metadesc" id="metadesc" rows="4" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc', $page->metadesc) }}</textarea>
                                         @if ($errors->has('metadesc'))
                                             <div class="text-danger">
                                                 {{ $errors->first('metadesc') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="detail">Chi tiết</label>
+                                        <textarea name="detail" rows="3" id="metadesc" class="form-control" placeholder="Nhập mô tả">{{ old('detail', $page->detail) }}</textarea>
+                                        @if ($errors->has('detail'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('detail') }}
                                             </div>
                                         @endif
                                     </div>

@@ -164,7 +164,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('page.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p style="color:greenyellow">Danh Sách Trang Đơn</p>
                             </a>

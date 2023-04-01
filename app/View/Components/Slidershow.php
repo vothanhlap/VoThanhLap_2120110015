@@ -22,7 +22,7 @@ class Slidershow extends Component
      */
     public function render(): View|Closure|string
     {
-       $list_slider = Slider::where([['status','=','1'],['position','=','slideshow']])->orderBy('created_at','desc')->get();
+       $list_slider = Slider::where([['status','=','1'],['position','=','slideshow']])->orderBy('created_at','desc')->take(4)->get();
         return view('components.slidershow', compact('list_slider'));
     }
 }

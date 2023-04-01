@@ -81,7 +81,7 @@
     <section  class="padding-bottom-sm">
     
     <header class="section-heading heading-line">
-        <h4 class="title-section text-uppercase">Recommended items</h4>
+        <h4 class="title-section text-uppercase">SẢN PHẦM ĐỀ XUẤT</h4>
     </header>
     
     <div class="row row-sm">
@@ -103,7 +103,7 @@
     <section  class="padding-bottom">
     
     <header class="section-heading heading-line">
-        <h4 class="title-section text-uppercase">Trade services</h4>
+        <h4 class="title-section text-uppercase">DỊCH VỤ THƯƠNG MẠI</h4>
     </header>
     
     <div class="row">

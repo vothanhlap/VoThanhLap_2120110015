@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết danh mục sản phẩm')
+@section('title', 'Chi tiết liên hệ')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong class="text-danger text-uppercase" >Chi tiết danh mục sản phẩm</strong>
+                            <strong class="text-danger text-uppercase" >Chi tiết liên hệ</strong>
                         </div>
                         <div class="col-md-6 text-right">
                             <a

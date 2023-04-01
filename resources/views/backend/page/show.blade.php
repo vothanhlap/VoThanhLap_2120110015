@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết slider')
+@section('title', 'Chi tiết trang đơn')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -10,18 +10,18 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong class="text-danger text-uppercase" >Chi tiết slider</strong>
+                            <strong class="text-danger text-uppercase" > chi tiết trang đơn</strong>
                         </div>
                         <div class="col-md-6 text-right">
                             <a
-                                href="{{ route('slider.edit', ['slider' => $slider->id]) }}"class="btn btn-sm btn-primary">
+                                href="{{ route('page.edit', ['page' => $page->id]) }}"class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Sửa
                             </a>
                             <a
-                                href="{{ route('slider.destroy', ['slider' => $slider->id]) }}"class="btn btn-sm btn-danger">
+                                href="{{ route('page.destroy', ['page' => $page->id]) }}"class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash"></i> Xóa
                             </a>
-                            <a href="{{ route('slider.index') }}"class="btn btn-sm btn-success">
+                            <a href="{{ route('page.index') }}"class="btn btn-sm btn-info">
                                 <i class="fas fa-long-arrow-alt-left"></i> Quay về danh sách
                             </a>
                         </div>
@@ -38,44 +38,44 @@
                         </tr>
                         <td>Hình ảnh</td>
                             <td>
-                                <img style="width:80px" class="img-fluid" src="{{ asset('images/slider/' . $slider->image) }}"
-                                    alt="{{ $slider->image }}">
+                                <img style="width:80px" class="img-fluid" src="{{ asset('images/page/' . $page->image) }}"
+                                    alt="{{ $page->image }}">
                             </td>
                         <tr>
-                            <td>Tên Slider</td>
-                            <td>{{ $slider->name }}</td>
+                            <td>Tên chủ đề</td>
+                            <td>{{ $page->title }}</td>
                         </tr>
                         <tr>
                             <td>Slug</td>
-                            <td>{{ $slider->slug }}</td>
+                            <td>{{ $page->slug }}</td>
                         </tr>
                         <tr>
-                            <td>Sắp xếp</td>
-                            <td>{{ $slider->sort_order }}</td>
+                            <td>Danh mục cha</td>
+                            <td>{{ $page->parent_id }}</td>
                         </tr>
                         <tr>
-                            <td>Link</td>
-                            <td>{{ $slider->link }}</td>
+                            <td>Từ khóa</td>
+                            <td>{{ $page->metakey }}</td>
                         </tr>
                         <tr>
-                            <td>Posistion</td>
-                            <td>{{ $slider->posistion }}</td>
+                            <td>Mô tả</td>
+                            <td>{{ $page->metadesc }}</td>
                         </tr>
                         <tr>
                             <td> Người tạo   </td>
-                            <td>{{ $slider->created_by }}</td>
+                            <td>{{ $page->created_by }}</td>
                         </tr>
                         <tr>
                             <td>Người cập nhật</td>
-                            <td>{{ $slider->updated_by }}</td>
+                            <td>{{ $page->updated_by }}</td>
                         </tr>
                         <tr>
                             <td>Ngày tạo</td>
-                            <td>{{ $slider->created_at }}</td>
+                            <td>{{ $page->created_at }}</td>
                         </tr>
                         <tr>
                             <td>Ngày cập nhật</td>
-                            <td>{{ $slider->updated_at }}</td>
+                            <td>{{ $page->updated_at }}</td>
                         </tr>
                     </table>
                 </div>

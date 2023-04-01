@@ -14,7 +14,7 @@
             </div>
              @else
              <div class="carousel-item">
-              <img src="{{asset('images/slider/'.$slider->image)}}" alt="Second slide">
+              <img src="{{asset('images/slider/'.$slider->image)}}" alt="slide"> 
             </div> 
              @endif
           @endforeach

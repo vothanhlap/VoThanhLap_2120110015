@@ -6,9 +6,8 @@
 <meta http-equiv="cache-control" content="max-age=604800" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Website title - bootstrap html template</title>
+<title>@yield('title')</title>
 
-<link href="{{asset('public/frontend/images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
 
 <!-- jQuery -->
 <script src="{{asset('public/frontend/js/jquery-2.0.0.min.js')}}" type="text/javascript"></script>
@@ -35,8 +34,8 @@
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xl-2 col-lg-3 col-md-12">
-				<a href="http://bootstrap-ecommerce.com" class="brand-wrap">
-					<img class="logo" src="{{asset('public/frontend/images/logo.png')}}">
+				<a href="#" class="brand-wrap">
+					<img style="width: 120px" class="logo" src="{{asset('public/images/logo.png')}}">
 				</a> <!-- brand-wrap.// -->
 			</div>
 			<div class="col-xl-6 col-lg-5 col-md-6">
@@ -139,14 +138,14 @@
  <div class="card card-deal">
      <div class="col-heading content-body">
       <header class="section-heading">
-       <h3 class="section-title">Deals and offers</h3>
-       <p>Hygiene equipments</p>
+       <h3 class="section-title">KHUYẾN MÃI SỐC</h3>
+       <p>Ưu đãi và ưu đãi</p>
      </header><!-- sect-heading -->
      <div class="timer">
-       <div> <span class="num">04</span> <small>Days</small></div>
-       <div> <span class="num">12</span> <small>Hours</small></div>
-       <div> <span class="num">58</span> <small>Min</small></div>
-       <div> <span class="num">02</span> <small>Sec</small></div>
+       <div> <span class="num">04</span> <small>Ngày</small></div>
+       <div> <span class="num">12</span> <small>Giờ</small></div>
+       <div> <span class="num">58</span> <small>Phút</small></div>
+       <div> <span class="num">02</span> <small>Giây</small></div>
      </div>
    </div> <!-- col.// -->
    <div class="row no-gutters items-wrap">
@@ -217,7 +216,7 @@
 <section  class="padding-bottom">
 
 <header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Choose region</h4>
+	<h4 class="title-section text-uppercase">CHỌN KHU VỰC</h4>
 </header>
 
 <ul class="row mt-4">
@@ -243,19 +242,19 @@
 <section class="section-subscribe padding-y-lg">
 <div class="container">
 
-<p class="pb-2 text-center text-white">Delivering the latest product trends and industry news straight to your inbox</p>
+<p class="pb-2 text-center text-white">Cung cấp các xu hướng sản phẩm mới nhất và tin tức ngành trực tiếp cho bạn</p>
 
 <div class="row justify-content-md-center">
 	<div class="col-lg-5 col-md-6">
 <form class="form-row">
 		<div class="col-md-8 col-7">
-		<input class="form-control border-0" placeholder="Your Email" type="email">
+		<input class="form-control border-0" placeholder="Nhập Email của bạn" type="email">
 		</div> <!-- col.// -->
 		<div class="col-md-4 col-5">
-		<button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+		<button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Phản hồi </button>
 		</div> <!-- col.// -->
 </form>
-<small class="form-text text-white-50">We’ll never share your email address with a third-party. </small>
+<small class="form-text text-white-50">Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn với bên thứ ba. </small>
 	</div> <!-- col-md-6.// -->
 </div>
 	
@@ -322,8 +321,8 @@
 
 		<section class="footer-bottom text-center">
 		
-				<p class="text-white">Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
-				<p class="text-muted"> &copy 2019 Company name, All rights reserved </p>
+				<p class="text-white">Trang web chủ sở hữu Laptopvui.net</p>
+				<p class="text-muted"> &copy 2023 Võ Thành Lập, All rights reserved </p>
 				<br>
 		</section>
 	</div><!-- //container -->
