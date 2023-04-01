@@ -30,9 +30,9 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="mb-3">
-                                        <label for="name " class="text-danger">Tên danh mục</label>
+                                        <label for="name " class="text-danger">Tên liên hệ</label>
                                         <input type="text" name="name" value="{{ old('name', $contact->name) }}"
-                                            id="name" class="form-control" placeholder="Nhập tên danh mục">
+                                            id="name" class="form-control" placeholder="Nhập tên liên hệ">
                                         @if ($errors->has('name'))
                                             <div class="text-danger">
                                                 {{ $errors->first('name') }}
@@ -40,7 +40,7 @@
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="metakey  " class="text-danger">Từ khóa</label>
+                                        <label for="metakey  " class="text-danger">Từ khóa <span class="text-danger">(*)</span></label>
                                         <textarea name="metakey" id="metakey" rows="4" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey', $contact->metakey) }}</textarea>
                                         @if ($errors->has('metakey'))
                                             <div class="text-danger">
@@ -49,7 +49,7 @@
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="metadesc" class="text-danger">Mô tả</label>
+                                        <label for="metadesc" class="text-danger">Mô tả <span class="text-danger">(*)</span></label>
                                         <textarea name="metadesc" id="metadesc" rows="4" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc', $contact->metadesc) }}</textarea>
                                         @if ($errors->has('metadesc'))
                                             <div class="text-danger">
@@ -60,21 +60,21 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label for="parent_id" class="text-danger">Danh mục cha</label>
+                                        <label for="parent_id" class="text-danger">Danh mục cha <span class="text-danger">(*)</span></label>
                                         <select class="form-control" name="parent_id" id="parent_id">
                                             <option value="0">-- Cấp cha --</option>
                                             {!! $html_parent_id !!}
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="sort_order" class="text-danger">Vị trí sắp xếp</label>
+                                        <label for="sort_order" class="text-danger">Vị trí sắp xếp <span class="text-danger">(*)</span></label>
                                         <select class="form-control" name="sort_order" id="sort_order">
                                             <option value="0">-- Vị trí --</option>
                                             {!! $html_sort_order !!}
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="image" class="text-danger">Hình đại diện</label>
+                                        <label for="image" class="text-danger">Hình đại diện <span class="text-danger">(*)</span></label>
                                         <input type="file" name="image" value="{{ old('image') }}" id="image"
                                             class="form-control" />
                                     </div>

@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-9">
         <div class="mb-3">
-            <label for="name">Tên sản phẩm</label>
+            <label for="name">Tên sản phẩm <span class="text-danger">(*)</span></label>
             <input type="text" name="name" value="{{ old('name') }}"" id="name" class="form-control" placeholder="Nhập tên sản phẩm"> 
             @if ($errors->has('name'))
               <div class="text-danger">{{$errors->first('name')}}</div>
             @endif 
         </div>
         <div class="mb-3">
-            <label for="detail">Chi tiết</label>
+            <label for="detail">Chi tiết <span class="text-danger">(*)</span></label>
             <textarea  rows="4" name="detail" id="detail" class="form-control"
             placeholder="Chi tiết sản phẩm">{{ old('detail') }}</textarea>
             @if ($errors->has('detail'))
@@ -16,7 +16,7 @@
           @endif 
         </div>
         <div class="mb-3">
-            <label for="metakey">Từ khóa</label>
+            <label for="metakey">Từ khóa <span class="text-danger">(*)</span></label>
             <textarea rows="4" name="metakey" id="metakey" class="form-control"
             placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
             @if ($errors->has('metakey'))
@@ -24,7 +24,7 @@
           @endif 
         </div>
         <div class="mb-3">
-            <label for="metadesc">Mô tả</label>
+            <label for="metadesc">Mô tả <span class="text-danger">(*)</span></label>
             <textarea rows="4" name="metadesc" id="metadesc" class="form-control"
             placeholder="Nhập mô tả">{{ old('metadesc') }}</textarea>
             @if ($errors->has('metadesc'))
@@ -34,9 +34,9 @@
     </div>
     <div class="col-md-3">
         <div class="mb-3">
-            <label for="category_id">Chọn danh mục</label>
+            <label for="category_id">Danh mục cha <span class="text-danger">(*)</span></label>
             <select name="category_id" id="category_id" name="category_id" class="form-control">
-                <option value="">--Danh mục--</option>
+                <option value="">--Chọn danh mục--</option>
                 {{!! $html_category_id !!}}
             </select>
             @if ($errors->has('category_id'))
@@ -44,7 +44,7 @@
           @endif 
         </div> 
         <div class="mb-3">
-            <label for="brand_id">Chọn thương hiệu</label>
+            <label for="brand_id">Chọn thương hiệu<span class="text-danger">(*)</span></label>
             <select name="brand_id" id="brand_id" name="brand_id" class="form-control">
                 <option value="">--Thương hiệu--</option>
                 {{!! $html_brand_id !!}}
@@ -54,7 +54,7 @@
           @endif 
         </div> 
         <div class="mb-3">
-            <label for="price_buy">Giá bán</label>
+            <label for="price_buy">Giá bán <span class="text-danger">(*)</span></label>
             <input type="text" name="price_buy" value="{{ old('price_buy') }}"" id="price_buy" class="form-control" placeholder="Nhập giá bán"> 
             @if ($errors->has('price_buy'))
               <div class="text-danger">{{$errors->first('price_buy')}}</div>

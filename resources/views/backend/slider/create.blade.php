@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="mb-3">
-                                    <label for="name">Tên slider</label>
+                                    <label for="name">Tên slider <span class="text-danger">(*)</span></label>
                                     <input type="text" name="name" value="{{ old('name') }}" id="name"
                                         class="form-control" placeholder="Nhập tên slider">
                                     @if ($errors->has('name'))
@@ -41,8 +41,8 @@
                                     @endif
                                 </div>
                                 <div class="mb-3">
-                                    <label for="link">Link</label>
-                                    <textarea name="link" rows="2" id="link" class="form-control" placeholder="Nhập link">{{ old('link') }}</textarea>
+                                    <label for="link">Link <span class="text-danger">(*)</span></label>
+                                    <textarea name="link" rows="1" id="link" class="form-control" placeholder="Nhập link">{{ old('link') }}</textarea>
                                     @if ($errors->has('link'))
                                         <div class="text-danger">
                                             {{ $errors->first('link') }}
@@ -50,7 +50,7 @@
                                     @endif
                                 </div>
                                 <div class="mb-3">
-                                    <label for="position">position</label>
+                                    <label for="position">Vị trí <span class="text-danger">(*)</span></label>
                                     <textarea name="position" rows="3" id="position" class="form-control" placeholder="Nhập position">{{ old('position') }}</textarea>
                                     @if ($errors->has('position'))
                                         <div class="text-danger">
@@ -62,14 +62,14 @@
                             <div class="col-md-3">
                                
                                 <div class="mb-3">
-                                    <label for="sort_order">Vị trí sắp xếp</label>
+                                    <label for="sort_order">Sắp xếp <span class="text-danger">(*)</span></label>
                                     <select class="form-control" name="sort_order" id="sort_order">
-                                        <option value="0">-- Vị trí --</option>
+                                        <option value="0">-- Chọn vị trí sắp xếp --</option>
                                         {!! $html_sort_order !!}
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="image">Hình đại diện</label>
+                                    <label for="image">Hình đại diện <span class="text-danger">(*)</span></label>
                                     <input type="file" name="image" value="{{ old('image') }}" id="image"
                                         class="form-control">
                                 </div>

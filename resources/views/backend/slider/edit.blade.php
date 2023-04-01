@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="mb-3">
-                                        <label for="name " class="text-danger">Tên slider</label>
+                                        <label for="name " class="text-danger">Tên slider <span class="text-danger">(*)</span></label>
                                         <input type="text" name="name" value="{{ old('name', $slider->name) }}"
                                             id="name" class="form-control" placeholder="Nhập tên slider">
                                         @if ($errors->has('name'))
@@ -40,7 +40,7 @@
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="link" class="text-danger">Link</label>
+                                        <label for="link" class="text-danger">Link <span class="text-danger">(*)</span></label>
                                         <textarea name="link" id="link" rows="4" class="form-control" placeholder="Nhập link">{{ old('link', $slider->link) }}</textarea>
                                         @if ($errors->has('link'))
                                             <div class="text-danger">
@@ -49,7 +49,7 @@
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="position" class="text-danger">Mô tả</label>
+                                        <label for="position" class="text-danger">Mô tả <span class="text-danger">(*)</span></label>
                                         <textarea name="position" id="position" rows="4" class="form-control" placeholder="Nhập position">{{ old('position', $slider->position) }}</textarea>
                                         @if ($errors->has('position'))
                                             <div class="text-danger">
@@ -60,9 +60,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label for="sort_order" class="text-danger">Vị trí sắp xếp</label>
+                                        <label for="sort_order" class="text-danger">Sắp xếp</label>
                                         <select class="form-control" name="sort_order" id="sort_order">
-                                            <option value="0">-- Vị trí --</option>
+                                            <option value="0">-- Chọn vị trí sắp xếp --</option>
                                             {!! $html_sort_order !!}
                                         </select>
                                     </div>
