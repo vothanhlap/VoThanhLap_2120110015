@@ -14,6 +14,8 @@ use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\MenuController;
+use App\Http\Controllers\backend\OrderController;
+use App\Http\Controllers\backend\OrderdetailController;
 use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\DashboardController;
 //fontend
@@ -121,6 +123,16 @@ route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         route::get('restore/{product}', [ProductController::class, 'restore'])->name('product.restore');
         route::get('destroy/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     });
+   //order
+   Route::resource('order', OrderController::class);
+   route::get('order_trash', [OrderController::class, 'trash'])->name('order.trash');
+   route::prefix('order')->group(function () {
+       route::get('status/{order}', [OrderController::class, 'status'])->name('order.status');
+       route::get('delete/{order}', [OrderController::class, 'delete'])->name('order.delete');
+       route::get('restore/{order}', [OrderController::class, 'restore'])->name('order.restore');
+       route::get('destroy/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
+   });
+
 });
 
 

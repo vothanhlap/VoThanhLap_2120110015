@@ -36,11 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    {{-- @if ($errors->has('username'))
-                        <div class="text-danger mb-2">
-                            {{ $errors->first('username') }}
-                        </div>
-                    @endif --}}
+                 
                     <div class="input-group mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
                         <div class="input-group-append">
@@ -49,11 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    {{-- @if ($errors->has('password'))
-                    <div class="text-danger mb-2">
-                        {{ $errors->first('password') }}
-                    </div>
-                @endif --}}
+                   
                     <div class="row">
                         <div class="col-6">
                             <div class="icheck-primary">
