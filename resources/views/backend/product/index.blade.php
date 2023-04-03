@@ -10,6 +10,7 @@
     </script>
 @endsection
 @section('content')
+
     <div class="content-wrapper">
       <section class="content my-3">
         <!-- Default box -->
@@ -29,6 +30,7 @@
                     </div>
                 </div>
             </div>
+          
             <div class="card-body">
                 @includeIf('backend.message_alert')
                 <table class="table table-bordered table-striped" id="myTable">
@@ -48,12 +50,10 @@
                       @foreach ($list_product as $product)
                           <tr>
                               <td class="text-center"><input type="checkbox"></td>
-                              <td>
-                               <img class="img-fluid" src="{{ asset('images/product/' .$product->image)}}" alt="{{$product->name}}">
+                              <td>  
+                                <img class="img-fluid" src="{{ asset('images/product/')}}" alt="{{$product->name}}">
                             </td>
                               <td class="text-center">{{ $product->name }}</td>
-                              {{-- <td></td>
-                              <td></td> --}}
                               <td class="text-center">{{ $product->catname }}</td> 
                                <td class="text-center">{{ $product->braname }}</td>
                               <td class="text-center">{{ $product->created_at }}</td>
@@ -103,3 +103,10 @@
     <!-- /.content-wrapper -->
 
 @endsection
+    {{-- @php
+                      $product_image = $product->productimg;
+                      $hinh = '';
+                      if(count($product_image)>0){
+                        $hinh = $product_image[0]["image"];
+                      }
+                      @endphp --}}

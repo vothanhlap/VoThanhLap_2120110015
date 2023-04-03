@@ -26,25 +26,24 @@ class ProductController extends Controller
     public function index()
     {
         $user_name = Auth::user()->name;
+         
         $list_product = Product::
-        join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
+         join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
         ->join('vtl_category','vtl_category.id','=','vtl_product.category_id')
-        ->select('vtl_product.*','vtl_brand.name as braname', 'vtl_category.name as catname')
+        ->select('vtl_product.*','vtl_brand.name as braname','vtl_category.name as catname')
         ->where('vtl_product.status', '!=', 0)
         ->orderBy('vtl_product.created_at', 'desc')
         ->get();
+       
         return view('backend.product.index', compact('user_name','list_product'));
     }
-      //'vtl_product_image.image as image',
-        //join('vtl_product_image', 'vtl_product_image.product_id', '=', 'vtl_product.id')
-        //$image = ProductImage::with('product')->get();
 
     #GET:admin/product/trash
     public function trash()
     {
         $user_name = Auth::user()->name;
-        $list_product = Product::join('vtl_product_image', 'vtl_product_image.product_id', '=', 'vtl_product.id')
-        ->join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
+        $list_product = Product::
+        join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
         ->join('vtl_category','vtl_category.id','=','vtl_product.category_id')
         ->select('vtl_product.*', 'vtl_brand.name as braname', 'vtl_category.name as catname')
         ->where('vtl_product.status', '=', 0)

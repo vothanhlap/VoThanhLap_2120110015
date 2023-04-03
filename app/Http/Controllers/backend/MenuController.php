@@ -10,6 +10,7 @@ use App\Models\Menu;
 use App\Models\Category;
 use App\Models\Topic;
 use App\Models\Page;
+use Carbon\Carbon;
 class MenuController extends Controller
 {
    
@@ -29,20 +30,47 @@ class MenuController extends Controller
         $user_name = Auth::user()->name;
        return view ('backend.menu.trash', compact('user_name'));
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+//Xử lý thêm
     public function store(Request $request)
     {
-        //
+        $position = $request->position;
+        if($request->ThemCategory)
+        {
+
+            $user_name = Auth::user()->name;
+            $list_id = $request->nameCategory;
+            foreach($list_id as $id){
+                $category = Category::find($id);
+                $menu = new Menu();
+                // $menu->name = $category->name;
+                // $menu->link = $category->slug;
+                $menu->sort_orders =0;
+                // $menu->table_id = $category->id;
+                $menu->types = "category";
+                $menu->posistion = $posistion;
+                $menu->status = 2;
+                $menu->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+                $menu->created_by = $user_name;
+                $menu ->save();
+            }
+            return redirect()->route('menu.index')->with('message', ['type' => 'success', 'msg' => 'Thêm mẫu tin thành công !']);
+        }
+        if($request->ThemBrand)
+        {
+            echo "Them Brand";
+        }
+        if($request->ThemPage)
+        {
+            echo "Them Page";
+        }
+        if($request->ThemTopic)
+        {
+            echo "Them Topic";
+        }
+        if($request->ThemCustom)
+        {
+            echo "Them Custom";
+        }
     }
 
     /**

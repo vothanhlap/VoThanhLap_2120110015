@@ -12,10 +12,11 @@ class Product extends Model
     use HasFactory;
     protected $table = 'vtl_product';
     public $timestamps = false;
-   
-    public function Product(): hasMany
+    
+    public function productimg(): hasMany
     {
-        $image = ProductImage::find(1)->image()->where('id','product_id')->first();
+       
         return $this->hasMany(ProductImage::class, 'product_id','id');
     }
+    
 }
