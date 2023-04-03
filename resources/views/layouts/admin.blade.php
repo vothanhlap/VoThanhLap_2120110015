@@ -171,7 +171,49 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fab fa-accusoft" style="color:red;"></i>
+                        <p style="color:yellow;">
+                           Giỏ hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
 
+                        <li class="nav-item">
+                            <a href="{{route('order.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="color:greenyellow">Danh Sách Giỏ Hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('orderdetail.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="color:greenyellow">Chi tiết đơn hàng</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fab fa-accusoft" style="color:red;"></i>
+                        <p style="color:yellow;">
+                        Quản lý Slider
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{route('order.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="color:greenyellow">Danh Sách Slider</p>
+                            </a>
+                        </li>
+                      
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fab fa-accusoft" style="color:red;"></i>
@@ -181,12 +223,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('slider.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p style="color:greenyellow"> Danh Sách Slider </p>
-                            </a>
-                        </li>
+                      
                         <li class="nav-item">
                             <a href="{{route('contact.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -194,7 +231,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('menu.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p style="color:greenyellow">Danh Sách Menu</p>
                             </a>
@@ -205,14 +242,9 @@
                                 <p style="color:greenyellow">Danh Sách User</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('order.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p style="color:greenyellow">Danh Sách Giỏ Hàng</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
+               
 
               <li class="nav-header">LABELS</li>
                 <li class="nav-item">

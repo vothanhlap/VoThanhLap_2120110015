@@ -132,6 +132,15 @@ route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
        route::get('restore/{order}', [OrderController::class, 'restore'])->name('order.restore');
        route::get('destroy/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
    });
+   //orderdetail
+       Route::resource('orderdetail', OrderdetailController::class);
+       route::get('orderdetail_trash', [OrderdetailController::class, 'trash'])->name('orderdetail.trash');
+       route::prefix('orderdetail')->group(function () {
+       route::get('status/{orderdetail}', [OrderdetailController::class, 'status'])->name('orderdetail.status');
+       route::get('delete/{orderdetail}', [OrderdetailController::class, 'delete'])->name('orderdetail.delete');
+       route::get('restore/{orderdetail}', [OrderdetailController::class, 'restore'])->name('orderdetail.restore');
+       route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
+   });
 
 });
 

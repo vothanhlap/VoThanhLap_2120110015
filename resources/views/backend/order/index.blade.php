@@ -23,9 +23,6 @@
                         <strong class="text-danger text-uppercase">TẤT CẢ ĐƠN HÀNG</strong>
                     </div>
                     <div class="col-md-6 text-right">
-                        {{-- <a href="{{ route('order.create') }}"class="btn btn-sm btn-success">
-                            <i class="fas fa-plus"></i> Thêm
-                        </a> --}}
                         <a href="{{ route('order.trash') }}"class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i> Thùng rác
                         </a>
