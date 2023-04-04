@@ -29,7 +29,6 @@ class AuthController extends Controller
           //  echo bcrypt($password);
           
           }
-          
     }
     public function  logout(){
          if(Auth::check()){
@@ -40,6 +39,16 @@ class AuthController extends Controller
          {
           return redirect('login');
          }
+      }
+
+      public function forgotpassword()
+      {
+        return view ('backend.auth.forgotpassword');
+      }
+
+      public function recover ()
+      {
+        return view ('backend.auth.recover  ');
       }
     
 }

@@ -5,9 +5,8 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Product;
-
-class Popularcategory extends Component
+use App\Models\Slider;
+class SlideShow extends Component
 {
     /**
      * Create a new component instance.
@@ -22,10 +21,7 @@ class Popularcategory extends Component
      */
     public function render(): View|Closure|string
     {
-        $data = [
-            ['status','=','1'],
-        ];
-        $list_product = Product::where($data)->orderBy('created_at','desc')->take(3)->get();
-        return view('components.menu.popular-category', compact('list_product'));
+        $list_slider = Slider::where([['status','=','1'],['position','=','slideshow']])->orderBy('created_at','desc')->take(4)->get();
+        return view('components.slide-show',compact('list_slider'));
     }
 }

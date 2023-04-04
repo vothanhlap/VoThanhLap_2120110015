@@ -65,7 +65,7 @@
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1">
-                    <a href="#">Quên mật khẩu</a>
+                    <a href="{{route('forgotpassword')}}">Quên mật khẩu</a>
                 </p>
                 <p class="mb-0">
                     <a href="#" class="text-center">Đăng kí thành viên</a>

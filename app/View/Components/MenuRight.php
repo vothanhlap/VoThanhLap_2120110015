@@ -5,8 +5,9 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Category;
-class navleft extends Component
+use App\Models\Product;
+class MenuRight extends Component
+
 {
     /**
      * Create a new component instance.
@@ -23,10 +24,8 @@ class navleft extends Component
     {
         $data = [
             ['status','=','1'],
-            ['parent_id','=','0'],
-          
         ];
-        $list_category = Category::where($data)->orderBy('created_at','asc')->get();
-        return view('components.menu.navleft',compact('list_category'));
+        $list_product = Product::where($data)->orderBy('created_at','desc')->take(3)->get();
+        return view('components.menu-right', compact('list_product'));
     }
 }

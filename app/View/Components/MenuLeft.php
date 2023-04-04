@@ -5,9 +5,9 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Slider;
+use App\Models\Category;
 
-class Slidershow extends Component
+class MenuLeft extends Component
 {
     /**
      * Create a new component instance.
@@ -22,7 +22,13 @@ class Slidershow extends Component
      */
     public function render(): View|Closure|string
     {
-       $list_slider = Slider::where([['status','=','1'],['position','=','slideshow']])->orderBy('created_at','desc')->take(4)->get();
-        return view('components.slider.slidershow', compact('list_slider'));
+        $data = [
+            ['status','=','1'],
+            ['parent_id','=','0'],
+          
+        ];
+
+        $list_category = Category::where($data)->orderBy('created_at','asc')->get();
+        return view('components.menu-left',compact('list_category'));
     }
 }

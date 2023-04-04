@@ -48,10 +48,18 @@
                   </thead>
                   <tbody>
                       @foreach ($list_product as $product)
+                      @php
+                          $arr_image=$product->productimg;
+                          $image = 'hinh.png';
+                          if(count($arr_image)>0)
+                          {
+                            $image=$arr_image[0]['image'];
+                          }
+                      @endphp
                           <tr>
                               <td class="text-center"><input type="checkbox"></td>
                               <td>  
-                                <img class="img-fluid" src="{{ asset('images/product/')}}" alt="{{$product->name}}">
+                                <img class="img-fluid" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}">
                             </td>
                               <td class="text-center">{{ $product->name }}</td>
                               <td class="text-center">{{ $product->catname }}</td> 

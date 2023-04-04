@@ -1,7 +1,6 @@
 <?php
 
 namespace App\View\Components;
-
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -22,13 +21,12 @@ class MainMenu extends Component
      */
     public function render(): View|Closure|string
     {
-        $menu = [
+        $dk = [
             ['status','=','1'],
             ['parent_id','=','0'],
-           // ['posistion','=','0'],
+            ['position','=','mainmenu']
         ];
-        $list_menu = Menu::where($menu)-> orderBy('sort_order','asc')->get();
-        return view('components.menu.main-menu',compact('list_menu'));
-       
+        $list_menu = Menu::where($dk)->get();
+        return view('components.main-menu',compact('list_menu'));
     }
 }

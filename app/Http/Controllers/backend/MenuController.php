@@ -74,6 +74,7 @@ class MenuController extends Controller
         }
         if(isset($request->ThemBrand))
         {
+            $user_name = Auth::user()->name;
             $list_id = $request->checkIdBrand;
             foreach ($list_id as $id) {
                 $brand = Brand::find($id);
@@ -94,6 +95,7 @@ class MenuController extends Controller
         }
         if(isset($request->ThemTopic))
         {
+            $user_name = Auth::user()->name;
             $list_id = $request->checkIdTopic;
             foreach ($list_id as $id) {
                 $topic = Topic::find($id);
@@ -115,6 +117,7 @@ class MenuController extends Controller
 
         if(isset($request->ThemPage))
         {
+            $user_name = Auth::user()->name;
             $list_id = $request->checkIdPage;
             foreach ($list_id as $id) {
                 $page = Page::find($id);
@@ -135,6 +138,7 @@ class MenuController extends Controller
         }
         if(isset($request->ThemCustom))
         {
+            $user_name = Auth::user()->name;
             $menu = new Menu();
             $menu->name = $request->name;
             $menu->link = $request->link;

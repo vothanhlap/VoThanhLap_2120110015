@@ -170,7 +170,7 @@ class ProductController extends Controller
         $product->metakey = $request->metakey;
         $product->metadesc = $request->metadesc;
         $product->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $product->update_by = $user_name;
+        $product->updated_by = $user_name;
         $product->status = $request->status;
         //upload image
         if ($product->save()) {
@@ -192,7 +192,7 @@ class ProductController extends Controller
                 }
             }
         }
-        return redirect()->route('product.index')->with('message', ['type' => 'danger', 'msg' => 'Cập nhật sản phẩm không thành công!']);       
+        return redirect()->route('product.index')->with('message', ['type' => 'success', 'msg' => 'Cập nhật sản phẩm thành công!']);       
     }
 
     #GET:admin/product/destroy/{id}

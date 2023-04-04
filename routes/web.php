@@ -28,6 +28,8 @@ Route::get('san-pham', [SanphamController::class, 'product'])->name('product.ind
 // khai bao route dang nhap - dang xuat
 route::get('login', [AuthController::class, 'getlogin'])->name('login');
 Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
+Route::get('forgot-password', [AuthController::class,'forgotpassword'])->name('forgotpassword');
+Route::get('recover-password', [AuthController::class,'recover'])->name('recover');
 
 
 //khai bao route cho quan ly

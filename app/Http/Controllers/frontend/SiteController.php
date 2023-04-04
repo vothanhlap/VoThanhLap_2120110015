@@ -24,16 +24,16 @@ class SiteController extends Controller
                 switch ($type) {
                   case 'category':
                      {return $this->product_category($slug);}
-                      break;
+                     
                       case 'brand':
                           {return $this->product_brand($slug);}
-                           break;
+                          
                       case 'topic':
                           {return $this->post_topic ($slug);}
-                           break;  
+                           
                            case 'page':
                               {return $this->post_page ($slug);}
-                               break;  
+                                
                   default:
                              {return $this->error404($slug);} 
                       break;
@@ -43,10 +43,15 @@ class SiteController extends Controller
              {
                 $product = Product::where(['slug','=',$slug],['status','=','1'])->first();
                  if($product !=null){
-                    echo 'Co';
+                    $this->product_detail($product);
                  }else
                  {
-                    echo 'Khong';
+                    $post = Post::where([['status', '=', 1], ['slug', '=', $slug], ['type', '=', 'post']])->first();
+                    if ($post != NULL) {
+                        $this->post_detail($post);
+                    } else {
+                        return $this->error_404($slug);
+                    }
                  }
             }
              
