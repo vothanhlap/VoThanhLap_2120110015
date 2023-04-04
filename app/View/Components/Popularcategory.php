@@ -25,7 +25,7 @@ class Popularcategory extends Component
         $data = [
             ['status','=','1'],
         ];
-        $list_product = Product::where($data)->orderBy('created_at','asc')->take(4)->get();
+        $list_product = Product::where($data)->orderBy('created_at','desc')->take(3)->get();
         return view('components.menu.popular-category', compact('list_product'));
     }
 }

@@ -25,9 +25,10 @@ class MainMenu extends Component
         $menu = [
             ['status','=','1'],
             ['parent_id','=','0'],
-            ['posistion','=','mainmenu'],
+           // ['posistion','=','0'],
         ];
-        $list_menu = Menu::where($menu)->orderBy('sort_orders','asc')->get();
+        $list_menu = Menu::where($menu)-> orderBy('sort_order','asc')->get();
         return view('components.menu.main-menu',compact('list_menu'));
+       
     }
 }

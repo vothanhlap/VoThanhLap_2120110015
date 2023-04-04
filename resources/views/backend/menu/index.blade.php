@@ -57,8 +57,8 @@
                                             data-parent="#accordionExample">
                                             @foreach ($list_category as $category)
                                             <fieldset class="form-group">
-                                                <input name="nameCategory[]" value="{{$category->name}}" id="{{$category->name}}" type="checkbox">
-                                                <label for="Category">{{$category->name}}</label>
+                                                <input name="checkIdCategory[]" value="{{$category->id}}" id="checkCategory{{$category->id}}" type="checkbox">
+                                                <label for="checkCategory{{$category->id}}"> {{$category->name}}</label>
                                             </fieldset>
                                             @endforeach
                                             <fieldset class="form-group">
@@ -81,8 +81,8 @@
                                             data-parent="#accordionExample">
                                             @foreach ($list_brand as $brand)
                                             <fieldset class="form-group">
-                                                <input name="nameBrand[]" value="{{$brand->name}}" id="{{$brand->id}}" type="checkbox">
-                                                <label for="Brand">{{$brand->name}}</label>
+                                                <input name="checkIdBrand[]" value="{{$brand->id}}" id="checkBrand{{$brand->id}}" type="checkbox">
+                                                <label for="checkBrand{{$brand->id}}">{{$brand->name}}</label>
                                             </fieldset> 
                                             @endforeach
                                             <fieldset class="form-group">
@@ -105,9 +105,9 @@
                                             data-parent="#accordionExample">
                                             @foreach ($list_topic as $topic)
                                             <fieldset class="form-group">
-                                                <input name="nameTopic[]" value="{{$topic->title}}" id="topic" type="checkbox">
-                                                <label for="Topic">{{$topic->title}}</label>
-                                            </fieldset>
+                                                <input name="checkIdTopic[]" value="{{$topic->id}}" id="checkTopic{{$topic->id}}" type="checkbox">
+                                                <label for="checkTopic{{$topic->id}}">{{$topic->title}}</label>
+                                            </fieldset> 
                                             @endforeach
                                             <fieldset class="form-group">
                                                 <input type="submit" name="ThemTopic" value="Thêm"
@@ -130,9 +130,9 @@
                                             data-parent="#accordionExample">
                                             @foreach ($list_page as $page)
                                             <fieldset class="form-group">
-                                                <input name="namePage[]" value="" id="" type="checkbox">
-                                                <label for="Page">{{$page->title}}</label>
-                                            </fieldset>
+                                                <input name="checkIdPage[]" value="{{$page->id}}" id="checkPage{{$page->id}}" type="checkbox">
+                                                <label for="checkPage{{$page->id}}">{{$page->title}}</label>
+                                            </fieldset> 
                                             @endforeach
                                             <fieldset class="form-group">
                                                 <input type="submit" name="ThemPage" value="Thêm"
@@ -174,7 +174,7 @@
                                           <th class="text-center" style="width:20px">#</th>
                                           <th>Tên Menu</th>
                                           <th>Lien ket</th>
-                                        
+                                          <th style="width:160px;" class="text-center">Vị trí</th>
                                           <th class="text-center">Chức năng</th>
                                           <th class="text-center" style="width:20px">ID</th>
                                         </tr>
@@ -187,6 +187,7 @@
                                             </td>
                                             <td>{{$menu->name}}</td>
                                             <td>{{$menu->link}}</td>
+                                            <td class="text-center">{{$menu->position}}</td>
                                             <td class="text-center">
                                                 @if ($menu->status == 1)
                                                 <a href="{{ route('menu.status', ['menu' => $menu->id]) }}"

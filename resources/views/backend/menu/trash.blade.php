@@ -31,7 +31,41 @@
             </div>
             <div class="card-body">
                 @includeIf('backend.message_alert')
-               
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th style="width:30px" class="text-center">#</th>
+                            <th style="width:100px" class="text-center">Tên menu</th>
+                            <th style="width:100px" class="text-center">slug</th>
+                            <th style="width:100px" class="text-center">Người tạo</th>
+                            <th style="width:100px" class="text-center">Ngày đăng</th>
+                            <th style="width:150px" class="text-center">Chức năng</th>
+                            <th style="width:30px" class="text-center">ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($list_menu as $menu)
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox">
+                                </td>
+                                
+                                <td class="text-center">{{ $menu->name }}</td>
+                                <td class="text-center">{{ $menu->link }}</td>
+                                <td class="text-center">{{ $menu->created_by }}</td>
+                                <td class="text-center">{{ $menu->created_at }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('menu.restore', ['menu' => $menu->id]) }}"
+                                        class="btn btn-sm btn-success"><i class="fas fa-undo"></i></a>
+                                    <a href="{{ route('menu.destroy', ['menu' => $menu->id]) }}"
+                                        class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> </a>
+                                </td>
+                                <td class="text-center">{{ $menu->id }}</td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
             </div>
             <!-- /.card-body -->
 

@@ -103,10 +103,4 @@
     <!-- /.content-wrapper -->
 
 @endsection
-    {{-- @php
-                      $product_image = $product->productimg;
-                      $hinh = '';
-                      if(count($product_image)>0){
-                        $hinh = $product_image[0]["image"];
-                      }
-                      @endphp --}}
+  

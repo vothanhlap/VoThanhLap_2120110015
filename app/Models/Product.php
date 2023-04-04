@@ -15,6 +15,12 @@ class Product extends Model
     
     public function productimg(): hasMany
     {
+        $product_image = $product->productimg;
+         $hinh = '';
+         if(count($product_image)>0)
+        {
+            $hinh = $product_image[0]["image"];
+        }
        
         return $this->hasMany(ProductImage::class, 'product_id','id');
     }
