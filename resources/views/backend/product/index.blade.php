@@ -37,7 +37,7 @@
                   <thead>
                       <tr>
                           <th style="width:10px;" class="text-center"> #</th>
-                          <th style="width:80px;">Hình ảnh</th>
+                          <th class="text-center" style="width:80px;">Hình ảnh</th>
                           <th class="text-center">Tên sản phẩm</th>
                           <th class="text-center">Loại sản phẩm</th>
                           <th class="text-center">Thương hiệu</th>
@@ -61,11 +61,11 @@
                               <td>  
                                 <img class="img-fluid" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}">
                             </td>
-                              <td class="text-center">{{ $product->name }}</td>
-                              <td class="text-center">{{ $product->catname }}</td> 
-                               <td class="text-center">{{ $product->braname }}</td>
-                              <td class="text-center">{{ $product->created_at }}</td>
-                              <td class="text-center">
+                              <td class="align-middle">{{ $product->name }}</td>
+                              <td class="text-center align-middle">{{ $product->catname }}</td> 
+                               <td class="text-center align-middle">{{ $product->braname }}</td>
+                              <td class="text-center align-middle">{{ $product->created_at }}</td>
+                              <td class="text-center align-middle">
                                   @if ($product->status == 1)
                                       <a href="{{ route('product.status', ['product' => $product->id]) }}"
                                           class="btn btn-success btn-sm">
@@ -95,7 +95,7 @@
                                       </i>
                                   </a>
                               </td>
-                              <td class="text-center">{{ $product->id }}</td>
+                              <td class="text-center align-middle">{{ $product->id }}</td>
                           </tr>
                       @endforeach
                   </tbody>

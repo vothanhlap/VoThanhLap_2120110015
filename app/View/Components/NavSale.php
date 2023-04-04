@@ -7,8 +7,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Product;
 use App\Models\ProductImage;
-class MenuRight extends Component
 
+class NavSale extends Component
 {
     /**
      * Create a new component instance.
@@ -25,8 +25,9 @@ class MenuRight extends Component
     {
         $data = [
             ['status','=','1'],
+            ['sale','=','1'],
         ];
         $list_product = Product::where($data)->orderBy('created_at','desc')->take(4)->get();
-        return view('components.menu-right', compact('list_product'));
+        return view('components.nav-sale',compact('list_product'));
     }
 }

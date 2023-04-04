@@ -30,14 +30,27 @@
             <!-- /.card-body -->
             <div class="card-body">
                 @includeIf('backend.message_alert')
+                @php
+                $arr_image=$product->productimg;
+                $image = 'hinh.png';
+                if(count($arr_image)>0)
+                {
+                  $image=$arr_image[0]['image'];
+                }
+            @endphp
+            @php
+                $soluong = $product->soluong;
+                $number= 0 ;
+                $number = $soluong->qty; 
+            @endphp
                 <table class="table table-bordered">
                     <tr>
                         <th style="width:200px;color:red;text-align:center">Tiêu Đề</th>
                         <th style="color:green;text-align:center">Nội Dung</th>
                     </tr>
-                    <td>Hình ảnh</td>
+                    <td class="text-start align-middle">Hình ảnh</td>
                         <td>
-                            <img style="width:80px" class="img-fluid" src="{{ asset('images/product/' . $product->image) }}"
+                            <img style="width:80px" class="img-fluid" src="{{ asset('images/product/' . $image) }}"
                                 alt="{{ $product->image }}">
                         </td>
                     <tr>
@@ -50,11 +63,11 @@
                     </tr>
                     <tr>
                         <td>Loại sản phẩm</td>
-                        <td>{{ $product->slug}}</td>
+                        <td>{{ $product->category_id}}</td>
                     </tr>
                     <tr>
                       <td>Thương hiệu</td>
-                      <td>{{ $product->slug}}</td>
+                      <td>{{ $product->brand_id}}</td>
                   </tr>
                     <tr>
                         <td>Từ khóa</td>
@@ -69,15 +82,24 @@
                       <td>{{ $product->detail }}</td>
                   </tr>
                   <tr>
-                    <td>Số lượng</td>
-                    <td>{{ $product->soluong }}</td>
-                  </tr>
-                  <tr>
                     <td>Gía bán</td>
                     <td>{{ $product->price_buy }}</td>
                   </tr>
                   <tr>
+                  <tr>
+                    <td>Số lượng</td>
+                    <td>{{ $number  }}</td>
+                  </tr>
+                  <tr>
                     <td>Gía khuyến mãi</td>
+                    <td>{{ $product->price_sale}}</td>
+                  </tr>
+                  <tr>
+                    <td>Ngày khuyến mãi</td>
+                    <td>{{ $product->price_sale }}</td>
+                  </tr>
+                  <tr>
+                    <td>Ngày kêt thúc</td>
                     <td>{{ $product->price_sale }}</td>
                   </tr>
                     <tr>

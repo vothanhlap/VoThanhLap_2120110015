@@ -36,7 +36,7 @@
         <div class="mb-3">
             <label for="category_id">Chọn danh mục</label>
             <select name="category_id" id="category_id" name="category_id" class="form-control">
-                <option value="">--Danh mục--</option>
+                <option value="{{ old('category_id', $product->category_id) }}">--Danh mục--</option>
                 {{!! $html_category_id !!}}
             </select>
             @if ($errors->has('category_id'))
@@ -46,7 +46,7 @@
         <div class="mb-3">
             <label for="brand_id">Chọn thương hiệu</label>
             <select name="brand_id" id="brand_id" name="brand_id" class="form-control">
-                <option value="">--Thương hiệu--</option>
+                <option value="{{ old('brand_id', $product->brand_id) }}">--Thương hiệu--</option>
                 {{!! $html_brand_id !!}}
             </select>
             @if ($errors->has('brand_id'))

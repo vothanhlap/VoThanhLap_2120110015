@@ -1,6 +1,29 @@
 @extends('layouts.site')
 @section('title', 'Trang chu')
 @section('content')
+ <!-- ========================= SECTION MAIN  ========================= -->
+ <section class="section-main padding-y">
+    <main class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <x-menu-left />
+                <div class="col-md-9 col-xl-7 col-lg-7">
+
+                    <!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
+                    <x-slide-show />
+                    <!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->
+
+                </div> <!-- col.// -->
+                <x-menu-right />
+            </div> <!-- row.// -->
+
+        </div> <!-- card-body.// -->
+    </main> <!-- card.// -->
+
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+  <x-nav-sale/>
   <!-- =============== SECTION 1 =============== -->
 <section class="padding-bottom">
     <header class="section-heading heading-line">
@@ -10,7 +33,6 @@
     <div class="card card-home-category">
     <div class="row no-gutters">
         <div class="col-md-3">
-        
         <div class="home-category-banner bg-light-orange">
             <h5 class="title">Best trending clothes only for summer</h5>
             <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -72,11 +94,7 @@
     </div> <!-- row.// -->
     </div> <!-- card.// -->
     </section>
-    <!-- =============== SECTION 2 END =============== -->
-    <!-- =============== SECTION REQUEST =============== -->
-    <!-- =============== SECTION REQUEST .//END =============== -->
-    
-    
+    <!-- =============== SECTION 2 END =============== -->  
     <!-- =============== SECTION ITEMS =============== -->
     <section  class="padding-bottom-sm">
     
@@ -101,7 +119,6 @@
     
     <!-- =============== SECTION SERVICES =============== -->
     <section  class="padding-bottom">
-    
     <header class="section-heading heading-line">
         <h4 class="title-section text-uppercase">DỊCH VỤ THƯƠNG MẠI</h4>
     </header>
