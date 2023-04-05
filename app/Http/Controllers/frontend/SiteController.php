@@ -63,7 +63,12 @@ class SiteController extends Controller
     //trang chu
     public function home ()
     {
-        return view ('frontend.home.home');
+        $data = [
+            ['status','=','1'],
+        ];
+        //$product_home =Product::where($data)->take(12)->get();
+        $category_home =Product::where($data)->get();
+        return view ('frontend.home.home',compact('category_home'));
     }
      //loai san pham
      public function product_category ()

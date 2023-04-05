@@ -5,10 +5,9 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Product;
-use App\Models\ProductImage;
-class MenuRight extends Component
+use App\Models\Brand;
 
+class BrandContent extends Component
 {
     /**
      * Create a new component instance.
@@ -26,7 +25,7 @@ class MenuRight extends Component
         $data = [
             ['status','=','1'],
         ];
-        $list_product = Product::where($data)->orderBy('created_at','desc')->take(3)->get();
-        return view('components.menu-right', compact('list_product'));
+        $list_brand = Brand::where($data)->orderBy('created_at','asc')->take(8)->get();
+        return view('components.brand-content',compact('list_brand'));
     }
 }
