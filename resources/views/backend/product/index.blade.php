@@ -48,14 +48,14 @@
                   </thead>
                   <tbody>
                       @foreach ($list_product as $product)
-                      @php
-                          $arr_image=$product->productimg;
-                          $image = 'hinh.png';
-                          if(count($arr_image)>0)
-                          {
-                            $image=$arr_image[0]['image'];
-                          }
-                      @endphp
+                        @php
+                            $arr_image=$product->productimg;
+                            $image = 'hinh.png';
+                            if(count($arr_image)>0)
+                            {
+                                $image=$arr_image[0]['image'];
+                            }
+                        @endphp
                           <tr>
                               <td class="text-center"><input type="checkbox"></td>
                               <td>  

@@ -3,7 +3,7 @@
     <nav class="nav-home-aside">
         <ul class="menu-category">
             @foreach ($list_category as $item)
-            <li><a href="#">{{$item->name}}</a></li>
+            <li><a href="{{route('frontend.slug',['slug'=>$item->slug])}}">{{$item->name}}</a></li>
             @endforeach
            
             {{-- <li class="has-submenu"><a href="#">More items</a>

@@ -14,10 +14,10 @@
             @endphp
             <div class="col-md col-6 w-50">
                 <figure class="card-product-grid card-sm ">
-                    <a href="#" class="img-wrap">
+                    <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="img-wrap">
                         <img src="{{ asset('images/product/'.$image)}}" alt="{{$image}}">                    </a>
                     <div class="text-wrap p-3">
-                        <a href="#" class="title">{{$item->name}}</a>
+                        <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="title">{{$item->name}}</a>
                         <span class="badge badge-danger"> -20% </span>
                     </div>
                 </figure>

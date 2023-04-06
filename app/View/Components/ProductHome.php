@@ -5,22 +5,41 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\Product;
+use App\Models\Category;
 
 class ProductHome extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+     public $cat = null;
+   
+    public function __construct($cat)
     {
-        //
+       $this->cat=$cat;
     }
-
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.product-home');
+        $row_category = $this->cat;
+        $catid = $row_category->id;
+        $arrcatid = array();
+        array_push($arrcatid, $catid);
+        $list_category2 = Category::where([['status','=','1'],['parent_id','=', $catid]])->get();
+        if(count($list_category2)>0)
+        {
+            foreach($list_category2 as $cat2)
+            {
+                array_push($arrcatid, $cat2->id);
+                $list_category3 = Category::where([['status','=','1'],['parent_id','=', $cat2->id]])->get();
+                if(count($list_category3)>0)
+                {              
+                    foreach($list_category3 as $cat3)
+                    {
+                        array_push($arrcatid, $cat3->id);
+                    }  
+                }
+            }
+        }
+       // var_dump($arrcatid);
+        $list_product = Product::whereIn('category_id',$arrcatid)->where('status','=','1')->orderBy('created_at','desc')->take(8)->get();
+        return view('components.product-home',compact('list_product'));
     }
 }

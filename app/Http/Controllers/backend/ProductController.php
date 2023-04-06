@@ -103,7 +103,7 @@ class ProductController extends Controller
                 }
             }
             //Nhập kho
-            if (strlen($request->price) && strlen($request->qty)) {
+            if (strlen($request->price_buy) && strlen($request->qty)) {
                 $product_store = new ProductStore();
                 $product_store->product_id = $product->id;
                 $product_store->price_buy = $request->price_buy;

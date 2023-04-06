@@ -116,15 +116,6 @@
 
     <div class="container">
         @yield('content')
-       
-      
- <!-- =============== SECTION REGION =============== -->
-            <x-brand-content/>
-           
-<!-- =============== SECTION REGION .//END =============== -->
-        <article class="my-4">
-            <img src="{{ asset('public/frontend/images/banners/ad-sm.png') }}" class="w-100">
-        </article>
     </div>
     <!-- container end.// -->
 
