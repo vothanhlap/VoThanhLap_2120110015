@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Link;
 use App\Models\Product;
@@ -66,7 +67,6 @@ class SiteController extends Controller
         $data = [
             ['status','=','1'],
         ];
-        //$product_home =Product::where($data)->take(12)->get();
         $category_home =Product::where($data)->get();
         return view ('frontend.home.home',compact('category_home'));
     }

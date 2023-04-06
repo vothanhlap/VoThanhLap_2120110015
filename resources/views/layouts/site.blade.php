@@ -62,33 +62,32 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="widgets-wrap float-md-right">
                             <div class="widget-header mr-3">
-                                <a href="#" class="widget-view">
+                                <a href="{{route('login.dangnhap')}}" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-user"></i>
                                     </div>
-                                    <small class="text">Khách hàng</small>
+                                    <small class="text">Đăng nhập</small>
                                 </a>
                             </div>
+                            <div class="widgets-wrap float-md-right">
+                                <div class="widget-header mr-3">
+                                    <a href="{{route('login.dangki')}}" class="widget-view">
+                                        <div class="icon-area">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <small class="text">Đăng ký</small>
+                                    </a>
+                                </div>
                             <div class="widget-header mr-3">
                                 <a href="#" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-comment-dots"></i>
-                                        <span class="notify">1</span>
                                     </div>
-                                    <small class="text">Trò chuyện</small>
+                                    <small class="text">Đăng xuất</small>
                                 </a>
                             </div>
-                            {{-- <div class="widget-header mr-3">
-						<a href="#" class="widget-view">
-							<div class="icon-area">
-								
-								<i class="fa fa-store"></i>
-							</div>
-							<small class="text"> Orders </small>
-						</a>
-					</div> --}}
                             <div class="widget-header">
-                                <a href="#" class="widget-view">
+                                <a href="{{route('giohang.index')}}" class="widget-view">
                                     <div class="icon-area">
                                         <span class="notify">3</span>
                                         <i class="fa fa-shopping-cart"></i>

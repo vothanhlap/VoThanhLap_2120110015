@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Custumer;
 
 class LoginAdminMiddleware
 {
@@ -17,7 +18,11 @@ class LoginAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){  
+
+        
+        if(Auth::check())
+        {  
+            
            $user = Auth::user();
            //Xet quyen
            if($user->roles == 1){
@@ -25,6 +30,9 @@ class LoginAdminMiddleware
            }
            else
            {
+               if($cus->roles != 1){
+                return redirect()->route('frontend.home');
+               }
             return redirect->route('login');
            }
          
