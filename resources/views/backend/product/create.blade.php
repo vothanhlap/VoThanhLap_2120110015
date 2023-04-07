@@ -40,6 +40,11 @@
                                     aria-controls="productimage" aria-selected="false">Hình ảnh</button>
                             </li>
                             <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="productattribute-tab" data-toggle="tab"
+                                    data-target="#productattribute" type="button" role="tab"
+                                    aria-controls="productattribute" aria-selected="false">Thuôc tính</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="productsale-tab" data-toggle="tab"
                                     data-target="#productsale" type="button" role="tab" aria-controls="productsale"
                                     aria-selected="false">Khuyến mãi</button>
@@ -58,6 +63,9 @@
                             <div class="tab-pane fade border-right border-bottom border-left p-3" id="productimage"
                                 role="tabpanel" aria-labelledby="productimage-tab">
                                 @includeIf('backend.product.tab_productimage')</div>
+                                <div class="tab-pane fade border-right border-bottom border-left p-3" id="productattribute"
+                                role="tabpanel" aria-labelledby="productattribute-tab">
+                                @includeIf('backend.product.tab_productattribute')</div>
                             <div class="tab-pane fade border-right border-bottom border-left p-3" id="productsale"
                                 role="tabpanel" aria-labelledby="productsale-tab">
                                 @includeIf('backend.product.tab_productsale')</div>

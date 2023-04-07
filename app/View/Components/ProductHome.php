@@ -39,7 +39,13 @@ class ProductHome extends Component
             }
         }
        // var_dump($arrcatid);
-        $list_product = Product::whereIn('category_id',$arrcatid)->where('status','=','1')->orderBy('created_at','desc')->take(8)->get();
+        $list_product = Product::join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
+        ->whereIn('category_id',$arrcatid)
+        ->where('vtl_product.status','=','1')
+        ->select('vtl_product.*', 'vtl_brand.name as braname')
+        ->orderBy('vtl_product.created_at','desc')
+        ->take(8)
+        ->get();
         return view('components.product-home',compact('list_product'));
     }
 }

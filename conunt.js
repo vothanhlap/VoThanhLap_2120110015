@@ -1,46 +1,42 @@
-var countdonwn = function(end,elements,callback){
-    var _giay = 1000,
-    _phut = giay*60,
-    _gio = phut*60,
-    _ngay = gio*24,
+        let listDivImg = document.querySelectorAll('.list-img div')
+        let next = document.querySelector('.next')
+        let prev = document.querySelector('.prev')
+        let imgWrap = document.querySelector('.img-wrap img')
 
-    end = new Date(end),
-    timer,
+        let currentIndex = 0
 
-    calculate = function(){
-        var now = new Date(),
-        remaining = end.getTime()-now.getTime(),
-        data;
-        if(isNav(end)){
-            console.log('Invalid date/time');
-            return;
-        };
-        if(remaining<=0){
-            clearInterval(timer);
-            if(typeos(callback)=='function'){
-                callback();
-            };
+        setCurrent(currentIndex)
+
+        function setCurrent(index) {
+            currentIndex = index
+            imgWrap.src = listDivImg[currentIndex].querySelector('img').src
+
+            // remove all active img
+            listDivImg.forEach((item) => {
+                item.classList.remove('active')
+            })
+
+            // set active
+            listDivImg[currentIndex].classList.add('active')
         }
-        else
-        {
-            if(!timer){
-                timer = setInterval(calculate,_giay);
-            };
-        };
-        data = {
-            'ngay':Math.floor(remaining/_ngay),
-            'gio':Math.floor((remaining%_ngay)/_gio),
-            'phut':Math.floor((remaining%_gio)/_phut),
-            'giay':Math.floor((remaining%_phut)/_giay)
-        }
-        if(elements.lenght){
-            for(x in elements){
-                var x = elements[x];
-                data[x] = ('00'+ data[x].slide(-2));
-                document.getElementById(x).innerHTML = data[x];
-            }
-        };
-    }
-    calculate();
 
-}
+        listDivImg.forEach((img, index) => {
+            img.addEventListener('click', (e) => {
+                setCurrent(index)
+            })
+        })
+
+        next.addEventListener('click', () => {
+            if (currentIndex == listDivImg.length - 1) {
+                currentIndex = 0
+            } else currentIndex++
+
+            setCurrent(currentIndex)
+        })
+
+        prev.addEventListener('click', () => {
+            if (currentIndex == 0) currentIndex = listDivImg.length - 1
+            else currentIndex--
+
+            setCurrent(currentIndex)
+        })

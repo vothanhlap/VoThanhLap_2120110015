@@ -100,7 +100,6 @@
 		<div class="card card-home-category">
 			<div class="row no-gutters">
 				<div class="col-md-3">
-				
 				<div class="home-category-banner bg-light-orange">
 					<h5 class="title">{{$catrow->metakey}}</h5>
 					<p>{{$catrow->metadesc}}</p>

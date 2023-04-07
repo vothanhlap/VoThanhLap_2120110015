@@ -93,8 +93,8 @@ class SiteController extends Controller
         }
        //var_dump( $row_category);
         $list_product = Product::whereIn('category_id',$arrcatid)->where('status','=','1')->orderBy('created_at','desc')
-        ->paginate(15);
-        return view ('frontend.product.product-category');
+        ->paginate(12);
+        return view ('frontend.product.product-category',compact('list_product','row_category'));
      }
       //thuong hieu san pham
       public function product_brand ()
@@ -102,9 +102,11 @@ class SiteController extends Controller
           return view ('frontend.product.product-brand');
       }
        //chi tiet san pham
-       public function product_detail ()
-       {
-           return view ('frontend.product.product_detail');
+       public function product_detail ($product)
+       {    
+           
+            //$list_product = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','=',$product->id]])->orderBy('created_at','desc')->take(4);
+           return view ('frontend.product.product_detail',compact('product'));
        }
        //chu de bai viet
        public function post_topic()

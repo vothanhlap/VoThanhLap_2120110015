@@ -31,7 +31,7 @@ class ProductController extends Controller
          join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
         ->join('vtl_category','vtl_category.id','=','vtl_product.category_id')
         ->select('vtl_product.*','vtl_brand.name as braname','vtl_category.name as catname')
-        ->where('vtl_product.status', '!=', 0)
+         -> where('vtl_product.status', '!=', 0)
         ->orderBy('vtl_product.created_at', 'desc')
         ->get();
        

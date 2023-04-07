@@ -1,25 +1,42 @@
 @extends('layouts.site')
-@section('title', 'San pham theo loai')
+@section('title', $row_category->name)
 @section('content')
     <!-- =============== SECTION ITEMS =============== -->
 <section  class="padding-bottom-sm">
-
-    <header class="section-heading heading-line">
-        <h4 class="title-section text-uppercase">Recommended items</h4>
-    </header>
+ <div class="container">
     
+    <header class="section-heading heading-line">
+        <h4 class="title-section text-uppercase">{{$row_category->name}}</h4>
+    </header>
     <div class="row row-sm">
-        <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-            <div class="card card-sm card-product-grid">
-                <a href="#" class="img-wrap"> <img src="images/items/1.jpg"> </a>
-                <figcaption class="info-wrap">
-                    <a href="#" class="title">Just another product name</a>
-                    <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                </figcaption>
-            </div>
-        </div> <!-- col.// -->
+      @foreach ($list_product as $item)
+        @php
+        $arr_image=$item->productimg;
+        $image = 'hinh.png';
+        if(count($arr_image)>0)
+        {
+        $image=$arr_image[0]['image'];
+        }
+        @endphp
+      <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+        <div class="card card-sm card-product-grid">
+            <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="img-wrap"> <img src="{{ asset('images/product/'.$image)}}"> </a>
+            <figcaption class="info-wrap">
+                <a href="#" class="title">{{$item->name}}</a>
+                <div class="price mt-1">
+                    {{ number_format($item->price_buy,0) }} VNĐ
+                </div> <!-- price-wrap.// -->
+            </figcaption>
+        </div>
+    </div> <!-- col.// -->
+      @endforeach
     </div> <!-- row.// -->
-    </section>
+    <div class="col-12">
+        
+           {{$list_product->links()}}
+    </div>
+ </div>
+</section>
     <!-- =============== SECTION ITEMS .//END =============== -->
     
 @endsection

@@ -10,6 +10,7 @@ use App\Models\ProductImage;
 use App\Models\ProductStrore;
 use App\Models\ProductSale;
 use App\Models\Category;
+use App\Models\Brand;
 
 
 
@@ -28,10 +29,10 @@ class Product extends Model
     {
         return $this->hasOne(ProductStore::class, 'product_id','id');
     }
-    public function cat_id(): hasOne
-    {
-        return $this->hasOne(Category::class, 'category_id','id');
-    }
+    // public function braname(): hasOne
+    // {
+    //     return $this->hasOne(Brand::class, 'brand_id','id');
+    // }
     
     
     

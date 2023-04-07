@@ -8,33 +8,39 @@ if(count($arr_image)>0)
 }
 @endphp
 <li class="col-6 col-lg-3 col-md-4">
-    <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="item"> 
-        <div class="card-body">
-            <h6 class="title">{{$item->name}}</h6>
-            <img href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="img-sm float-right" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}"> 
-            <span class="price "><p>{{ number_format($item->price_buy,0) }} VNĐ</p></span> 
-            <span class="price text-danger"><p>{{ number_format($item->price_sale,0) }} VNĐ</p></span> 
-        </div>
+    <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="item product-card position-relative"> 
         <div class="row">
-            <div class="col-md-6">
-                <div class="d-flex justify-content-start mx-2">
-                    <a class="align-items-center justify-content-start mb-2" href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
-                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
-                          </svg>
-                    </a>
-                </div> 
+            <div class="col-md-9">
+                <div class="card-body">
+                    <h6 class="title">{{$item->name}}</h6>
+                    <span class="price "><p>{{ number_format($item->price_buy,0) }} VNĐ</p></span> 
+                    <span class="price text-danger"><p>{{ number_format($item->price_sale,0) }} VNĐ</p></span>
+                </div>
             </div>
-            <div class="col-md-6">
-                 <div class="d-flex justify-content-end">
-                    <a class="align-items-center justify-content-end mb-2" href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16">
-                            <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
-                          </svg>
-                    </a>
-                </div> 
+            <div class="col-md-3">
+                <div class="d-flex justify-content-end">
+                    <button class="border-0 bg-transparent">
+                        <svg class="icon icon-cmheart not-added" id="Capa_1" width="16px" height="16px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve">
+                            <g>
+                                <path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
+                                    c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
+                                    l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
+                                    C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
+                                    s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
+                                    c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
+                                    C444.801,187.101,434.001,213.101,414.401,232.701z"></path>
+                            </g>
+                            </svg>
+                    </button>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                <img href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="img-sm float-right" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}"> 
+               </div>
             </div>
-        </div> 
+        </div>
+        <div class="product-details">
+            <samp class="brand mx-4">Thương hiệu:{{$item->braname}}</samp>
+          </div>
     </a>
         </li>
 @endforeach

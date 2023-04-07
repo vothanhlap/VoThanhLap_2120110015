@@ -8,29 +8,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>@yield('title')</title>
-
-
     <!-- jQuery -->
     <script src="{{ asset('public/frontend/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
-
     <!-- Bootstrap4 files-->
     <script src="{{ asset('public/frontend/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     <link href="{{ asset('public/frontend/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
-
     <!-- Font awesome 5 -->
     <link href="{{ asset('public/frontend/fonts/fontawesome/css/all.min.css') }}" type="text/css" rel="stylesheet">
     <!-- custom style -->
     <link href="{{ asset('public/frontend/css/ui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/frontend/css/responsive.css') }}" rel="stylesheet" type="text/css" />
-
     <!-- custom javascript -->
     <script src="{{ asset('public/frontend/js/script.js" type="text/javascript') }}"></script>
-
 </head>
 @yield('header')
+<style>
 
+.product-card{
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.product-image img{
+  width: 20px;
+ 
+}
+.product-card .product-image {
+  height: 150px;
+}
+.product-card .product-image image{
+  object-fit: contain;
+}
+
+.product-card .product-image>.last{
+  display: none;
+  
+}
+.product-card:hover .product-image>img:nth-child(1){
+  display: none;
+
+}
+.product-card:hover .product-image>.last{
+  display: block;
+}
+.description{
+  font-size: 13px;
+  color: var(--color-777777);
+  margin-right: 20px;
+}
+.product-card:hover .action-bar{
+  right: 15px;
+}
+.product-card .product-details h6{
+ color: var(--color-bf4800);
+ font-size: 13px;
+}
+
+.product-card .product-details h5{
+  font-size: 15px;
+  color: var(--color-1c1c1b);
+}
+.price{
+  font-size: 16px;
+  color: var(--color-1c1c1b);
+}
+
+
+.action-bar{
+  top: 10%;
+  right: -23px;
+  transition: .3s;
+}
+
+.wishlist-icon{
+  top: 4%;
+  right: 15px;
+}
+</style>
 <body>
-
     <header class="section-header">
         <section class="header-main border-bottom">
             <div class="container">
@@ -45,9 +101,6 @@
                             <div class="input-group w-100">
                                 <select class="custom-select border-right" name="category_name">
                                     <option value="">All type</option>
-                                    <option value="codex">Special</option>
-                                    <option value="comments">Only best</option>
-                                    <option value="content">Latest</option>
                                 </select>
                                 <input type="text" class="form-control" placeholder="Search">
 
