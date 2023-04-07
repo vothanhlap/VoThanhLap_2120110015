@@ -39,7 +39,10 @@ class SiteController extends Controller
                         }
                 }
             } else {
-                $product = Product::where([['status', '=', 1], ['slug', '=', $slug]])->first();
+                $product = Product::join('vtl_brand','vtl_brand.id','=','vtl_product.brand_id')
+                ->select('vtl_product.*', 'vtl_brand.name as braname')
+                ->where([['vtl_product.status', '=', 1], ['vtl_product.slug', '=', $slug]])
+                ->first();
                 if ($product != NULL) {
                     return $this->product_detail($product);
                 } else {
@@ -105,7 +108,7 @@ class SiteController extends Controller
        public function product_detail ($product)
        {    
            
-            //$list_product = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','=',$product->id]])->orderBy('created_at','desc')->take(4);
+       
            return view ('frontend.product.product_detail',compact('product'));
        }
        //chu de bai viet

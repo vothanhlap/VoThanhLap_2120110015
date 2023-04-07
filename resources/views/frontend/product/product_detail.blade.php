@@ -71,12 +71,17 @@ $image=$arr_image[0]['image'];
                     <dd class="col-sm-9">2 year</dd>
 
                     <dt class="col-sm-3">Thời gian giao hàng</dt>
-                    <dd class="col-sm-9">3-4 days</dd>
+                    <dd class="col-sm-9">3-4 ngay</dd>
 
                     <dt class="col-sm-3">Trạng thái</dt>
-                    <dd class="col-sm-9">in Stock</dd>
+                    <dd class="col-sm-9">
+                        @if (($product->status)==1&&2)
+                            Còn hàng
+                        @else
+                                Ngừng kinh doanh
+                        @endif
+                    </dd>
                 </dl>
-
                 <div class="form-row  mt-4">
                     <div class="form-group col-md flex-grow-0">
                         <div class="input-group mb-3 input-spinner">
@@ -90,12 +95,14 @@ $image=$arr_image[0]['image'];
                         </div>
                     </div> <!-- col.// -->
                     <div class="form-group col-md">
-                        <a href="#" class="btn  btn-primary">
+                        <a href="{{route('giohang.addcart',['id'=>$product->id])}}" class="btn  btn-primary">
                             <i class="fas fa-shopping-cart"></i> <span class="text">Thêm vào giỏ hàng</span>
                         </a>
                         <a href="#" class="btn btn-light">
                             <i class="fas fa-envelope"></i> <span class="text">Liên hệ nhà cung cấp</span>
                         </a>
+                        {{-- //
+                       // {{ route('category.edit', ['category' => $category->id]) }} --}}
                     </div> <!-- col.// -->
                 </div> <!-- row.// -->
 

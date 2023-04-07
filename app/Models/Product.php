@@ -29,11 +29,5 @@ class Product extends Model
     {
         return $this->hasOne(ProductStore::class, 'product_id','id');
     }
-    // public function braname(): hasOne
-    // {
-    //     return $this->hasOne(Brand::class, 'brand_id','id');
-    // }
-    
-    
     
 }

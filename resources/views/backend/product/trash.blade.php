@@ -49,8 +49,6 @@
                            src="{{ asset('images/product/' . $product->image) }}"
                             alt="$product->image"></td>
                           <td class="text-center">{{ $product->name }}</td>
-                          {{-- <td></td>
-                          <td></td> --}}
                           <td class="text-center">{{ $product->catname }}</td> 
                            <td class="text-center">{{ $product->braname }}</td>
                           <td class="text-center">{{ $product->created_at }}</td>

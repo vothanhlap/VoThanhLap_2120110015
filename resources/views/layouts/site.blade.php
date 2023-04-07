@@ -140,7 +140,7 @@
                                 </a>
                             </div>
                             <div class="widget-header">
-                                <a href="{{route('giohang.index')}}" class="widget-view">
+                                <a href="#" class="widget-view">
                                     <div class="icon-area">
                                         <span class="notify">3</span>
                                         <i class="fa fa-shopping-cart"></i>
