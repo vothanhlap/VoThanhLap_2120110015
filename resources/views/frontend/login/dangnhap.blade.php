@@ -20,14 +20,14 @@
              @endif
                 </div> <!-- form-group// -->
               <div class="form-group">
-                <input name="password" class="form-control" placeholder="Nhập mật khẩu" type="password">
+                <input  id="myInput" name="password" class="form-control" placeholder="Nhập mật khẩu" type="password">
                 @if ($errors->has('password'))
                 <div class="text-danger mt-2">
                     {{ $errors->first('password') }}
                 </div>
             @endif
               </div> <!-- form-group// -->
-              
+              <input class="mb-2" type="checkbox" onclick="myFunction()"> Hiện thị mật khẩu
               <div class="form-group">
                   <a href="{{route('login.khoiphucmatkhau')}}" class="float-right">Quên mật khẩu?</a> 
                 <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label">Nhớ mật khẩu</div> </label>
@@ -42,7 +42,16 @@
          <p class="text-center mt-4">Bạn chưa có tài khoản ? <a href="{{route('login.dangki')}}">Đăng kí</a></p>
          <br><br>
     <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
-    
+    <script>
+      function myFunction() {
+          var x = document.getElementById("myInput");
+          if (x.type === "password") {
+              x.type = "text";
+          } else {
+              x.type = "password";
+          }
+      }
+  </script>
     
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->  

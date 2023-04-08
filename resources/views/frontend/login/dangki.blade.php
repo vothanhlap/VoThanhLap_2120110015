@@ -79,7 +79,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>Tạo một mật khẩu mới</label>
-                            <input name="password" class="form-control" type="password" placeholder="Tạo một mật khẩu mới">
+                            <input name="password" class="form-control" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Tạo một mật khẩu mới">
                             @if ($errors->has('password'))
                             <div class="text-danger">
                                 {{ $errors->first('password') }}
@@ -108,6 +108,13 @@
         </div> <!-- card .// -->
         <p class="text-center mt-4">Đã có tài khoản? <a href="{{ route('login.dangnhap') }}">Đăng nhập</a></p>
         <br><br>
+        {{-- <div id="message">
+            <h3>Password must contain the following:</h3>
+            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid">A <b>number</b></p>
+            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+          </div> --}}
         <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->

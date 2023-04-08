@@ -186,6 +186,9 @@ return [
         /*
          * Package Service Providers...
          */
+        // Laravel\Tinker\TinkerServiceProvider::class,
+        // Darryldecode\Cart\CartServiceProvider::class,
+        // \App\Providers\WishListProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,6 +211,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+    
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
