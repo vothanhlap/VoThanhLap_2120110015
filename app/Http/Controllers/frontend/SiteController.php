@@ -107,9 +107,28 @@ class SiteController extends Controller
        //chi tiet san pham
        public function product_detail ($product)
        {    
-           
-       
-           return view ('frontend.product.product_detail',compact('product'));
+        $arrcatid = array();
+        array_push($arrcatid, $product->category_id);
+        $list_category2 = Category::where([['status','=','1'],['parent_id','=', $product->category_id]])->get();
+        if(count($list_category2)>0)
+        {
+            foreach($list_category2 as $cat2)
+            {
+                array_push($arrcatid, $cat2->id);
+                $list_category3 = Category::where([['status','=','1'],['parent_id','=', $cat2->id]])->get();
+                if(count($list_category3)>0)
+                {              
+                    foreach($list_category3 as $cat3)
+                    {
+                        array_push($arrcatid, $cat3->id);
+                    }  
+                }
+            }
+        }
+        $list_pro = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','!=',$product->id]])->orderBy('created_at','desc')
+        ->take(4)->get();
+        //var_dump($arrcatid);
+           return view ('frontend.product.product_detail',compact('product','list_pro'));
        }
        //chu de bai viet
        public function post_topic()

@@ -20,9 +20,61 @@
     <link href="{{ asset('public/frontend/css/responsive.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom javascript -->
     <script src="{{ asset('public/frontend/js/script.js" type="text/javascript') }}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 @yield('header')
 <style>
+ #clockdiv{
+	font-family: sans-serif;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 20px;
+}
+
+#clockdiv > div{
+	padding: 5px;
+	border-radius: 3px;
+	background: white;
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 15px;
+	border-radius: 3px;
+	background: black;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 15px;
+    color: black;
+}   
+#h{
+    color:white;
+    font-size: 15px;
+}
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* When you mouse over the container, fade in the overlay title */
+.container:hover .overlay {
+  opacity: 1;
+}
 /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
   width: 100%; /* Full width */
