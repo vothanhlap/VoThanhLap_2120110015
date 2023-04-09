@@ -59,6 +59,13 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label for="position">Vị trí<span class="text-danger">(*)</span></label>
+                                        <select name="position" class="form-control">
+                                            <option value="mainmenu">Mainmenu</option>
+                                            <option value="footermenu">Footermenu</option>
+                                        </select>
+                                         </div>
                                         <div class="mb-3">
                                             <label for="parent_id">Danh mục cha <span class="text-danger">(*)</span></label>
                                             <select class="form-control" name="parent_id" id="parent_id">

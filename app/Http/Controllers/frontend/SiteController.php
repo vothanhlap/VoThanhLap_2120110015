@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Models\Product;
 use App\Models\Post;
 use App\Models\Category;
+use Mail;
 
 class SiteController extends Controller
 {
@@ -102,6 +103,8 @@ class SiteController extends Controller
       //thuong hieu san pham
       public function product_brand ()
       {
+
+        
           return view ('frontend.product.product-brand');
       }
        //chi tiet san pham
@@ -134,6 +137,16 @@ class SiteController extends Controller
        public function post_topic()
        {
            return view ('frontend.post.post-topic');
+       }
+
+       public function xacnhangmail()
+       {
+            $name = 'Vo Thanh Lap';
+            Mail::send('emails.test',compact('name'),function($email) use($name){
+                $email->subject('Test');
+                $email->to('laptopvui80@gmail.com',$name);
+            });
+            
        }
     
  

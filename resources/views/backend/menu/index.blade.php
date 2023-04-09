@@ -37,7 +37,7 @@
                             <div class="col-3 float-start">
                                 <div class="accordion" id="accordionExample">
                                     <div class="card">
-                                        <div class="card-header" id="vitri">
+                                        <div class="card-header" id="position">
                                             <select name="position" class="form-control">
                                                 <option value="mainmenu">Mainmenu</option>
                                                 <option value="footermenu">Footermenu</option>
@@ -172,11 +172,11 @@
                                     <thead>
                                         <tr>
                                           <th class="text-center" style="width:20px">#</th>
-                                          <th>Tên Menu</th>
+                                          <th style="width:120px">Tên Menu</th>
                                           <th>Lien ket</th>
-                                          <th style="width:160px;" class="text-center">Vị trí</th>
-                                          <th class="text-center">Chức năng</th>
-                                          <th class="text-center" style="width:20px">ID</th>
+                                          <th style="width:80px" class="text-center">Vị trí</th>
+                                          <th style="width:160px" class="text-center">Chức năng</th>
+                                          <th class="text-center" style="width:10px">ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>

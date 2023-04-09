@@ -28,6 +28,7 @@ use App\Http\Controllers\backend\DashboardController;
    //trang chu
     Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
     //gio hang
+    Route::get('gio-hang', [GiohangController::class, 'index'])->name('giohang.index');
     Route::get('addcart/{id}', [GiohangController::class, 'addcart'])->name('giohang.addcart');
     //lien he
     Route::get('lien-he', [LienheController::class, 'index'])->name('contact.index');
@@ -51,7 +52,8 @@ use App\Http\Controllers\backend\DashboardController;
         Route::post('dangky', [AuthController::class,'postdangky'])->name('postdangky');
         Route::get('forgot-password', [AuthController::class,'forgotpassword'])->name('forgotpassword');
         Route::get('recover-password', [AuthController::class,'recover'])->name('recover');
-
+    //Giui email
+    Route::get('xac-nhan-tai-khoan', [SiteController::class, 'xacnhangmail']);
 
         //khai bao route cho quan ly
         route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {

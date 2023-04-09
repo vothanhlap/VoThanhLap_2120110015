@@ -34,15 +34,15 @@ class DangnhapController extends Controller
        $username =$request->username;
        $password = $request->password;   
       $data=['username'=>$username,'password'=>$password];
-    if(Auth::attempt($data)){
-      //echo 'Thanh cong';
-    return redirect()->route('frontend.home');
-    }
-    else{
-    // return redirect('login');
-    echo 'That bai';
-      var_dump($data);
-  //  echo bcrypt($password);
+        if(Auth::attempt($data)){
+        //echo 'Thanh cong';
+        return redirect()->route('frontend.home');
+        }
+        else{
+        // return redirect('login');
+        echo 'That bai';
+        var_dump($data);
+    //  echo bcrypt($password);
     
     }
 

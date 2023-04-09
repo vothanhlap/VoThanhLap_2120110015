@@ -214,13 +214,13 @@ input[type=submit]:hover {
                             <div class="widget-header mr-3">
                                 <a href="#" class="widget-view">
                                     <div class="icon-area">
-                                        <i class="fa fa-comment-dots"></i>
+                                        <i class="fa fa-user"></i>
                                     </div>
                                     <small class="text">Đăng xuất</small>
                                 </a>
                             </div>
                             <div class="widget-header">
-                                <a href="#" class="widget-view">
+                                <a href="{{route('giohang.index')}}" class="widget-view">
                                     <div class="icon-area">
                                         <span class="notify">3</span>
                                         <i class="fa fa-shopping-cart"></i>
@@ -233,17 +233,21 @@ input[type=submit]:hover {
                 </div> <!-- row.// -->
             </div> <!-- container.// -->
         </section> <!-- header-main .// -->
-
-        <nav class="navbar navbar-main navbar-expand-lg border-bottom">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <x-main-menu />
+            </div>
+          </nav>
+        {{-- <nav class="navbar navbar-main navbar-expand-lg border-bottom">
             <div class="container">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
-                    aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <x-main-menu />
+                
+                
             </div> <!-- container .// -->
-        </nav>
+        </nav> --}}
     </header> <!-- section-header.// -->
 
 
@@ -274,75 +278,19 @@ input[type=submit]:hover {
                         bên thứ ba. </small>
                 </div> <!-- col-md-6.// -->
             </div>
-
-
         </div>
     </section>
     <!-- ========================= SECTION SUBSCRIBE END// ========================= -->
-
-
     <!-- ========================= FOOTER ========================= -->
     <footer class="section-footer bg-secondary">
-        <div class="container">
-            <section class="footer-top padding-y-lg text-white">
-                <div class="row">
-                    <aside class="col-md col-6">
-                        <h6 class="title">Brands</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#">Adidas</a></li>
-                            <li> <a href="#">Puma</a></li>
-                            <li> <a href="#">Reebok</a></li>
-                            <li> <a href="#">Nike</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-md col-6">
-                        <h6 class="title">Company</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#">About us</a></li>
-                            <li> <a href="#">Career</a></li>
-                            <li> <a href="#">Find a store</a></li>
-                            <li> <a href="#">Rules and terms</a></li>
-                            <li> <a href="#">Sitemap</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-md col-6">
-                        <h6 class="title">Help</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#">Contact us</a></li>
-                            <li> <a href="#">Money refund</a></li>
-                            <li> <a href="#">Order status</a></li>
-                            <li> <a href="#">Shipping info</a></li>
-                            <li> <a href="#">Open dispute</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-md col-6">
-                        <h6 class="title">Account</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#"> User Login </a></li>
-                            <li> <a href="#"> User register </a></li>
-                            <li> <a href="#"> Account Setting </a></li>
-                            <li> <a href="#"> My Orders </a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-md">
-                        <h6 class="title">Social</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
-                            <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
-                            <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
-                            <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
-                        </ul>
-                    </aside>
-                </div> <!-- row.// -->
-            </section> <!-- footer-top.// -->
-
-            <section class="footer-bottom text-center">
-
-                <p class="text-white">Trang web chủ sở hữu Laptopvui.net</p>
-                <p class="text-muted"> &copy 2023 Võ Thành Lập, All rights reserved </p>
-                <br>
-            </section>
-        </div><!-- //container -->
+       <div class="container">
+        <x-footer-menu/>
+       </div>
+       <section class="footer-bottom text-center">
+        <p class="text-white">Trang web chủ sở hữu Laptopvui.net</p>
+        <p class="text-muted"> &copy 2023 Võ Thành Lập, All rights reserved </p>
+        <br>
+    </section>
     </footer>
     <!-- ========================= FOOTER END // ========================= -->
 </body>

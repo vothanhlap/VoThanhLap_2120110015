@@ -49,7 +49,7 @@ class MenuController extends Controller
 //Xử lý thêm
     public function store(Request $request)
     {
-        $position = $request->position;
+       
         if(isset($request->ThemCategory))
         {
 
@@ -242,6 +242,7 @@ class MenuController extends Controller
         $menu->parent_id = $request->parent_id;
         $menu->sort_order = $request->sort_order+1;
         $menu->status = $request->status;
+        $menu->position = $request->position;
         $menu->updated_at = date('Y-m-d H:i:s');
         $menu->updated_by = 1;
         $menu->save();
