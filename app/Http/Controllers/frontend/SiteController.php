@@ -7,6 +7,8 @@ use App\Models\Link;
 use App\Models\Product;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Topic;
 use Mail;
 
 class SiteController extends Controller
@@ -15,7 +17,7 @@ class SiteController extends Controller
     public function index($slug = null)
     {
         if ($slug == null) {
-            // return view('frontend.home');
+            
             return $this->home();
         } else {
             $link = Link::where('slug', '=', $slug)->first();
@@ -24,19 +26,19 @@ class SiteController extends Controller
                 switch ($type) {
                     case 'brand': {
                             return $this->product_brand($slug);
-                            break;
+                          
                         }
                     case 'category': {
                             return $this->product_category($slug);
-                            break;
+                           
                         }
                     case 'topic': {
                             return $this->post_topic($slug);
-                            break;
+                           
                         }
                     case 'page': {
                             return $this->post_page($slug); //bảng post có 2 kiểu type là post và page, page sẽ được lưu vào bảng link
-                            break;
+                         
                         }
                 }
             } else {
@@ -46,11 +48,22 @@ class SiteController extends Controller
                 ->first();
                 if ($product != NULL) {
                     return $this->product_detail($product);
-                } else {
-                    $post = Post::where([['status', '=', 1], ['slug', '=', $slug], ['type', '=', 'post']])->first();
-                    if ($post != NULL) {
+                } 
+                else 
+                {
+                    $dk=
+                    [['status', '=', 1],
+                     ['slug', '=', $slug], 
+                     ['type', '=', 'post']
+                    ];
+                    $post = Post::where($dk)->first();
+                    if ($post !=null) 
+                    {
+                        //echo 'co bai viet';
                         return $this->post_detail($post);
-                    } else {
+                    } 
+                    else 
+                    {
                         return $this->error_404($slug);
                     }
                 }
@@ -63,10 +76,11 @@ class SiteController extends Controller
     {
         $data = [
             ['status','=','1'],
-            ['parent_id','=','0'],
         ];
+        
         $category_home =Category::where($data)->take(3)->get();
-        return view ('frontend.home.home',compact('category_home'));
+        $top_home =Topic::where($data)->take(3)->get();
+        return view ('frontend.home.home',compact('category_home','top_home'));
     }
      //loai san pham
      public function product_category ($slug)
@@ -100,12 +114,21 @@ class SiteController extends Controller
         ->paginate(12);
         return view ('frontend.product.product-category',compact('list_product','row_category'));
      }
-      //thuong hieu san pham
-      public function product_brand ()
+      // san pham theo thuong hieu
+      public function product_brand ($slug)
       {
-
-        
-          return view ('frontend.product.product-brand');
+        $bra = [
+            ['status','=','1'],
+            ['slug','=',$slug],
+        ];
+         $row_brand = Brand::where($bra)->first();
+         $braid = $row_brand->id;
+         $arrbraid = array();
+          array_push($arrbraid, $braid);
+          $list_product= Product::whereIn('brand_id',$arrbraid)->where('status','=','1')->orderBy('created_at','desc')
+          ->paginate(12);
+          //var_dump($list_product);
+          return view ('frontend.product.product-brand',compact('row_brand','list_product'));
       }
        //chi tiet san pham
        public function product_detail ($product)
@@ -128,24 +151,43 @@ class SiteController extends Controller
                 }
             }
         }
-        $list_pro = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','!=',$product->id]])->orderBy('created_at','desc')
-        ->take(4)->get();
-        //var_dump($arrcatid);
-           return view ('frontend.product.product_detail',compact('product','list_pro'));
-       }
-       //chu de bai viet
-       public function post_topic()
-       {
-           return view ('frontend.post.post-topic');
+             $list_pro = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','!=',$product->id]])->orderBy('created_at','desc')->take(4)->get();
+             //var_dump($arrcatid);
+               return view ('frontend.product.product_detail',compact('product','list_pro'));
        }
 
-       public function xacnhangmail()
-       {
-            $name = 'Vo Thanh Lap';
-            Mail::send('emails.test',compact('name'),function($email) use($name){
-                $email->subject('Test');
-                $email->to('laptopvui80@gmail.com',$name);
-            });
+       //chu de bai viet
+    public function post_detail($post)
+    { 
+       $arg =[
+        ['status','=','1'],
+        ['id','!=',$post->id],
+        ['type','=','post'],
+        ['top_id','=',$post->top_id]
+       ]; 
+       $post_list = Post::where($arg)
+       ->orderBy('created_at','desc')
+       ->take(4)
+       ->get();
+      return view ('frontend.post.post-detail',compact('post','post_list'));
+    }
+    
+    //chu đe bai viet
+    public function post_topic($slug)
+    {
+      
+
+      return view ('frontend.post.post-topic'); 
+    }
+
+
+    public function xacnhangmail()
+    {
+        $name = 'Vo Thanh Lap';
+        Mail::send('emails.test',compact('name'),function($email) use($name){
+        $email->subject('Test');
+        $email->to('laptopvui80@gmail.com',$name);
+    });
             
        }
     

@@ -37,7 +37,7 @@ class TopicController extends Controller
     }
 
     // thêm
-    public function store(topicStoreRequest $request)
+    public function store(TopicStoreRequest $request)
     {
         $user_name = Auth::user()->name;
         $topic = new topic();

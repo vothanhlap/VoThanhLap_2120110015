@@ -219,13 +219,15 @@ input[type=submit]:hover {
                                     <small class="text">Đăng xuất</small>
                                 </a>
                             </div>
+                            {{-- {{route('giohang.index')}} --}}
                             <div class="widget-header">
                                 <a href="{{route('giohang.index')}}" class="widget-view">
                                     <div class="icon-area">
-                                        <span class="notify">3</span>
+                                        <span class="notify" data-bs-toggle="modal" data-bs-target="#exampleModal">{{count((array) session('cart'))}}</span>
                                         <i class="fa fa-shopping-cart"></i>
                                     </div>
                                     <small class="text">Giỏ hàng</small>
+
                                 </a>
                             </div>
                         </div> <!-- widgets-wrap.// -->

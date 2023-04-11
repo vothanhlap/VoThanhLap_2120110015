@@ -1,1 +1,5 @@
-<h1>Chu de bai viet</h1>
+@extends('layouts.site')
+@section('title', 'Chủ đê bài viết')
+@section('content')
+
+@endsection

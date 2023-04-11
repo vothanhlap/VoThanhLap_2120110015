@@ -44,4 +44,3 @@ if(count($arr_image)>0)
     </a>
         </li>
 @endforeach
-{{-- <span class="badge badge-danger"> NEW </span> --}}

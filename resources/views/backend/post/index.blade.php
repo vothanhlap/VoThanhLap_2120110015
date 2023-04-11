@@ -38,8 +38,8 @@
                     <thead>
                         <tr>
                             <th style="width:10px" class="text-center">#</th>
-                            <th style="width:80px" class="text-center">Hình đại diện</th>
-                            <th style="width:120px" class="text-center">Tên danh mục</th>
+                            <th style="width:60px" class="text-center">Hình đại diện</th>
+                            <th style="width:130px" class="text-center">Tên danh mục</th>
                             <th style="width:120px" class="text-center">Chủ đề bài viết</th>
                             <th style="width:100px" class="text-center">Ngày đăng</th>
                             <th style="width:150px" class="text-center">Chức năng</th>

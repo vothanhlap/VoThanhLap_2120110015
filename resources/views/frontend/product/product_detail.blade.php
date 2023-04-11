@@ -8,6 +8,7 @@
             $image = $arr_image[0]['image'];
         }
     @endphp
+     @includeIf('backend.message_alert')
     <!-- ============================ ITEM DETAIL ======================== -->
     <div class="row">
         <aside class="col-md-6">
@@ -30,20 +31,6 @@
                 <h2 class="title mt-3">{{ $product->name }}</h2>
 
                 <div class="rating-wrap my-3">
-                    <ul class="rating-stars">
-                        <!-- Use an element to toggle between a like/dislike icon -->
-                        <i onclick="myFunction(this)" class="fas fa-thumbs-up "></i>
-                        {{-- <li style="width:80%" class="stars-active">
-                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </li> --}}
-                    </ul>
                     <small class="label-rating text-muted">132 reviews</small>
                     <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
                 </div> <!-- rating-wrap.// -->
@@ -87,13 +74,6 @@
                     <div class="form-group col-md flex-grow-0">
                         <div class="input-group">
                             <input type="number" style="width:80px" class="form-control text-center" value="1">
-                            {{-- <div class="input-group-prepend">
-                                <button class="btn btn-light" type="button" id="button-plus"> + </button>
-                            </div>
-                            
-                            <div class="input-group-append">
-                                <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-                            </div> --}}
                         </div>
                     </div> <!-- col.// -->
                     <div class="form-group col-md">
@@ -123,7 +103,7 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <h5 class="title-description">Chi tiết sản phẩm</h5>
+                    <h5 class="title-description">mô tả chi tiết sản phẩm</h5>
                     <ul class="list-check">
                         <li> {{$product->detail}}</li> 
                     </ul>
@@ -135,36 +115,37 @@
                     </ul>
                        
                     </div> <!-- col.// -->
+                    <aside class="col-md-4">
+                        <div class="box">
+                            <h5 class="title-description">Sản phẩm cùng loại</h5>
+                            <hr>
+                            
+                            @foreach ($list_pro as $item)
+                          
+                             @php
+                             $arr_image=$item->productimg;
+                             $image = 'hinh.png';
+                             if(count($arr_image)>0)
+                             {
+                             $image=$arr_image[0]['image'];
+                             }
+                             @endphp
+                            <article class="media mb-3">
+                                <a href="#"><img class="img-sm mr-3" src="{{ asset('images/product/' . $image) }}"></a>
+                                <div class="media-body">
+                                    <h6 class="mt-0"><a href="{{route('frontend.slug',['slug'=>$item->slug])}}">{{$item->name}}</a></h6>
+                                    <p class="mb-2"><span>Thương hiệu: </span>{{$product->braname}} </p>
+                                    <p class="mb-2"><span>Gía: </span>{{ number_format($product->price_buy, 0) }} </p>
+                                </div>
+                            </article>
+                        
+                            @endforeach
+                            
+                        </div> <!-- box.// -->
+                        
+                    </aside> <!-- col.// -->
 
-                <aside class="col-md-4">
-                    <div class="box">
-                        <h5 class="title-description">Sản phẩm cùng loại</h5>
-                        <hr>
-                        
-                        @foreach ($list_pro as $item)
-                      
-                         @php
-                         $arr_image=$item->productimg;
-                         $image = 'hinh.png';
-                         if(count($arr_image)>0)
-                         {
-                         $image=$arr_image[0]['image'];
-                         }
-                         @endphp
-                        <article class="media mb-3">
-                            <a href="#"><img class="img-sm mr-3" src="{{ asset('images/product/' . $image) }}"></a>
-                            <div class="media-body">
-                                <h6 class="mt-0"><a href="{{route('frontend.slug',['slug'=>$item->slug])}}">{{$item->name}}</a></h6>
-                                <p class="mb-2"><span>Thương hiệu: </span>{{$product->braname}} </p>
-                                <p class="mb-2"><span>Gía: </span>{{ number_format($product->price_buy, 0) }} </p>
-                            </div>
-                        </article>
-                    
-                        @endforeach
-                        
-                    </div> <!-- box.// -->
-                    
-                </aside> <!-- col.// -->
+                
             </div> <!-- row.// -->
         </div> <!-- container .//  -->
     </section>

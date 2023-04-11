@@ -19,32 +19,42 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>
-            <figure class="itemside">
-                <div class="aside"><img src="images/items/1.jpg" class="img-sm"></div>
-                <figcaption class="info">
-                    <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                    <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                </figcaption>
-            </figure>
-        </td>
-        <td> 
-            <select class="form-control">
-                <option>1</option>
-            </select> 
-        </td>
-        <td> 
-            <div class="price-wrap"> 
-                <var class="price">$1156.00</var> 
-                <small class="text-muted"> $315.20 each </small> 
-            </div> <!-- price-wrap .// -->
-        </td>
-        <td class="text-right"> 
-        <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-        <a href="" class="btn btn-light"> Xóa</a>
-        </td>
-    </tr>   
+        {{-- @php
+            $tong = 0
+        @endphp
+        @if (session('cart'))
+           @foreach (session('cart') as $id => $detail)
+           @php
+               $tong += $detail['price']* $detail['soluong']
+           @endphp --}}
+                 <tr >
+                    <td >
+                        <figure class="itemside">
+                            <div class="aside"><img src="images/items/1.jpg" class="img-sm"></div>
+                            <figcaption class="info">
+                                <a href="#" class="title text-dark">///</a>
+                                <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td> 
+                        <select class="form-control">
+                            <option></option>
+                        </select> 
+                    </td>
+                    <td> 
+                        <div class="price-wrap"> 
+                            <var class="price"></var> 
+                            <small class="text-muted"> $315.20 each </small> 
+                        </div> <!-- price-wrap .// -->
+                    </td>
+                    <td class="text-right"> 
+                    <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+                    <a href="" class="btn btn-light"> Xóa</a>
+                    </td>
+                </tr> 
+           {{-- @endforeach
+        @endif   --}}
     </tbody>
     </table>
     
@@ -79,7 +89,7 @@
                 <div class="card-body">
                         <dl class="dlist-align">
                           <dt>Tổng giá :</dt>
-                          <dd class="text-right">USD 568</dd>
+                          <dd class="text-right"></dd>
                         </dl>
                         <dl class="dlist-align">
                           <dt>Giam giá:</dt>

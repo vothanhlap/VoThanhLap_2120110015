@@ -14,12 +14,27 @@ class GiohangController extends Controller
 {
     //tat ca gio hang
     public function index(){
-       return view ('frontend.giohang.index');
+       $products = Product::all();
+       return view ('frontend.giohang.index',compact('products'));
     }
     // them
-    public function addcart(string $id){     
-        $product = Product::find($id);
-        print_r( $product);
+    public function addcart(string $id){   
+          
+    //     $product = Product::findOrFail($id);
+    //    $cart = session()->get('cart',[]);
+    //    if(isset($cart[$id])){
+    //     $cart[$id]['soluong']++;
+    //    }else
+    //    {
+    //     $cart[$id]=[
+    //         "product_id"=>$product->product_id,
+    //         "name"=>$product->name,
+    //         "price"=>$product->price_buy,
+    //         "soluong"=>1 
+    //     ];
+    //    }
+    //    session()->put('cart',$cart);
+    //    return redirect()->back()->with('message', ['type' => 'success', 'msg' => 'Them vao gio hang thanh cong !']);
     }
      //cap nhat
     public function updatecart(string $id){     
