@@ -8,7 +8,7 @@ use App\Http\Controllers\frontend\LienheController;
 use App\Http\Controllers\frontend\SanphamController;
 use App\Http\Controllers\frontend\DichvuController;
 use App\Http\Controllers\frontend\DangnhapController;
-use App\Http\Controllers\frontend\GiohangController;
+use App\Http\Controllers\frontend\CartController;
 //backed
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\CategoryController;
@@ -28,8 +28,8 @@ use App\Http\Controllers\backend\DashboardController;
    //trang chu
     Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
     //gio hang
-    Route::get('gio-hang', [GiohangController::class, 'index'])->name('giohang.index');
-    Route::get('addcart/{id}', [GiohangController::class, 'addcart'])->name('giohang.addcart');
+    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
+    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
     //lien he
     Route::get('lien-he', [LienheController::class, 'index'])->name('contact.index');
     //dich vu

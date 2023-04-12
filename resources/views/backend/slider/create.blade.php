@@ -20,7 +20,7 @@
                                     <i class="fas fa-save"></i> Lưu[Thêm]
                                 </button>
                                 <a href="{{ route('slider.index') }}"class="btn btn-sm btn-info">
-                                      <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
+                                    <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
                                 </a>
                             </div>
                         </div>
@@ -50,17 +50,13 @@
                                     @endif
                                 </div>
                                 <div class="mb-3">
-                                    <label for="position">Vị trí <span class="text-danger">(*)</span></label>
-                                    <textarea name="position" rows="3" id="position" class="form-control" placeholder="Nhập position">{{ old('position') }}</textarea>
-                                    @if ($errors->has('position'))
-                                        <div class="text-danger">
-                                            {{ $errors->first('position') }}
-                                        </div>
-                                    @endif
+                                    <label for="image">Hình đại diện <span class="text-danger">(*)</span></label>
+                                    <input type="file" name="image" value="{{ old('image') }}" id="image"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                               
+
                                 <div class="mb-3">
                                     <label for="sort_order">Sắp xếp <span class="text-danger">(*)</span></label>
                                     <select class="form-control" name="sort_order" id="sort_order">
@@ -69,10 +65,18 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="image">Hình đại diện <span class="text-danger">(*)</span></label>
-                                    <input type="file" name="image" value="{{ old('image') }}" id="image"
-                                        class="form-control">
+                                    <label for="position">Vị trí<span class="text-danger">(*)</span></label>
+                                    <select class="form-control" name="position" id="position">
+                                        <option value="slideshow">SlideShow</option>
+                                        <option value="slidefooter">SlideFooter</option>
+                                    </select>
+                                    @if ($errors->has('position'))
+                                        <div class="text-danger">
+                                            {{ $errors->first('position') }}
+                                        </div>
+                                    @endif
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="status">Trạng thái</label>
                                     <select class="form-control" name="status" id="status">

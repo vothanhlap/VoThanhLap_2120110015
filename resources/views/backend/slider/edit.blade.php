@@ -49,14 +49,11 @@
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="position" class="text-danger">Mô tả <span class="text-danger">(*)</span></label>
-                                        <textarea name="position" id="position" rows="4" class="form-control" placeholder="Nhập position">{{ old('position', $slider->position) }}</textarea>
-                                        @if ($errors->has('position'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('position') }}
-                                            </div>
-                                        @endif
-                                    </div>
+                                        <label for="image" class="text-danger">Hình đại diện</label>
+                                        <input type="file" name="image" value="{{ old('image') }}" id="image"
+                                            class="form-control" />
+                                    </div>32
+                                   
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
@@ -65,6 +62,18 @@
                                             <option value="0">-- Chọn vị trí sắp xếp --</option>
                                             {!! $html_sort_order !!}
                                         </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="position">Vị trí<span class="text-danger">(*)</span></label>
+                                        <select class="form-control" name="position" id="position">
+                                            <option value="slideshow">SlideShow</option>
+                                            <option value="slidefooter">SlideFooter</option>
+                                        </select>
+                                        @if ($errors->has('position'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('position') }}
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="mb-3">
                                         <label for="image" class="text-danger">Hình đại diện</label>

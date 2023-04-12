@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Topic;
+use App\Models\Slider;
 use Mail;
 
 class SiteController extends Controller
@@ -77,10 +78,15 @@ class SiteController extends Controller
         $data = [
             ['status','=','1'],
         ];
-        
+        $data1 = [
+            ['status','=','1'],
+            ['position','=','slidefooter']
+        ];
         $category_home =Category::where($data)->take(3)->get();
         $top_home =Topic::where($data)->take(3)->get();
-        return view ('frontend.home.home',compact('category_home','top_home'));
+        $slider =Slider::where($data1)->take(1)->get();
+        
+        return view ('frontend.home.home',compact('slider','category_home','top_home'));
     }
      //loai san pham
      public function product_category ($slug)
