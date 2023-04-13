@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Customer;
+use Mail;
 
 
 class DangnhapController extends Controller
@@ -39,18 +40,12 @@ class DangnhapController extends Controller
         return redirect()->route('frontend.home');
         }
         else{
-        // return redirect('login');
-        echo 'That bai';
-        var_dump($data);
-    //  echo bcrypt($password);
-    
+            return redirect()->route('login.dangnhap');
+    //     echo 'That bai';
+    //     var_dump($data);
+    // //  echo bcrypt($password); 
     }
-
-
-
-
     }
-
     public function dangki()
     {
         return view ('frontend.login.dangki');
@@ -97,16 +92,35 @@ class DangnhapController extends Controller
     }
    
 
-    public function khoiphucmatkhau()
-    {
-        return view ('frontend.login.khoiphucmatkhau');
-    }
-    public function yeucaumatkhaumoi()
-    {
-        return view ('frontend.login.yeucaumatkhaumoi');
-    }
-    public function xulyyeucaumatkhaumoi(Request $request)
-    {
-        echo 'Xu ly yeu cau';
-    }
+    // public function khoiphucmatkhau(Request $req)
+    // {
+    //     return view ('frontend.login.khoiphucmatkhau');
+    // }
+    // public function postkhoiphucmatkhau(Request $req)
+    // {
+
+    //     $req->validate([
+    //          'email'=>'required|exists:vtl_customer'
+
+    //     ],[
+    //            'email.required'=>'Vui lòng nhập địa chỉ email',
+    //            'email.exists'=>'Địa chỉ email không tồn tại'
+    //     ]);
+    //     $customer = Customer::where('email',req->email)->first();
+    //     $customer->update(['token'=>$token]);
+    //     $token =strtoupper(Str::random(10));
+    //         Mail::send('emails.check_mail_forgot',compact('customer'),function($email) use($customer){
+    //             $email->subject('Laptopvui.com - Lấy lại mật khẩu');
+    //             $email->to($customer->email,$customer->fullname);
+    //             return redirect ('frontend.login.dangnhap')->with('message', ['type' => 'danger', 'msg' => 'Vui lòng check email để lại lại mật khẩu !']);
+    //     });
+    // }
+    // public function xulyyeucaumatkhaumoi()
+    // {
+        
+    // }
+    // public function postxulyyeucaumatkhaumoi(Request $request)
+    // {
+    //     echo 'Xu ly yeu cau';
+    // }
 }

@@ -90,4 +90,39 @@ class UserController extends Controller
             return view('backend.user.show', compact('user','user_name'));
         }
     }
+
+    //Edit user
+    public function edit(string $id)
+    {
+        $user_name = Auth::user()->name;
+        $user = User::find($id);
+        $list_user  = User::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
+        return view('backend.user.edit', compact('user','user_name'));
+    }
+
+    public function update( Request $request, $id)
+    {
+        $user_name = Auth::user()->name;
+        $user = User::find($id);
+        if($user == null){
+            return redirect()->route('user.index')->with('message', ['type' => 'danger', 'msg' => 'Sửa mẫu tin không thành công !']);
+        }else
+        {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->geder = $request->geder;
+            $user->roles = $request->roles;
+            $user->status = $request->status;
+            $user->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+            $user->updated_by = $user_name;
+            $user->save();
+            return redirect()->route('user.index')->with('message', ['type' => 'success', 'msg' => 'Sửa mẫu tin thành công !']);
+        }
+        
+    }
 }
+
+
+

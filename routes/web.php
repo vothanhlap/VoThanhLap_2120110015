@@ -9,6 +9,7 @@ use App\Http\Controllers\frontend\SanphamController;
 use App\Http\Controllers\frontend\DichvuController;
 use App\Http\Controllers\frontend\DangnhapController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\KhachhangContrller;
 //backed
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\CategoryController;
@@ -27,24 +28,25 @@ use App\Http\Controllers\backend\DashboardController;
 
    //trang chu
     Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
-    //gio hang
-    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
-    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
     //lien he
     Route::get('lien-he', [LienheController::class, 'index'])->name('contact.index');
     //dich vu
     Route::get('dich-vu', [DichvuController::class, 'index'])->name('dichvu.index');
     // san pham
     Route::get('san-pham', [SanphamController::class, 'product'])->name('product.index');
+
     //dang nhap - dang ki tai khoan khach hang
     Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
     Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('login.xulydangnhap');
     Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
     Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
     Route::get('khoi-phuc-mat-khau', [DangnhapController::class,'khoiphucmatkhau'])->name('login.khoiphucmatkhau');
-    Route::get('yeu-cau-mat-khau-moi', [DangnhapController::class,'yeucaumatkhaumoi'])->name('login.yeucaumatkhaumoi');
-    Route::post('xu-ly-yeu-cau-mat-khau-moi', [DangnhapController::class,'xulyyeucaumatkhaumoi'])->name('login.xulyyeucaumatkhaumoi');
-  // Route::get('dang-nhap', [DangnhapController::class, 'dangxuat'])->name('dangxuat');
+    Route::get('yeu-cau-mat-khau-moi', [DangnhapController::class,'postkhoiphucmatkhau'])->name('login.postkhoiphucmatkhau');
+    Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'xulyyeucaumatkhaumoi'])->name('login.xulyyeucaumatkhaumoi');
+    Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'postxulyyeucaumatkhaumoi'])->name('login.postxulyyeucaumatkhaumoi');
+    //gio hang
+    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
+    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
     // khai bao route dang nhap - dang xuat
         route::get('login', [AuthController::class, 'getlogin'])->name('login');
         Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
@@ -52,9 +54,8 @@ use App\Http\Controllers\backend\DashboardController;
         Route::post('dangky', [AuthController::class,'postdangky'])->name('postdangky');
         Route::get('forgot-password', [AuthController::class,'forgotpassword'])->name('forgotpassword');
         Route::get('recover-password', [AuthController::class,'recover'])->name('recover');
-    //Giui email
-    Route::get('xac-nhan-tai-khoan', [SiteController::class, 'xacnhangmail']);
-
+        //Giui email
+        Route::get('xac-nhan-tai-khoan', [SiteController::class, 'xacnhangmail']);
         //khai bao route cho quan ly
         route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
         route::get('login', [AuthController::class, 'logout'])->name('logout');
@@ -107,7 +108,7 @@ use App\Http\Controllers\backend\DashboardController;
     //page
     Route::resource('page', PageController::class);
         route::get('page_trash', [PageController::class, 'trash'])->name('page.trash');
-        route::prefix('post')->group(function () {
+        route::prefix('page')->group(function () {
         route::get('status/{page}', [PageController::class, 'status'])->name('page.status');
         route::get('delete/{page}', [PageController::class, 'delete'])->name('page.delete');
         route::get('restore/{page}', [PageController::class, 'restore'])->name('page.restore');
@@ -157,16 +158,21 @@ use App\Http\Controllers\backend\DashboardController;
        route::get('delete/{order}', [OrderController::class, 'delete'])->name('order.delete');
        route::get('restore/{order}', [OrderController::class, 'restore'])->name('order.restore');
        route::get('destroy/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
+       route::get('huy/{order}', [OrderController::class, 'Huy'])->name('order.huy');
+       route::get('xac-minh/{order}', [OrderController::class, 'Xacminh'])->name('order.xacminh');
+       route::get('van-chuyen/{order}', [OrderController::class, 'Vanchuyen'])->name('order.vanchuyen');
+       route::get('thanh-cong/{order}', [OrderController::class, 'Thanhcong'])->name('order.thanhcong');
+       route::get('xuat-hoa-don/{order}', [OrderController::class, 'Xuathoadon'])->name('order.xuathoadon');
    });
-   //orderdetail
-    Route::resource('orderdetail', OrderdetailController::class);
-        route::get('orderdetail_trash', [OrderdetailController::class, 'trash'])->name('orderdetail.trash');
-        route::prefix('orderdetail')->group(function () {
-        route::get('status/{orderdetail}', [OrderdetailController::class, 'status'])->name('orderdetail.status');
-        route::get('delete/{orderdetail}', [OrderdetailController::class, 'delete'])->name('orderdetail.delete');
-        route::get('restore/{orderdetail}', [OrderdetailController::class, 'restore'])->name('orderdetail.restore');
-        route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
-   });
+//    //orderdetail
+//     Route::resource('orderdetail', OrderdetailController::class);
+//         route::get('orderdetail_trash', [OrderdetailController::class, 'trash'])->name('orderdetail.trash');
+//         route::prefix('orderdetail')->group(function () {
+//         route::get('status/{orderdetail}', [OrderdetailController::class, 'status'])->name('orderdetail.status');
+//         route::get('delete/{orderdetail}', [OrderdetailController::class, 'delete'])->name('orderdetail.delete');
+//         route::get('restore/{orderdetail}', [OrderdetailController::class, 'restore'])->name('orderdetail.restore');
+//         route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
+//    });
 
 });
 Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');

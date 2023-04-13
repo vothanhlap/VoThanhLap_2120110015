@@ -12,4 +12,6 @@ class Customer extends Model
     use HasFactory;
     protected $table = 'vtl_custumer';
     public $timestamps = false;
+
+    protected $fillable = ['token','status'];
 }

@@ -175,24 +175,17 @@
                     <a href="#" class="nav-link">
                         <i class="fab fa-accusoft" style="color:red;"></i>
                         <p style="color:yellow;">
-                           Giỏ hàng
+                           Đơn Hàng
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-
                         <li class="nav-item">
                             <a href="{{route('order.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p style="color:greenyellow">Danh Sách Giỏ Hàng</p>
+                                <p style="color:greenyellow">Danh Sách Đơn Hàng</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('orderdetail.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p style="color:greenyellow">Chi tiết đơn hàng</p>
-                            </a>
-                        </li>
+                        </li>            
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -206,7 +199,7 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{route('order.index')}}" class="nav-link">
+                            <a href="{{route('slider.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p style="color:greenyellow">Danh Sách Slider</p>
                             </a>
@@ -214,6 +207,7 @@
                       
                     </ul>
                 </li>
+              
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fab fa-accusoft" style="color:red;"></i>
@@ -240,6 +234,12 @@
                             <a href="{{route('user.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p style="color:greenyellow">Danh Sách User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="color:greenyellow">Khách hàng</p>
                             </a>
                         </li>
                     </ul>

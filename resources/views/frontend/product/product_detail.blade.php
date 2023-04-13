@@ -75,10 +75,9 @@
                         <div class="input-group">
                             <input type="number" style="width:80px" class="form-control text-center" value="1">
                         </div>
-                        {{-- {{ route('giohang.addcart', ['id' => $product->id]) }} --}}
                     </div> <!-- col.// -->
                     <div class="form-group col-md">
-                        <li  onclick="addcart({{$product->id}})" href="Javacrip:" class="btn  btn-primary">
+                        <li   href="{{ route('giohang.addcart', ['id' => $product->id]) }}" class="btn  btn-primary">
                             <i class="fas fa-shopping-cart"></i> <span class="text">Thêm vào giỏ hàng</span>
                         </li>
                         <a href="#" class="btn btn-light">

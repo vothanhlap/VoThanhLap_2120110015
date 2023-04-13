@@ -70,13 +70,11 @@
                             <form>
                                 <div class="form-group">
                                     <label>Mã giảm giá?</label>
-                                    <div class="input-group">
+                                    <div class="">
                                         <input type="text" class="form-control" name=""
                                             placeholder="Nhập mã code">
-                                        <span class="input-group-append">
                                             <button class="btn btn-primary">Sử dụng</button>
-                                        </span>
-                                    </div>
+                                    </div>       
                                 </div>
                             </form>
                         </div> <!-- card-body.// -->

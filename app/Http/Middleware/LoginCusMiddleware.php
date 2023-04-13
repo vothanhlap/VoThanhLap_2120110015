@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Custumer;
+
+class LoginCusMiddleware
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+
+        
+        // if(Auth::check())
+        // {  
+            
+        //    $user = Auth::user();
+        //    //Xet quyen
+        //    if($user->roles == 1){
+               return $next ($request);
+           }
+    //        else
+    //        {
+    //            if($cus->roles != 1){
+    //             return redirect()->route('frontend.home');
+    //            }
+    //         return redirect->route('login');
+    //        }
+         
+    //     }
+    //     else{
+    //         return redirect('login');
+    //     }
+        
+    // }
+}
