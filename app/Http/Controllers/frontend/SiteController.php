@@ -181,21 +181,35 @@ class SiteController extends Controller
     //chu đe bai viet
     public function post_topic($slug)
     {
-      
+        $topic = [
+            ['status','=','1'],
+            ['slug','=',$slug],
+        ];
+         $row_topic = Topic::where($topic)->first();
+         $args =[
+            ['status','=','1'],
+            ['type','=','post'],
+            ['top_id','=',$row_topic->id]
+           ]; 
+         $post_list = Post::where($args)->orderBy('created_at','desc')
+         ->paginate(9);
 
-      return view ('frontend.post.post-topic'); 
+      return view ('frontend.post.post-topic',compact('row_topic','post_list')); 
     }
 
+        public function post_page($slug)
+        {
+            $page =[
+                ['status','=','1'],
+                ['type','=','page'],
+                ['slug','=',$slug],
+               ]; 
+          $post = Post::Where($page)->first();
+          return view('frontend.post.post-page',compact('post'));
+        }
 
-    public function xacnhangmail()
-    {
-        $name = 'Vo Thanh Lap';
-        Mail::send('emails.test',compact('name'),function($email) use($name){
-        $email->subject('Test');
-        $email->to('laptopvui80@gmail.com',$name);
-    });
-            
-       }
+
+   
     
  
 }

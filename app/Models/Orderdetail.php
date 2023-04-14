@@ -17,4 +17,16 @@ class Orderdetail extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id','id');
     }
+
+    public function sanpham(): hasOne
+    {
+        return $this->hasOne(Product::class, 'id','product_id');
+    }
+
+    public function donhang(): hasOne
+    {
+        return $this->hasOne(Orderdetail::class, 'order_id','id');
+    }
+
+
 }

@@ -54,8 +54,7 @@ use App\Http\Controllers\backend\DashboardController;
         Route::post('dangky', [AuthController::class,'postdangky'])->name('postdangky');
         Route::get('forgot-password', [AuthController::class,'forgotpassword'])->name('forgotpassword');
         Route::get('recover-password', [AuthController::class,'recover'])->name('recover');
-        //Giui email
-        Route::get('xac-nhan-tai-khoan', [SiteController::class, 'xacnhangmail']);
+       
         //khai bao route cho quan ly
         route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
         route::get('login', [AuthController::class, 'logout'])->name('logout');
@@ -164,15 +163,15 @@ use App\Http\Controllers\backend\DashboardController;
        route::get('thanh-cong/{order}', [OrderController::class, 'Thanhcong'])->name('order.thanhcong');
        route::get('xuat-hoa-don/{order}', [OrderController::class, 'Xuathoadon'])->name('order.xuathoadon');
    });
-//    //orderdetail
-//     Route::resource('orderdetail', OrderdetailController::class);
-//         route::get('orderdetail_trash', [OrderdetailController::class, 'trash'])->name('orderdetail.trash');
-//         route::prefix('orderdetail')->group(function () {
-//         route::get('status/{orderdetail}', [OrderdetailController::class, 'status'])->name('orderdetail.status');
-//         route::get('delete/{orderdetail}', [OrderdetailController::class, 'delete'])->name('orderdetail.delete');
-//         route::get('restore/{orderdetail}', [OrderdetailController::class, 'restore'])->name('orderdetail.restore');
-//         route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
-//    });
+   //orderdetail
+    Route::resource('orderdetail', OrderdetailController::class);
+        route::get('orderdetail_trash', [OrderdetailController::class, 'trash'])->name('orderdetail.trash');
+        route::prefix('orderdetail')->group(function () {
+        route::get('status/{orderdetail}', [OrderdetailController::class, 'status'])->name('orderdetail.status');
+        route::get('delete/{orderdetail}', [OrderdetailController::class, 'delete'])->name('orderdetail.delete');
+        route::get('restore/{orderdetail}', [OrderdetailController::class, 'restore'])->name('orderdetail.restore');
+        route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
+   });
 
 });
 Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');

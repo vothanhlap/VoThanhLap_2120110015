@@ -12,10 +12,10 @@
       @endphp
         <div class="card-banner border-bottom">
             <div class="py-3" style="width:80%">
-              <h6 class="card-title"><p style="text-overflow: ellipsis;">{{$product->name}}</p></h6>
+              <h6 class="card-title"><p class="text-truncate" style="text-overflow: ellipsis;">{{$product->name}}</p></h6>
               <a href="{{route('frontend.slug',['slug'=>$product->slug])}}" class="btn btn-secondary btn-sm mx-2">Xem ngay</a>
             </div> 
-            <img height="80" class="img-bg" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}">
+            <a href="{{route('frontend.slug',['slug'=>$product->slug])}}"><img height="80" class="img-bg" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}"></a>
           </div>
         @endforeach
     </aside>

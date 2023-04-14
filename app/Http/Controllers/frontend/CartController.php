@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\Orderdetail;
 use App\Models\ProductImage;
 use App\Models\ProductStore;
+use Cart;
 
 
 class CartController extends Controller
@@ -20,8 +21,19 @@ class CartController extends Controller
        return view ('frontend.giohang.index');
     }
     // them
-    public function addcart(Request $req, $id)
+    public function addcart($id)
     {   
+        $product = Product::find($id);
+        $Cartitem = array(
+             'id' => $id,
+             'name' => $product->name,
+              'price'=> $product->price_buy,
+              'Quantity'=> 1,
+              'attributes' => array('img'=>$product->image)
+        );
+        \Cart::add($Cartitem);
+        //var_dump($Cartitem);
+         
        
     }
      //cap nhat

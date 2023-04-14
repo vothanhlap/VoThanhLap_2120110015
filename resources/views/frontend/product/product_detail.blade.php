@@ -18,9 +18,14 @@
                         <div> <a href="#"><img src="{{ asset('images/product/' . $image) }}"></div>
                     </div> <!-- slider-product.// -->
                     <div class="thumbs-wrap">
+                        @if (count($arr_image)>1)
                         @for ($i = 0; $i < count($arr_image) - 1; $i++)
-                            <a href="#" class="item-thumb"> <img src="{{ asset('images/product/' . $image) }}"></a>
-                        @endfor
+                        @php
+                            $image = $arr_image[$i]['image'];
+                        @endphp
+                        <a href="#" class="item-thumb"> <img src="{{ asset('images/product/' . $image) }}"></a>
+                    @endfor
+                        @endif
                     </div> <!-- slider-nav.// -->
                 </article> <!-- gallery-wrap .end// -->
             </div> <!-- card.// -->
@@ -50,7 +55,7 @@
 
                 <dl class="row">
                     <dt class="col-sm-3">Thương hiệu</dt>
-                    <dd class="col-sm-9"><a href="#"></a>{{ $product->braname }}</dd>
+                    <dd class="col-sm-9">{{ $product->braname }}</dd>
 
                     <dt class="col-sm-3">Đã bán</dt>
                     <dd class="col-sm-9">{{ $number }}</dd>
@@ -63,7 +68,7 @@
 
                     <dt class="col-sm-3">Trạng thái</dt>
                     <dd class="col-sm-9">
-                        @if ($product->status == 1 && 2)
+                        @if ($product->status == 1)
                             Còn hàng
                         @else
                             Ngừng kinh doanh
@@ -77,9 +82,9 @@
                         </div>
                     </div> <!-- col.// -->
                     <div class="form-group col-md">
-                        <li   href="{{ route('giohang.addcart', ['id' => $product->id]) }}" class="btn  btn-primary">
+                        <a   href="{{ route('giohang.addcart', ['id' => $product->id]) }}" class="btn  btn-primary">
                             <i class="fas fa-shopping-cart"></i> <span class="text">Thêm vào giỏ hàng</span>
-                        </li>
+                        </a>
                         <a href="#" class="btn btn-light">
                             <i class="fas fa-envelope"></i> <span class="text">Liên hệ nhà cung cấp</span>
                         </a>

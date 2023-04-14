@@ -17,17 +17,14 @@ class AuthController extends Controller
    {
 
     $this->validate($request,[
-      'username'=>'required',
-      // 'email'=>'required|email',
+      'username'=>'required|exists:vtl_user',
       'password'=>'required|min:3|max:32',
-      
  ],[         
-      //  'email.required'=>'Bạn chưa nhập địa chỉ email',
-      //  'email.email'=>'Bạn chưa nhập địa chỉ email không đúng dạng',
        'password.required'=>'Bạn chưa nhập mật khẩu',
        'password.min'=>'Mật khẩu có ít nhất 3 kí tự',
        'password.max'=>'Mật khẩu tối đa 32 kí tự',
        'username.required'=>'Bạn chưa nhập tên tài khoản',
+       'username.exists'=>'Tài khoản của bạn không tồn tại trong hệ thống',
  ]);
           $username =$request->username;
           $password = $request->password;   

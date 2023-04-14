@@ -66,10 +66,17 @@ class OrderController extends Controller
         $order->save();
         return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công !']);
     }
+
+
     //chi tiet don hang
-    public function show(string $id)
+    public function show(string $id )
     {
+        $dk= [
+            ['status', '!=', 0],
+            ['id','=','order_id']
+        ];
         $user_name = Auth::user()->name;
+        $orderdetail  =Orderdetail::find($id);
         $order = Order::find($id);
         if ($order == null) {
             return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
@@ -112,12 +119,37 @@ class OrderController extends Controller
 
     public function Huy($id)
     {
-       echo 'Đơn hang đươc huy';
+        // $order = Order::find($id);
+        // if ($order == null)
+        // {
+        //     return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        // }
+        // if ($order->status = 1 && $order->status = 2)
+        // {
+        //     $order->status = 6;
+        //     $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        //     $order->updated_by = 1;
+        // }
+        // else
+        // {
+        //     if ($order->status = 3)
+        //     {
+        //         return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Đơn Hàng Đang Vận Chuyển không Thể Hủy!']);
+        //     }
+        //     if ($order->status = 4)
+        //     {
+        //         return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Đơn Hàng Đã Giao không Thể Hủy!']);
+        //     }
+        //     return redirect()->route('order.index');
+        // }
+        // $order->save();
+        // return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đã Hủy Đơn Hàng Thành Công!']);
     }
 
     public function Xacminh($id)
     {
-       echo 'Đơn hang đươc xac minh boi nha nguoi ban';
+        
+        
     }
 
     public function Vanchuyen($id)
