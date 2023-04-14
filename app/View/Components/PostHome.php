@@ -28,23 +28,6 @@ class PostHome extends Component
          $topid = $row_topic->id;
         $arrtopid = array();
         array_push($arrtopid, $topid);
-        $list_topic2 = Topic::where([['status','=','1']])->get();
-        if(count($list_topic2)>0)
-        {
-            foreach($list_topic2 as $top2)
-            {
-                array_push($arrtopid, $top2->id);
-                $list_topic3 = Topic::where([['status','=','1']])->get();
-                if(count($list_topic3)>0)
-                {              
-                    foreach($list_topic3 as $top3)
-                    {
-                        array_push($arrtopid, $top3->id);
-                    }  
-                }
-            }
-        }
-        //var_dump($arrtopid);
         $list_post = Post::join('vtl_topic','vtl_topic.id','=','vtl_post.top_id')
         ->whereIn('top_id',$arrtopid)
         ->where('vtl_post.status','=','1')

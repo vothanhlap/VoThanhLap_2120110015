@@ -28,7 +28,7 @@
                     {{ number_format($item->price_buy,0) }} VNĐ
                 </div> <!-- price-wrap.// -->
             </figcaption>
-            <div class="overlay">Xem chi tiet</div>
+            
         </div>
         
     </div> <!-- col.// -->
