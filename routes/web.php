@@ -29,13 +29,18 @@ use App\Http\Controllers\backend\DashboardController;
    //trang chu
     Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
     //tim kiem 
-    Route::get("timkiem", [SiteController::class, 'timkiem'])->name('frontend.timkiem');
+    Route::get("timkiem/", [SiteController::class, 'timkiem'])->name('frontend.timkiem');
     //lien he
     Route::get('lien-he', [LienheController::class, 'index'])->name('contact.index');
     //dich vu
     Route::get('dich-vu', [DichvuController::class, 'index'])->name('dichvu.index');
     // san pham
-    Route::get('san-pham', [SanphamController::class, 'product'])->name('product.index');
+    Route::get('tat-ca-san-pham', [SiteController::class, 'tatcasanpham'])->name('frontend.tatcasanpham');
+     //Khách hàng
+    // route::group(['prefix'=>'cus','middleware'=>'Logincus'] ,function () {
+        
+    // });
+
 
     //dang nhap - dang ki tai khoan khach hang
     Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');

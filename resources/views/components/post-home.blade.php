@@ -8,9 +8,9 @@ if(count($arr_image)>0)
 }
 @endphp
   <article class="media mb-3">
-    <a href="{{route('frontend.slug',['slug'=>$post->slug])}}"><img class="img-sm mr-3" src="{{ asset('images/post/'.$image) }}" alt="{{$image}}"></a>
+    <a href="{{route('frontend.slug',['slug'=>$post->slug])}}"><img style="height:80px" class="img-sm mr-3" src="{{ asset('images/post/'.$image) }}" alt="{{$image}}"></a>
     <div class="media-body">
-        <h6 class="mt-0"><a href="{{route('frontend.slug',['slug'=>$post->slug])}}">{{$post->title}}</a></h6>
+        <h6 class="mt-0 "><a  href="{{route('frontend.slug',['slug'=>$post->slug])}}">{{$post->title}}</a></h6>
           <span><i class="fa fa-user"></i> {{$post->created_by}}</span> <br>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">

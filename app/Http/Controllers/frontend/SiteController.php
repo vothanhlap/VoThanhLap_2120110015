@@ -116,7 +116,7 @@ class SiteController extends Controller
                 }
             }
         }
-       //var_dump( $row_category);
+
         $list_product = Product::whereIn('category_id',$arrcatid)->where('status','=','1')->orderBy('created_at','desc')
         ->paginate(12);
         return view ('frontend.product.product-category',compact('list_product','row_category'));
@@ -134,7 +134,6 @@ class SiteController extends Controller
           array_push($arrbraid, $braid);
           $list_product= Product::whereIn('brand_id',$arrbraid)->where('status','=','1')->orderBy('created_at','desc')
           ->paginate(12);
-          //var_dump($list_product);
           return view ('frontend.product.product-brand',compact('row_brand','list_product'));
       }
        //chi tiet san pham
@@ -142,13 +141,15 @@ class SiteController extends Controller
        {    
         $arrcatid = array();
         array_push($arrcatid, $product->category_id);
-        $list_category2 = Category::where([['status','=','1'],['parent_id','=', $product->category_id]])->get();
+        $list_category2 = Category::where([['status','=','1'],['parent_id','=', $product->category_id]])
+        ->get();
         if(count($list_category2)>0)
         {
             foreach($list_category2 as $cat2)
             {
                 array_push($arrcatid, $cat2->id);
-                $list_category3 = Category::where([['status','=','1'],['parent_id','=', $cat2->id]])->get();
+                $list_category3 = Category::where([['status','=','1'],['parent_id','=', $cat2->id]])
+                ->get();
                 if(count($list_category3)>0)
                 {              
                     foreach($list_category3 as $cat3)
@@ -158,13 +159,15 @@ class SiteController extends Controller
                 }
             }
         }
-             $list_pro = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','!=',$product->id]])->orderBy('created_at','desc')->take(4)->get();
-             //var_dump($arrcatid);
-             $list_value = ProductValue::where('name','=','Configuration')->get();
+             $list_pro = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','!=',$product->id]])
+             ->orderBy('created_at','desc')
+             ->take(4)
+             ->get();
+             $list_value = ProductValue::where('name','=','Configuration')
+             ->get();
                return view ('frontend.product.product_detail',compact('list_value','product','list_pro'));
        }
-
-       //chu de bai viet
+       //Chi tiết bài viết
     public function post_detail($post)
     { 
        $arg =[
@@ -179,7 +182,6 @@ class SiteController extends Controller
        ->get();
       return view ('frontend.post.post-detail',compact('post','post_list'));
     }
-    
     //chu đe bai viet
     public function post_topic($slug)
     {
@@ -198,7 +200,7 @@ class SiteController extends Controller
 
       return view ('frontend.post.post-topic',compact('row_topic','post_list')); 
     }
-
+     // Post_page
         public function post_page($slug)
         {
             $page =[
@@ -209,22 +211,22 @@ class SiteController extends Controller
           $post = Post::Where($page)->first();
           return view('frontend.post.post-page',compact('post'));
         }
-
+    //Lỗi 404
         public function error_404($slug){
             return view('frontend.error_404');
         }
-
-        public function timkiem(Request $req ){
-      
+    // Tim kiếm
+        public function timkiem(Request $req )
+        {
             $listsp = Product::where("name", "like", "%".$req->key.'%')
-           ->orWhere('price_buy',"like", $req->key)
+           ->orWhere('price_buy',$req->key)
            ->get();
-       
-        return view('frontend.timkiem',compact('listsp'));
+           return view('frontend.timkiem',compact('listsp'));
         }
 
-
-   
-    
- 
+    // Tất cả sản phẩm
+    public function tatcasanpham(){
+             echo 'Tất cả sản phẩm';
+    }
+    // Tất cả bài viết
 }

@@ -20,69 +20,14 @@
 
             </div> <!-- card-body.// -->
         </main> <!-- card.// -->
-
     </section>
     <!-- ========================= SECTION MAIN END// ========================= -->
     <x-nav-sale />
     <!-- ============================  FILTER TOP  ================================= -->
-    <div class="card mb-3">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-2">Filter by</div> <!-- col.// -->
-                <div class="col-md-10">
-                    <ul class="list-inline">
-                        <li class="list-inline-item mr-3 dropdown"><a href="#" class="dropdown-toggle"
-                                data-toggle="dropdown"> Supplier type </a>
-                            <div class="dropdown-menu p-3" style="max-width:400px;">
-                                <label class="form-check">
-                                    <input type="radio" name="myfilter" class="form-check-input"> Good supplier
-                                </label>
-                                <label class="form-check">
-                                    <input type="radio" name="myfilter" class="form-check-input"> Best supplier
-                                </label>
-                                <label class="form-check">
-                                    <input type="radio" name="myfilter" class="form-check-input"> New supplier
-                                </label>
-                            </div> <!-- dropdown-menu.// -->
-                        </li>
-                        <li class="list-inline-item mr-3 dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Country </a>
-                            <div class="dropdown-menu p-3">
-                                <label class="form-check"> <input type="checkbox" class="form-check-input"> China </label>
-                                <label class="form-check"> <input type="checkbox" class="form-check-input"> Japan </label>
-                                <label class="form-check"> <input type="checkbox" class="form-check-input"> Uzbekistan
-                                </label>
-                                <label class="form-check"> <input type="checkbox" class="form-check-input"> Russia </label>
-                            </div> <!-- dropdown-menu.// -->
-                        </li>
-                        <li class="list-inline-item mr-3 dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Feature</a>
-                            <div class="dropdown-menu">
-                                <a href="" class="dropdown-item">Anti backterial</a>
-                                <a href="" class="dropdown-item">With buttons</a>
-                                <a href="" class="dropdown-item">Extra safety</a>
-                            </div>
-                        </li>
-                        <li class="list-inline-item mr-3"><a href="#">Color</a></li>
-                        <li class="list-inline-item mr-3"><a href="#">Size</a></li>
-                        <li class="list-inline-item mr-3">
-                            <div class="form-inline">
-                                <label class="mr-2">Price</label>
-                                <input class="form-control form-control-sm" placeholder="Min" type="number">
-                                <span class="px-2"> - </span>
-                                <input class="form-control form-control-sm" placeholder="Max" type="number">
-                                <button type="submit" class="btn btn-sm btn-light ml-2">Ok</button>
-                            </div>
-                        </li>
-                        <li class="list-inline-item mr-3">
 
-                        </li>
-                    </ul>
-                </div> <!-- col.// -->
-            </div> <!-- row.// -->
-        </div> <!-- card-body .// -->
-    </div> <!-- card.// -->
-
+    <!-- =============== SECTION REGION =============== -->
+    <x-brand-content />
+    <!-- =============== SECTION REGION .//END =============== -->
     <div class="container">
         @foreach ($category_home as $catrow)
             <div class="">
@@ -118,7 +63,7 @@
                         <ul class="row no-gutters bordered-cols">
                             <x-product-home :cat="$catrow" />
                         </ul>
-                        
+
                     </div> <!-- col.// -->
                 </div> <!-- row.// -->
             </div> <!-- card.// -->
@@ -126,35 +71,33 @@
 	   </div> --}}
         @endforeach
     </div>
-   
+
     <!-- =============== SECTION SERVICES .//END =============== -->
-      
+
     <div class="container">
         <div class="row">
             @foreach ($top_home as $toprow)
-            <aside class="col-md-4">
-                <div class="box mt-4">
-                    <h5 class="title-description">{{ $toprow->title }}</h5>
-                    <hr>
-                    <x-post-home :topic="$toprow" />
-                    
+                <aside class="col-md-4">
+                    <div class="box mt-4">
+                        <h5 class="title-description">{{ $toprow->title }}</h5>
+                        <hr>
+                        <x-post-home :topic="$toprow" />
+
                         <a class="align-items-center justify-content-end mb-2"
                             href="{{ route('frontend.slug', ['slug' => $toprow->slug]) }}">
                             Xem tất cả
                         </a>
-                    
-                </div> <!-- box.// -->
-                
-            </aside> <!-- col.// -->
+
+                    </div> <!-- box.// -->
+
+                </aside> <!-- col.// -->
             @endforeach
         </div>
-       </div>
-    <!-- =============== SECTION REGION =============== -->
-    <x-brand-content />
-    <!-- =============== SECTION REGION .//END =============== -->
+    </div>
+
     <article class="my-4">
-      @foreach ($slider as $item)
-      <img src="{{ asset('images/slider/' . $item->image) }}" class="w-100" style="height: 120px">
-      @endforeach
+        @foreach ($slider as $item)
+            <img src="{{ asset('images/slider/' . $item->image) }}" class="w-100" style="height: 120px">
+        @endforeach
     </article>
 @endsection

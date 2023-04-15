@@ -31,8 +31,8 @@ class CartController extends Controller
               'Quantity'=> 1,
               'attributes' => array('img'=>$product->image)
         );
-        \Cart::add($Cartitem);
-        //var_dump($Cartitem);
+        // \Cart::add($Cartitem);
+       dd($Cartitem);
          
        
     }
