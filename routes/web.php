@@ -28,6 +28,8 @@ use App\Http\Controllers\backend\DashboardController;
 
    //trang chu
     Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
+    //tim kiem 
+    Route::get("timkiem", [SiteController::class, 'timkiem'])->name('frontend.timkiem');
     //lien he
     Route::get('lien-he', [LienheController::class, 'index'])->name('contact.index');
     //dich vu

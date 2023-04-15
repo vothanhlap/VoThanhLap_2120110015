@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Link;
 use App\Models\Product;
+use App\Models\ProductValue;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Brand;
@@ -159,7 +160,8 @@ class SiteController extends Controller
         }
              $list_pro = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','!=',$product->id]])->orderBy('created_at','desc')->take(4)->get();
              //var_dump($arrcatid);
-               return view ('frontend.product.product_detail',compact('product','list_pro'));
+             $list_value = ProductValue::where('name','=','Configuration')->get();
+               return view ('frontend.product.product_detail',compact('list_value','product','list_pro'));
        }
 
        //chu de bai viet
@@ -206,6 +208,19 @@ class SiteController extends Controller
                ]; 
           $post = Post::Where($page)->first();
           return view('frontend.post.post-page',compact('post'));
+        }
+
+        public function error_404($slug){
+            return view('frontend.error_404');
+        }
+
+        public function timkiem(Request $req ){
+      
+            $listsp = Product::where("name", "like", "%".$req->key.'%')
+           ->orWhere('price_buy',"like", $req->key)
+           ->get();
+       
+        return view('frontend.timkiem',compact('listsp'));
         }
 
 

@@ -21,6 +21,10 @@ class ProductStoreRequest extends FormRequest
             'category_id' => 'required',
             'brand_id' => 'required',
             'price_buy' => 'required',
+            'image' => 'required',
+            'price_buy' => 'required',
+            'price_buy' => 'required',
+        
         ];
     }
     public function messages(): array
@@ -33,7 +37,11 @@ class ProductStoreRequest extends FormRequest
             'metadesc.required' => 'Chưa nhập mô tả sản phẩm.',
             'category_id.required' => 'Vui lòng chọn danh mục sản phẩm',
             'brand_id.required' => 'Vui lòng chọn thương hiệu sản phẩm.',
-            'price_buy.required' => 'Vui lòng chọn thương hiệu sản phẩm.'
+            'price_buy.required' => 'Vui lòng chọn thương hiệu sản phẩm.',
+            'image.required' => 'Vui lòng chọn hinh.',
+            'price_buy.required' => 'Vui lòng nhập giá',
+           
+
         ];
     }
 }

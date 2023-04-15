@@ -201,16 +201,12 @@
                         </a> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-xl-6 col-lg-5 col-md-6">
-                        <form action="#" class="search-header">
-                            <div class="input-group w-100">
-                                <select class="custom-select border-right" name="category_name">
-                                    <option value="">All type</option>
-                                </select>
-                                <input type="text" class="form-control" placeholder="Search">
-
-                                <div class="input-group-append">
+                        <form  action="{{route('frontend.timkiem')}}" class="search-header" method="get">
+                            <div class="input-group w-100"> 
+                                <input type="text" class="form-control" name="key" placeholder="Nhập từ khóa tìm kiếm">
+                                <div  class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
-                                        <i class="fa fa-search"></i> Search
+                                        <i class="fa fa-search"></i> Tìm kiếm
                                     </button>
                                 </div>
                             </div>

@@ -32,9 +32,7 @@
         </aside>
         <main class="col-md-6">
             <article class="product-info-aside">
-
                 <h2 class="title mt-3">{{ $product->name }}</h2>
-
                 <div class="rating-wrap my-3">
                     <small class="label-rating text-muted">132 reviews</small>
                     <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
@@ -43,38 +41,58 @@
                 <div class="mb-3">
                     <var class="price h4"> {{ number_format($product->price_buy, 0) }} VNĐ</var>
                 </div> <!-- price-detail-wrap .// -->
-
-                <p>{{ $product->detail }} </p>
-                @php
-                    $soluong = $product->soluong;
-                    $number = 0;
-                    $number = $soluong->qty;
-                @endphp
-
-
-
-                <dl class="row">
-                    <dt class="col-sm-3">Thương hiệu</dt>
-                    <dd class="col-sm-9">{{ $product->braname }}</dd>
-
-                    <dt class="col-sm-3">Đã bán</dt>
-                    <dd class="col-sm-9">{{ $number }}</dd>
-
-                    <dt class="col-sm-3">Thời gian bảo hành </dt>
-                    <dd class="col-sm-9">2 year</dd>
-
-                    <dt class="col-sm-3">Thời gian giao hàng</dt>
-                    <dd class="col-sm-9">3-4 ngay</dd>
-
-                    <dt class="col-sm-3">Trạng thái</dt>
-                    <dd class="col-sm-9">
-                        @if ($product->status == 1)
-                            Còn hàng
-                        @else
-                            Ngừng kinh doanh
-                        @endif
-                    </dd>
-                </dl>
+            <h6>Chọn cấu hình:</h6>
+                <div class="container text-center">
+                    <div class="row align-items-start">
+                        @foreach ($list_value as $item)
+                      <div class="col-md-4 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{$item->id}}" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                 {{$item->value}}
+                            </label>
+                          </div>
+                      </div>
+                       @endforeach
+                    </div>
+                  </div>
+                
+                    <div class="mt-4">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th style="width:80px;color:red;text-align:center"></th>
+                                <th style="width:150px; color:green;text-align:center"></th>
+                            </tr>
+                            <tr>
+                                <td>Thương hiệu</td>
+                                <td>{{ $product->braname }}</td>
+                            </tr>
+                            <tr>
+                                <td>Đã bán</td>
+                                <td>{{ $product->number }}</td>
+                            </tr>
+                            <tr>
+                                <td>Thời gian bảo hành </td>
+                                <td>2-3 năm</td>
+                            </tr>
+                            <tr>
+                                <td>Thời gian giao hàng </td>
+                                <td>3-7 ngày </td>
+                            </tr>
+                            <tr>
+                                <td>Trạng thái </td>
+                                <td>
+                                    @if (($product->number)>0)
+                                        Còn hàng      
+                                    @else
+                                        Hết hàng
+                                    @endif
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+               
                 <div class="form-row  mt-4">
                     <div class="form-group col-md flex-grow-0">
                         <div class="input-group">

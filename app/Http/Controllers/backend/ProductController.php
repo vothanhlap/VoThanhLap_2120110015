@@ -12,7 +12,7 @@ use App\Models\Category;
 use App\Models\ProductImage;
 use App\Models\ProductSale;
 use App\Models\ProductOption;
-// use App\Models\ProductValue;
+use App\Models\ProductValue;
 use App\Models\ProductStore;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductStoreRequest;
@@ -84,24 +84,30 @@ class ProductController extends Controller
         $product->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $product->created_by = $user_name;
         $product->status = $request->status;
-        if ($product->save()) {
-            //upload image nhieu anh
-            if ($request->has('image')) {
-                $path_dir = "images/product/";
-                $array_file =  $request->file('image');
-                $i = 1;
-                foreach ($array_file as $file) {
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = $product->slug . "-" . $i . '.' . $extension;
-                    $file->move($path_dir, $filename);
-                    //echo $filename;
-                    $product_image = new ProductImage();
-                    $product_image->product_id = $product->id;
-                    $product_image->image = $filename;
-                    $product_image->save();
-                    $i++;
+        if($product->save()){
+            $product_value = new ProductValue();
+            $product_value->product_id = $product->id;
+            $product_value->value = $request->value1;
+            if ($product_value->save()) {
+                //upload image nhieu anh
+                if ($request->has('image')) {
+                    $path_dir = "images/product/";
+                    $array_file =  $request->file('image');
+                    $i = 1;
+                    foreach ($array_file as $file) {
+                        $extension = $file->getClientOriginalExtension();
+                        $filename = $product->slug . "-" . $i . '.' . $extension;
+                        $file->move($path_dir, $filename);
+                        //echo $filename;
+                        $product_image = new ProductImage();
+                        $product_image->product_id = $product->id;
+                        $product_image->image = $filename;
+                        $product_image->save();
+                        $i++;
+                    }
                 }
-            }
+        }
+       
             //Nhập kho
             if (strlen($request->price_buy) && strlen($request->qty)) {
                 $product_store = new ProductStore();
@@ -122,7 +128,8 @@ class ProductController extends Controller
                 $product_sale->date_end = $request->date_end;
                 $product_sale->save();
             }
-            return redirect()->route('product.index')->with('message', ['type' => 'success', 'msg' => 'Thêm sản phẩm thành công!']);
+
+           return redirect()->route('product.index')->with('message', ['type' => 'success', 'msg' => 'Thêm sản phẩm thành công!']);
     
         }
         return redirect()->route('product.index')->with('message', ['type' => 'danger', 'msg' => 'Thêm sản phẩm không thành công!']);
