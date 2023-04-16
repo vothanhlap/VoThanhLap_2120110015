@@ -13,21 +13,21 @@
     <div class="row">
         <aside class="col-md-6">
             <div class="card">
-                <article class="gallery-wrap">
-                    <div class="img-big-wrap">
-                        <div> <a href="#"><img src="{{ asset('images/product/' . $image) }}"></div>
-                    </div> <!-- slider-product.// -->
-                    <div class="thumbs-wrap">
-                        @if (count($arr_image) > 1)
-                            @for ($i = 0; $i < count($arr_image) - 1; $i++)
-                                @php
-                                    $image = $arr_image[$i]['image'];
-                                @endphp
-                                <a href="#" class="item-thumb"> <img src="{{ asset('images/product/' . $image) }}"></a>
-                            @endfor
-                        @endif
-                    </div> <!-- slider-nav.// -->
-                </article> <!-- gallery-wrap .end// -->
+               <div class="product">
+                <div class="product-img">
+                    @if (count($arr_image) > 1)
+                    @for ($i = 0; $i < count($arr_image) - 1; $i++)
+                        @php
+                            $image = $arr_image[$i]['image'];
+                        @endphp
+                        <a href="#" class="item-thumb"> <img src="{{ asset('images/product/' . $image) }}" onclick="myFunction(this)"></a>
+                    @endfor
+                @endif
+                </div>
+                <div class="img-container">
+                    <a href="#"><img src="{{ asset('images/product/' . $image) }}" id="imgBox">
+                </div>
+               </div>
             </div> <!-- card.// -->
         </aside>
         <main class="col-md-6">
@@ -193,21 +193,9 @@
     <!-- ========================= SECTION CONTENT END// ========================= -->
 @endsection
 <script>
-    function myFunction(imgs) {
-        // Get the expanded image
-        var expandImg = document.getElementById("expandedImg");
-        // Get the image text
-        var imgText = document.getElementById("imgtext");
-        // Use the same src in the expanded image as the image being clicked on from the grid
-        expandImg.src = imgs.src;
-        // Use the value of the alt attribute of the clickable image as text inside the expanded image
-        imgText.innerHTML = imgs.alt;
-        // Show the container element (hidden with CSS)
-        expandImg.parentElement.style.display = "block";
+    function myFunction(smallimg){
+        var fullImg = document.getElementById('imgBox')
+        fullImg.src = smallimg.src;
     }
 </script>
-{{-- <script>
-    function myFunction(x) {
-        x.classList.toggle("fa-thumbs-down");
-    }
-</script> --}}
+

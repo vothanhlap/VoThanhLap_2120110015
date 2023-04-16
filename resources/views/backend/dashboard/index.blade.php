@@ -70,7 +70,7 @@
                   <!-- small box -->
                   <div class="small-box bg-danger">
                       <div class="inner">
-                          <h3>100,000,000 VND</h3>
+                          <h3>100,000VND</h3>
 
                           <p>Danh thu</p>
                       </div>

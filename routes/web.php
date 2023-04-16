@@ -25,6 +25,7 @@ use App\Http\Controllers\backend\OrderdetailController;
 use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\CustomerController;
 
    //trang chu
     Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
@@ -37,11 +38,6 @@ use App\Http\Controllers\backend\DashboardController;
     // san pham
     Route::get('tat-ca-san-pham', [SiteController::class, 'tatcasanpham'])->name('frontend.tatcasanpham');
      //Khách hàng
-    // route::group(['prefix'=>'cus','middleware'=>'Logincus'] ,function () {
-        
-    // });
-
-
     //dang nhap - dang ki tai khoan khach hang
     Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
     Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('login.xulydangnhap');

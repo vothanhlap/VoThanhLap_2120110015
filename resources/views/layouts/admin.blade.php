@@ -252,23 +252,17 @@
                 </li>
                
 
-              <li class="nav-header">LABELS</li>
+              <li class="nav-header">Thông tin</li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-user text-warning"></i>
+                    <p>Hồ sơ</p>
+                </a>
+            </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-danger"></i>
-                        <p class="text">Important</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-warning"></i>
-                        <p>Warning</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p>Informational</p>
+                    <a href="{{route('logout')}}" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt text-danger"></i>
+                        <p class="text">Đăng xuất</p>
                     </a>
                 </li>
             </ul>
