@@ -11,7 +11,7 @@
 
     <!-- ============================ ITEM DETAIL ======================== -->
     <div class="row">
-        <aside class="col-md-6">
+        <aside class="col-md-7">
             <div class="card">
                <div class="product">
                 <div class="product-img">
@@ -20,17 +20,17 @@
                         @php
                             $image = $arr_image[$i]['image'];
                         @endphp
-                        <a href="#" class="item-thumb"> <img src="{{ asset('images/product/' . $image) }}" onclick="myFunction(this)"></a>
+                         <img class="" src="{{ asset('images/product/' . $image) }}" onclick="myFunction(this)">
                     @endfor
                 @endif
                 </div>
                 <div class="img-container">
-                    <a href="#"><img src="{{ asset('images/product/' . $image) }}" id="imgBox">
+                   <img class="img-fluid" src="{{ asset('images/product/' . $image) }}" id="imgBox">
                 </div>
                </div>
             </div> <!-- card.// -->
         </aside>
-        <main class="col-md-6">
+        <main class="col-md-5">
             <article class="product-info-aside">
                 <h2 class="title mt-3">{{ $product->name }}</h2>
                 <div class="rating-wrap my-3">
@@ -41,22 +41,7 @@
                 <div class="mb-3">
                     <var class="price h4"> {{ number_format($product->price_buy, 0) }} VNĐ</var>
                 </div> <!-- price-detail-wrap .// -->
-                <h6>Chọn cấu hình:</h6>
-                <div class="container text-center">
-                    <div class="row align-items-start">
-                        @foreach ($list_value as $item)
-                            <div class="col-md-4 mt-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ $item->id }}"
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        {{ $item->value }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
+              
 
                 <div class="mt-4">
                     <table class="table table-bordered">
@@ -176,10 +161,11 @@
                                     <h6 class="mt-0"><a
                                             href="{{ route('frontend.slug', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
                                     </h6>
-                                    <p class="mb-2"><span>Thương hiệu: </span>{{ $product->braname }} </p>
+                                    {{-- <p class="mb-2"><span>Thương hiệu: </span>{{ $item->braname }} </p> --}}
                                     <p class="mb-2"><span>Gía: </span>{{ number_format($product->price_buy, 0) }} </p>
                                 </div>
                             </article>
+                            <hr>
                         @endforeach
 
                     </div> <!-- box.// -->

@@ -189,7 +189,7 @@
         right: 15px;
     }
     .product-img {
-        float: left;
+        float: right;
    }
    .product{
     width: 100%;
@@ -201,22 +201,26 @@
    }
 
    .product-img img{
-       height: 80px;
+       height:80px;
+       width: 90px;
        margin: 10px 0;
        display: block;
        cursor: pointer;
        opacity: 0.6;
-       transform: 0.6s;
+       transform: 0.8s;
    }
    .product-img img:hover{
     opacity: 1;
    }
    .img-container{
-       float: right;
+       float: left;
    }
    .img-container img{
-        height: 500px;
+        height: 480px;
+        width: 600px;
         margin: 10px;
+        margin-top: 10px;
+   
 
    }
 

@@ -38,7 +38,7 @@
                             <tr>
                                 <th style="width:10px;" class="text-center"> #</th>
                                 <th class="text-center" style="width:80px;">Hình ảnh</th>
-                                <th class="text-center">Tên sản phẩm</th>
+                                <th style="width:100px;" class="text-center">Tên sản phẩm</th>
                                 <th class="text-center">Loại sản phẩm</th>
                           <th class="text-center">Thương hiệu</th>
                                 <th class="text-center">Ngày đăng</th>
@@ -61,7 +61,7 @@
                                         <img class="img-fluid" src="{{ asset('images/product/' . $image) }}"
                                             alt="{{ $image }}">
                                     </td>
-                                    <td class="align-middle">{{ $product->name }}</td>
+                                    <td style="width:100px;" class="align-middle text-truncate">{{ $product->name }}</td>
                                   
                                     <td class="text-center align-middle">{{ $product->catname }}</td> 
                                     <td class="text-center align-middle">{{ $product->braname }}</td>

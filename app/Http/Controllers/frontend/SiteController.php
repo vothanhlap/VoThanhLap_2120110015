@@ -163,9 +163,8 @@ class SiteController extends Controller
              ->orderBy('created_at','desc')
              ->take(4)
              ->get();
-             $list_value = ProductValue::where('name','=','Configuration')
-             ->get();
-               return view ('frontend.product.product_detail',compact('list_value','product','list_pro'));
+      
+               return view ('frontend.product.product_detail',compact('product','list_pro'));
        }
        //Chi tiết bài viết
     public function post_detail($post)
