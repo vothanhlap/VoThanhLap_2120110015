@@ -5,9 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\Custumer;
 
 class LoginCusMiddleware
 {
@@ -18,28 +15,6 @@ class LoginCusMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        
-        // if(Auth::check())
-        // {  
-            
-        //    $user = Auth::user();
-        //    //Xet quyen
-        //    if($user->roles == 1){
-               return $next ($request);
-           }
-    //        else
-    //        {
-    //            if($cus->roles != 1){
-    //             return redirect()->route('frontend.home');
-    //            }
-    //         return redirect->route('login');
-    //        }
-         
-    //     }
-    //     else{
-    //         return redirect('login');
-    //     }
-        
-    // }
+        return $next($request);
+    }
 }

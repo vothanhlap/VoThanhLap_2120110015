@@ -67,9 +67,7 @@
                 Đăng Xuất
             </a>
         </li>
-        <!-- Navbar Search -->
-        <!-- Messages Dropdown Menu -->
-        <!-- Notifications Dropdown Menu -->
+     
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
@@ -103,15 +101,9 @@
                 <a href="{{ asset('Dashboall/Index" class="d-block') }}"> {{$user_name}}</a>
             </div>
         </div>
-
-        <!-- SidebarSearch Form -->
-        <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
-
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-shoe-prints"></i>

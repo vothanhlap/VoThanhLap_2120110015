@@ -28,7 +28,7 @@ class AuthController extends Controller
  ]);
           $username =$request->username;
           $password = $request->password;   
-            $data=['username'=>$username,'password'=>$password];
+          $data=['username'=>$username,'password'=>$password];
           if(Auth::attempt($data)){
 
             //echo 'Thanh cong';
@@ -44,7 +44,7 @@ class AuthController extends Controller
     }
     public function  logout(){
          if(Auth::check()){
-          Auth::logout(); 
+             Auth::logout(); 
           return redirect('login');
          }
          else

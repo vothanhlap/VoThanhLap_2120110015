@@ -119,31 +119,7 @@ class OrderController extends Controller
 
     public function Huy($id)
     {
-        // $order = Order::find($id);
-        // if ($order == null)
-        // {
-        //     return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
-        // }
-        // if ($order->status = 1 && $order->status = 2)
-        // {
-        //     $order->status = 6;
-        //     $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        //     $order->updated_by = 1;
-        // }
-        // else
-        // {
-        //     if ($order->status = 3)
-        //     {
-        //         return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Đơn Hàng Đang Vận Chuyển không Thể Hủy!']);
-        //     }
-        //     if ($order->status = 4)
-        //     {
-        //         return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Đơn Hàng Đã Giao không Thể Hủy!']);
-        //     }
-        //     return redirect()->route('order.index');
-        // }
-        // $order->save();
-        // return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đã Hủy Đơn Hàng Thành Công!']);
+        
     }
 
     public function Xacminh($id)

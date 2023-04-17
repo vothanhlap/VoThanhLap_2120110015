@@ -1,0 +1,204 @@
+
+    #clockdiv {
+        font-family: sans-serif;
+        display: inline-block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    #clockdiv>div {
+        padding: 5px;
+        border-radius: 3px;
+        background: white;
+        display: inline-block;
+    }
+
+    #clockdiv div>span {
+        padding: 15px;
+        border-radius: 3px;
+        background: black;
+        display: inline-block;
+    }
+
+    .smalltext {
+        padding-top: 5px;
+        font-size: 15px;
+        color: black;
+    }
+
+    #h {
+        color: white;
+        font-size: 15px;
+    }
+
+    /* The overlay effect - lays on top of the container and over the image */
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5);
+        /* Black see-through */
+        color: #f1f1f1;
+        width: 100%;
+        transition: .5s ease;
+        opacity: 0;
+        color: white;
+        font-size: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* When you mouse over the container, fade in the overlay title */
+    .container:hover .overlay {
+        opacity: 1;
+    }
+
+    /* Style inputs with type="text", select elements and textareas */
+    input[type=text],
+    select,
+    textarea {
+        width: 100%;
+        /* Full width */
+        padding: 12px;
+        /* Some padding */
+        border: 1px solid #ccc;
+        /* Gray border */
+        border-radius: 4px;
+        /* Rounded borders */
+        box-sizing: border-box;
+        /* Make sure that padding and width stays in place */
+        margin-top: 6px;
+        /* Add a top margin */
+        margin-bottom: 16px;
+        /* Bottom margin */
+        resize: vertical
+            /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+
+    /* Style the submit button with a specific background color etc */
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* When moving the mouse over the submit button, add a darker green color */
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+
+
+    .product-card {
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        width: 20px;
+
+    }
+
+    .product-card .product-image {
+        height: 150px;
+    }
+
+    .product-card .product-image image {
+        object-fit: contain;
+    }
+
+    .product-card .product-image>.last {
+        display: none;
+
+    }
+
+    .product-card:hover .product-image>img:nth-child(1) {
+        display: none;
+
+    }
+
+    .product-card:hover .product-image>.last {
+        display: block;
+    }
+
+    .description {
+        font-size: 13px;
+        color: var(--color-777777);
+        margin-right: 20px;
+    }
+
+    .product-card:hover .action-bar {
+        right: 15px;
+    }
+
+    .product-card .product-details h6 {
+        color: var(--color-bf4800);
+        font-size: 13px;
+    }
+
+    .product-card .product-details h5 {
+        font-size: 15px;
+        color: var(--color-1c1c1b);
+    }
+
+    .price {
+        font-size: 16px;
+        color: var(--color-1c1c1b);
+    }
+
+
+    .action-bar {
+        top: 10%;
+        right: -23px;
+        transition: .3s;
+    }
+
+    .wishlist-icon {
+        top: 4%;
+        right: 15px;
+    }
+
+    .product-img {
+        float: right;
+    }
+
+    .product {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50% -50%);
+
+    }
+
+    .product-img img {
+        height: 80px;
+        width: 90px;
+        margin: 10px 0;
+        display: block;
+        cursor: pointer;
+        opacity: 0.6;
+        transform: 0.8s;
+    }
+
+    .product-img img:hover {
+        opacity: 1;
+    }
+
+    .img-container {
+        float: left;
+    }
+
+    .img-container img {
+        height: 480px;
+        width: 600px;
+        margin: 10px;
+        margin-top: 10px;
+    }
+

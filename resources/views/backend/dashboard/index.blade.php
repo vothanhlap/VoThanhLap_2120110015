@@ -6,7 +6,7 @@
   <!-- Content Header (Page header) -->
   <div class="content-header">
       <div class="container-fluid">
-        @includeIf('backend.message_alert')
+        @includeIf('backend.message')
           <div class="row mb-2">
               <div class="col-sm-6">
                   <h1 class="m-0 text-danger">BẢNG ĐIỀU KHIỂN</h1>

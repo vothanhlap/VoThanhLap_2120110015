@@ -27,6 +27,7 @@
     <script src="{{ asset('public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('public/dist/js/adminlte.min.js') }}"></script>
+    
 </body>
 @yield('footer')
 

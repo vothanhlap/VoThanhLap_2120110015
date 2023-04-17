@@ -21,210 +21,10 @@
     <!-- custom javascript -->
     <script src="{{ asset('public/frontend/js/script.js" type="text/javascript') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('public/styte.css') }}">
 </head>
 @yield('header')
-<style>
-    #clockdiv {
-        font-family: sans-serif;
-        display: inline-block;
-        font-weight: 100;
-        text-align: center;
-        font-size: 20px;
-    }
 
-    #clockdiv>div {
-        padding: 5px;
-        border-radius: 3px;
-        background: white;
-        display: inline-block;
-    }
-
-    #clockdiv div>span {
-        padding: 15px;
-        border-radius: 3px;
-        background: black;
-        display: inline-block;
-    }
-
-    .smalltext {
-        padding-top: 5px;
-        font-size: 15px;
-        color: black;
-    }
-
-    #h {
-        color: white;
-        font-size: 15px;
-    }
-
-    /* The overlay effect - lays on top of the container and over the image */
-    .overlay {
-        position: absolute;
-        bottom: 0;
-        background: rgb(0, 0, 0);
-        background: rgba(0, 0, 0, 0.5);
-        /* Black see-through */
-        color: #f1f1f1;
-        width: 100%;
-        transition: .5s ease;
-        opacity: 0;
-        color: white;
-        font-size: 20px;
-        padding: 20px;
-        text-align: center;
-    }
-
-    /* When you mouse over the container, fade in the overlay title */
-    .container:hover .overlay {
-        opacity: 1;
-    }
-
-    /* Style inputs with type="text", select elements and textareas */
-    input[type=text],
-    select,
-    textarea {
-        width: 100%;
-        /* Full width */
-        padding: 12px;
-        /* Some padding */
-        border: 1px solid #ccc;
-        /* Gray border */
-        border-radius: 4px;
-        /* Rounded borders */
-        box-sizing: border-box;
-        /* Make sure that padding and width stays in place */
-        margin-top: 6px;
-        /* Add a top margin */
-        margin-bottom: 16px;
-        /* Bottom margin */
-        resize: vertical
-            /* Allow the user to vertically resize the textarea (not horizontally) */
-    }
-
-    /* Style the submit button with a specific background color etc */
-    input[type=submit] {
-        background-color: #04AA6D;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    /* When moving the mouse over the submit button, add a darker green color */
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-
-
-    .product-card {
-        background-color: white;
-        padding: 15px;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .product-image img {
-        width: 20px;
-
-    }
-
-    .product-card .product-image {
-        height: 150px;
-    }
-
-    .product-card .product-image image {
-        object-fit: contain;
-    }
-
-    .product-card .product-image>.last {
-        display: none;
-
-    }
-
-    .product-card:hover .product-image>img:nth-child(1) {
-        display: none;
-
-    }
-
-    .product-card:hover .product-image>.last {
-        display: block;
-    }
-
-    .description {
-        font-size: 13px;
-        color: var(--color-777777);
-        margin-right: 20px;
-    }
-
-    .product-card:hover .action-bar {
-        right: 15px;
-    }
-
-    .product-card .product-details h6 {
-        color: var(--color-bf4800);
-        font-size: 13px;
-    }
-
-    .product-card .product-details h5 {
-        font-size: 15px;
-        color: var(--color-1c1c1b);
-    }
-
-    .price {
-        font-size: 16px;
-        color: var(--color-1c1c1b);
-    }
-
-
-    .action-bar {
-        top: 10%;
-        right: -23px;
-        transition: .3s;
-    }
-
-    .wishlist-icon {
-        top: 4%;
-        right: 15px;
-    }
-    .product-img {
-        float: right;
-   }
-   .product{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-     top: 50%;
-     transform: translate(-50% -50%);
-  
-   }
-
-   .product-img img{
-       height:80px;
-       width: 90px;
-       margin: 10px 0;
-       display: block;
-       cursor: pointer;
-       opacity: 0.6;
-       transform: 0.8s;
-   }
-   .product-img img:hover{
-    opacity: 1;
-   }
-   .img-container{
-       float: left;
-   }
-   .img-container img{
-        height: 480px;
-        width: 600px;
-        margin: 10px;
-        margin-top: 10px;
-   
-
-   }
-
-</style>
 
 <body>
     <header class="section-header">
@@ -237,10 +37,11 @@
                         </a> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-xl-6 col-lg-5 col-md-6">
-                        <form  action="{{route('frontend.timkiem')}}" class="search-header" method="get">
-                            <div class="input-group w-100"> 
-                                <input type="text" class="form-control" name="key" placeholder="Nhập từ khóa tìm kiếm">
-                                <div  class="input-group-append">
+                        <form action="{{ route('frontend.timkiem') }}" class="search-header" method="get">
+                            <div class="input-group w-100">
+                                <input type="text" class="form-control" name="key"
+                                    placeholder="Nhập từ khóa tìm kiếm">
+                                <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i> Tìm kiếm
                                     </button>
@@ -249,43 +50,33 @@
                         </form> <!-- search-wrap .end// -->
                     </div> <!-- col.// -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="widgets-wrap float-md-right">
-                            <div class="widget-header mr-3">
-                                <a href="{{ route('login.dangnhap') }}" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-user"></i>
+                        <div class="widgets-wrap float-md-right mt-3">
+                            <div class="widget-header ">
+                                <ul class="navbar-nav ">
+                                  <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-user"></i> Tài khoản  </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="{{route('login.dangnhap')}}"> 
+                                            Đăng nhập 
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('login.dangki')}}"> 
+                                            Đăng ký
+                                        </a>
+                                   
                                     </div>
-                                    <small class="text">Đăng nhập</small>
-                                </a>
+                                  </li>
+                               </ul>      
                             </div>
-                            <div class="widgets-wrap float-md-right">
-                                <div class="widget-header mr-3">
-                                    <a href="{{ route('login.dangki') }}" class="widget-view">
-                                        <div class="icon-area">
-                                            <i class="fa fa-user"></i>
-                                        </div>
-                                        <small class="text">Đăng ký</small>
-                                    </a>
-                                </div>
-                                <div class="widget-header mr-3">
-                                    <a href="#" class="widget-view">
-                                        <div class="icon-area">
-                                            <i class="fa fa-user"></i>
-                                        </div>
-                                        <small class="text">Đăng xuất</small>
-                                    </a>
-                                </div>
-                                <div class="widget-header">
-                                    <a href="{{ route('giohang.index') }}" class="widget-view">
-                                        <div class="icon-area">
-                                            <span class="notify" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">1</span>
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </div>
-                                        <small class="text">Giỏ hàng</small>
-                                    </a>
-                                </div>
-                            </div> <!-- widgets-wrap.// -->
+                            <div class="widget-header mr-3">
+                                    <i class="fa fa-shopping-cart"></i><span class="notify">1</span>
+                                    Giỏ Hàng
+                            </div>
+                            <div class="widget-header mr-3">
+                               
+                            </div>
+                            
+
+
                         </div> <!-- col.// -->
                     </div> <!-- row.// -->
                 </div> <!-- container.// -->
@@ -309,9 +100,9 @@
     <section class="section-subscribe padding-y-lg">
         <div class="container">
 
-            <p class="pb-2 text-center text-white">Cung cấp các xu hướng sản phẩm mới nhất và tin tức ngành trực tiếp
+            <p class="pb-2 text-center text-white">
+                Cung cấp các xu hướng sản phẩm mới nhất và tin tức ngành trực tiếp
                 cho bạn</p>
-
             <div class="row justify-content-md-center">
                 <div class="col-lg-5 col-md-6">
                     <form class="form-row">

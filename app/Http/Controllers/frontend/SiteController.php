@@ -128,7 +128,7 @@ class SiteController extends Controller
             ['status','=','1'],
             ['slug','=',$slug],
         ];
-         $row_brand = Brand::where($bra)->first();
+         $row_brand = Brand::where($bra)->first();   
          $braid = $row_brand->id;
          $arrbraid = array();
           array_push($arrbraid, $braid);
