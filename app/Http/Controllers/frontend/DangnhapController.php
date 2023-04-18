@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Customer;
 use Mail;
+use Str;
 
 
 class DangnhapController extends Controller
@@ -47,7 +48,6 @@ class DangnhapController extends Controller
     {
         return view ('frontend.login.dangki');
     }
-
     public function xulydangki(Request $request)
     {
         $this->validate($request,[
@@ -83,38 +83,23 @@ class DangnhapController extends Controller
         $cus->phone = $request->phone;
         $cus->geder = $request->geder;
         $cus->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $cus->created_by ='admin';  
-        $cus->save();
-        return redirect()->route('login.dangki')->with('message', ['type' => 'success', 'msg' => 'Đăng kí tài khoản thành công!']);
+        $cus->created_by ='admin'; 
+        $cus->roles = 2; 
+        $cus->token = strtoupper(Str::random(10));
+        if($cus->save()){
+            Mail::send('frontend.emails.active_account',compact('cus'),function($email) use($cus){
+                 $email->subject('Laptopvui.com - Xác nhân tài khoản đăng ký');
+                 $email->to($cus->email,$cus->fullname);
+            });
+      //  return redirect()->route('login.dangki')->with('message', ['type' => 'success', 'msg' => 'Đăng kí tài khoản thành công!']);
     }
-   
+}
 
-    public function khoiphucmatkhau()
-    {
-        return view ('frontend.login.khoiphucmatkhau');
+        public function actived(Custumer $custumer,$token){
+                 
+        }
+     
+    public function logout(){
+        return redirect()->route('login.dangnhap');
     }
-    public function postkhoiphucmatkhau(Request $req)
-    {
-        $req->validate([
-             'email'=>'required'
-
-        ],[
-               'email.required'=>'Vui lòng nhập địa chỉ email',
-               
-        ]);
-        $customer = Customer::where('email',req->email)->first();
-            Mail::send('frontend.emails.check_mail_forgot',compact('customer'),function($email) use($customer){
-                $email->subject('Laptopvui.com - Lấy lại mật khẩu');
-                $email->to($customer->email,$customer->fullname);
-                return redirect ('frontend.login.dangnhap')->with('message', ['type' => 'danger', 'msg' => 'Vui lòng check email để lại lại mật khẩu !']);
-        });
-    }
-    // public function xulyyeucaumatkhaumoi()
-    // {
-        
-    // }
-    // public function postxulyyeucaumatkhaumoi(Request $request)
-    // {
-    //     echo 'Xu ly yeu cau';
-    // }
 }

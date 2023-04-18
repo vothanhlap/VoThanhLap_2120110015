@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Models\Product;
 use App\Models\ProductValue;
 use App\Models\Post;
+use App\Models\Page;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Topic;
@@ -202,13 +203,14 @@ class SiteController extends Controller
      // Post_page
         public function post_page($slug)
         {
-            $page =[
+            $argc =[
                 ['status','=','1'],
                 ['type','=','page'],
                 ['slug','=',$slug],
                ]; 
-          $post = Post::Where($page)->first();
-          return view('frontend.post.post-page',compact('post'));
+          $page = Page::where($argc)->first();
+
+         return view('frontend.post.post_page',compact('page'));
         }
     //Lỗi 404
         public function error_404($slug){

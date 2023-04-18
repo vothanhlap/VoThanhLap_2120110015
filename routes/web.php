@@ -43,21 +43,34 @@ use App\Http\Controllers\backend\CustomerController;
     Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('login.xulydangnhap');
     Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
     Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
+    Route::post('dang-nhap', [DangnhapController::class, 'logout'])->name('logout');
+    Route::get('actived/{custumer}/{token}', [DangnhapController::class, 'actived'])->name('actived.custumer');
     Route::get('khoi-phuc-mat-khau', [DangnhapController::class,'khoiphucmatkhau'])->name('login.khoiphucmatkhau');
     Route::get('yeu-cau-mat-khau-moi', [DangnhapController::class,'postkhoiphucmatkhau'])->name('login.postkhoiphucmatkhau');
     Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'xulyyeucaumatkhaumoi'])->name('login.xulyyeucaumatkhaumoi');
     Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'postxulyyeucaumatkhaumoi'])->name('login.postxulyyeucaumatkhaumoi');
-    //gio hang
-    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
-    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
-    // khai bao route dang nhap - dang xuat
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // khai bao route dang nhap - dang xuat
         route::get('login', [AuthController::class, 'getlogin'])->name('login');
         Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
         route::get('dangky', [AuthController::class, 'getdangky'])->name('dangky');
         Route::post('dangky', [AuthController::class,'postdangky'])->name('postdangky');
         Route::get('forgot-password', [AuthController::class,'forgotpassword'])->name('forgotpassword');
         Route::get('recover-password', [AuthController::class,'recover'])->name('recover');
-       
         //khai bao route cho quan ly
         route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () {
         route::get('login', [AuthController::class, 'logout'])->name('logout');
@@ -179,4 +192,10 @@ use App\Http\Controllers\backend\CustomerController;
 });
 Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');
 
-
+  // //gio hang
+    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
+    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
+        // //khai bao route cho trang nguoi dung
+        // route::group(['prefix'=>'thanh-toan','middleware'=>'LoginCus'] ,function () {
+             
+        // });
