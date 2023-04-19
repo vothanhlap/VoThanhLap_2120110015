@@ -63,7 +63,7 @@
                                     <img style="width:80px" class="img-fluid" src="{{ asset('images/post/' . $image) }}"
                                         alt="{{ $image }}">
                                 </td>
-                                <td class="text-center align-middle">{{ $post->title }}</td>
+                                <td class=" align-middle">{{ $post->title }}</td>
                                 <td class="text-center align-middle">{{ $post->chude }}</td>
                                 <td class="text-center align-middle">{{ $post->created_at }}</td>
                                 <td class="text-center align-middle">

@@ -29,7 +29,7 @@
                                     $image = $arr_image[$i]['image'];
                                 @endphp
                                <img src="{{ asset('images/post/' . $image) }}" class="img-fluid mt-2 mb-2" alt="{{ $image }}">
-                               <p  class="text-justify" style="font-size: 25px;">{{ $post->detail }}</p>
+                               {{ $post->detail }}
                                @endfor
                         @endif
                        

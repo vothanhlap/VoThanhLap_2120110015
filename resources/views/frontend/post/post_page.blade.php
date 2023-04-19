@@ -15,10 +15,7 @@
                     <br>
                     <div class=" mt-4 mx-2 text-justify" style="font-size: 25px;">
                         <p>{{ $page->metadesc }}</p>
-                       
-                                <img src="{{ asset('images/post/' . $image) }}" class="img-fluid mt-2"
-                                    alt="{{ $image }}">
-                          
+                           
                         <p>{{ $page->detail }}</p>
                     </div>
                     <div>

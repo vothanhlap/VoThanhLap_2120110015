@@ -11,6 +11,7 @@
     <!-- jQuery -->
     <script src="{{ asset('public/frontend/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
     <!-- Bootstrap4 files-->
+    
     <script src="{{ asset('public/frontend/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     <link href="{{ asset('public/frontend/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <!-- Font awesome 5 -->
@@ -24,7 +25,6 @@
     <link rel="stylesheet" href="{{ asset('public/styte.css') }}">
 </head>
 @yield('header')
-
 
 <body>
     <header class="section-header">

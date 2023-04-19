@@ -9,7 +9,7 @@
         </div>
         <div class="mb-3">
             <label for="detail">Chi tiết</label>
-            <textarea  rows="4" name="detail" id="detail" class="form-control"
+            <textarea  rows="4" name="detail" id="ckeditor7" class="form-control"
             placeholder="Chi tiết sản phẩm">{{ old('detail', $product->detail) }}</textarea>
             @if ($errors->has('detail'))
             <div class="text-danger">{{$errors->first('detail')}}</div>
@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label for="metakey">Từ khóa</label>
-            <textarea rows="4" name="metakey" id="metakey" class="form-control"
+            <textarea rows="4" name="metakey" id="ckeditor8" class="form-control"
             placeholder="Từ khóa tìm kiếm">{{ old('metakey', $product->metakey) }}</textarea>
             @if ($errors->has('metakey'))
             <div class="text-danger">{{$errors->first('metakey')}}</div>
@@ -25,7 +25,7 @@
         </div>
         <div class="mb-3">
             <label for="metadesc">Mô tả</label>
-            <textarea rows="4" name="metadesc" id="metadesc" class="form-control"
+            <textarea rows="4" name="metadesc" id="ckeditor9" class="form-control"
             placeholder="Nhập mô tả">{{ old('metadesc', $product->metadesc) }}</textarea>
             @if ($errors->has('metadesc'))
             <div class="text-danger">{{$errors->first('metadesc')}}</div>
