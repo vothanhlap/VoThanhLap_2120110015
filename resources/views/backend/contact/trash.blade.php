@@ -22,8 +22,6 @@
                         <strong class="text-danger text-uppercase">THÙNG RÁC liên hệ</strong>
                     </div>
                     <div class="col-md-6 text-right">       
-                                <button class="btn btn-sm btn-danger" type="submit">
-                                    <i class="far fa-file-times"></i>Xóa</button>
                                 <a href="{{ route('contact.index') }}"class="btn btn-sm btn-success">
                                     <i class="fas fa-long-arrow-alt-left"></i> Quay về danh sách
                                 </a>
@@ -36,11 +34,12 @@
                         <thead>
                             <tr>
                                 <th style="width:30px" class="text-center">#</th>
-                            <th style="width:90px" class="text-center">Hình đại diện</th>
-                            <th style="width:100px" class="text-center">Tên liên hệ</th>
-                            <th style="width:100px" class="text-center">Người phản hồi</th>
-                            <th style="width:150px" class="text-center">Chức năng</th>
-                            <th style="width:30px" class="text-center">ID</th>
+                                <th style="width:100px" class="text-center">Tên liên hệ</th>
+                                <th style="width:100px" class="text-center">Số điện thoại</th>
+                                <th style="width:100px" class="text-center">Email</th>
+                                <th style="width:100px" class="text-center">Người phản hồi</th>
+                                <th style="width:150px" class="text-center">Chức năng</th>
+                                <th style="width:30px" class="text-center">ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,12 +48,11 @@
                                     <td>
                                         <input type="checkbox">
                                     </td>
-                                    <td>
-                                        <img class="img-fluid" src="{{ asset('images/contact/' . $contact->image) }}"
-                                            alt="{{ $contact->image }}">
-                                    </td>
+                                   
                                     <td class="text-center align-middle">{{ $contact->name }}</td>
-                                    <td class="text-center align-middle">{{ $contact->replay_id }}</td>
+                                <td class="text-center align-middle">{{ $contact->phone }}</td>
+                                <td class="text-center align-middle">{{ $contact->email}}</td>
+                                <td class="text-center align-middle">{{ $contact->replay_id }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('contact.restore', ['contact' => $contact->id]) }}"
                                             class="btn btn-sm btn-success"><i class="fas fa-undo"></i></a>

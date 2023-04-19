@@ -44,7 +44,7 @@ use App\Http\Controllers\backend\CustomerController;
     Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
     Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
     Route::post('dang-nhap', [DangnhapController::class, 'logout'])->name('logout');
-    Route::get('actived/{custumer}/{token}', [DangnhapController::class, 'actived'])->name('actived.custumer');
+    Route::get('actived/{customer}/{token}', [DangnhapController::class, 'actived'])->name('actived.customer');
     Route::get('khoi-phuc-mat-khau', [DangnhapController::class,'khoiphucmatkhau'])->name('login.khoiphucmatkhau');
     Route::get('yeu-cau-mat-khau-moi', [DangnhapController::class,'postkhoiphucmatkhau'])->name('login.postkhoiphucmatkhau');
     Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'xulyyeucaumatkhaumoi'])->name('login.xulyyeucaumatkhaumoi');
@@ -187,6 +187,16 @@ use App\Http\Controllers\backend\CustomerController;
         route::get('delete/{orderdetail}', [OrderdetailController::class, 'delete'])->name('orderdetail.delete');
         route::get('restore/{orderdetail}', [OrderdetailController::class, 'restore'])->name('orderdetail.restore');
         route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
+   });
+
+    //orderdetail
+    Route::resource('customer', CustomerController::class);
+        
+        route::prefix('customer')->group(function () {
+        route::get('status/{customer}', [CustomerController::class, 'status'])->name('customer.status');
+        route::get('delete/{customer}', [CustomerController::class, 'delete'])->name('customer.delete');
+        route::get('restore/{customer}', [CustomerController::class, 'restore'])->name('customer.restore');
+        route::get('destroy/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
    });
 
 });

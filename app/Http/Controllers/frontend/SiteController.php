@@ -227,7 +227,10 @@ class SiteController extends Controller
 
     // Tất cả sản phẩm
     public function tatcasanpham(){
-             echo 'Tất cả sản phẩm';
+        $product = Product::all();
+        
+      // var_dump($product);
+      return view('frontend.product.all_product',compact('product'));
     }
     // Tất cả bài viết
 }

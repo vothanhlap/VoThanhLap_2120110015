@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết liên hệ')
+@section('title', 'Xem chi tiết khách hàng')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -10,22 +10,23 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong class="text-danger text-uppercase">Chi tiết liên hệ</strong>
+                            <strong class="text-danger text-uppercase" > chi tiết khách hàng</strong>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="{{ route('contact.edit', ['contact' => $contact->id]) }}"class="btn btn-sm btn-primary">
+                            <a
+                                href="{{ route('customer.edit', ['customer' => $customer->id]) }}"class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Sửa
                             </a>
                             <a
-                                href="{{ route('contact.destroy', ['contact' => $contact->id]) }}"class="btn btn-sm btn-danger">
+                                href="{{ route('customer.destroy', ['customer' => $customer->id]) }}"class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash"></i> Xóa
                             </a>
-                            <a href="{{ route('contact.index') }}"class="btn btn-sm btn-success">
+                            <a href="{{ route('customer.index') }}"class="btn btn-sm btn-info">
                                 <i class="fas fa-long-arrow-alt-left"></i> Quay về danh sách
                             </a>
                         </div>
                     </div>
-
+                    
                 </div>
                 <!-- /.card-body -->
                 <div class="card-body">
@@ -35,53 +36,56 @@
                             <th style="width:200px;color:red;text-align:center">Tiêu Đề</th>
                             <th style="color:green;text-align:center">Nội Dung</th>
                         </tr>
+                       
                         <tr>
-                            <td>Họ và tên liên hệ</td>
-                            <td>{{ $contact->name }}</td>
+                            <td>Tên</td>
+                            <td>{{ $customer->fullname}}</td>
                         </tr>
                         <tr>
-                            <td>Số điện thoại</td>
-                            <td>{{ $contact->phone }}</td>
+                            <td>customer</td>
+                            <td>{{ $customer->username }}</td>
                         </tr>
                         <tr>
                             <td>Email</td>
-                            <td>{{ $contact->email }}</td>
+                            <td>{{ $customer->email }}</td>
                         </tr>
                         <tr>
-                            <td>Câu hỏi</td>
-                            <td>{{ $contact->title }}</td>
+                            <td>Số điện thoại</td>
+                            <td>{{ $customer->phone }}</td>
                         </tr>
                         <tr>
-                            <td>Trả lời</td>
-                            <td>{{ $contact->content }}</td>
+                            <td>Giới tính</td>
+                            <td>
+                                @if (($customer->geder)==1)
+                                    Nam
+                                @else
+                                    Nữ
+                                @endif
+                            </td>
                         </tr>
                         <tr>
-                            <td>Người phản hồi</td>
-                            <td>{{ $contact->replay_id }}</td>
-                        </tr>
-                        <tr>
-                            <td> Người tạo </td>
-                            <td>{{ $contact->created_by }}</td>
+                            <td> Người tạo   </td>
+                            <td>{{ $customer->created_by }}</td>
                         </tr>
                         <tr>
                             <td>Người cập nhật</td>
-                            <td>{{ $contact->updated_by }}</td>
+                            <td>{{ $customer->updated_by }}</td>
                         </tr>
                         <tr>
                             <td>Ngày tạo</td>
-                            <td>{{ $contact->created_at }}</td>
+                            <td>{{ $customer->created_at }}</td>
                         </tr>
                         <tr>
                             <td>Ngày cập nhật</td>
-                            <td>{{ $contact->updated_at }}</td>
+                            <td>{{ $customer->updated_at }}</td>
                         </tr>
                     </table>
                 </div>
-
+               
                 <!-- /.card-footer-->
             </div>
             <!-- /.card -->
-
+            
 
         </section>
         <!-- /.content -->

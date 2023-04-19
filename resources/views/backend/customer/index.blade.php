@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Tất cả liên hệ')
+@section('title', 'tất cả khách hàng')
 @section('header')
 <link rel="stylesheet" href="{{ asset('public/jquery.dataTables.min.css') }}">
 @endsection
@@ -10,26 +10,18 @@
     </script>
 @endsection
 @section('content')
-   <!-- Content Wrapper. Contains page content -->
+     <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Main content -->
     <section class="content my-3">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <strong class="text-danger text-uppercase">liên hệ</strong>
+                        <strong class="text-danger text-uppercase">TẤT CẢ KHÁCH HÀNG</strong>
                     </div>
-                    <div class="col-md-6 text-right">
-                        <a href="{{ route('contact.create') }}"class="btn btn-sm btn-success">
-                            <i class="fas fa-plus"></i> Thêm
-                        </a>
-                        <a href="{{ route('contact.trash') }}"class="btn btn-sm btn-danger">
-                            <i class="fas fa-trash"></i> Thùng rác
-                        </a>
-                    </div>
+                   
                 </div>
             </div>
             <div class="card-body">
@@ -37,42 +29,44 @@
                 <table class="table table-bordered table-striped" id="myTable">
                     <thead>
                         <tr>
-                            <th style="width:30px" class="text-center">#</th>
-                            <th style="width:100px" class="text-center">Tên liên hệ</th>
+                            <th style="width:10px" class="text-center">#</th>
+                            <th style="width:120px"  class="text-center">Tên khách hàng</th>
+                            <th style="width:120px"  class="text-center">Tên tài khoản</th>
                             <th style="width:100px" class="text-center">Số điện thoại</th>
-                            <th style="width:100px" class="text-center">Email</th>
-                            <th style="width:100px" class="text-center">Người phản hồi</th>
-                            <th style="width:150px" class="text-center">Chức năng</th>
-                            <th style="width:30px" class="text-center">ID</th>
+                            <th style="width:100px"  class="text-center">Email</th>
+                            <th style="width:180px" class="text-center">Chức năng</th>
+                            <th style="width:10px" class="text-center">ID</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($list_contact as $contact)
+                        @foreach ($list_customer as $customer)
                             <tr>
                                 <td  class="text-center align-middle">
                                     <input type="checkbox">
                                 </td>
-                                <td class="text-center align-middle">{{ $contact->name }}</td>
-                                <td class="text-center align-middle">{{ $contact->phone }}</td>
-                                <td class="text-center align-middle">{{ $contact->email}}</td>
-                                <td class="text-center align-middle">{{ $contact->replay_id }}</td>
+                               
+                                <td class=" align-middle">{{ $customer->fullname }}</td>
+                                <td class=" align-middle">{{ $customer->username}}</td>
+                                <td class="align-middle">{{ $customer->phone}}</td>
+                                <td class=" align-middle">{{ $customer->email}}</td>
+                                
                                 <td class="text-center align-middle">
-                                    @if ($contact->status == 1)
-                                        <a href="{{ route('contact.status', ['contact' => $contact->id]) }}"
+                                    @if ($customer->status == 1)
+                                        <a href="{{ route('customer.status', ['customer' => $customer->id]) }}"
                                             class="btn btn-sm btn-success"><i class="fas fa-toggle-on"></i> </a>
                                     @else
-                                        <a href="{{ route('contact.status', ['contact' => $contact->id]) }}"
+                                        <a href="{{ route('customer.status', ['customer' => $customer->id]) }}"
                                             class="btn btn-sm btn-danger"><i class="fas fa-toggle-off"></i> </a>
                                     @endif
 
-                                    <a href="{{ route('contact.edit', ['contact' => $contact->id]) }}"
+                                    <a href="{{ route('customer.edit', ['customer' => $customer->id]) }}"
                                         class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
-                                    <a href="{{ route('contact.show', ['contact' => $contact->id]) }}"
+                                    <a href="{{ route('customer.show', ['customer' => $customer->id]) }}"
                                         class="btn btn-sm btn-success"><i class="far fa-eye"></i></a>
-                                    <a href="{{ route('contact.delete', ['contact' => $contact->id]) }}"
+                                    <a href="{{ route('customer.destroy', ['customer' => $customer->id]) }}"
                                         class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
                                 </td>
-                                <td class="text-center align-middle">{{ $contact->id }}</td>
+                                <td class="text-center align-middle">{{ $customer->id }}</td>
                             </tr>
                         @endforeach
 

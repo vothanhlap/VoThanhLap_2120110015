@@ -55,7 +55,13 @@
                         </tr>
                         <tr>
                             <td>Giới tính</td>
-                            <td>{{ $user->geder}}</td>
+                            <td>
+                                @if (( $user->geder)==1)
+                                    Nam
+                                @else
+                                    Nữ
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <td> Người tạo   </td>

@@ -49,18 +49,15 @@ class UserController extends Controller
 
     #GET: admin/user/delete/
     // xóa vào thùng rác
-    public function delete($id)
+    public function destroy( string $id)
     {
         $user_name = Auth::user()->name;
         $user = User::find($id);
         if ($user == null) {
-            return redirect()->route('user.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+            return redirect()->route('user.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
         } else {
-            $user->status = 0;
-            $user->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-            $user->updated_by = $user_name;
-            $user->save();
-            return redirect()->route('user.index')->with('message', ['type' => 'success', 'msg' => 'Xóa vào thùng rác thành công !']);
+            $user->delete();
+            return redirect()->route('user.trash')->with('message', ['type' => 'success', 'msg' => 'Xóa vào thùng rác thành công !']);
         }
     }
 

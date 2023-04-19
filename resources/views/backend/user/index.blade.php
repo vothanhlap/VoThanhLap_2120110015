@@ -22,9 +22,6 @@
                         <strong class="text-danger text-uppercase">TẤT CẢ USER</strong>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="{{ route('user.create') }}"class="btn btn-sm btn-success">
-                            <i class="fas fa-plus"></i> Thêm
-                        </a>
                         <a href="{{ route('user.trash') }}"class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i> Thùng rác
                         </a>

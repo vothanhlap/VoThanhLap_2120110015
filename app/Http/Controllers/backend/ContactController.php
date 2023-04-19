@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Link;
 use Illuminate\Support\Str;
-use App\Http\Requests\contactStoreRequest;
-use App\Http\Requests\contactUpdateRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
@@ -37,30 +35,18 @@ class   ContactController extends Controller
     }
 
     // thêm
-    public function store(ContactStoreRequest $request)
+    public function store(Request $request)
     {
         $user_name = Auth::user()->name;
         $contact = new contact();
         $contact->name = $request->name;
-        $contact->slug = Str::slug($contact->name = $request->name, '-');
-        $contact->metakey = $request->metakey;
-        $contact->metadesc = $request->metadesc;
-        $contact->parent_id = $request->parent_id;
-        $contact->sort_order = $request->sort_order;
+        $contact->phone = $request->phone;
+        $contact->email = $request->email;
+        $contact->replay_id =$user_name ;    
         $contact->status = $request->status;
         $contact->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $contact->created_by = $user_name;
-        //Upload file
-        if ($request->has('image')) {
-            $path_dir = "images/contact"; // nơi lưu trữ
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
-            $filename = $contact->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
-            $file->move($path_dir, $filename);
-
-            $contact->image = $filename;
-        }
-        // End upload
+        
         if ($contact->save()) {
             $link = new Link();
             $link->slug = $contact->slug;
@@ -97,33 +83,18 @@ class   ContactController extends Controller
         return view('backend.contact.edit', compact('contact','user_name', 'html_parent_id', 'html_sort_order'));
     }
 
-    public function update( ContactUpdateRequest $request, $id)
+    public function update( Request $request, $id)
     {
         $user_name = Auth::user()->name;
         $contact = Contact::find($id);
-        $contact->name = $request->name;
-        $contact->slug = Str::slug($contact->name = $request->name, '-');
-        $contact->metakey = $request->metakey;
-        $contact->metadesc = $request->metadesc;
-        $contact->parent_id = $request->parent_id;
-        $contact->sort_order = $request->sort_order;
+        $contact->name = $request->name;  
+        $contact->phone = $request->phone;
+        $contact->email = $request->email;      
+        $contact->replay_id =$user_name ;      
         $contact->status = $request->status;
         $contact->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $contact->updated_by = $user_name;
-        // Upload file
-        if ($request->has('image')) {
-            $path_dir = "images/contact/";
-            if (File::exists(($path_dir . $contact->image))) {
-                File::delete(($path_dir . $contact->image));
-            }
-
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
-            $filename = $contact->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
-            $file->move($path_dir, $filename);
-            $contact->image = $filename;
-        }
-        //end upload file
+        
         if ($contact->save()) {
             $link = Link::where([['type', '=', 'contact'], ['table_id', '=', $id]])->first();
             $link->slug = $contact->slug;
