@@ -20,10 +20,9 @@ class ProductStoreRequest extends FormRequest
             'metadesc' => 'required',
             'category_id' => 'required',
             'brand_id' => 'required',
-            'price_buy' => 'required',
+            'price_buy' => 'required|numeric',
             'image' => 'required',
-            'price_buy' => 'required',
-            'price_buy' => 'required',
+            'number' => 'required|numeric',
         
         ];
     }
@@ -35,11 +34,13 @@ class ProductStoreRequest extends FormRequest
             'detail.required' => 'Bạn chưa nhập chi tiết sản phẩm.',
             'metakey.required' => 'Chưa nhập từ khóa tìm kiếm.',
             'metadesc.required' => 'Chưa nhập mô tả sản phẩm.',
-            'category_id.required' => 'Vui lòng chọn danh mục sản phẩm',
-            'brand_id.required' => 'Vui lòng chọn thương hiệu sản phẩm.',
-            'price_buy.required' => 'Vui lòng chọn thương hiệu sản phẩm.',
+            'category_id.required' => 'Chưa chọn danh mục sản phẩm',
+            'brand_id.required' => 'Chưa chọn thương hiệu sản phẩm.',
             'image.required' => 'Vui lòng chọn hinh.',
             'price_buy.required' => 'Vui lòng nhập giá',
+            'number.required' => 'Vui lòng nhập số lượng',
+            'number.numeric' => 'Dữ liệu nhập phải có dạng chữ số.',
+            'price_buy.numeric' => 'Dữ liệu nhập phải có dạng chữ số.',
            
 
         ];

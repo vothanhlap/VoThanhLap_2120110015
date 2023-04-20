@@ -7,8 +7,15 @@
         if (count($arr_image) > 0) {
             $image = $arr_image[0]['image'];
         }
+        $text = html_entity_decode(trim(strip_tags($post->metadesc)),ENT_HTML5 ,'UTF-8');
+        $text1 = html_entity_decode($post->detail);
+        $caccauhoanchinh1 = trim(strip_tags($text1));
+        $text2 = html_entity_decode($post->metakey);
+        $caccauhoanchinh2 = trim(strip_tags($text2));
+        //$post->metadesc,ENT_HTML5,'UTF-8'
+        // echo $caccauhoanchinh;
     @endphp
-    
+
     <section>
         <div class="col-md-12">
             <div class="row">
@@ -18,32 +25,26 @@
                         <span><i class="fa fa-user"></i> {{ $post->created_by }}</span>
                         <span class="mx-2">
                             <i class="far fa-calendar-alt"></i>
+                          
                             {{ $post->created_at }}
                         </span>
                     </div>
                     <div class=" mt-4 mx-2 text-justify" style="font-size: 25px;">
-                        <p>{{ $post->metadesc }}</p>
-                        @if (count($arr_image) > 0)
-                            @for ($i = 0; $i < count($arr_image) - 1; $i++)
-                                @php
-                                    $image = $arr_image[$i]['image'];
-                                @endphp
-                               <img src="{{ asset('images/post/' . $image) }}" class="img-fluid mt-2 mb-2" alt="{{ $image }}">
-                               {{ $post->detail }}
-                               @endfor
-                        @endif
-                       
+                        <p>{{$text}}</p> 
+                        <img src="{{ asset('images/post/' . $image) }}" class="img-fluid "
+                        alt="{{ $image }}"> <br>
+                        
+                        {{ $caccauhoanchinh1 }} <br>
                     </div>
                     {{-- metakey -tu khoa --}}
                     <div>
                         <span> <i class="fas fa-tags text-danger"></i></span>
                         <span class="badge bg-primary mb-4 mt-2">
-                            {{ $post->metakey }}
+                            {{ $caccauhoanchinh2 }}
                         </span>
                     </div>
-                   
+                 
                 </div>
-
                 <div class="col-md-4">
                     <div class="box mt-4">
                         <h5 class="title-description">BÀI VIẾT KHÁC</h5>
@@ -86,8 +87,8 @@
         </div>
     </section>
 @endsection
- {{-- đánh giá khách hàng --}}
- {{-- <div class="mb-3">
+{{-- đánh giá khách hàng --}}
+{{-- <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Email</label>
     <input type="email" class="form-control" id="exampleFormControlInput1"
         placeholder="name@example.com">
@@ -96,4 +97,4 @@
     <label for="exampleFormControlTextarea1" class="form-label">Đánh giá</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
 </div> --}}
-                {{-- xử lý đánh giá khách hàng  --}}
+{{-- xử lý đánh giá khách hàng  --}}

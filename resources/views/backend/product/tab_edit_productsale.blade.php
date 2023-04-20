@@ -8,18 +8,19 @@
             @endif 
         </div>
         <div class="mb-3">
-            <label for="date_begin">Ngày bắt đầu</label>
-            <input type="date" name="date_begin" value="{{ old('date_begin') }}"" id="date_begin" class="form-control" placeholder="Nhập ngày bắt đầu> 
-            @if ($errors->has('date_begin'))
-              <div class="text-danger">{{$errors->first('date_begin')}}</div>
-            @endif 
-        </div>
+          <label for="date_begin">Ngày bắt đầu</label>
+          <input type="date" name="date_begin" value="{{ old('date_begin') }}" id="date_end" class="form-control" placeholder="Ngày bắt đầu"> 
+          @if ($errors->has('date_begin'))
+            <div class="text-danger">{{$errors->first('date_begin')}}</div>
+          @endif 
+      </div>
         <div class="mb-3">
           <label for="date_end">Ngày kết thúc</label>
-          <input type="date" name="date_end" value="{{ old('date_end') }}"" id="date_end" class="form-control" placeholder="Ngày kết thúc"> 
+          <input type="date" name="date_end" value="{{ old('date_end') }}" id="date_end" class="form-control" placeholder="Ngày kết thúc"> 
           @if ($errors->has('date_end'))
             <div class="text-danger">{{$errors->first('date_end')}}</div>
           @endif 
       </div>
     </div>
+</div>
 </div>

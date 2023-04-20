@@ -37,19 +37,23 @@ use App\Http\Controllers\backend\CustomerController;
     Route::get('dich-vu', [DichvuController::class, 'index'])->name('dichvu.index');
     // san pham
     Route::get('tat-ca-san-pham', [SiteController::class, 'tatcasanpham'])->name('frontend.tatcasanpham');
-     //Khách hàng
-    //dang nhap - dang ki tai khoan khach hang
+    //dang nhap tai khoan khach hang
     Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
     Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('login.xulydangnhap');
+    //dang ky
     Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
     Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
+    //dang xuat
     Route::post('dang-nhap', [DangnhapController::class, 'logout'])->name('logout');
+    // chuc nang khac cua khach hang
     Route::get('actived/{customer}/{token}', [DangnhapController::class, 'actived'])->name('actived.customer');
     Route::get('khoi-phuc-mat-khau', [DangnhapController::class,'khoiphucmatkhau'])->name('login.khoiphucmatkhau');
     Route::get('yeu-cau-mat-khau-moi', [DangnhapController::class,'postkhoiphucmatkhau'])->name('login.postkhoiphucmatkhau');
     Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'xulyyeucaumatkhaumoi'])->name('login.xulyyeucaumatkhaumoi');
     Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'postxulyyeucaumatkhaumoi'])->name('login.postxulyyeucaumatkhaumoi');
-  
+    // //gio hang
+    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
+    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
 
 
 

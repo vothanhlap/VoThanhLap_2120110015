@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="metakey  " class="text-danger">Từ khóa <span class="text-danger">(*)</span></label>
-                                        <textarea name="metakey" id="metakey" rows="4" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey', $page->metakey) }}</textarea>
+                                        <textarea name="metakey" id="ckeditor20" rows="4" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey', $page->metakey) }}</textarea>
                                         @if ($errors->has('metakey'))
                                             <div class="text-danger">
                                                 {{ $errors->first('metakey') }}
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="metadesc" class="text-danger">Mô tả <span class="text-danger">(*)</span></label>
-                                        <textarea name="metadesc" id="metadesc" rows="4" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc', $page->metadesc) }}</textarea>
+                                        <textarea name="metadesc" id="ckeditor21" rows="4" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc', $page->metadesc) }}</textarea>
                                         @if ($errors->has('metadesc'))
                                             <div class="text-danger">
                                                 {{ $errors->first('metadesc') }}
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="detail">Chi tiết <span class="text-danger">(*)</span></label>
-                                        <textarea name="detail" rows="3" id="metadesc" class="form-control" placeholder="Nhập mô tả">{{ old('detail', $page->detail) }}</textarea>
+                                        <textarea name="detail" rows="3" id="ckeditor22" class="form-control" placeholder="Nhập mô tả">{{ old('detail', $page->detail) }}</textarea>
                                         @if ($errors->has('detail'))
                                             <div class="text-danger">
                                                 {{ $errors->first('detail') }}

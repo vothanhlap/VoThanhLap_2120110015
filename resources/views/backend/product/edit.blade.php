@@ -44,17 +44,11 @@
                                 data-target="#productattribute" type="button" role="tab"
                                 aria-controls="productattribute" aria-selected="false">Thuôc tính</button>
                         </li>
-                          <li class="nav-item" role="presentation">
-                              <button class="nav-link" id="productsale-tab" data-toggle="tab"
-                                  data-target="#productsale" type="button" role="tab" aria-controls="productsale"
-                                  aria-selected="false">Khuyến mãi</button>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                              <button class="nav-link" id="productstore-tab" data-toggle="tab"
-                                  data-target="#productstore" type="button" role="tab"
-                                  aria-controls="productstore" aria-selected="false">Nhập sản phẩm</button>
-                          </li>
-
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="productsale-tab" data-toggle="tab" data-target="#productsale"
+                                type="button" role="tab" aria-controls="productsale" aria-selected="false">Khuyến
+                                mãi</button>
+                        </li>
                       </ul>
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade show active border-right border-bottom border-left p-3"
@@ -66,12 +60,11 @@
                               <div class="tab-pane fade border-right border-bottom border-left p-3" id="productattribute"
                                 role="tabpanel" aria-labelledby="productattribute-tab">
                                 @includeIf('backend.product.tab_edit_productattribute')</div>
-                          <div class="tab-pane fade border-right border-bottom border-left p-3" id="productsale"
-                              role="tabpanel" aria-labelledby="productsale-tab">
-                              @includeIf('backend.product.tab_edit_productsale')</div>
-                          <div class="tab-pane fade border-right border-bottom border-left p-3" id="productstore"
-                              role="tabpanel" aria-labelledby="productstore-tab">
-                              @includeIf('backend.product.tab_edit_productstore')</div>
+                                <div class="tab-pane fade border-right border-bottom border-left p-3" id="productsale"
+                                role="tabpanel" aria-labelledby="productsale-tab">
+                                @includeIf('backend.product.tab_edit_productsale')</div>
+                         
+                        
                       </div>
                   </div>
 

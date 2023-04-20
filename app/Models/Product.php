@@ -29,5 +29,19 @@ class Product extends Model
     {
         return $this->hasOne(ProductStore::class, 'product_id','id');
     }
+
+    public function brand(): hasOne
+    {
+        return $this->hasOne(Brand::class, 'id','brand_id');
+    }
+    public function category(): hasOne
+    {
+        return $this->hasOne(Category::class, 'id','category_id');
+    }
+
+    public function datebegin(): hasOne
+    {
+        return $this->hasOne(ProductSale::class, 'product_id','id');
+    }
     
 }

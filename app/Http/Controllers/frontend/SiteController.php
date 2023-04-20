@@ -209,8 +209,15 @@ class SiteController extends Controller
                 ['slug','=',$slug],
                ]; 
           $page = Page::where($argc)->first();
-
-         return view('frontend.post.post_page',compact('page'));
+          
+          $args =[
+            ['status','=','1'],
+            ['type','=','post'],
+           
+           ]; 
+         $post_list = Post::where($args)->orderBy('created_at','desc')
+         ->get();    
+         return view('frontend.post.post_page',compact('page','post_list'));
         }
     //Lỗi 404
         public function error_404($slug){

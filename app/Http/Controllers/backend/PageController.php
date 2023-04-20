@@ -48,6 +48,7 @@ class PageController extends Controller
         $page->detail = $request->detail;
         $page->parent_id = $request->parent_id;
         $page->sort_order = $request->sort_order;
+        $page->type = page;
         $page->status = $request->status;
         $page->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $page->created_by = $user_name;
@@ -108,6 +109,7 @@ class PageController extends Controller
         $page->metakey = $request->metakey;
         $page->metadesc = $request->metadesc;
         $page->detail = $request->detail;
+        $page->type = page;
         $page->parent_id = $request->parent_id;
         $page->sort_order = $request->sort_order;
         $page->status = $request->status;

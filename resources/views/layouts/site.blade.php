@@ -11,20 +11,68 @@
     <!-- jQuery -->
     <script src="{{ asset('public/frontend/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
     <!-- Bootstrap4 files-->
-    
     <script src="{{ asset('public/frontend/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     <link href="{{ asset('public/frontend/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <!-- Font awesome 5 -->
-    <link href="{{ asset('public/frontend/fonts/fontawesome/css/all.min.css') }}" type="text/css" rel="stylesheet">
+    {{-- <link href="{{ asset('public/frontend/fonts/fontawesome/css/all.min.css') }}" type="text/css" rel="stylesheet"> --}}
     <!-- custom style -->
     <link href="{{ asset('public/frontend/css/ui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/frontend/css/responsive.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom javascript -->
     <script src="{{ asset('public/frontend/js/script.js" type="text/javascript') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('public/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/styte.css') }}">
 </head>
 @yield('header')
+<style>
+    .product-name {
+        text-transform: capitalize;
+        font-size: 18px;
+    }
+
+    .product-name>a {
+        font-weight: 700;
+    }
+
+    .product-name>a:hover,
+    .product-name>a:focus {
+        color: #e554a9;
+    }
+
+    .product-price {
+        color: #0ae23c;
+        font-size: 15px;
+    }
+
+    .product-price .qty {
+        font-weight: 400;
+        margin-right: 20px;
+    }
+
+    .product-price .product-old-price {
+        font-size: 70%;
+        font-weight: 400;
+        color: #8D99AE;
+    }
+
+    .delete {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 14px;
+        width: 14px;
+        text-align: center;
+        font-size: 10px;
+        padding: 0;
+        background: #1e1f29;
+        border: none;
+        color: #FFF;
+    }
+    .cart-summary{
+        float: right;
+    }
+</style>
 
 <body>
     <header class="section-header">
@@ -50,36 +98,88 @@
                         </form> <!-- search-wrap .end// -->
                     </div> <!-- col.// -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="widgets-wrap float-md-right mt-3">
+                        <div class="widgets-wrap float-md-left mt-3 mx-4">
                             <div class="widget-header ">
                                 <ul class="navbar-nav ">
-                                  <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-user"></i> Tài khoản  </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{route('login.dangnhap')}}"> 
-                                            Đăng nhập 
-                                        </a>
-                                        <a class="dropdown-item" href="{{route('login.dangki')}}"> 
-                                            Đăng ký
-                                        </a>
-                                   
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                class="fa fa-user"></i> Tài khoản </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="{{ route('login.dangnhap') }}">
+                                                Đăng nhập
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('login.dangki') }}">
+                                                Đăng ký
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widgets-wrap float-md-left mt-4 mr-3">
+                            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
+                                </svg> Giỏ hàng</a>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6 mt-2">
+                                                        <h5 class="modal-title" id="exampleModalLabel">GIỎ HÀNG</h5>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="cart-summary">
+                                                            <small>3 sản phẩm</small>
+                                                            <h6>Tổng tiền: 2940.00 VNĐ</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="col-md-12">
+                                                <div class="cart mb-2">
+                                                    <div class="row">
+                                                        <div class="col-md-3 ">
+                                                            <img style="width:100px"src="public/images/product/laptop-hp-1.jpg"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <h3 class="product-name"><a href="#">product nam goes
+                                                                    here</a></h3>
+                                                            <h4 class="product-price"><span
+                                                                    class="qty">1x</span>$980.00</h4>
+                                                        </div>
+                                                        <div class="col-md-2 mt-4">
+                                                            <button class="btn btn-sm btn-danger"><i
+                                                                    class="fa fa-close"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            
+                                           
+                                                <a href="{{ route('giohang.index') }}" class="btn btn-primary">Xem giỏ
+                                                    hàng</a>
+                                                <a href="" class="btn btn-info">Thanh toán </a>
+                                            
+                                            
+                                        </div>
                                     </div>
-                                  </li>
-                               </ul>      
+                                </div>
                             </div>
-                            <div class="widget-header mr-3">
-                                    <i class="fa fa-shopping-cart"></i><span class="notify">1</span>
-                                    Giỏ Hàng
-                            </div>
-                            <div class="widget-header mr-3">
-                               
-                            </div>
-                            
+                        </div>
 
-
-                        </div> <!-- col.// -->
-                    </div> <!-- row.// -->
-                </div> <!-- container.// -->
+                    </div> <!-- container.// -->
         </section> <!-- header-main .// -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">

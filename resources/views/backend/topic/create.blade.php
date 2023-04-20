@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="metakey">Từ khóa <span class="text-danger">(*)</span></label>
-                                    <textarea name="metakey" rows="3" id="metakey" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
+                                    <textarea name="metakey" rows="3" id="ckeditor13" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
                                     @if ($errors->has('metakey'))
                                         <div class="text-danger">
                                             {{ $errors->first('metakey') }}
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="metadesc">Mô tả <span class="text-danger">(*)</span></label>
-                                    <textarea name="metadesc" rows="3" id="metadesc" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc') }}</textarea>
+                                    <textarea name="metadesc" rows="3" id="ckeditor14" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc') }}</textarea>
                                     @if ($errors->has('metadesc'))
                                         <div class="text-danger">
                                             {{ $errors->first('metadesc') }}

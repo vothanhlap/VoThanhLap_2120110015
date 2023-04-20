@@ -76,6 +76,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->name = $request->name;
+        $product->number = $request->number;
         $product->slug = Str::slug($product->name = $request->name, '-');
         $product->price_buy = $request->price_buy;
         $product->detail = $request->detail;
@@ -84,11 +85,7 @@ class ProductController extends Controller
         $product->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $product->created_by = $user_name;
         $product->status = $request->status;
-        if($product->save()){
-            $product_value = new ProductValue();
-            $product_value->product_id = $product->id;
-            $product_value->value = $request->value1;
-            if ($product_value->save()) {
+            if ($product->save()) {
                 //upload image nhieu anh
                 if ($request->has('image')) {
                     $path_dir = "images/product/";
@@ -106,7 +103,7 @@ class ProductController extends Controller
                         $i++;
                     }
                 }
-        }
+        
        
             //Nhập kho
             if (strlen($request->price_buy) && strlen($request->qty)) {
@@ -128,7 +125,14 @@ class ProductController extends Controller
                 $product_sale->date_end = $request->date_end;
                 $product_sale->save();
             }
-
+            //Thuộc tính
+            if(strlen($request->namevalue)){
+                $product_value = new ProductValue();
+                $product_value->product_id = $product->id;
+                $product_value->namevalue = $request->namevalue;
+                $product_value->value = $request->giatri;
+                $product_value->save();
+            }
            return redirect()->route('product.index')->with('message', ['type' => 'success', 'msg' => 'Thêm sản phẩm thành công!']);
     
         }
@@ -179,7 +183,6 @@ class ProductController extends Controller
         $product->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $product->updated_by = $user_name;
         $product->status = $request->status;
-        //upload image
         if ($product->save()) {
             //upload image nhieu anh
             if ($request->has('image')) {
@@ -187,6 +190,8 @@ class ProductController extends Controller
                 $array_file =  $request->file('image');
                 $i = 1;
                 foreach ($array_file as $file) {
+                    
+        
                     $extension = $file->getClientOriginalExtension();
                     $filename = $product->slug . "-" . $i . '.' . $extension;
                     $file->move($path_dir, $filename);
@@ -207,17 +212,13 @@ class ProductController extends Controller
     {
         $user_name = Auth::user()->name;
         $product = Product::find($id);
-        //thong tin hinh xoa
-        $path_dir = "images/product/";
-        $path_image_delete = $path_dir . $product->image;
         if ($product == null) {
             return redirect()->route('product.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
         }
         if ($product->delete()) {
-            //xoa hinh
-            if (File::exists($path_image_delete)) {
-                File::delete($path_image_delete);
-            }
+            $product_image = ProductImage::find($id); //lấy mẫu tin`
+            $product_image->product_id = $product->id;
+            $product_image->delete();
             return redirect()->route('product.trash')->with('message', ['type' => 'success', 'msg' => 'Xóa sản phẩm thành công!']);
         }
         return redirect()->route('product.trash')->with('message', ['type' => 'dangers', 'msg' => 'Xóa sản phẩm không thành công!']);

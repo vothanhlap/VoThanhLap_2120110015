@@ -9,7 +9,7 @@
         </div>
         <div class="mb-3">
             <label for="detail">Chi tiết <span class="text-danger">(*)</span></label>
-            <textarea  rows="4" name="detail" id="detail" class="form-control"
+            <textarea  rows="4" name="detail" id="ckeditor10" class="form-control"
             placeholder="Chi tiết sản phẩm">{{ old('detail') }}</textarea>
             @if ($errors->has('detail'))
             <div class="text-danger">{{$errors->first('detail')}}</div>
@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label for="metakey">Từ khóa <span class="text-danger">(*)</span></label>
-            <textarea rows="4" name="metakey" id="metakey" class="form-control"
+            <textarea rows="4" name="metakey" id="ckeditor11" class="form-control"
             placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
             @if ($errors->has('metakey'))
             <div class="text-danger">{{$errors->first('metakey')}}</div>
@@ -25,7 +25,7 @@
         </div>
         <div class="mb-3">
             <label for="metadesc">Mô tả <span class="text-danger">(*)</span></label>
-            <textarea rows="4" name="metadesc" id="metadesc" class="form-control"
+            <textarea rows="4" name="metadesc" id="ckeditor12" class="form-control"
             placeholder="Nhập mô tả">{{ old('metadesc') }}</textarea>
             @if ($errors->has('metadesc'))
             <div class="text-danger">{{$errors->first('metadesc')}}</div>
@@ -55,11 +55,18 @@
         </div> 
         <div class="mb-3">
             <label for="price_buy">Giá bán <span class="text-danger">(*)</span></label>
-            <input type="text" name="price_buy" value="{{ old('price_buy') }}"" id="price_buy" class="form-control" placeholder="Nhập giá bán"> 
+            <input type="text" name="price_buy" value="{{ old('price_buy') }}" id="price_buy" class="form-control" placeholder="Nhập giá bán"> 
             @if ($errors->has('price_buy'))
               <div class="text-danger">{{$errors->first('price_buy')}}</div>
             @endif 
         </div>
+        <div class="mb-3">
+          <label for="number">Số lượng <span class="text-danger">(*)</span></label>
+          <input type="text" name="number" value="{{ old('number') }}" id="price_buy" class="form-control"> 
+          @if ($errors->has('number'))
+            <div class="text-danger">{{$errors->first('number')}}</div>
+          @endif 
+      </div>
         <div class="mb-3">
             <label for="status">Trạng thái</label>
             <select name="status" id="status" name="status" class="form-control">
