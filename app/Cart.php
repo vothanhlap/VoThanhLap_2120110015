@@ -31,7 +31,7 @@ class Cart{
       public function deleteCart($id){
         $this->tongsoluong -= $this->products[$id]['soluong'];
         $this->tonggia -= $this->products[$id]['price'];
-        uset($this->products[$id]);
+        unset($this->products[$id]);
       }
 
 }

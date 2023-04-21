@@ -6,7 +6,6 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="cache-control" content="max-age=604800" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>@yield('title')</title>
     <!-- jQuery -->
     <script src="{{ asset('public/frontend/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
@@ -119,12 +118,21 @@
                             </div>
                         </div>
                         <div class="widgets-wrap float-md-left mt-3 mr-3">
-                            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
-                                </svg> Giỏ hàng</a>
+                            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                <div class=" mt-1 ">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Giỏ hàng
+                                    @if (Session::has("Cart")!= null)
+                                    <span id="total-quanty-show"
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
+                                        {{ Session::get("Cart")->tongsoluong }}
+                                        @else
+                                        <span id="total-quanty-show"
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
+                                            0
+                                            @endif
+                                </div>
+                            </a>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
@@ -140,7 +148,58 @@
                                             </div>
                                         </div>
                                         <div id="change-item-cart">
-                                           {{-- ---- --}}
+                                            @if (Session::has("Cart")!= null)
+
+                                            <div class="modal-body">
+                                                <table class="table table-bordered ">
+                                                    <tbody>
+                                                        @foreach (Session::get("Cart")->products as $item)
+                                                        @php
+                                                        $mo_ta = $item['productinfo']->name;
+                                                        $rut_gon1 = substr($mo_ta, 0, 100) . '...';
+                                                        @endphp
+                                                        <tr>
+                                                            <td>
+                                                                <img style="width:80px" src="" alt="hinh">
+                                                            </td>
+                                                            <td>
+                                                                <h3 class="product-name"><a href="#">{{ $rut_gon1 }}</a>
+                                                                </h3>
+                                                                <p class="product-price"><span class="qty">{{
+                                                                        $item['soluong'] }}
+                                                                        x</span>{{
+                                                                    number_format($item['productinfo']->price_buy) }}
+                                                                    VNĐ</p>
+                                                            </td>
+                                                            <td class="close-btn align-middle" style="width:40px">
+                                                                <i class="fa fa-close"
+                                                                    data-id="{{ $item['productinfo']->id }}"></i>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="align-middle text-danger">
+                                                                <h6>
+                                                                    Tổng
+                                                                </h6>
+                                                            </th>
+                                                            <th>
+                                                                <h6>
+                                                                    {{ number_format(Session::get("Cart")->tonggia, 0)
+                                                                    }} VNĐ
+                                                                </h6>
+                                                                {{-- <small>{{ Session::get("Cart")->tongsoluong }} sản
+                                                                    phẩm</small> --}}
+                                                            </th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+
+                                            @endif
+
                                         </div>
                                         <div class="modal-footer">
                                             <a class="btn btn-primary" href="{{ route('giohang.index') }}">Xem giỏ
@@ -209,32 +268,43 @@
     </footer>
     <!-- ========================= FOOTER END // ========================= -->
     <script>
-        function AddCart(id){
+        function AddCart(id) {
             $.ajax({
-                url:'addcart/'+id,
-                type:'GET',
-            }).done(function(response){
-                $("#change-item-cart").empty();
-                $("#change-item-cart").html(response);
-                alertify.success('Thêm vào giỏ hàng thành công');
+                url: 'addcart/' + id,
+                type: 'GET',
+            }).done(function (response) {
+                RenderCart(response);
+                alertify.success('Thêm sản phẩm thành công');
             });
         }
 
-        $("#change-item-cart").on("click",".close-btn i",function(){
-            console.log($(this).data("id"));
+        $("#change-item-cart").on("click", ".close-btn i", function () {
+            $.ajax({
+                url: 'deleteCart/' + $(this).data("id"),
+                type: 'GET',
+            }).done(function (response) {
+                RenderCart(response);
+                alertify.success('Xóa sản phẩm thành công');
+            });
         });
+        function RenderCart(response) {
+            $("#change-item-cart").empty();
+            $("#change-item-cart").html(response);
+            $("#total-quanty-show").text($("#total-quanty-cart").val());
+
+        }
     </script>
     <!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
-<!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
 </body>
 @yield('footer')

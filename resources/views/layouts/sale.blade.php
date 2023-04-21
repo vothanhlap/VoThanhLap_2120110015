@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,23 +15,23 @@
         </header><!-- sect-heading -->
         <div id="clockdiv">
             <div>
-              <span id="h" class="days">:</span> 
-              <div class="smalltext">Ngày</div>
+                <span id="h" class="days">:</span>
+                <div class="smalltext">Ngày</div>
             </div>
             <div>
-              <span id="h" class="hours">:</span>
-              <div class="smalltext">Giờ</div>
+                <span id="h" class="hours">:</span>
+                <div class="smalltext">Giờ</div>
             </div>
             <div>
-              <span id="h" class="minutes">:</span>
-              <div class="smalltext">Phút</div>
+                <span id="h" class="minutes">:</span>
+                <div class="smalltext">Phút</div>
             </div>
             <div>
-              <span id="h" class="seconds">:</span>
-              <div class="smalltext">Giây</div>
+                <span id="h" class="seconds">:</span>
+                <div class="smalltext">Giây</div>
             </div>
-          </div>
-          
+        </div>
+
     </div> <!-- col.// -->
     <script>
         function getTimeRemaining(endtime) {

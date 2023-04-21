@@ -40,8 +40,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
@@ -314,9 +313,9 @@
     <script src="{{ asset('public/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('public/dist/js/pages/dashboard.js') }}"></script>
-    <script  type="text/javascript" src="{{ asset('public/dist/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/dist/ckeditor/ckeditor.js') }}"></script>
     <script>
-   
+
         CKEDITOR.replace('ckeditor1')
         CKEDITOR.replace('ckeditor2')
         CKEDITOR.replace('ckeditor3')

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Chi tiết đơn hàng')
 @section('content')
-    {{-- <div class="content-wrapper">
+    <div class="content-wrapper">
         <!-- Content Header (order header) -->
         <!-- Main content -->
         <section class="content py-3">
@@ -22,7 +22,7 @@
                 </div>
                 <!-- /.card-body -->
                 
-                {{-- <div class="card-body">
+               <div class="card-body">
                     @includeIf('backend.message_alert')
                     <h3 style="color:#f016f0">THÔNG TIN KHÁCH HÀNG</h3>
                     <table class="table table-bordered table-striped">
@@ -121,5 +121,5 @@
 
         </section>
         <!-- /.content -->
-    </div> --}}
+    </div> 
 @endsection

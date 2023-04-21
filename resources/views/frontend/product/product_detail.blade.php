@@ -74,11 +74,6 @@ $image = $arr_image[0]['image'];
 
 
             <div class="form-row  mt-4">
-                <div class="form-group col-md flex-grow-0">
-                    <div class="input-group">
-                        <input type="number" style="width:80px" class="form-control text-center" value="1">
-                    </div>
-                </div> <!-- col.// -->
                 <div class="form-group col-md">
                     <li  class="btn btn-info" >
                         <i class="fas fa-shopping-cart"></i> 
@@ -98,7 +93,7 @@ $image = $arr_image[0]['image'];
 </div> <!-- container .//  -->
 </section>
 
-<section class="section-name padding-y bg">
+<section class="section-name padding-y mt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-8">

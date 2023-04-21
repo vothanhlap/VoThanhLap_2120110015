@@ -31,15 +31,11 @@ class CartController extends Controller
             $newCart->Addcart($product,$id);
             $req->session()->put('Cart',$newCart);
             //dd(Session('Cart')); 
-            return view ('frontend.giohang.cart-item',compact('newCart'));
+            return view ('frontend.giohang.cart-item');
            }
     }
-     //cap nhat
-    public function updatecart(string $id){     
-       
-    }
     //xoa 
-    public function deleteCart($id){     
+    public function deleteCart(Request $req, $id){     
        
             $oldcart = Session('Cart') ? Session('Cart') :null;
             $newCart = new Cart( $oldcart);
@@ -50,7 +46,7 @@ class CartController extends Controller
                 $req->session()->forget('Cart');
             }
             
-            return view ('frontend.giohang.cart-item',compact('newCart'));
+            return view ('frontend.giohang.cart-item');
     }
 
     //thanh toan
