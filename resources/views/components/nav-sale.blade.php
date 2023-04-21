@@ -11,13 +11,16 @@
             {
               $image=$arr_image[0]['image'];
             }
+
+            $mo_ta = $item->name;
+            $rut_gon = substr($mo_ta, 0, 100) .'...';
             @endphp
             <div class="col-md col-6 w-50">
                 <figure class="card-product-grid card-sm ">
                     <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="img-wrap">
                         <img class="img-fluid" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}">                    </a>
                     <div class="text-wrap p-3">
-                        <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="title">{{$item->name}}</a>
+                        <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="title">{{$rut_gon}}</a>
                         <span class="badge badge-danger"> -20% </span>
                     </div>
                 </figure>

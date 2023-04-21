@@ -6,7 +6,10 @@
   </ul>
     <ul class="navbar-nav ml-md-auto">
           <li class="nav-item">
-          <a class="nav-link" href="#">Tải ứng dụng</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Tải ứng dụng</a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <img src="" alt="Hinh">
+            </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">English</a>

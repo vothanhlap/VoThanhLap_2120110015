@@ -102,7 +102,7 @@
                                 @if ($product->number == null)
                                     0
                                 @else
-                                    {{ ($product->number) +($number) }}
+                                    {{ ($product->number)}}
                                 @endif
                             </td>
                         </tr>

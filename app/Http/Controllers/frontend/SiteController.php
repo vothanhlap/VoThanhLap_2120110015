@@ -162,7 +162,7 @@ class SiteController extends Controller
         }
              $list_pro = Product::whereIn('category_id',$arrcatid)->where([['status','=','1'],['id','!=',$product->id]])
              ->orderBy('created_at','desc')
-             ->take(4)
+             ->take(3)
              ->get();
       
                return view ('frontend.product.product_detail',compact('product','list_pro'));

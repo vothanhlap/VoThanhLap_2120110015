@@ -14,7 +14,8 @@
     <script src="{{ asset('public/frontend/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     <link href="{{ asset('public/frontend/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <!-- Font awesome 5 -->
-    {{-- <link href="{{ asset('public/frontend/fonts/fontawesome/css/all.min.css') }}" type="text/css" rel="stylesheet"> --}}
+    {{--
+    <link href="{{ asset('public/frontend/fonts/fontawesome/css/all.min.css') }}" type="text/css" rel="stylesheet"> --}}
     <!-- custom style -->
     <link href="{{ asset('public/frontend/css/ui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/frontend/css/responsive.css') }}" rel="stylesheet" type="text/css" />
@@ -69,7 +70,8 @@
         border: none;
         color: #FFF;
     }
-    .cart-summary{
+
+    .cart-summary {
         float: right;
     }
 </style>
@@ -87,8 +89,7 @@
                     <div class="col-xl-6 col-lg-5 col-md-6">
                         <form action="{{ route('frontend.timkiem') }}" class="search-header" method="get">
                             <div class="input-group w-100">
-                                <input type="text" class="form-control" name="key"
-                                    placeholder="Nhập từ khóa tìm kiếm">
+                                <input type="text" class="form-control" name="key" placeholder="Nhập từ khóa tìm kiếm">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i> Tìm kiếm
@@ -98,7 +99,7 @@
                         </form> <!-- search-wrap .end// -->
                     </div> <!-- col.// -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="widgets-wrap float-md-left mt-3 mx-4">
+                        <div class="widgets-wrap float-md-left mt-2 mx-4">
                             <div class="widget-header ">
                                 <ul class="navbar-nav ">
                                     <li class="nav-item dropdown">
@@ -117,7 +118,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="widgets-wrap float-md-left mt-4 mr-3">
+                        <div class="widgets-wrap float-md-left mt-3 mr-3">
                             <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                     class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -134,45 +135,19 @@
                                                     <div class="col-md-6 mt-2">
                                                         <h5 class="modal-title" id="exampleModalLabel">GIỎ HÀNG</h5>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="cart-summary">
-                                                            <small>3 sản phẩm</small>
-                                                            <h6>Tổng tiền: 2940.00 VNĐ</h6>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="col-md-12">
-                                                <div class="cart mb-2">
-                                                    <div class="row">
-                                                        <div class="col-md-3 ">
-                                                            <img style="width:100px"src="public/images/product/laptop-hp-1.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="col-md-7">
-                                                            <h3 class="product-name"><a href="#">product nam goes
-                                                                    here</a></h3>
-                                                            <h4 class="product-price"><span
-                                                                    class="qty">1x</span>$980.00</h4>
-                                                        </div>
-                                                        <div class="col-md-2 mt-4">
-                                                            <button class="btn btn-sm btn-danger"><i
-                                                                    class="fa fa-close"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div id="change-item-cart">
+                                           {{-- ---- --}}
                                         </div>
                                         <div class="modal-footer">
-                                            
-                                           
-                                                <a href="{{ route('giohang.index') }}" class="btn btn-primary">Xem giỏ
-                                                    hàng</a>
-                                                <a href="" class="btn btn-info">Thanh toán </a>
-                                            
-                                            
+                                            <a class="btn btn-primary" href="{{ route('giohang.index') }}">Xem giỏ
+                                                hàng</a>
+                                            <a class="btn btn-primary float-md-right"
+                                                href="{{ route('giohang.checkout') }}"> Thanh toán <i
+                                                    class="fa fa-chevron-right"></i> </a>
                                         </div>
                                     </div>
                                 </div>
@@ -233,7 +208,36 @@
         </section>
     </footer>
     <!-- ========================= FOOTER END // ========================= -->
+    <script>
+        function AddCart(id){
+            $.ajax({
+                url:'addcart/'+id,
+                type:'GET',
+            }).done(function(response){
+                $("#change-item-cart").empty();
+                $("#change-item-cart").html(response);
+                alertify.success('Thêm vào giỏ hàng thành công');
+            });
+        }
+
+        $("#change-item-cart").on("click",".close-btn i",function(){
+            console.log($(this).data("id"));
+        });
+    </script>
+    <!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
 </body>
 @yield('footer')
+
 
 </html>

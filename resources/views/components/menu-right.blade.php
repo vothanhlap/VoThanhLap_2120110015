@@ -9,13 +9,15 @@
         {
           $image=$arr_image[0]['image'];
         }
+        $mo_ta = $product->name;
+        $rut_gon1 = substr($mo_ta, 0, 100) .'...';
       @endphp
         <div class="card-banner border-bottom">
-            <div class="py-3" style="width:80%">
-              <h6 class="card-title"><p class="text-truncate" style="text-overflow: ellipsis;">{{$product->name}}</p></h6>
+            <div class="py-2" style="width:90%">
+              <p class="card-title mb-2" >{{ $rut_gon1}}</p>
               <a href="{{route('frontend.slug',['slug'=>$product->slug])}}" class="btn btn-secondary btn-sm mx-2">Xem ngay</a>
             </div> 
-            <a href="{{route('frontend.slug',['slug'=>$product->slug])}}"><img height="80" class="img-bg" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}"></a>
+            <a href="{{route('frontend.slug',['slug'=>$product->slug])}}"><img height="60" width="80" class="mb-2 img-bg" src="{{ asset('images/product/'.$image)}}" alt="{{$image}}"></a>
           </div>
         @endforeach
     </aside>

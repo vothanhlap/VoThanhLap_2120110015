@@ -54,7 +54,9 @@ use App\Http\Controllers\backend\CustomerController;
     // //gio hang
     Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
     Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
-
+    Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
+    //thanh toan
+    Route::get('thanh-toan', [CartController::class, 'checkout'])->name('giohang.checkout');
 
 
 

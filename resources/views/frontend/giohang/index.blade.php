@@ -51,7 +51,7 @@
                          
                            </div>
                             <div class="card-body border-top">
-                                <a href="#" class="btn btn-primary float-md-right"> Thanh toán <i
+                                <a href="{{ route('giohang.checkout') }}" class="btn btn-primary float-md-right"> Thanh toán <i
                                         class="fa fa-chevron-right"></i> </a>
                                 <a href="{{ route('frontend.home') }}" class="btn btn-light"> <i
                                         class="fa fa-chevron-left"></i>Tiếp tục mua sắm </a>

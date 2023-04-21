@@ -37,13 +37,13 @@
                         <thead>
                             <tr>
                                 <th style="width:10px;" class="text-center"> #</th>
-                                <th class="text-center" style="width:80px;">Hình ảnh</th>
-                                <th style="width:100px;" class="text-center">Tên sản phẩm</th>
+                                <th class="text-center" style="width:60px;">Hình</th>
+                                <th  class="text-center align-middle">Tên sản phẩm</th>
                                 <th class="text-center">Loại sản phẩm</th>
-                          <th class="text-center">Thương hiệu</th>
-                                <th class="text-center">Ngày đăng</th>
-                                <th class="text-center">Chức năng</th>
-                                <th style="width:20px;" class="text-center">ID</th>
+                                 <th class="text-center">Thương hiệu</th>
+                                <th style="width:150px"  class="text-center align-middle">Ngày đăng</th>
+                                <th style="width:150px;" class="text-center align-middle ">Chức năng</th>
+                                <th style="width:10px;" class="text-center">ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,11 +61,11 @@
                                         <img class="img-fluid" src="{{ asset('images/product/' . $image) }}"
                                             alt="{{ $image }}">
                                     </td>
-                                    <td style="width:100px;" class="align-middle text-truncate">{{ $product->name }}</td>
+                                    <td  class="align-middle ">{{ $product->name }}</td>
                                   
                                     <td class="text-center align-middle">{{ $product->catname }}</td> 
                                     <td class="text-center align-middle">{{ $product->braname }}</td>
-                                    <td class="text-center align-middle">{{ $product->created_at }}</td>
+                                    <td class=" align-middle">{{ $product->created_at }}</td>
                                     <td class="text-center align-middle">
                                         @if ($product->status == 1)
                                             <a href="{{ route('product.status', ['product' => $product->id]) }}"

@@ -10,7 +10,8 @@ use App\Models\Order;
 use App\Models\Orderdetail;
 use App\Models\ProductImage;
 use App\Models\ProductStore;
-
+use App\Cart;
+use Session;
 
 
 class CartController extends Controller
@@ -21,25 +22,40 @@ class CartController extends Controller
        return view ('frontend.giohang.index');
     }
     // them
-    public function addcart($id)
-    {   
-        $product = Product::find($id);
-        $Cartitem = array(
-             'id' => $id,
-             'name' => $product->name,
-              'price'=> $product->price_buy,
-              'Quantity'=> 1,
-              'attributes' => array('img'=>$product->image)
-        );   
-       
+    public function Addcart(Request $req, $id)
+    {     
+           $product = Product::where('id',$id)->first();
+           if($product != null){
+            $oldcart = Session('Cart') ? Session('Cart') :null;
+            $newCart = new Cart( $oldcart);
+            $newCart->Addcart($product,$id);
+            $req->session()->put('Cart',$newCart);
+            //dd(Session('Cart')); 
+            return view ('frontend.giohang.cart-item',compact('newCart'));
+           }
     }
      //cap nhat
     public function updatecart(string $id){     
        
     }
     //xoa 
-    public function deletecart(string $id){     
+    public function deleteCart($id){     
        
+            $oldcart = Session('Cart') ? Session('Cart') :null;
+            $newCart = new Cart( $oldcart);
+            $newCart->deleteCart($id);
+            if(Count($newCart->products)>0){
+                $req->session()->put('Cart',$newCart);
+            }else{
+                $req->session()->forget('Cart');
+            }
+            
+            return view ('frontend.giohang.cart-item',compact('newCart'));
+    }
+
+    //thanh toan
+    public function checkout (){
+        return view ('frontend.giohang.checkout');
     }
 
     
