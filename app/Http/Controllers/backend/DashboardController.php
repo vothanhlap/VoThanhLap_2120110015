@@ -21,4 +21,6 @@ class DashboardController extends Controller
         $custumer_count=User::count();
         return view('backend.dashboard.index',compact('custumer_count','post_count','product_count','user_name'));
     }
+
+
 }

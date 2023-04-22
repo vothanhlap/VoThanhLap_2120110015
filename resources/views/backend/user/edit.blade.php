@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Cập nhật user')
+@extends('backend.dashboard.menuadmin')
 @section('content')
     <form action="{{ route('user.update', ['user' => $user->id]) }}" method="post" enctype="multipart/form-data">
         @method('PUT')

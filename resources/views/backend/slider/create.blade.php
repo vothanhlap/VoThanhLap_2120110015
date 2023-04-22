@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Thêm slider')
+@extends('backend.dashboard.menuadmin')
 @section('content')
     <form action="{{ route('slider.store') }}" method="post" enctype="multipart/form-data">
         @csrf

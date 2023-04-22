@@ -121,7 +121,6 @@ class PageController extends Controller
             if (File::exists(($path_dir . $page->image))) {
                 File::delete(($path_dir . $page->image));
             }
-
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
             $filename = $page->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 

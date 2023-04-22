@@ -9,6 +9,7 @@
         let table = new DataTable('#myTable');
     </script>
 @endsection
+@extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
         <section class="content my-3">

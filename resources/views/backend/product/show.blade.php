@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Chi tiết sản phẩm')
+@extends('backend.dashboard.menuadmin')
 @section('content')
-
     <div class="content-wrapper">
         <!-- Main content -->
         <section class="content py-3">

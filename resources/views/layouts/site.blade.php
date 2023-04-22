@@ -149,7 +149,6 @@
                                         </div>
                                         <div id="change-item-cart">
                                             @if (Session::has("Cart")!= null)
-
                                             <div class="modal-body">
                                                 <table class="table table-bordered ">
                                                     <tbody>
@@ -196,8 +195,9 @@
                                                         </tr>
                                                     </tfoot>
                                                 </table>
-                                            </div>
-
+                                            </div>                        
+                                            @else
+                                                <p class="text-center">Không có sản phẩm trong giỏ hàng</p>
                                             @endif
 
                                         </div>

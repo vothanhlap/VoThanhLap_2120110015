@@ -9,6 +9,7 @@
         let table = new DataTable('#myTable');
     </script>
 @endsection
+@extends('backend.dashboard.menuadmin')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <form name="form" action="{{ route('menu.store') }}" method="post">

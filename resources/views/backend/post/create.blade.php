@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Thêm bai viết')
+@extends('backend.dashboard.menuadmin')
 @section('content')
     <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
         @csrf

@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Chi tiết liên hệ')
+@extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

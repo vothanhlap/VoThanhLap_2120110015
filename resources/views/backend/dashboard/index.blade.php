@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'QUAN LY ADMN')
+@extends('backend.dashboard.menuadmin')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -41,7 +42,6 @@
                   <div class="small-box bg-success">
                       <div class="inner">
                           <h3>{{$post_count}}</h3>
-
                           <p>Bài viết</p>
                       </div>
                       <div class="icon">
@@ -56,7 +56,6 @@
                   <div class="small-box bg-warning">
                       <div class="inner">
                           <h3>{{$custumer_count}}</h3>
-
                           <p>Thành viên</p>
                       </div>
                       <div class="icon">
@@ -71,7 +70,6 @@
                   <div class="small-box bg-danger">
                       <div class="inner">
                           <h3>100,000VND</h3>
-
                           <p>Danh thu</p>
                       </div>
                       <div class="icon">
@@ -82,8 +80,7 @@
               </div>
               <!-- ./col -->
           </div>
-          <!-- /.row -->
-        
+          <!-- /.row -->      
       </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
