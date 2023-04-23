@@ -13,7 +13,6 @@ use App\Models\ProductStore;
 use App\Cart;
 use Session;
 
-
 class CartController extends Controller
 {
     //tat ca gio hang
@@ -25,14 +24,14 @@ class CartController extends Controller
     public function Addcart(Request $req, $id)
     {     
            $product = Product::where('id',$id)->first();
+           //$image = ProductImage::where('product_id',$id)->first();
            if($product != null){
             $oldcart = Session('Cart') ? Session('Cart') :null;
             $newCart = new Cart( $oldcart);
-            $newCart->Addcart($product,$id);
+            $newCart->Addcart($product,$id);    
             $req->session()->put('Cart',$newCart);
-            //dd(Session('Cart')); 
             return view ('frontend.giohang.cart-item');
-           }
+        }
     }
     //xoa 
     public function deleteCart(Request $req, $id){     
@@ -41,6 +40,7 @@ class CartController extends Controller
             $newCart = new Cart( $oldcart);
             $newCart->deleteCart($id);
             if(Count($newCart->products)>0){
+
                 $req->session()->put('Cart',$newCart);
             }else{
                 $req->session()->forget('Cart');
@@ -53,6 +53,27 @@ class CartController extends Controller
     public function checkout (){
         return view ('frontend.giohang.checkout');
     }
+
+    //Xoa list cart
+      //xoa 
+      public function deletelistCart(Request $req, $id){     
+       
+        $oldcart = Session('Cart') ? Session('Cart') :null;
+        $newCart = new Cart( $oldcart);
+        $newCart->deleteCart($id);
+        if(Count($newCart->products)>0){
+            $req->session()->put('Cart',$newCart);
+        }else{
+            $req->session()->forget('Cart');
+        }
+        
+        return view ('frontend.giohang.list-cart');
+}
+
+//Dat hang thanh cong
+   public function dathangthanhcong(){
+     return view ('frontend.giohang.dathangthanhcong');
+   }
 
     
 }

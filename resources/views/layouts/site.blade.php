@@ -117,19 +117,26 @@
                                 </ul>
                             </div>
                         </div>
+                        @php
+                            $tt =  0;
+                             if(Session::has("Cart")!= null)
+                             {
+                                $tt = Session::get("Cart")->tongsoluong;
+                             }
+                        @endphp
                         <div class="widgets-wrap float-md-left mt-3 mr-3">
                             <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                 <div class=" mt-1 ">
                                     <i class="fa fa-shopping-cart"></i>
                                     Giỏ hàng
-                                    @if (Session::has("Cart")!= null)
+                                    @if ($tt != null)
                                     <span id="total-quanty-show"
                                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
-                                        {{ Session::get("Cart")->tongsoluong }}
+                                        {{ $tt }}
                                         @else
                                         <span id="total-quanty-show"
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
-                                            0
+                                            {{ $tt }}
                                             @endif
                                 </div>
                             </a>
@@ -292,6 +299,22 @@
             $("#change-item-cart").html(response);
             $("#total-quanty-show").text($("#total-quanty-cart").val());
 
+        }
+    </script>
+    <script>
+        function deletelistCart(id) {
+            $.ajax({
+                url: 'delete-list-Cart/' + id,
+                type: 'GET',
+            }).done(function (response) {
+                RenderListCart(response);
+                alertify.success('Xóa sản phẩm thành công');
+            });
+        }
+        function RenderListCart(response) {
+            $("#list-cart").empty();
+            $("#list-cart").html(response);
+    
         }
     </script>
     <!-- JavaScript -->

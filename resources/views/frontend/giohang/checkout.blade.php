@@ -36,7 +36,7 @@
         </div>
        </div>
        <div class="card-body">
-        <a type="submit" href="#" class="btn btn-primary float-md-right">Đặt hàng</a>
+        <a type="submit" href="{{route('giohang.dathangthanhcog')}}" class="btn btn-primary float-md-right">Đặt hàng</a>
         <a href="{{ route('frontend.home') }}" class="btn btn-light"> <i
                 class="fa fa-chevron-left"></i>Tiếp tục mua sắm </a>
     </div>

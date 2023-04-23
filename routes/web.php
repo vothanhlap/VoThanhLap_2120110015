@@ -36,13 +36,12 @@ use App\Http\Controllers\backend\CustomerController;
     //dich vu
     Route::get('dich-vu', [DichvuController::class, 'index'])->name('dichvu.index');
     // san pham
-    Route::get('tat-ca-san-pham', [SiteController::class, 'tatcasanpham'])->name('frontend.tatcasanpham');
-    //dang nhap tai khoan khach hang
-    Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
-    Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('login.xulydangnhap');
-    //dang ky
-    Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
-    Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
+    Route::get('tat-ca-san-pham', [SiteController::class, 'tatcasanpham'])->name('frontend.tatcasanpham'); 
+    // //gio hang
+    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
+    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
+    Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
+    Route::get('delete-list-Cart/{id}', [CartController::class, 'deletelistCart']);
     //dang xuat
     Route::post('dang-nhap', [DangnhapController::class, 'logout'])->name('logout');
     // chuc nang khac cua khach hang
@@ -51,14 +50,20 @@ use App\Http\Controllers\backend\CustomerController;
     Route::get('yeu-cau-mat-khau-moi', [DangnhapController::class,'postkhoiphucmatkhau'])->name('login.postkhoiphucmatkhau');
     Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'xulyyeucaumatkhaumoi'])->name('login.xulyyeucaumatkhaumoi');
     Route::post('xu-ly-yeu-cau-mat-khau-moi/{customer}', [DangnhapController::class,'postxulyyeucaumatkhaumoi'])->name('login.postxulyyeucaumatkhaumoi');
-    // //gio hang
-    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
-    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
-    Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
+     
+    // //khai bao route cho trang nguoi dung
+    route::group(['prefix'=>'thanh-toan','middleware'=>'LoginCus'] ,function () {
+    //dang nhap tai khoan khach hang
+    Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
+    Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('login.xulydangnhap');
+    //dang ky
+    Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
+    Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
     //thanh toan
     Route::get('thanh-toan', [CartController::class, 'checkout'])->name('giohang.checkout');
-
-
+    // Dat hang thanh cong
+    Route::get('dat-hang-thanh-cong', [CartController::class, 'dathangthanhcong'])->name('giohang.dathangthanhcog');
+        });
 
 
 
@@ -194,7 +199,6 @@ use App\Http\Controllers\backend\CustomerController;
         route::get('restore/{orderdetail}', [OrderdetailController::class, 'restore'])->name('orderdetail.restore');
         route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
    });
-
     //orderdetail
     Route::resource('customer', CustomerController::class);
         
@@ -204,14 +208,9 @@ use App\Http\Controllers\backend\CustomerController;
         route::get('restore/{customer}', [CustomerController::class, 'restore'])->name('customer.restore');
         route::get('destroy/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
    });
-
 });
-Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');
+// Slug
+    Route::get('{slug}', [SiteController::class, 'index'])->name('frontend.slug');
 
-  // //gio hang
-    Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
-    Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
-        // //khai bao route cho trang nguoi dung
-        // route::group(['prefix'=>'thanh-toan','middleware'=>'LoginCus'] ,function () {
-             
-        // });
+  
+        
