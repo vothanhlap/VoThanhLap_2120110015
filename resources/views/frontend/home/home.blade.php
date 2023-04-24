@@ -22,11 +22,15 @@
         </main> <!-- card.// -->
     </section>
     <!-- ========================= SECTION MAIN END// ========================= -->
-    <x-nav-sale />
+    <div class="container">
+        <x-nav-sale />
+    </div>
     <!-- ============================  FILTER TOP  ================================= -->
 
     <!-- =============== SECTION REGION =============== -->
-    <x-brand-content />
+    <div class="container">
+        <x-brand-content />
+    </div>
     <!-- =============== SECTION REGION .//END =============== -->
     <div class="container">
         @foreach ($category_home as $catrow)
@@ -94,10 +98,11 @@
             @endforeach
         </div>
     </div>
-
-    <article class="my-4">
-        @foreach ($slider as $item)
-            <img src="{{ asset('images/slider/' . $item->image) }}" class="w-100" style="height: 120px">
-        @endforeach
-    </article>
+    <div class="container">
+        <article class="my-4">
+            @foreach ($slider as $item)
+                <img src="{{ asset('images/slider/' . $item->image) }}" class="w-100" style="height: 120px">
+            @endforeach
+        </article>
+    </div>
 @endsection

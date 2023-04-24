@@ -1,5 +1,5 @@
 @extends('layouts.site')
-@section('title', 'Chi tiet san pham')
+@section('title', $product->name)
 @section('content')
 @php
 $arr_image = $product->productimg;
@@ -122,7 +122,7 @@ $image = $arr_image[0]['image'];
                             @includeIf('frontend.product.tab_productdetail') </div>
                         <div class="tab-pane fade border-right border-bottom border-left p-3 " id="productimage"
                             role="tabpanel" aria-labelledby="productimage-tab">
-                            @includeIf('frontend.product.tab_productmetakey')
+                            @includeIf('frontend.product.tab_productmetadesc')
                         </div>
                         <div class="tab-pane fade border-right border-bottom border-left p-3" id="productattribute"
                             role="tabpanel" aria-labelledby="productattribute-tab">

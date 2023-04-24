@@ -13,9 +13,9 @@
                                 <th class="text-center" width="20">#</th>
                                 <th class="text-center">TẤT CẢ SẢN PHẨM</th>
                                 <th class="text-center" width="120"> ĐƠN GIÁ</th>
-                                <th class="text-center" width="120">SỐ LƯỢNG</th>
+                                <th class="text-center" width="80">SỐ LƯỢNG</th>
                                 <th class="text-center" width="120">THÀNH TIỀN</th>
-                                <th class="text-center" width="120">CHỨC NĂNG</th>
+                                <th class="text-center" width="150">CHỨC NĂNG</th>
 
                             </tr>
                         </thead>
@@ -48,11 +48,11 @@
                                         <var class="price">{{ number_format($item['price'])}}</var>
                                     </div>
                                 </td>
-                                <td class="text-center align-middle">
-
+                                <td class="align-middle">
                                     <a class="btn btn-light" onclick="deletelistCart({{$item['productinfo']->id}});">
-                                        Xóa</a>
-
+                                        Xoá</a>
+                                        <a class="btn btn-light" onclick="">
+                                            Sửa</a>
                                 </td>
 
                             </tr>

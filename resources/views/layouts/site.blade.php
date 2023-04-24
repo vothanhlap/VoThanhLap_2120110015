@@ -73,6 +73,39 @@
     .cart-summary {
         float: right;
     }
+    .overlays {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    border-radius: 7px;
+    cursor: pointer;
+    background: linear-gradient(rgba(219, 211, 211, 0.5), #ace9e3);
+    opacity: 0;
+    transition: 1s;
+}
+.card-product-grid:hover .overlays {
+    opacity: 1;
+}
+.servece-desc {
+    width: 80%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: 1s;
+
+}
+.servece-desc p {
+    font-size: 14px;
+}
+
+.card-product-grid:hover .servece-desc {
+
+    bottom: 30%;
+    opacity: 1;
+}
 </style>
 
 <body>

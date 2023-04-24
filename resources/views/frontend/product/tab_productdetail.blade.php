@@ -1,3 +1,3 @@
 <ul class="list-check">
-    <li> {{ $product->detail }}</li>
+    <li> {!! $product->detail !!}</li>
 </ul>

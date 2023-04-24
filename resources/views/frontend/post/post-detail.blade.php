@@ -6,14 +6,7 @@
         $image = 'hinh.png';
         if (count($arr_image) > 0) {
             $image = $arr_image[0]['image'];
-        }
-        $text = html_entity_decode(trim(strip_tags($post->metadesc)),ENT_HTML5 ,'UTF-8');
-        $text1 = html_entity_decode($post->detail);
-        $caccauhoanchinh1 = trim(strip_tags($text1));
-        $text2 = html_entity_decode($post->metakey);
-        $caccauhoanchinh2 = trim(strip_tags($text2));
-        //$post->metadesc,ENT_HTML5,'UTF-8'
-        // echo $caccauhoanchinh;
+        }     
     @endphp
 
     <section>
@@ -30,17 +23,17 @@
                         </span>
                     </div>
                     <div class=" mt-4 mx-2 text-justify" style="font-size: 25px;">
-                        <p>{{$text}}</p> 
+                        <p>{!!$post->metadesc!!}</p> 
                         <img src="{{ asset('images/post/' . $image) }}" class="img-fluid "
                         alt="{{ $image }}"> <br>
                         
-                        {{ $caccauhoanchinh1 }} <br>
+                        {!!$post->detail!!} <br>
                     </div>
                     {{-- metakey -tu khoa --}}
                     <div>
                         <span> <i class="fas fa-tags text-danger"></i></span>
                         <span class="badge bg-primary mb-4 mt-2">
-                            {{ $caccauhoanchinh2 }}
+                            {!!$post->metakey!!}
                         </span>
                     </div>
                  
