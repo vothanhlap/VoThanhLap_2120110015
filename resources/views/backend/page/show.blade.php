@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết trang đơn')
+@section('title', 'Chi tiết trang đơn'.'-'.$page->title)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
@@ -56,11 +56,11 @@
                         </tr>
                         <tr>
                             <td>Từ khóa</td>
-                            <td>{{ $page->metakey }}</td>
+                            <td>{!!$page->metakey!!}</td>
                         </tr>
                         <tr>
                             <td>Mô tả</td>
-                            <td>{{ $page->metadesc }}</td>
+                            <td>{!!$page->metadesc !!}</td>
                         </tr>
                         <tr>
                             <td> Người tạo   </td>

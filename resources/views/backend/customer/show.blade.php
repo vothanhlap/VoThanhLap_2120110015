@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Xem chi tiết khách hàng')
+@section('title','Chi tiết khách hàng'.'-'. $customer->fullname)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">

@@ -45,7 +45,7 @@
     <!-- /.navbar -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="{{ asset('Dashboall/Index') }}" class="brand-link">
+        <a href="{{ route('admin.dashboard') }}" class="brand-link">
             <img src="{{ asset('public/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                 class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light"> QUẢN LÝ SHOP </span>
@@ -60,7 +60,7 @@
                         alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="{{ asset('Dashboall/Index" class="d-block') }}"> {{ $user_name }}</a>
+                    <a href="{{ route('admin.dashboard')}}" class="d-block"> {{ $user_name }}</a>
                 </div>
             </div>
             <nav class="mt-2">
@@ -206,6 +206,7 @@
                     </li>
                     <li class="nav-header">Thông tin</li>
                     <li class="nav-item">
+                        
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-user text-warning"></i>
                             <p>Hồ sơ</p>

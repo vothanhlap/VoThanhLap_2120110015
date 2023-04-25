@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết chủ đề bài viết')
+@section('title', 'Chi tiết chủ đề '.'-'.$topic->title)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
@@ -37,46 +37,46 @@
                             <th style="width:200px;color:red;text-align:center">Tiêu Đề</th>
                             <th style="color:green;text-align:center">Nội Dung</th>
                         </tr>
-                        <td>Hình ảnh</td>
-                            <td>
+                        <td class=" align-middle">Hình ảnh</td>
+                            <td class=" align-middle">
                                 <img style="width:80px" class="img-fluid" src="{{ asset('images/topic/' . $topic->image) }}"
                                     alt="{{ $topic->image }}">
                             </td>
                         <tr>
-                            <td>Tên chủ đề</td>
-                            <td>{{ $topic->title }}</td>
+                            <td class=" align-middle">Tên chủ đề</td>
+                            <td class=" align-middle">{{ $topic->title }}</td>
                         </tr>
                         <tr>
-                            <td>Slug</td>
-                            <td>{{ $topic->slug }}</td>
+                            <td class=" align-middle">Slug</td>
+                            <td class=" align-middle">{{ $topic->slug }}</td>
+                        </tr>
+                        <tr >
+                            <td class=" align-middle">Danh mục cha</td>
+                            <td class=" align-middle">{{ $topic->parent_id }}</td>
                         </tr>
                         <tr>
-                            <td>Danh mục cha</td>
-                            <td>{{ $topic->parent_id }}</td>
+                            <td class=" align-middle">Từ khóa</td>
+                            <td class=" align-middle" >{!!$topic->metakey!!}</td>
                         </tr>
                         <tr>
-                            <td>Từ khóa</td>
-                            <td>{{ $topic->metakey }}</td>
+                            <td class=" align-middle">Mô tả</td>
+                            <td class=" align-middle">{!!$topic->metadesc!!}</td>
                         </tr>
                         <tr>
-                            <td>Mô tả</td>
-                            <td>{{ $topic->metadesc }}</td>
+                            <td class=" align-middle"> Người tạo   </td>
+                            <td class=" align-middle">{{ $topic->created_by }}</td>
                         </tr>
                         <tr>
-                            <td> Người tạo   </td>
-                            <td>{{ $topic->created_by }}</td>
+                            <td class=" align-middle">Người cập nhật</td>
+                            <td class=" align-middle">{{ $topic->updated_by }}</td>
                         </tr>
                         <tr>
-                            <td>Người cập nhật</td>
-                            <td>{{ $topic->updated_by }}</td>
+                            <td class=" align-middle">Ngày tạo</td>
+                            <td class=" align-middle">{{ $topic->created_at }}</td>
                         </tr>
                         <tr>
-                            <td>Ngày tạo</td>
-                            <td>{{ $topic->created_at }}</td>
-                        </tr>
-                        <tr>
-                            <td>Ngày cập nhật</td>
-                            <td>{{ $topic->updated_at }}</td>
+                            <td class=" align-middle">Ngày cập nhật</td>
+                            <td class=" align-middle">{{ $topic->updated_at }}</td>
                         </tr>
                     </table>
                 </div>

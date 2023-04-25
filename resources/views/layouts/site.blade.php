@@ -102,10 +102,25 @@
 }
 
 .card-product-grid:hover .servece-desc {
-
     bottom: 30%;
     opacity: 1;
 }
+/* home product */
+.over {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    border-radius: 7px;
+    cursor: pointer;
+    background: linear-gradient(rgba(219, 211, 211, 0.5), #ace9e3);
+    opacity: 0;
+    transition: 1s;
+}
+.over:hover  {
+    opacity: 1;
+}
+
 </style>
 
 <body>
@@ -114,7 +129,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-3 col-md-12">
-                        <a href="#" class="brand-wrap">
+                        <a href="{{route('frontend.home')}}" class="brand-wrap">
                             <img style="width: 120px" class="logo" src="{{ asset('public/images/logo.png') }}">
                         </a> <!-- brand-wrap.// -->
                     </div>
@@ -298,7 +313,17 @@
     <!-- ========================= FOOTER ========================= -->
     <footer class="section-footer bg-secondary">
         <div class="container">
-            <x-footer-menu />
+            <div class="row">
+                <div class="col-md-3">
+                  <div class="footer-top padding-y-lg text-white">
+                    <h5>Thông tin về Shop</h5>
+                    
+                  </div>
+                </div>
+                <div class="col-md-9">
+                    <x-footer-menu />
+                </div>
+            </div>
         </div>
         <section class="footer-bottom text-center">
             <p class="text-white">Trang web chủ sở hữu Laptopvui.net</p>

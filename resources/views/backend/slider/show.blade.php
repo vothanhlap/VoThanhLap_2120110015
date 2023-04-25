@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết slider')
-@extends('backend.dashboard.menuadmin')
+@section('title', 'Chi tiết slider'.'-'.$slider->name)
+@extends('backend.dashboard.menuadmin') class=" align-middle"
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -38,45 +38,45 @@
                             <th style="color:green;text-align:center">Nội Dung</th>
                         </tr>
                         <td>Hình ảnh</td>
-                            <td>
+                            <td class=" align-middle">
                                 <img style="width:80px" class="img-fluid" src="{{ asset('images/slider/' . $slider->image) }}"
                                     alt="{{ $slider->image }}">
                             </td>
                         <tr>
-                            <td>Tên Slider</td>
-                            <td>{{ $slider->name }}</td>
+                            <td class=" align-middle">Tên Slider</td>
+                            <td class=" align-middle">{{ $slider->name }}</td>
                         </tr>
                         <tr>
-                            <td>Slug</td>
-                            <td>{{ $slider->slug }}</td>
+                            <td class=" align-middle">Slug</td>
+                            <td class=" align-middle">{{ $slider->slug }}</td>
                         </tr>
                         <tr>
-                            <td>Sắp xếp</td>
-                            <td>{{ $slider->sort_order }}</td>
+                            <td class=" align-middle">Sắp xếp</td>
+                            <td class=" align-middle">{{ $slider->sort_order }}</td>
                         </tr>
                         <tr>
-                            <td>Link</td>
-                            <td>{{ $slider->link }}</td>
+                            <td class=" align-middle">Link</td>
+                            <td class=" align-middle">{{ $slider->link }}</td>
                         </tr>
                         <tr>
-                            <td>Posistion</td>
-                            <td>{{ $slider->posistion }}</td>
+                            <td class=" align-middle">Posistion</td>
+                            <td class=" align-middle">{{ $slider->posistion }}</td>
                         </tr>
                         <tr>
-                            <td> Người tạo   </td>
-                            <td>{{ $slider->created_by }}</td>
+                            <td class=" align-middle"> Người tạo   </td>
+                            <td class=" align-middle">{{ $slider->created_by }}</td>
                         </tr>
                         <tr>
-                            <td>Người cập nhật</td>
-                            <td>{{ $slider->updated_by }}</td>
+                            <td class=" align-middle">Người cập nhật</td>
+                            <td class=" align-middle">{{ $slider->updated_by }}</td>
                         </tr>
                         <tr>
-                            <td>Ngày tạo</td>
-                            <td>{{ $slider->created_at }}</td>
+                            <td class=" align-middle">Ngày tạo</td>
+                            <td class=" align-middle">{{ $slider->created_at }}</td>
                         </tr>
                         <tr>
-                            <td>Ngày cập nhật</td>
-                            <td>{{ $slider->updated_at }}</td>
+                            <td class=" align-middle">Ngày cập nhật</td>
+                            <td class=" align-middle">{{ $slider->updated_at }}</td>
                         </tr>
                     </table>
                 </div>

@@ -39,23 +39,23 @@
                         </tr>
                        
                         <tr>
-                            <td>Tên</td>
-                            <td>{{ $user->name}}</td>
+                            <td class=" align-middle">Tên</td>
+                            <td class=" align-middle">{{ $user->name}}</td>
                         </tr>
                         <tr>
-                            <td>User</td>
-                            <td>{{ $user->username }}</td>
+                            <td class=" align-middle">User</td>
+                            <td class=" align-middle">{{ $user->username }}</td>
                         </tr>
                         <tr>
-                            <td>Email</td>
+                            <td class=" align-middle">Email</td>
                             <td>{{ $user->email }}</td>
                         </tr>
                         <tr>
-                            <td>Số điện thoại</td>
-                            <td>{{ $user->phone }}</td>
+                            <td class=" align-middle">Số điện thoại</td>
+                            <td class=" align-middle">{{ $user->phone }}</td>
                         </tr>
                         <tr>
-                            <td>Giới tính</td>
+                            <td class=" align-middle">Giới tính</td>
                             <td>
                                 @if (( $user->geder)==1)
                                     Nam
@@ -65,20 +65,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td> Người tạo   </td>
-                            <td>{{ $user->created_by }}</td>
+                            <td class=" align-middle"> Người tạo   </td>
+                            <td class=" align-middle">{{ $user->created_by }}</td>
                         </tr>
                         <tr>
-                            <td>Người cập nhật</td>
-                            <td>{{ $user->updated_by }}</td>
+                            <td class=" align-middle">Người cập nhật</td>
+                            <td class=" align-middle">{{ $user->updated_by }}</td>
                         </tr>
                         <tr>
-                            <td>Ngày tạo</td>
-                            <td>{{ $user->created_at }}</td>
+                            <td class=" align-middle">Ngày tạo</td>
+                            <td class=" align-middle">{{ $user->created_at }}</td>
                         </tr>
                         <tr>
-                            <td>Ngày cập nhật</td>
-                            <td>{{ $user->updated_at }}</td>
+                            <td class=" align-middle">Ngày cập nhật</td>
+                            <td class=" align-middle">{{ $user->updated_at }}</td>
                         </tr>
                     </table>
                 </div>

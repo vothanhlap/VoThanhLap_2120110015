@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết menu')
+@section('title', 'Chi tiết menu'.'-'.$menu->name)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">

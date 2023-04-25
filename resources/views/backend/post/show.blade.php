@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết bài viết')
+@section('title', 'Chi tiết bài viết'.'-'.$post->title)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
@@ -46,41 +46,41 @@
                             <th style="color:green;text-align:center">Nội Dung</th>
                         </tr>
                         <td>Hình ảnh</td>
-                            <td>
+                            <td class=" align-middle">
                                 <img style="width:80px" class="img-fluid" src="{{ asset('images/post/' . $image) }}"
                                     alt="{{ $image }}">
                             </td>
                         <tr>
-                            <td>Tên bài viết</td>
-                            <td>{{ $post->title }}</td>
+                            <td class=" align-middle">Tên bài viết</td>
+                            <td class=" align-middle">{{ $post->title }}</td>
                         </tr>
                         <tr>
-                            <td>Slug</td>
-                            <td>{{ $post->slug }}</td>
+                            <td class=" align-middle">Slug</td>
+                            <td class=" align-middle">{{ $post->slug }}</td>
                         </tr>
                         <tr>
-                            <td>Từ khóa</td>
-                            <td>{{ $post->metakey }}</td>
+                            <td class=" align-middle">Từ khóa</td>
+                            <td class=" align-middle">{!!$post->metakey!!}</td>
                         </tr>
                         <tr>
-                            <td>Mô tả</td>
-                            <td>{{ $post->metadesc }}</td>
+                            <td class=" align-middle">Mô tả</td>
+                            <td class=" align-middle">{!!$post->metadesc!!}</td>
                         </tr>
                         <tr>
-                            <td> Người tạo   </td>
-                            <td>{{ $post->created_by }}</td>
+                            <td class=" align-middle"> Người tạo   </td>
+                            <td class=" align-middle">{{ $post->created_by }}</td>
                         </tr>
                         <tr>
-                            <td>Người cập nhật</td>
-                            <td>{{ $post->updated_by }}</td>
+                            <td class=" align-middle">Người cập nhật</td>
+                            <td class=" align-middle">{{ $post->updated_by }}</td>
                         </tr>
                         <tr>
-                            <td>Ngày tạo</td>
-                            <td>{{ $post->created_at }}</td>
+                            <td class=" align-middle">Ngày tạo</td>
+                            <td class=" align-middle">{{ $post->created_at }}</td>
                         </tr>
                         <tr>
-                            <td>Ngày cập nhật</td>
-                            <td>{{ $post->updated_at }}</td>
+                            <td class=" align-middle">Ngày cập nhật</td>
+                            <td class=" align-middle">{{ $post->updated_at }}</td>
                         </tr>
                     </table>
                 </div>

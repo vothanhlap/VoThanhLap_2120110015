@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết thương hiệu sản phẩm')
+@section('title', 'Chi tiết thương hiệu'.'-'.$brand->name)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
@@ -56,11 +56,11 @@
                         </tr>
                         <tr>
                             <td>Từ khóa</td>
-                            <td>{{ $brand->metakey }}</td>
+                            <td>{!!$brand->metakey!!}</td>
                         </tr>
                         <tr>
                             <td>Mô tả</td>
-                            <td>{{ $brand->metadesc }}</td>
+                            <td>{!!$brand->metadesc!!}</td>
                         </tr>
                         <tr>
                             <td>Người tạo</td>

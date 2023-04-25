@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết danh mục sản phẩm')
+@section('title', 'Chi tiết loại sản phẩm'.'-'.$category->name)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
@@ -56,11 +56,11 @@
                         </tr>
                         <tr>
                             <td>Từ khóa</td>
-                            <td>{{ $category->metakey }}</td>
+                            <td>{!!$category->metakey!!}</td>
                         </tr>
                         <tr>
                             <td>Mô tả</td>
-                            <td>{{ $category->metadesc }}</td>
+                            <td>{!!$category->metadesc!!}</td>
                         </tr>
                         <tr>
                             <td> Người tạo   </td>

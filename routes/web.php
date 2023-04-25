@@ -65,16 +65,6 @@ use App\Http\Controllers\backend\CustomerController;
     Route::get('dat-hang-thanh-cong', [CartController::class, 'dathangthanhcong'])->name('giohang.dathangthanhcog');
         });
 
-
-
-
-
-
-
-
-
-
-
         // khai bao route dang nhap - dang xuat
         route::get('login', [AuthController::class, 'getlogin'])->name('login');
         Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
@@ -200,8 +190,7 @@ use App\Http\Controllers\backend\CustomerController;
         route::get('destroy/{orderdetail}', [OrderdetailController::class, 'destroy'])->name('orderdetail.destroy');
    });
     //orderdetail
-    Route::resource('customer', CustomerController::class);
-        
+    Route::resource('customer', CustomerController::class);      
         route::prefix('customer')->group(function () {
         route::get('status/{customer}', [CustomerController::class, 'status'])->name('customer.status');
         route::get('delete/{customer}', [CustomerController::class, 'delete'])->name('customer.delete');

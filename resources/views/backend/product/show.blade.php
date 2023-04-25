@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết sản phẩm')
+@section('title', 'Chi tiết sản phẩm'.'-'.$product->name)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
@@ -59,20 +59,20 @@
                             <th style="color:green;text-align:center">Nội Dung</th>
                         </tr>
                         <td class="text-start align-middle">Hình ảnh</td>
-                        <td>
+                        <td  class=" align-middle">
                             <img style="width:80px" class="img-fluid" src="{{ asset('images/product/' . $image) }}"
                                 alt="{{ $product->image }}">
                         </td>
                         <tr>
-                            <td>Tên sản phẩm</td>
-                            <td>{{ $product->name }}</td>
+                            <td  class=" align-middle">Tên sản phẩm</td>
+                            <td  class=" align-middle">{{ $product->name }}</td>
                         </tr>
                         <tr>
-                            <td>Slug</td>
-                            <td>{{ $product->slug }}</td>
+                            <td  class=" align-middle">Slug</td>
+                            <td  class=" align-middle">{{ $product->slug }}</td>
                         </tr>
                         <tr>
-                            <td>Loại sản phẩm</td>
+                            <td  class=" align-middle">Loại sản phẩm</td>
                             <td class="text-lowercase">{{ $cat }}</td>
                         </tr>
                         <tr>
@@ -80,20 +80,20 @@
                             <td class="text-lowercase">{{ $bra }}</td>
                         </tr>
                         <tr>
-                            <td>Từ khóa</td>
-                            <td>{{ $product->metakey }}</td>
+                            <td  class=" align-middle">Từ khóa</td>
+                            <td  class=" align-middle">{!!$product->metakey!!}</td>
                         </tr>
                         <tr>
-                            <td>Mô tả</td>
-                            <td>{{ $product->metadesc }}</td>
+                            <td  class=" align-middle">Mô tả</td>
+                            <td  class=" align-middle">{!!$product->metadesc !!}</td>
                         </tr>
                         <tr>
-                            <td>Chi tiết sản phẩm</td>
-                            <td>{{ $product->detail }}</td>
+                            <td  class=" align-middle">Chi tiết sản phẩm</td>
+                            <td  class=" align-middle">{!!$product->detail!!}</td>
                         </tr>
                         <tr>
-                            <td>Gía bán</td>
-                            <td>  {{number_format($product->price_buy, 0)}} VNĐ</td>
+                            <td  class=" align-middle">Gía bán</td>
+                            <td  class=" align-middle">  {{number_format($product->price_buy, 0)}} VNĐ</td>
                         </tr>
                         <tr>
                         <tr>

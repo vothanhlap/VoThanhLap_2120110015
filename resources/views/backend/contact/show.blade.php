@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Chi tiết liên hệ')
+@section('title', $contact->name)
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <div class="content-wrapper">
