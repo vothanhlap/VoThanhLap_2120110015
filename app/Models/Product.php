@@ -43,5 +43,10 @@ class Product extends Model
     {
         return $this->hasOne(ProductSale::class, 'product_id','id');
     }
+
+    public function pricesale(): hasOne
+    {
+        return $this->hasOne(ProductSale::class, 'product_id','id');
+    }
     
 }

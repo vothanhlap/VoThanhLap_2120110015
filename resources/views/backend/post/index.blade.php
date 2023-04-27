@@ -49,23 +49,16 @@
                     </thead>
                     <tbody>
                         @foreach ($list_post as $post)
-                        @php
-                        $arr_image = $post->postimg;
-                        $image = 'hinh.png';
-                        if (count($arr_image) > 0) {
-                            $image = $arr_image[1]['image'];
-                        }
-                       @endphp
                             <tr>
                                 <td  class="text-center align-middle">
                                     <input type="checkbox">
                                 </td>
                                 <td class="text-center align-middle">
-                                    <img style="width:80px" class="img-fluid" src="{{ asset('images/post/' . $image) }}"
-                                        alt="{{ $image }}">
+                                    <img style="width:80px" class="img-fluid" src="{{ asset('images/post/' .$post->image) }}"
+                                        alt="{{ $post->image }}">
                                 </td>
                                 <td class=" align-middle">{{ $post->title }}</td>
-                                <td class="text-center align-middle">{{ $post->chude }}</td>
+                                <td class=" align-middle">{{ $post->chude }}</td>
                                 <td class="text-center align-middle">{{ $post->created_at }}</td>
                                 <td class="text-center align-middle">
                                     @if ($post->status == 1)

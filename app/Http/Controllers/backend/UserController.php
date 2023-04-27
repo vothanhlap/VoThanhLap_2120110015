@@ -114,8 +114,14 @@ class UserController extends Controller
             $user->status = $request->status;
             $user->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
             $user->updated_by = $user_name;
-            $user->save();
-            return redirect()->route('user.index')->with('message', ['type' => 'success', 'msg' => 'Sửa mẫu tin thành công !']);
+            if($user->save()){
+                return redirect()->route('user.index')->with('message', ['type' => 'success', 'msg' => 'Sửa mẫu tin thành công !']);
+
+            }else
+            {
+                return redirect()->route('user.index')->with('message', ['type' => 'danger', 'msg' => 'Sửa mẫu tin không  thành công !']);
+
+            }
         }
         
     }

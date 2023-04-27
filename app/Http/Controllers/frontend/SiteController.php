@@ -196,9 +196,9 @@ class SiteController extends Controller
             ['top_id','=',$row_topic->id]
            ]; 
          $post_list = Post::where($args)->orderBy('created_at','desc')
-         ->paginate(9);
-
-      return view ('frontend.post.post-topic',compact('row_topic','post_list')); 
+         ->paginate(4);
+         $post_all = Post::where('status','=','1')->orderBy('created_at','desc')->get();   
+      return view ('frontend.post.post-topic',compact('post_all','row_topic','post_list')); 
     }
      // Post_page
         public function post_page($slug)
@@ -216,8 +216,10 @@ class SiteController extends Controller
            
            ]; 
          $post_list = Post::where($args)->orderBy('created_at','desc')
-         ->get();    
-         return view('frontend.post.post_page',compact('page','post_list'));
+         ->get(); 
+         $post_all = Post::All()
+         ->orderBy('created_at','desc');     
+         return view('frontend.post.post_page',compact('post_all','page','post_list'));
         }
     //Lỗi 404
         public function error_404($slug){
@@ -234,8 +236,7 @@ class SiteController extends Controller
 
     // Tất cả sản phẩm
     public function tatcasanpham(){
-        $product = Product::all();
-        
+        $product = Product::all(); 
       // var_dump($product);
       return view('frontend.product.all_product',compact('product'));
     }

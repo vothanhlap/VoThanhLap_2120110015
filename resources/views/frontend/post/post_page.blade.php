@@ -10,11 +10,11 @@
                     <h1 class="text-danger mt-2" style="text-transform: uppercase;">{{ $page->title }}</h1>
                     <span class="mx-2 mt-2">
                         <i class="far fa-calendar-alt"></i>
-                        {{ $page->created_at }}
+                        {!! date('d/m/Y', strtotime($page->created_at)) !!}
                     </span>
                     <span class="mx-2 mt-2"><i class="far fa-user"></i>{{ $page->created_by }}</span>
-                    <span class="mx-2 mt-2"><i class="far fa-eye"></i></span>
-                    <br>
+                    <span class="mx-2 mt-2"><i class="far fa-eye"></i>123</span>
+                    <hr>
                     <div class=" mt-4 mx-2 text-justify" style="font-size: 20px;">
                         <p>{!!$page->detail!!}</p>
 
@@ -40,8 +40,33 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    
+                <div class="col-md-3 mt-5">
+                    <h5  >TẤT CẢ BÀI VIẾT</h5>
+                    <div class="box-scroll ">
+                        <div class="row " >
+                           @foreach ($post_all as $item)
+                           @php
+                               $mo_ta = $item->title;
+                                $rut_gon = substr($mo_ta, 0, 80).'...';
+                           @endphp
+                              
+                              @php
+                              $arr_image = $item->postimg;
+                              $image = 'hinh.png';
+                              if (count($arr_image) > 0) {
+                              $image = $arr_image[0]['image'];
+                              }
+                              @endphp
+                           <div class="col-md-4 mb-4 mt-2 ">
+                            <img  src="{{ asset('images/post/' . $image) }}" class="card-img-top"
+                                    alt="{{ $image }}">
+                           </div>
+                           <div class="col-md-8 mb-2 " >
+                            <a href="{{route('frontend.slug',['slug'=>$item->slug])}}">{!!$rut_gon!!}</a>
+                           </div>
+                           @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

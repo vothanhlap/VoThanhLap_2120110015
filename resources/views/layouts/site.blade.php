@@ -120,6 +120,12 @@
 .over:hover  {
     opacity: 1;
 }
+.box-scroll{
+    width: 300px;
+    height: 350px;
+    overflow-y: auto;
+    padding: 0px 10px;  
+}
 
 </style>
 

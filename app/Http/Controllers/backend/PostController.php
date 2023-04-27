@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Topic;
 use App\Models\Link;
-use App\Models\PostImage;
+use Illuminate\Support\Facades\File;
 use App\Models\PostComment;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
@@ -73,26 +73,18 @@ class PostController extends Controller
         $post->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $post->created_by = $user_name;
         $post->status = $request->status;
-        if ($post->save()) {
             //upload image nhieu anh
-            if ($request->has('image')) {
+            if ($request->has('image')) 
+            {
                 $path_dir = "images/post/";
-                $array_file =  $request->file('image');
-                $i = 1;
-                foreach ($array_file as $file) {
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = $post->slug . "-" . $i . '.' . $extension;
-                    $file->move($path_dir, $filename);
-                    //echo $filename;
-                    $post_image = new PostImage();
-                    $post_image->post_id = $post->id;
-                    $post_image->image = $filename;
-                    $post_image->save();
-                    $i++;
-                }  
+                $file =  $request->file('image');            
+                $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
+                $filename = $post->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+                $file->move($path_dir, $filename);
+                $post->image = $filename;
+                $post->save();
                 return redirect()->route('post.index')->with('message', ['type' => 'success', 'msg' => 'Thêm bài viết thành công!']);
             }   
-        }
       return redirect()->route('post.index')->with('message', ['type' => 'danger', 'msg' => 'Thêm bài viết không thành công!']);
     }
 
@@ -159,31 +151,34 @@ class PostController extends Controller
         $post->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
         $post->updated_by = $user_name;
         $post->status = $request->status;
-        if ($post->save()) {
-            //upload image nhieu anh
-            if ($request->has('image')) {
-                $path_dir = "images/post/";
-                if (File::exists(($path_dir . $array_file))) {
-                    File::delete(($path_dir . $array_file));
-                }
-                $array_file =  $request->file('image');
-                $i = 1;
-                foreach ($array_file as $file) {
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = $post->slug . "-" . $i . '.' . $extension;
-                    $file->move($path_dir, $filename);
-                    //echo $filename;
-                    $post_image = new PostImage();
-                    $post_image->post_id = $post->id;
-                    $post_image->image = $filename;
-                    $post_image->save();
-                    $i++;
-                }       
-            }   
-            return redirect()->route('post.index')->with('message', ['type' => 'success', 'msg' => 'Cập nhật bài viết thành công!']);
+         // Upload file
+         if ($request->has('image')) 
+        {
+            $path_dir = "images/post/";
+            if (File::exists(($path_dir . $post->image))) 
+            {
+                File::delete(($path_dir . $post->image));
+            }
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
+            $filename = $post->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+            $file->move($path_dir, $filename);
+            $post->image = $filename;
+             //end upload file
         }
-        return redirect()->route('post.index')->with('message', ['type' => 'danger', 'msg' => 'Cập nhật bài viết không thành công!']);
+        if( $post->save()){
+            return redirect()->route('post.index')->with('message', ['type' => 'success', 'msg' => 'Cập nhật bài viết thành công!']);        
+
+        }else
+        {
+            return redirect()->route('post.index')->with('message', ['type' => 'danger', 'msg' => 'Cập nhật bài viết không thành công!']);        
+
+        }
     }
+           
+        
+    
+        
     /**
      * Remove the specified resource from storage.
      */
@@ -215,4 +210,24 @@ class PostController extends Controller
         $post->save();
         return redirect()->route('post.trash')->with('message', ['type' => 'success', 'msg' => 'Thay đổi trạng thái thành công!']);
     }
+
+     // Xóa hẳn
+     public function destroy(string $id)
+     {
+         $user_name = Auth::user()->name;
+         $post = post::find($id);
+         //thong tin hinh xoa
+         $path_dir = "images/post/";
+         $path_image_delete = $path_dir . $post->image;
+         if ($post == null) {
+             return redirect()->route('post.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
+         }
+         if ($post->delete()) {
+             //xoa hinh
+             if (File::exists($path_image_delete)) {
+                 File::delete($path_image_delete);
+             }
+         } 
+         return redirect()->route('post.index')->with('message', ['type' => 'success', 'msg' => 'Xóa mẫu tin thành công !']);
+     }
 }

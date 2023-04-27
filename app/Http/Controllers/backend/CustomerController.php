@@ -86,8 +86,11 @@ class CustomerController extends Controller
             $customer->status = $request->status;
             $customer->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
             $customer->updated_by = $user_name;
-            $customer->save();
-            return redirect()->route('customer.index')->with('message', ['type' => 'success', 'msg' => 'Sửa mẫu tin thành công !']);
+            if($customer->save()){
+                return redirect()->route('customer.index')->with('message', ['type' => 'success', 'msg' => 'Sửa mẫu tin thành công !']);
+
+            }
+            return redirect()->route('customer.index')->with('message', ['type' => 'danger', 'msg' => 'Sửa mẫu tin không thành công !']);
         }
         
     }

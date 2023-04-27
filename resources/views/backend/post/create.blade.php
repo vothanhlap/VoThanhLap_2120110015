@@ -82,7 +82,7 @@
                                 
                                 <div class="mb-3">
                                     <label for="image">Hình đại diện <span class="text-danger">(*)</span></label>
-                                    <input type="file" name="image[]" multiple value="{{ old('image') }}" id="image" class="form-control"  > 
+                                    <input type="file" name="image"  value="{{ old('image') }}" id="image" class="form-control"  > 
                                     @if ($errors->has('image'))
                                         <div class="text-danger">
                                             {{ $errors->first('image') }}

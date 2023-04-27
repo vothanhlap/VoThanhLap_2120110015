@@ -32,14 +32,7 @@
                 <!-- /.card-body -->
                 <div class="card-body">
                     @includeIf('backend.message_alert')
-                    @php
-                    $arr_image=$post->postimg;
-                    $image = 'hinh.png';
-                    if(count($arr_image)>0)
-                    {
-                      $image=$arr_image[0]['image'];
-                    }
-                @endphp
+                 
                     <table class="table table-bordered">
                         <tr>
                             <th style="width:200px;color:red;text-align:center">Tiêu Đề</th>
@@ -47,8 +40,8 @@
                         </tr>
                         <td>Hình ảnh</td>
                             <td class=" align-middle">
-                                <img style="width:80px" class="img-fluid" src="{{ asset('images/post/' . $image) }}"
-                                    alt="{{ $image }}">
+                                <img style="width:80px" class="img-fluid" src="{{ asset('images/post/' . $post->image) }}"
+                                    alt="{{ $post->image }}">
                             </td>
                         <tr>
                             <td class=" align-middle">Tên bài viết</td>
@@ -65,6 +58,10 @@
                         <tr>
                             <td class=" align-middle">Mô tả</td>
                             <td class=" align-middle">{!!$post->metadesc!!}</td>
+                        </tr>
+                        <tr>
+                            <td class=" align-middle">Chi tiết bài viết</td>
+                            <td class=" align-middle">{!!$post->detail  !!}</td>
                         </tr>
                         <tr>
                             <td class=" align-middle"> Người tạo   </td>

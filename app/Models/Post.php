@@ -14,8 +14,5 @@ class Post extends Model
     protected $table = 'vtl_post';
     public $timestamps = false;
 
-    public function postimg(): hasMany
-    {
-        return $this->hasMany(PostImage::class, 'post_id','id');
-    }
+    
 }
