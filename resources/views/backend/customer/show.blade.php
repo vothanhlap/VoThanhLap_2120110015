@@ -42,10 +42,7 @@
                             <td>Tên</td>
                             <td>{{ $customer->fullname}}</td>
                         </tr>
-                        <tr>
-                            <td>customer</td>
-                            <td>{{ $customer->username }}</td>
-                        </tr>
+                       
                         <tr>
                             <td>Email</td>
                             <td>{{ $customer->email }}</td>

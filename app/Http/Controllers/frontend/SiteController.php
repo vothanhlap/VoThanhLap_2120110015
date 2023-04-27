@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Topic;
 use App\Models\Slider;
+use App\Models\User;
 use Mail;
 
 class SiteController extends Controller
@@ -77,6 +78,13 @@ class SiteController extends Controller
     //trang chu
     public function home ()
     {
+        if(Auth::check())
+        {
+            view()->share('nguoidung', Auth::user());
+        }
+
+        // $user_name = Auth::user()->id;
+       
         $data = [
             ['status','=','1'],
         ];
@@ -87,8 +95,8 @@ class SiteController extends Controller
         $category_home =Category::where($data)->take(3)->get();
         $top_home =Topic::where($data)->take(3)->get();
         $slider =Slider::where($data1)->take(1)->get();
-        
-        return view ('frontend.home.home',compact('slider','category_home','top_home'));
+       
+        return view ('frontend.home.home',compact(  'slider','category_home','top_home'));
     }
      //loai san pham
      public function product_category ($slug)
@@ -180,7 +188,9 @@ class SiteController extends Controller
        ->orderBy('created_at','desc')
        ->take(4)
        ->get();
-      return view ('frontend.post.post-detail',compact('post','post_list'));
+       //var_dump($post_list);
+       $post_all = Post::where('status','=','1')->orderBy('created_at','desc')->get();
+      return view ('frontend.post.post-detail',compact('post','post_all','post_list'));
     }
     //chu đe bai viet
     public function post_topic($slug)
@@ -210,16 +220,16 @@ class SiteController extends Controller
                ]; 
           $page = Page::where($argc)->first();
           
-          $args =[
-            ['status','=','1'],
-            ['type','=','post'],
+        //   $args =[
+        //     ['status','=','1'],
+        //     ['type','=','post'],
            
-           ]; 
-         $post_list = Post::where($args)->orderBy('created_at','desc')
-         ->get(); 
-         $post_all = Post::All()
-         ->orderBy('created_at','desc');     
-         return view('frontend.post.post_page',compact('post_all','page','post_list'));
+        //    ]; 
+        //  $post_list = Post::where($args)->orderBy('created_at','desc')
+        //  ->get(); 
+        //  $post_all = Post::All()
+        //  ->orderBy('created_at','desc');     
+         return view('frontend.post.post_page',compact('page'));
         }
     //Lỗi 404
         public function error_404($slug){

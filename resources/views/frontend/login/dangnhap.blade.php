@@ -2,7 +2,7 @@
 @section('title', 'Đăng nhập')
 @section('content')
     <!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-conten padding-y" style="min-height:84vh">
+ <section class="section-conten padding-y" style="min-height:84vh">
 
     <!-- ============================ COMPONENT LOGIN   ================================= -->
         <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
@@ -29,7 +29,7 @@
               </div> <!-- form-group// -->
               <input class="mb-2" type="checkbox" onclick="myFunction()"> Hiện thị mật khẩu
               <div class="form-group">
-                  <a href="{{route('login.khoiphucmatkhau')}}" class="float-right">Quên mật khẩu?</a> 
+                  <a href="" class="float-right">Quên mật khẩu?</a> 
                 <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label">Nhớ mật khẩu</div> </label>
               </div> <!-- form-group form-check .// -->
               <div class="form-group">
@@ -54,6 +54,6 @@
   </script>
     
     </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->  
+    <!-- ========================= SECTION CONTENT END// ========================= -->   --}}
 
 @endsection

@@ -74,7 +74,7 @@
                                     <label for="parent_id">Danh mục cha <span class="text-danger">(*)</span></label>
                                     <select class="form-control" name="parent_id" id="parent_id">
                                         <option value="0">-- Cấp cha --</option>
-                                        {!! $html_parent_id !!}
+                                        {!! $html_topic_id !!}
                                     </select>
                                 </div>
                                 <div class="mb-3">

@@ -21,7 +21,7 @@
                         <p>{!!$page->metadesc!!}</p>
                     </div>
                 </div>
-                    <div>
+                    {{-- <div>
                         <div class="extranews_separator"></div>
                         <h4>Bài viết khác</h4>
                         <ul>
@@ -32,7 +32,7 @@
                             @endforeach
                         </ul>
 
-                    </div>
+                    </div> --}}
                     <div>
                         <span> <i class="fas fa-tags text-danger"></i></span>
                         <span class="badge bg-primary mb-4 mt-2">
@@ -40,7 +40,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-md-3 mt-5">
+                {{-- <div class="col-md-3 mt-5">
                     <h5  >TẤT CẢ BÀI VIẾT</h5>
                     <div class="box-scroll ">
                         <div class="row " >
@@ -50,16 +50,10 @@
                                 $rut_gon = substr($mo_ta, 0, 80).'...';
                            @endphp
                               
-                              @php
-                              $arr_image = $item->postimg;
-                              $image = 'hinh.png';
-                              if (count($arr_image) > 0) {
-                              $image = $arr_image[0]['image'];
-                              }
-                              @endphp
+                             
                            <div class="col-md-4 mb-4 mt-2 ">
                             <img  src="{{ asset('images/post/' . $image) }}" class="card-img-top"
-                                    alt="{{ $image }}">
+                                    alt="{{ $image }}"> 
                            </div>
                            <div class="col-md-8 mb-2 " >
                             <a href="{{route('frontend.slug',['slug'=>$item->slug])}}">{!!$rut_gon!!}</a>
@@ -67,7 +61,7 @@
                            @endforeach
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

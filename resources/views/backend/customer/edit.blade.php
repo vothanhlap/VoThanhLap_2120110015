@@ -40,16 +40,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="mb-3">
-                                    <label for="username" class="text-danger">Tên username</label>
-                                    <input type="text" name="username" value="{{ old('username', $customer->username) }}"
-                                        id="username" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="text-danger">Mật khẩu</label>
-                                    <input type="password" name="password" value="{{ old('password', $customer->password) }}"
-                                        id="password" class="form-control">
-                                </div>
+                               
                                 <div class="mb-3">
                                     <label for="email" class="text-danger">Email</label>
                                     <input type="text" name="email" value="{{ old('email', $customer->email) }}"

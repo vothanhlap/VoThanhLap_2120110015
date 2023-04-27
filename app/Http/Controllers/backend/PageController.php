@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Models\Topic;
 use App\Models\Link;
 use Illuminate\Support\Str;
 use App\Http\Requests\PageStoreRequest;
@@ -26,14 +27,15 @@ class PageController extends Controller
     public function create()
     {
         $user_name = Auth::user()->name;
-        $list_page  = Page::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
-        $html_parent_id = '';
+        // $list_page  = Page::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
+        $list_topic =Topic::where('status', '!=', 0)->get();
+        $html_topic_id = '';
         $html_sort_order = '';
-        foreach ($list_page as $item) {
-            $html_parent_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
+        foreach ($list_topic as $item) {
+            $html_topic_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->title . '</option>';
         }
-        return view('backend.page.create', compact('user_name','html_parent_id', 'html_sort_order'));
+        return view('backend.page.create', compact('user_name','html_topic_id', 'html_sort_order'));
     }
 
     // thêm
@@ -46,7 +48,7 @@ class PageController extends Controller
         $page->metakey = $request->metakey;
         $page->metadesc = $request->metadesc;
         $page->detail = $request->detail;
-        $page->parent_id = $request->parent_id;
+        $page->topic_id = $request->topic_id;
         $page->sort_order = $request->sort_order;
         $page->type = 'page';
         $page->status = $request->status;
@@ -90,14 +92,14 @@ class PageController extends Controller
 
         $user_name = Auth::user()->name;
         $page = Page::find($id);
-        $list_page  = Page::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
-        $html_parent_id = '';
+        $list_topic =Topic::where('status', '!=', 0)->get();
+        $html_topic_id = '';
         $html_sort_order = '';
-        foreach ($list_page as $item) {
-            $html_parent_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
+        foreach ($list_topic as $item) {
+            $html_topic_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
             $html_sort_order .= '<option value="' . $item->sort_order . '">Sau: ' . $item->title . '</option>';
         }
-        return view('backend.page.edit', compact('user_name','page', 'html_parent_id', 'html_sort_order'));
+        return view('backend.page.edit', compact('user_name','page', 'html_topic_id', 'html_sort_order'));
     }
 
     public function update(pageUpdateRequest $request, $id)
@@ -110,7 +112,7 @@ class PageController extends Controller
         $page->metadesc = $request->metadesc;
         $page->detail = $request->detail;
         $page->type = 'page';
-        $page->parent_id = $request->parent_id;
+        $page->topic_id = $request->topic_id;
         $page->sort_order = $request->sort_order;
         $page->status = $request->status;
         $page->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');

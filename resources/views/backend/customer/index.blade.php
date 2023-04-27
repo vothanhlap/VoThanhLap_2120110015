@@ -32,7 +32,7 @@
                         <tr>
                             <th style="width:10px" class="text-center">#</th>
                             <th style="width:120px"  class="text-center">Tên khách hàng</th>
-                            <th style="width:120px"  class="text-center">Tên tài khoản</th>
+                        
                             <th style="width:100px" class="text-center">Số điện thoại</th>
                             <th style="width:100px"  class="text-center">Email</th>
                             <th style="width:180px" class="text-center">Chức năng</th>
@@ -47,7 +47,7 @@
                                 </td>
                                
                                 <td class=" align-middle">{{ $customer->fullname }}</td>
-                                <td class=" align-middle">{{ $customer->username}}</td>
+                               
                                 <td class="align-middle">{{ $customer->phone}}</td>
                                 <td class=" align-middle">{{ $customer->email}}</td>
                                 
