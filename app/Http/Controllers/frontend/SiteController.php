@@ -206,7 +206,7 @@ class SiteController extends Controller
             ['top_id','=',$row_topic->id]
            ]; 
          $post_list = Post::where($args)->orderBy('created_at','desc')
-         ->paginate(4);
+         ->paginate(3);
          $post_all = Post::where('status','=','1')->orderBy('created_at','desc')->get();   
       return view ('frontend.post.post-topic',compact('post_all','row_topic','post_list')); 
     }

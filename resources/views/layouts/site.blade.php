@@ -155,7 +155,7 @@
                         <div class="widgets-wrap float-md-left mt-2 mx-4">
                             <div class="widget-header ">
                                 <ul class="navbar-nav ">
-                                    @if (!isset($nguoidung))
+                                   
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
                                                 class="fa fa-user"></i> Tài khoản </a>
@@ -169,21 +169,7 @@
 
                                         </div>
                                     </li>
-                                    @else
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
-                                                class="fa fa-user"></i> {{$nguoidung->name}}</a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{ route('login.dangnhap') }}">
-                                                Đăng xuat
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('login.dangki') }}">
-                                                Đăng ký
-                                            </a>
-
-                                        </div>
-                                    </li> 
-                                    @endif
+                                    
                                     
                                 </ul>
                             </div>

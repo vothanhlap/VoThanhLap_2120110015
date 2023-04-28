@@ -212,17 +212,22 @@ class ProductController extends Controller
     {
         $user_name = Auth::user()->name;
         $product = Product::find($id);
-        if ($product == null) {
+        $pro_image = ProductImage::find($id);
+        $path_dir = "images/product/";
+        
+        if ($product == null) 
+        {
             return redirect()->route('product.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
         }
         if ($product->delete()) {
-            $product_image = ProductImage::find($id); //lấy mẫu tin`
-            $product_image->product_id = $product->id;
-            $product_image->delete();
+             //xoa hinh
+            unlink ($path_dir . $pro_image->image);
+            $pro_image->delete();
             return redirect()->route('product.trash')->with('message', ['type' => 'success', 'msg' => 'Xóa sản phẩm thành công!']);
         }
-        return redirect()->route('product.trash')->with('message', ['type' => 'dangers', 'msg' => 'Xóa sản phẩm không thành công!']);
-    }
+         
+        }
+        // return redirect()->route('product.trash')->with('message', ['type' => 'dangers', 'msg' => 'Xóa sản phẩm không thành công!']);
     #GET:admin/product/status/{id}
     public function status($id)
     {

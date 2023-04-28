@@ -42,9 +42,10 @@
         Route::get('delete-list-Cart/{id}', [CartController::class, 'deletelistCart']);
         
         //dang xuat
-        Route::post('dang-nhap', [DangnhapController::class, 'logout'])->name('logout');  
+        Route::get('dang-nhap', [DangnhapController::class, 'dangxuat'])->name('login.dangxuat');  
+
         // //khai bao route cho trang nguoi dung
-        route::group(['prefix'=>'','middleware'=>'LoginCus'] ,function () {
+        route::group(['prefix'=>''] ,function () {
             //dang nhap tai khoan khach hang
         Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
         Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('xulydangnhap');  

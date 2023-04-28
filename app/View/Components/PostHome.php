@@ -32,7 +32,7 @@ class PostHome extends Component
         ->whereIn('top_id',$arrtopid)
         ->where('vtl_post.status','=','1')
         ->select('vtl_post.*', 'vtl_topic.title as top')
-        ->orderBy('vtl_post.created_at','asc')
+        ->orderBy('vtl_post.created_at','desc')
         ->take(3)
         ->get();
         return view('components.post-home',compact('list_post'));

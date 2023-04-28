@@ -24,7 +24,6 @@ class CartController extends Controller
     public function Addcart(Request $req, $id)
     {     
            $product = Product::where('id',$id)->first();
-           //$image = ProductImage::where('product_id',$id)->first();
            if($product != null){
             $oldcart = Session('Cart') ? Session('Cart') :null;
             $newCart = new Cart( $oldcart);
