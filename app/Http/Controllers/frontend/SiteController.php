@@ -172,7 +172,6 @@ class SiteController extends Controller
              ->orderBy('created_at','desc')
              ->take(3)
              ->get();
-      
                return view ('frontend.product.product_detail',compact('product','list_pro'));
        }
        //Chi tiết bài viết
@@ -220,15 +219,7 @@ class SiteController extends Controller
                ]; 
           $page = Page::where($argc)->first();
           
-        //   $args =[
-        //     ['status','=','1'],
-        //     ['type','=','post'],
            
-        //    ]; 
-        //  $post_list = Post::where($args)->orderBy('created_at','desc')
-        //  ->get(); 
-        //  $post_all = Post::All()
-        //  ->orderBy('created_at','desc');     
          return view('frontend.post.post_page',compact('page'));
         }
     //Lỗi 404
