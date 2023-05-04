@@ -6,11 +6,18 @@
                     @php
                         $mo_ta = $item['productinfo']->name;
                         $rut_gon1 = substr($mo_ta, 0, 100) . '...';
+
+                        $product_image= $item['image'];
+                        $hinh="";
+                        if(count($product_image)>0)
+                        {
+                            $hinh=$product_image[0]["image"];
+                        } 
                     @endphp
                     
                     <tr>
                         <td>
-                            <img style="width:80px" src="" alt="hinh">
+                            <img style="width:80px" src="{{ asset('images/product/' . $hinh) }}" alt="{{$hinh}}">
                         </td>
                         <td>
                             <h3 class="product-name"><a href="#">{{ $rut_gon1 }}</a></h3>

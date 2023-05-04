@@ -14,7 +14,7 @@ class Cart{
       }
 
       public function AddCart($product , $id){
-        $newProduct = ['soluong'=>0,'price'=>$product->price_buy, 'productinfo'=>$product];
+        $newProduct = ['soluong'=>0,'price'=>$product->price_buy, 'productinfo'=>$product, 'image'=>$product->productimg];
          if($this->products){
                if(array_key_exists($id,$this->products)){
                 $newProduct = $this->products[$id];
@@ -32,6 +32,17 @@ class Cart{
         $this->tongsoluong -= $this->products[$id]['soluong'];
         $this->tonggia -= $this->products[$id]['price'];
         unset($this->products[$id]);
+      }
+
+      public function updateCart($id, $soluong){
+        $this->tongsoluong -= $this->products[$id]['soluong'];
+        $this->tonggia -= $this->products[$id]['price'];
+        
+        $this->products[$id]['soluong'] = $soluong;
+        $this->products[$id]['price'] = $soluong*$this->products[$id]['productinfo']->price_buy;
+
+        $this->tongsoluong += $this->products[$id]['soluong'];
+        $this->tonggia += $this->products[$id]['price'];
       }
 
 }

@@ -12,7 +12,7 @@
            @endphp
          <div class="col-md-2 text-center">
            <div class="card card-product-grid" style="height: 250px">
-               <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" > <img style="height: 150px;" class="img-fluid" src="{{ asset('images/product/'.$image)}}"> </a>
+                <img style="height: 150px;" class="img-fluid" src="{{ asset('images/product/'.$image)}}">
                <figcaption class="info-wrap">
                    <a href="#" class="title text-truncate">{{$item->name}}</a>
                    <div class="price mt-1">

@@ -48,10 +48,7 @@ class CartController extends Controller
             return view ('frontend.giohang.cart-item');
     }
 
-    //thanh toan
-    public function checkout (){
-        return view ('frontend.giohang.checkout');
-    }
+   
 
     //Xoa list cart
       //xoa 
@@ -67,12 +64,5 @@ class CartController extends Controller
         }
         
         return view ('frontend.giohang.list-cart');
-}
-
-//Dat hang thanh cong
-   public function dathangthanhcong(){
-     return view ('frontend.giohang.dathangthanhcong');
-   }
-
-    
+}   
 }

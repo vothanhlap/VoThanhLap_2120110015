@@ -78,13 +78,7 @@ class SiteController extends Controller
     //trang chu
     public function home ()
     {
-        if(Auth::check())
-        {
-            view()->share('nguoidung', Auth::user());
-        }
-
-        // $user_name = Auth::user()->id;
-       
+        
         $data = [
             ['status','=','1'],
         ];
@@ -242,4 +236,6 @@ class SiteController extends Controller
       return view('frontend.product.all_product',compact('product'));
     }
     // Tất cả bài viết
+
+    
 }

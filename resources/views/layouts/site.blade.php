@@ -73,60 +73,66 @@
     .cart-summary {
         float: right;
     }
+
     .overlays {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    border-radius: 7px;
-    cursor: pointer;
-    background: linear-gradient(rgba(219, 211, 211, 0.5), #ace9e3);
-    opacity: 0;
-    transition: 1s;
-}
-.card-product-grid:hover .overlays {
-    opacity: 1;
-}
-.servece-desc {
-    width: 80%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    opacity: 0;
-    transform: translateX(-50%);
-    transition: 1s;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        border-radius: 7px;
+        cursor: pointer;
+        background: linear-gradient(rgba(219, 211, 211, 0.5), #ace9e3);
+        opacity: 0;
+        transition: 1s;
+    }
 
-}
-.servece-desc p {
-    font-size: 14px;
-}
+    .card-product-grid:hover .overlays {
+        opacity: 1;
+    }
 
-.card-product-grid:hover .servece-desc {
-    bottom: 30%;
-    opacity: 1;
-}
-/* home product */
-.over {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    border-radius: 7px;
-    cursor: pointer;
-    background: linear-gradient(rgba(219, 211, 211, 0.5), #ace9e3);
-    opacity: 0;
-    transition: 1s;
-}
-.over:hover  {
-    opacity: 1;
-}
-.box-scroll{
-    width: 300px;
-    height: 350px;
-    overflow-y: auto;
-    padding: 0px 10px;  
-}
+    .servece-desc {
+        width: 80%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: 1s;
 
+    }
+
+    .servece-desc p {
+        font-size: 14px;
+    }
+
+    .card-product-grid:hover .servece-desc {
+        bottom: 30%;
+        opacity: 1;
+    }
+
+    /* home product */
+    .over {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        border-radius: 7px;
+        cursor: pointer;
+        background: linear-gradient(rgba(219, 211, 211, 0.5), #ace9e3);
+        opacity: 0;
+        transition: 1s;
+    }
+
+    .over:hover {
+        opacity: 1;
+    }
+
+    .box-scroll {
+        width: 300px;
+        height: 350px;
+        overflow-y: auto;
+        padding: 0px 10px;
+    }
 </style>
 
 <body>
@@ -135,14 +141,15 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-3 col-md-12">
-                        <a href="{{route('frontend.home')}}" class="brand-wrap">
+                        <a href="{{ route('frontend.home') }}" class="brand-wrap">
                             <img style="width: 120px" class="logo" src="{{ asset('public/images/logo.png') }}">
                         </a> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-xl-6 col-lg-5 col-md-6">
                         <form action="{{ route('frontend.timkiem') }}" class="search-header" method="get">
                             <div class="input-group w-100">
-                                <input type="text" class="form-control" name="key" placeholder="Nhập từ khóa tìm kiếm">
+                                <input type="text" class="form-control" name="key"
+                                    placeholder="Nhập từ khóa tìm kiếm">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i> Tìm kiếm
@@ -155,31 +162,40 @@
                         <div class="widgets-wrap float-md-left mt-2 mx-4">
                             <div class="widget-header ">
                                 <ul class="navbar-nav ">
-                                   
-                                    <li class="nav-item dropdown">
+                                    
+                                     {{-- @if ( isset($nguoidung)) --}}
+                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
                                                 class="fa fa-user"></i> Tài khoản </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('login.dangnhap') }}">
                                                 Đăng nhập
                                             </a>
-                                            <a class="dropdown-item" href="{{ route('login.dangki') }}">
-                                                Đăng ký
+                                            <a class="dropdown-item" href="{{route('login.dangxuat')}}">
+                                                Đăng ky
                                             </a>
 
                                         </div>
+                                    </li> 
+                                     {{-- @else
+                                     <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                class="fa fa-user"></i>{{Auth::guard('cus')->user()->fullname}} </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="{{route('login.dangxuat')}}">
+                                                Đăng xuat
+                                            </a>
+                                        </div>
                                     </li>
-                                    
-                                    
+                                     @endif --}}
                                 </ul>
                             </div>
                         </div>
                         @php
-                            $tt =  0;
-                             if(Session::has("Cart")!= null)
-                             {
-                                $tt = Session::get("Cart")->tongsoluong;
-                             }
+                            $tt = 0;
+                            if (Session::has('Cart') != null) {
+                                $tt = Session::get('Cart')->tongsoluong;
+                            }
                         @endphp
                         <div class="widgets-wrap float-md-left mt-3 mr-3">
                             <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
@@ -187,14 +203,14 @@
                                     <i class="fa fa-shopping-cart"></i>
                                     Giỏ hàng
                                     @if ($tt != null)
-                                    <span id="total-quanty-show"
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
-                                        {{ $tt }}
-                                        @else
                                         <span id="total-quanty-show"
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
                                             {{ $tt }}
-                                            @endif
+                                        @else
+                                            <span id="total-quanty-show"
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
+                                                {{ $tt }}
+                                    @endif
                                 </div>
                             </a>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -212,54 +228,63 @@
                                             </div>
                                         </div>
                                         <div id="change-item-cart">
-                                            @if (Session::has("Cart")!= null)
-                                            <div class="modal-body">
-                                                <table class="table table-bordered ">
-                                                    <tbody>
-                                                        @foreach (Session::get("Cart")->products as $item)
-                                                        @php
-                                                        $mo_ta = $item['productinfo']->name;
-                                                        $rut_gon1 = substr($mo_ta, 0, 100) . '...';
-                                                        @endphp
-                                                        <tr>
-                                                            <td>
-                                                                <img style="width:80px" src="" alt="hinh">
-                                                            </td>
-                                                            <td>
-                                                                <h3 class="product-name"><a href="#">{{ $rut_gon1 }}</a>
-                                                                </h3>
-                                                                <p class="product-price"><span class="qty">{{
-                                                                        $item['soluong'] }}
-                                                                        x</span>{{
-                                                                    number_format($item['productinfo']->price_buy) }}
-                                                                    VNĐ</p>
-                                                            </td>
-                                                            <td class="close-btn align-middle" style="width:40px">
-                                                                <i class="fa fa-close"
-                                                                    data-id="{{ $item['productinfo']->id }}"></i>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th class="align-middle text-danger">
-                                                                <h6>
-                                                                    Tổng
-                                                                </h6>
-                                                            </th>
-                                                            <th>
-                                                                <h6>
-                                                                    {{ number_format(Session::get("Cart")->tonggia, 0)
-                                                                    }} VNĐ
-                                                                </h6>
-                                                                {{-- <small>{{ Session::get("Cart")->tongsoluong }} sản
+                                            @if (Session::has('Cart') != null)
+                                                <div class="modal-body">
+                                                    <table class="table table-bordered ">
+                                                        <tbody>
+                                                            @foreach (Session::get('Cart')->products as $item)
+                                                                @php
+                                                                    $mo_ta = $item['productinfo']->name;
+                                                                    $rut_gon1 = substr($mo_ta, 0, 100) . '...';
+                                                                    
+                                                                    $product_image = $item['image'];
+                                                                    $hinh = '';
+                                                                    if (count($product_image) > 0) {
+                                                                        $hinh = $product_image[0]['image'];
+                                                                    }
+                                                                @endphp
+                                                                <tr>
+                                                                    <td>
+                                                                        <img style="width:80px"
+                                                                            src="{{ asset('images/product/' . $hinh) }}"
+                                                                            alt="{{ $hinh }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <h3 class="product-name"><a
+                                                                                href="#">{{ $rut_gon1 }}</a>
+                                                                        </h3>
+                                                                        <p class="product-price"><span
+                                                                                class="qty">{{ $item['soluong'] }}
+                                                                                x</span>{{ number_format($item['productinfo']->price_buy) }}
+                                                                            VNĐ</p>
+                                                                    </td>
+                                                                    <td class="close-btn align-middle"
+                                                                        style="width:40px">
+                                                                        <i class="fa fa-close"
+                                                                            data-id="{{ $item['productinfo']->id }}"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th class="align-middle text-danger">
+                                                                    <h6>
+                                                                        Tổng
+                                                                    </h6>
+                                                                </th>
+                                                                <th>
+                                                                    <h6>
+                                                                        {{ number_format(Session::get('Cart')->tonggia, 0) }}
+                                                                        VNĐ
+                                                                    </h6>
+                                                                    {{-- <small>{{ Session::get("Cart")->tongsoluong }} sản
                                                                     phẩm</small> --}}
-                                                            </th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>                        
+                                                                </th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
                                             @else
                                                 <p class="text-center">Không có sản phẩm trong giỏ hàng</p>
                                             @endif
@@ -324,10 +349,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                  <div class="footer-top padding-y-lg text-white">
-                    <h5>Thông tin về Shop</h5>
-                    
-                  </div>
+                    <div class="footer-top padding-y-lg text-white">
+                        <h5>Thông tin về Shop</h5>
+
+                    </div>
                 </div>
                 <div class="col-md-9">
                     <x-footer-menu />
@@ -346,21 +371,22 @@
             $.ajax({
                 url: 'addcart/' + id,
                 type: 'GET',
-            }).done(function (response) {
+            }).done(function(response) {
                 RenderCart(response);
                 alertify.success('Thêm sản phẩm thành công');
             });
         }
 
-        $("#change-item-cart").on("click", ".close-btn i", function () {
+        $("#change-item-cart").on("click", ".close-btn i", function() {
             $.ajax({
                 url: 'deleteCart/' + $(this).data("id"),
                 type: 'GET',
-            }).done(function (response) {
+            }).done(function(response) {
                 RenderCart(response);
                 alertify.success('Xóa sản phẩm thành công');
             });
         });
+
         function RenderCart(response) {
             $("#change-item-cart").empty();
             $("#change-item-cart").html(response);
@@ -373,16 +399,18 @@
             $.ajax({
                 url: 'delete-list-Cart/' + id,
                 type: 'GET',
-            }).done(function (response) {
+            }).done(function(response) {
                 RenderListCart(response);
                 alertify.success('Xóa sản phẩm thành công');
             });
         }
+
         function RenderListCart(response) {
             $("#list-cart").empty();
             $("#list-cart").html(response);
-    
+
         }
+
     </script>
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>

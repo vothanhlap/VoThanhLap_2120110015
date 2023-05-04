@@ -12,19 +12,19 @@
                             <h4 class="card-title mb-3">Thông tin thanh toán</h4>
                             <div class="col form-group">
                                 <label>Họ và tên khách hàng</label>
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" value="{{Auth::guard('cus')->user()->fullname}}" class="form-control" placeholder="">
                             </div>
                             <div class="col form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" placeholder="">
+                                <input type="email" value="{{Auth::guard('cus')->user()->email}}" class="form-control" placeholder="">
                             </div>
                             <div class="col form-group">
                                 <label>Số điện thoại</label>
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" value="{{Auth::guard('cus')->user()->phone}}" class="form-control" placeholder="">
                             </div>
                             <div class="form-group ">
                                 <label>Địa chỉ</label>
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea class="form-control" rows="3">{{Auth::guard('cus')->user()->address}}</textarea>
                             </div>
                         </div>
                     </div>

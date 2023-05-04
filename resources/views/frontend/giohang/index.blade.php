@@ -23,17 +23,24 @@
                         <tbody>
                             @if (Session::has("Cart")!= null)
                             @foreach (Session::get("Cart")->products as $item)
-                            
+                            @php
+                            $product_image= $item['image'];
+                           $hinh="";
+                           if(count($product_image)>0)
+                           {
+                               $hinh=$product_image[0]["image"];
+                           } 
+                       @endphp
                             <tr>
                                 <td class="text-center align-middle">
                                     <input type="checkbox">
                                 </td>
                                 <td>
                                     <figure class="itemside">
-                                        <div class="aside"><img src="" alt="" class="img-sm"></div>
+                                        <div class="aside"><img src="{{ asset('images/product/' . $hinh) }}" alt="{{$hinh}}" class="img-sm"></div>
                                         <figcaption class="info">
                                             <a href="#" class="title text-dark">{{$item['productinfo']->name}}</a>
-                                            <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+                                            <p class="text-muted small">Màu: , <br> Thương hiệu: </p>
                                         </figcaption>
                                     </figure>
                                 </td>
@@ -51,7 +58,7 @@
                                 <td class="align-middle">
                                     <a class="btn btn-light" onclick="deletelistCart({{$item['productinfo']->id}});">
                                         Xoá</a>
-                                        <a class="btn btn-light" onclick="">
+                                        <a class="btn btn-light" >
                                             Sửa</a>
                                 </td>
 
@@ -96,6 +103,12 @@
                                 @else
                                 0
                                 @endif
+                            </dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt class="font-weight-bold">Giảm giá</dt>
+                            <dd class="text-right ">
+                                
                             </dd>
                         </dl>
                         <dl class="dlist-align">

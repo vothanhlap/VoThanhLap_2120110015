@@ -4,24 +4,32 @@
             <table class="table table-bordered  ">
                 <thead class="text-muted">
                     <tr class="small ">
-                         <th class="text-center" width="20">#</th>
+                        <th class="text-center" width="20">#</th>
                         <th class="text-center">TẤT CẢ SẢN PHẨM</th>
-                        <th class="text-center"> ĐƠN GIÁ</th>
-                        <th  class="text-center" width="100">SỐ LƯỢNG</th>
-                        <th  class="text-center" width="120">THÀNH TIỀN</th>
-                        <th  class="text-center" width="120">CHỨC NĂNG</th>
+                        <th class="text-center" width="120"> ĐƠN GIÁ</th>
+                        <th class="text-center" width="80">SỐ LƯỢNG</th>
+                        <th class="text-center" width="120">THÀNH TIỀN</th>
+                        <th class="text-center" width="150">CHỨC NĂNG</th>
                     </tr>
                 </thead>
                 <tbody >
                     @if (Session::has("Cart")!= null)
                     @foreach (Session::get("Cart")->products as $item)
+                    @php
+                         $product_image= $item['image'];
+                        $hinh="";
+                        if(count($product_image)>0)
+                        {
+                            $hinh=$product_image[0]["image"];
+                        } 
+                    @endphp
                     <tr>
                         <td  class="text-center align-middle">
                             <input type="checkbox">
                         </td>
                         <td>
                             <figure class="itemside">
-                                <div class="aside"><img src="images/items/1.jpg" class="img-sm"></div>
+                                <div class="aside"><img src="{{ asset('images/product/' . $hinh) }}" class="img-sm"></div>
                                 <figcaption class="info">
                                     <a href="#" class="title text-dark">{{$item['productinfo']->name}}</a>
                                     <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
@@ -37,10 +45,11 @@
                                 <var class="price">{{ number_format($item['price'])}}</var>
                             </div>
                         </td>
-                        <td class="text-center align-middle">
+                        <td class="align-middle">
                             <a class="btn btn-light" onclick="deletelistCart({{$item['productinfo']->id}});">
-                                Xóa</a>
-
+                                Xoá</a>
+                                <a class="btn btn-light" >
+                                    Sửa</a>
                         </td>
                         
                     </tr>
@@ -84,6 +93,12 @@
                         @else
                             0 
                         @endif
+                    </dd>
+                </dl>
+                <dl class="dlist-align">
+                    <dt class="font-weight-bold">Giảm giá</dt>
+                    <dd class="text-right ">
+                        
                     </dd>
                 </dl>
                 <dl class="dlist-align">

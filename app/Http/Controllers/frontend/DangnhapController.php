@@ -18,46 +18,44 @@ class DangnhapController extends Controller
 
     public function dangnhap()
     {
+        
         return view ('frontend.login.dangnhap');
     }
 
     public function xulydangnhap(Request $request)
     {
-    //     $this->validate($request,[
-    //         'username'=>'required',
-    //         'password'=>'required|min:3|max:32',
+        
+        $this->validate($request,[
+            'username'=>'required',
+            'password'=>'required|min:3|max:32',
             
-    //    ],[                
-    //          'password.required'=>'Bạn chưa nhập mật khẩu',
-    //          'password.min'=>'Mật khẩu có ít nhất 3 kí tự',
-    //          'password.max'=>'Mật khẩu tối đa 32 kí tự',
-    //          'username.required'=>'Bạn chưa nhập tên tài khoản',
-    //    ]);
+       ],[                
+             'password.required'=>'Bạn chưa nhập mật khẩu',
+             'password.min'=>'Mật khẩu có ít nhất 3 kí tự',
+             'password.max'=>'Mật khẩu tối đa 32 kí tự',
+             'username.required'=>'Bạn chưa nhập tên tài khoản',
+       ]);
 
-    //    $username =$request->username;
-    //    $password = $request->password;   
-    //   $data=['username'=>$username,'password'=>$password];
-    //    if(Auth::attempt($data)){
-    //     //echo 'Thanh cong';
-    //     //echo bcrypt($password);
-    //     return redirect()->route('frontend.home');
-    //    }else
-    //    {
-    //     //echo 'Khong Thanh cong';
-    //     //echo bcrypt($password);
-    //     return redirect()->route('login.dangnhap');
-    //    }
+       $username =$request->username;
+       $password = $request->password;   
+      
+       if(Auth::guard('cus')->attempt($request->only('username','password'))){
+        //echo 'Thanh cong';
+        //echo bcrypt($password);
+        return redirect()->route('frontend.home');
+       }else
+       {
+        //echo 'Khong Thanh cong';
+        //echo bcrypt($password);
+       return redirect()->route('login.dangnhap');
+       }
     }
 
     public function dangxuat(){
-        // if(Auth::check()){
-        //     Auth::logout(); 
-        //     return redirect()->route('login.dangnhap');
-        // }
-        // else
-        // {
-        //     return redirect()->route('login.dangnhap');
-        // }      
+     
+            Auth::guard('cus')->logout(); 
+            return redirect()->route('login.dangnhap');
+           
     }
   
 }

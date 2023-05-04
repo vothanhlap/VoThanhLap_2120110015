@@ -9,6 +9,7 @@
     use App\Http\Controllers\frontend\DichvuController;
     use App\Http\Controllers\frontend\DangnhapController;
     use App\Http\Controllers\frontend\CartController;
+    use App\Http\Controllers\frontend\CheckoutController;
     use App\Http\Controllers\frontend\KhachhangContrller;
     //backed
     use App\Http\Controllers\backend\SliderController;
@@ -45,18 +46,20 @@
         Route::get('dang-nhap', [DangnhapController::class, 'dangxuat'])->name('login.dangxuat');  
 
         // //khai bao route cho trang nguoi dung
-        route::group(['prefix'=>''] ,function () {
+       
             //dang nhap tai khoan khach hang
         Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
         Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('xulydangnhap');  
+        
+        Route::get('dang-xuat', [DangnhapController::class, 'dangxuat'])->name('login.dangxuat');
         //dang ky
         Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
         Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
+        
         //thanh toan
-        Route::get('thanh-toan', [CartController::class, 'checkout'])->name('giohang.checkout');
+        Route::get('thanh-toan', [CheckoutController::class, 'checkout'])->name('giohang.checkout');
         // Dat hang thanh cong
-        Route::get('dat-hang-thanh-cong', [CartController::class, 'dathangthanhcong'])->name('giohang.dathangthanhcog');
-        });
+        Route::get('dat-hang-thanh-cong', [CheckoutController::class, 'dathangthanhcong'])->name('giohang.dathangthanhcog');
 
         // khai bao route dang nhap - dang xuat
         route::get('login', [AuthController::class, 'getlogin'])->name('login');
