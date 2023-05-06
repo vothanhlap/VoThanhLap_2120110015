@@ -17,6 +17,11 @@ use Mail;
 
 class SiteController extends Controller
 {
+    function __construct(){
+        if(Auth::check()){
+            view()->share('nguoidung', Auth::guard('cus')->user());
+        }
+    }
 
     public function index($slug = null)
     {
@@ -79,7 +84,7 @@ class SiteController extends Controller
     public function home ()
     {
         
-        
+
         $data = [
             ['status','=','1'],
         ];
