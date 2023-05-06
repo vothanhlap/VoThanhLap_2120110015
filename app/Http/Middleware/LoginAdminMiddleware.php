@@ -25,6 +25,7 @@ class LoginAdminMiddleware
             if($user->roles == 1)
             {
               return $next ($request);
+              
             }
         else
            {

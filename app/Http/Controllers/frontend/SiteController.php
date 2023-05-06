@@ -79,6 +79,7 @@ class SiteController extends Controller
     public function home ()
     {
         
+        
         $data = [
             ['status','=','1'],
         ];

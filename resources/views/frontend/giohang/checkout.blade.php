@@ -31,7 +31,30 @@
                 </div> <!-- container .//  -->
             </div>
             <div class="col-md-6">
-                thông tin sản phẩm
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr>
+                            <th style="width:30px" class="text-center">#</th>
+                            <th style="width:120px" class="text-center">Hình</th>
+                            <th class="text-center">Tên sản phẩm</th>
+                            <th class="text-center">Đơn giá</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
        </div>
