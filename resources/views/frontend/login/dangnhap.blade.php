@@ -8,7 +8,7 @@
         <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
           <div class="card-body">
           <h4 class="card-title mb-4 text-center">ĐĂNG NHẬP</h4>
-          <form action="" method="post">
+          <form action="{{route('xulydangnhap')}}" method="post">
             @method('POST')
             @csrf
               <div class="form-group">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Customer;
 use App\Models\Orderdetail;
 use App\Cart;
 use Session;
@@ -24,8 +25,13 @@ class CheckoutController extends Controller
     }
 
 //Dat hang thanh cong
-   public function dathangthanhcong(){
-     return view ('frontend.giohang.dathangthanhcong');
+   public function dathangthanhcong(Request $req){
+       
+        
+        
+
+
+     //return view ('frontend.giohang.dathangthanhcong');
    }
 
     

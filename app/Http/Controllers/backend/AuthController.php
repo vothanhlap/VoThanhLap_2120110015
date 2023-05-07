@@ -73,7 +73,7 @@ class AuthController extends Controller
           'phone'=>'required',
           'address'=>'required',
           'username'=>'required',
-          'email'=>'required|email|unique:vtl_user,email',
+          'email'=>'required|email|unique:vtl_custumer,email',
           'password'=>'required|min:3|max:32',
           'passwordAgain'=>'required|same:password',
       ],[

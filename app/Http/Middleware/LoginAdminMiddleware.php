@@ -21,7 +21,7 @@ class LoginAdminMiddleware
         if(Auth::check())
         {         
             $user = Auth::user();
-             //Xet quyen
+             //Xet quyen 
             if($user->roles == 1)
             {
               return $next ($request);

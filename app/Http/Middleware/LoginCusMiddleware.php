@@ -21,6 +21,7 @@ class LoginCusMiddleware
     public function handle(Request $request, Closure $next , $guard = 'cus'): Response
     {
         if(Auth::guard($guard)->check()){
+            
             return $next($request);
         }
        return redirect()->route('frontend.home');
