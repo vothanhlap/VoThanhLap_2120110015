@@ -30,25 +30,47 @@
                             @includeIf('backend.message_alert')
                             <div class="row">
                                 <div class="col-md-9">
-                                    <div class="mb-3">
-                                        <label for="name ">Tên Menu <span class="text-danger">(*)</span></label>
-                                        <input type="text" name="name" value="{{ old('name', $menu->name) }}"
-                                            id="name" class="form-control" placeholder="Nhập tên danh mục">
-                                        @if ($errors->has('name'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('name') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="link  " >Liên kiết <span class="text-danger">(*)</span></label>
-                                        <textarea name="link" id="link" rows="2" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('link', $menu->link) }}</textarea>
-                                        @if ($errors->has('link'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('link') }}
-                                            </div>
-                                        @endif
-                                    </div>
+                                    @if ($menu->type != 'custom')
+                                   <div class="mb-3">
+                                    <label for="name ">Tên Menu <span class="text-danger">(*)</span></label>
+                                    <input type="text" name="name" readonly value="{{ old('name', $menu->name) }}"
+                                        id="name" class="form-control" placeholder="Nhập tên danh mục">
+                                    @if ($errors->has('name'))
+                                        <div class="text-danger">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="mb-3">
+                                    <label for="link" >Liên kiết <span class="text-danger">(*)</span></label>
+                                    <input name="link" value="{{ old('link', $menu->link) }}" readonly id="link" rows="2" class="form-control" placeholder="Từ khóa tìm kiếm">
+                                    @if ($errors->has('link'))
+                                        <div class="text-danger">
+                                            {{ $errors->first('link') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                   @else
+                                   <div class="mb-3">
+                                    <label for="name ">Tên Menu <span class="text-danger">(*)</span></label>
+                                    <input type="text" name="name" value="{{ old('name', $menu->name) }}"
+                                        id="name" class="form-control" placeholder="Nhập tên danh mục">
+                                    @if ($errors->has('name'))
+                                        <div class="text-danger">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="mb-3">
+                                    <label for="link  " >Liên kiết <span class="text-danger">(*)</span></label>
+                                    <textarea name="link" id="link" rows="2" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('link', $menu->link) }}</textarea>
+                                    @if ($errors->has('link'))
+                                        <div class="text-danger">
+                                            {{ $errors->first('link') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                   @endif
                                     <div class="mb-3">
                                         <label for="type" >Kiểu <span class="text-danger">(*)</span></label>
                                         <textarea name="type" id="type" rows="2" class="form-control" placeholder="Nhập mô tả">{{ old('type', $menu->type) }}</textarea>

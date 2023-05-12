@@ -91,6 +91,20 @@ class DangnhapController extends Controller
             'username.required'=>'Bạn chưa nhập tên tài khoản',
             'passwordAgain.same'=>'Mật khẩu không khớp',
                 ]);
+                $customer = new Customer;
+                $customer->fullname = $request->fullname;
+                $customer->username = $request->username;
+                $customer->email = $request->email;
+                $customer->password = bcrypt($request->password);
+                $customer->address = $request->address;
+                $customer->phone = $request->phone;
+                $customer->roles = 1;
+                $customer->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+                $customer->created_by ='admin'; 
+                $customer->status = 1; 
+                //  var_dump($customer);
+                $customer->save();    
+                return redirect()->route('login.dangnhap');  
     }
   
 }
