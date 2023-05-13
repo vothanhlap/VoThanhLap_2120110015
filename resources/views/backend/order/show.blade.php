@@ -22,29 +22,30 @@
 
                 </div>
                 <!-- /.card-body -->
-                
-               <div class="card-body">
+
+                <div class="card-body">
                     @includeIf('backend.message_alert')
                     <h3 style="color:#f016f0">THÔNG TIN KHÁCH HÀNG</h3>
                     <table class="table table-bordered table-striped">
                         <tr>
                             <td>Mã Khách Hàng</td>
-                            <td>{{ $order->cus_id  }}</td>
+                            <td>{{ $order->cus_id }}</td>
                         </tr>
                         <tr>
                             <td>Họ Tên Khách Hàng</td>
                             <td>
-                                {{ $order->fullname}}
+                                {{ $order->fullname }}
                             </td>
 
                         </tr>
                     </table>
                     <h3 class="py-3" style="color:#f016f0">CHI TIẾT ĐƠN HÀNG</h3>
                     @php
-                        $tong =0;
+                        $tong = 0;
                     @endphp
                     <table class="table table-bordered table-striped" id="myTable">
                         <thead>
+
                             <tr>
                                 <th>Mã sản phẩm</th>
                                 <th class="text-center" style="width:100px">Hình </th>
@@ -56,64 +57,67 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
-                          @foreach ($orderdetail as $item)
-                          @php
-                          $sanpham = $order->sanpham;
-                          $namepro = 'san pham A';
-                          $namepro = $sanpham->name;
-                          @endphp
-                            @php
-                            $arr_image = $orderdetail->productimg;
-                            $image = 'hinh.png';
-                            if (count($arr_image) > 0) {
-                                $image = $arr_image[0]['image'];
-                            }
-                        @endphp
-                      
 
-                          <tr> 
-                            <td>1</td>
-                            <td class="text-center" style="width:100px;">
-                            <img class="img-fluid" src="{{ asset('images/product/' . $image) }}" alt="{{ $image }}">
-                            </td>
-                            <td>{{$namepro}}</td>
-                            <td>{{number_format($orderdetail->price,0)}} VNĐ</td>
-                            <td>{{$orderdetail->number}}</td>
-                            <td>{{number_format(($orderdetail->number)*($orderdetail->price),0)}} VNĐ</td>
-                             <td>{{$orderdetail->id}}</td>
-                        </tr>
-                          @endforeach
+                            @foreach ($orderdetail as $item)
+                                @php
+                                    $arr_image = $item->productimg;
+                                    $image = 'hinh.png';
+                                    if (count($arr_image) > 0) {
+                                        $image = $arr_image[0]['image'];
+                                    }
+                                    $tongtien = 0;
+                                @endphp
+                                
+                                <tr>
+                                    <td class="text-center">{{ $item->product_id }}</td>
+                                    <td class="text-center" style="width:100px;">
+                                        <img class="img-fluid" src="{{ asset('images/product/' . $image) }}" alt="{{ $image }}">
+                                        </td>
+                                    <td>name</td>
+                                    <td>{{ number_format($item->price, 0) }} VNĐ</td>
+                                    <td>{{ $item->number }}</td>
+                                    <td>{{ number_format($item->number * $item->price, 0) }} VNĐ</td>
+                                    <td>{{ $item->id }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th colspan="4" class="text-center py-2">
-                                    <a href="{{ route('order.huy', ['order' => $order->id]) }}" class="btn btn-sm btn-danger " style="margin-right:5px">
+                                    <a href="{{ route('order.huy', ['order' => $order->id]) }}"
+                                        class="btn btn-sm btn-danger " style="margin-right:5px">
                                         <i class="fas fa-window-close"></i>
                                         Hủy
                                     </a>
-                                    <a href="{{ route('order.xacminh', ['order' => $order->id]) }}" class="btn btn-sm btn-primary " style="margin-right:5px">
+                                    <a href="{{ route('order.xacminh', ['order' => $order->id]) }}"
+                                        class="btn btn-sm btn-primary " style="margin-right:5px">
                                         <i class="fas fa-address-card"></i>
                                         Xác Minh
                                     </a>
-                                    <a href="{{ route('order.vanchuyen', ['order' => $order->id]) }}" class="btn btn-sm btn-info" style="margin-right:5px">
+                                    <a href="{{ route('order.vanchuyen', ['order' => $order->id]) }}"
+                                        class="btn btn-sm btn-info" style="margin-right:5px">
                                         <i class="fas fa-bus-alt"></i>
                                         Vận Chuyển
                                     </a>
-                                    <a href="{{ route('order.thanhcong', ['order' => $order->id]) }}" class="btn btn-sm btn-success">
+                                    <a href="{{ route('order.thanhcong', ['order' => $order->id]) }}"
+                                        class="btn btn-sm btn-success">
                                         <i class="fas fa-check-circle"></i>
                                         Thành Công
                                     </a>
-                                    <a href="{{ route('order.xuathoadon', ['order' => $order->id]) }}" class="btn btn-sm btn-success">
-                                        
+                                    <a href="{{ route('order.xuathoadon', ['order' => $order->id]) }}"
+                                        class="btn btn-sm btn-success">
+
                                         Xuất Hóa Đơn
                                     </a>
                                 </th>
+                              
                                 <th>Tổng Tiền</th>
+                                <td>{{$tongtien}}VND</td>
+                        
                             </tr>
                         </tfoot>
                     </table>
-                </div> 
+                </div>
 
                 <!-- /.card-footer-->
             </div>
@@ -122,5 +126,5 @@
 
         </section>
         <!-- /.content -->
-    </div> 
+    </div>
 @endsection

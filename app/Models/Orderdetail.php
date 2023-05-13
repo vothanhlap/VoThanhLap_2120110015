@@ -15,7 +15,7 @@ class Orderdetail extends Model
 
     public function productimg(): hasMany
     {
-        return $this->hasMany(ProductImage::class, 'product_id','id');
+        return $this->hasMany(ProductImage::class, 'id','product_id');
     }
 
     public function sanpham(): hasOne

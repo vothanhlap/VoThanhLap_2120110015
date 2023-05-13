@@ -12,49 +12,27 @@
                             <h4 class="card-title mb-3">Thông tin thanh toán</h4>
                             <div class="col form-group">
                                 <label>Họ và tên khách hàng</label>
-                                <input type="text" value="{{Auth::guard('cus')->user()->fullname}}" class="form-control" placeholder="">
+                                <input type="text" value="{{Auth::guard('customer')->user()->fullname}}" class="form-control" placeholder="">
                             </div>
                             <div class="col form-group">
                                 <label>Email</label>
-                                <input type="email" value="{{Auth::guard('cus')->user()->email}}" class="form-control" placeholder="">
+                                <input type="email" value="{{Auth::guard('customer')->user()->email}}" class="form-control" placeholder="">
                             </div>
                             <div class="col form-group">
                                 <label>Số điện thoại</label>
-                                <input type="text" value="{{Auth::guard('cus')->user()->phone}}" class="form-control" placeholder="">
+                                <input type="text" value="{{Auth::guard('customer')->user()->phone}}" class="form-control" placeholder="">
                             </div>
                             <div class="form-group ">
                                 <label>Địa chỉ</label>
-                                <textarea class="form-control" rows="3">{{Auth::guard('cus')->user()->address}}</textarea>
+                                <textarea class="form-control" rows="3">{{Auth::guard('customer')->user()->address}}</textarea>
                             </div>
+                            
                         </div>
                     </div>
                 </div> <!-- container .//  -->
             </div>
             <div class="col-md-6">
-                <table class="table table-bordered table-striped ">
-                    <thead>
-                        <tr>
-                            <th style="width:30px" class="text-center">#</th>
-                            <th style="width:120px" class="text-center">Hình</th>
-                            <th class="text-center">Tên sản phẩm</th>
-                            <th class="text-center">Đơn giá</th>
-                            <th class="text-center">Số lượng</th>
-                            <th class="text-center">Thành tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+            
             </div>
         </div>
        </div>

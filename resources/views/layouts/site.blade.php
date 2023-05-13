@@ -161,7 +161,17 @@
                         <div class="widgets-wrap float-md-left mt-2 mx-4">
                             <div class="widget-header ">
                                 <ul class="navbar-nav ">                      
-                                     {{-- @if ( isset($nguoidung)) --}}     
+                                    @if(Auth::guard('customer')->check())
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                                class="fa fa-user"></i> {{Auth('customer')->user()->fullname}} </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="{{ route('login.dangxuat') }}">
+                                                Đăng xuất
+                                            </a>
+                                        </div>
+                                    </li> 
+                                    @else
                                      <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
                                                 class="fa fa-user"></i> Tài khoản </a>
@@ -172,21 +182,10 @@
                                             <a class="dropdown-item" href="{{route('login.dangki')}}">
                                                 Đăng ký
                                             </a>
-
                                         </div>
                                     </li> 
-                                     {{-- @else
-                                    
-                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i
-                                                class="fa fa-user"></i> </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{route('login.dangxuat')}}">
-                                                Đăng xuat
-                                            </a>
-                                        </div>
-                                    </li>
-                                     @endif --}}
+                                    @endif
+                                     
                                 </ul>
                             </div>
                         </div>
@@ -292,7 +291,7 @@
                                         <div class="modal-footer">
                                             <a class="btn btn-primary" href="{{ route('giohang.index') }}">Xem giỏ
                                                 hàng</a>
-                                            <a class="btn btn-primary float-md-right"
+                                            <a class="btn btn-primary float-md-right" id="info_confirm"
                                                 href="{{ route('giohang.checkout') }}"> Thanh toán <i
                                                     class="fa fa-chevron-right"></i> </a>
                                         </div>
@@ -409,11 +408,19 @@
             $("#list-cart").html(response);
 
         }
-
     </script>
+     <script>
+           $(document).ready(function(){
+            $('#info_confirm').click(function(e){
+                e.prevenDefault();
+                alertify.success('Thêm sản phẩm thành công')
+            });
+        });
+     </script>
+   
+    
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->

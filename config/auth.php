@@ -9,9 +9,9 @@ return [
             'driver' => 'session',
             'provider' => 'user',
         ],
-        'cus' => [
+         'customer' => [
             'driver' => 'session',
-            'provider' => 'custumer',
+            'provider' => 'customer',
         ],
     ],
     'providers' => [
@@ -19,7 +19,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'custumer' => [
+        'customer' => [
             'driver' => 'eloquent',
             'model' => App\Models\Customer::class,
         ],
@@ -31,8 +31,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'custumer' => [
-            'provider' => 'vtl_custumer',
+        'customer' => [
+            'provider' => 'customer',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

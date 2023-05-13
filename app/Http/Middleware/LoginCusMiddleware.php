@@ -18,13 +18,18 @@ class LoginCusMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next , $guard = 'cus'): Response
+    public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::guard($guard)->check()){
-            
-            return $next($request);
+
+        if (Auth::guard('customer')->check()) {
+            $user = Auth::guard('customer')->user();
+            //Xét quyền
+            if ($user->roles == 2) {
+                return $next($request);
+            } else {
+                return redirect()->route('login.dangnhap');
+            }
         }
-       return redirect()->route('frontend.home');
-           
+        return $next($request);
     }
 }

@@ -23,9 +23,9 @@
                             <strong class="text-danger text-uppercase">TẤT CẢ ĐƠN HÀNG</strong>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="{{route('orderdetail.index')}}"class="btn btn-sm btn-info">
+                            {{-- <a href="{{route('orderdetail.index')}}"class="btn btn-sm btn-info">
                                 <i class="fas fa-eye"></i> Xem chi tiết đơn hàng
-                            </a>
+                            </a> --}}
                             <a href="{{ route('order.trash') }}"class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash"></i> Thùng rác
                             </a>
@@ -38,22 +38,22 @@
                                     <thead>
                                         <tr>
                                             <th style="width:30px" class="text-center">#</th>   
-                                            <th style="width:150px" class="text-center">Tên sản phẩm</th>
                                             <th style="width:150px" class="text-center">Tên Khách hàng</th>
                                             <th style="width:150px" class="text-center">Email</th>
                                             <th style="width:150px" class="text-center">Số điện thoại</th>
                                             <th style="width:120px" class="text-center">Ngày đặt hàng</th>        
+                                            <th style="width:120px" class="text-center">Chức năng</th>        
                                             <th style="width:10px" class="text-center">ID</th>   
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($list_order as $order)
                                             {{-- xu ly ten san pham --}}
-                                            @php
+                                            {{-- @php
                                                 $sanpham = $order->sanpham;
                                                 $namepro = 'san pham A';
                                                 $namepro = $sanpham->name;
-                                            @endphp
+                                            @endphp --}}
                                             {{-- xu ly ten khach hang --}}
                                             @php
                                                 $khachhangname = $order->khachhangname;
@@ -66,12 +66,12 @@
                                                 <td class="text-center align-middle">
                                                     <input type="checkbox">
                                                 </td>
-                                                <td class="text-center align-middle">{{ $namepro }}</td>
                                                 <td>{{ $namecus }}</td>
                                                 <td>{{ $order->email }}</td>
                                                 <td>{{ $order->phone }}</td>
                                                 <td class="text-center align-middle">{{ $order->created_at }}</td>
-                                                
+                                                <td class="text-center align-middle"><a href="{{ route('order.show', ['order' => $order->id]) }}"
+                                                    class="btn btn-sm btn-success"><i class="far fa-eye"></i></a></td>
                                                 <td>{{$order->id}}</td>
                                             </tr>
                                         @endforeach

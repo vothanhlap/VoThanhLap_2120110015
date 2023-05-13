@@ -71,12 +71,9 @@ class OrderController extends Controller
     //chi tiet don hang
     public function show(string $id )
     {
-        $dk= [
-            ['status', '!=', 0],
-            ['id','=','order_id']
-        ];
+       
         $user_name = Auth::user()->name;
-        $orderdetail  =Orderdetail::find($id);
+        $orderdetail  = Orderdetail::where('status', '!=', 0)->get();
         $order = Order::find($id);
         if ($order == null) {
             return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);

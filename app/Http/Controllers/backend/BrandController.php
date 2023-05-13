@@ -193,6 +193,7 @@ class BrandController extends Controller
     #GET:admin/brand/restore/{id}
     public function restore($id)
     {
+        $user_name = Auth::user()->name;
         $brand = Brand::find($id);
         if ($brand == null) {
             return redirect()->route('brand.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);

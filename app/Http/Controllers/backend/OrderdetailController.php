@@ -20,10 +20,8 @@ class OrderdetailController extends Controller
     public function index()
     {
         $user_name = Auth::user()->name;
-        $list_order  = Order::where('status', '!=', 0);
-        $list_orderdetail  = Orderdetail::where('status', '!=', 0)
-       ->orderBy('created_at', 'desc')
-       ->get();
+        $list_order  = Order::where('status', '!=', 0)->first();
+        $list_orderdetail  = Orderdetail::where('status', '!=', 0)->first();
         return view('backend.orderdetail.index', compact('list_orderdetail','list_order','user_name'));
     }
 }

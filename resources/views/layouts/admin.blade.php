@@ -93,6 +93,16 @@
         CKEDITOR.replace('ckeditor21')
         CKEDITOR.replace('ckeditor22')
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+         $('#btn').click(function(e){
+             e.prevenDefault();
+             alertify.success('Thêm sản phẩm thành công')
+         });
+     });
+  </script>
     @yield('footer')
 </body>
 </html>

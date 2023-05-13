@@ -18,17 +18,14 @@ class DangnhapController extends Controller
 
     public function dangnhap()
     {
-        
         return view ('frontend.login.dangnhap');
     }
-
     public function xulydangnhap(Request $request)
     {
         
         $this->validate($request,[
             'username'=>'required',
-            'password'=>'required|min:3|max:32',
-            
+            'password'=>'required|min:3|max:32',       
        ],[                
              'password.required'=>'Bạn chưa nhập mật khẩu',
              'password.min'=>'Mật khẩu có ít nhất 3 kí tự',
@@ -36,25 +33,23 @@ class DangnhapController extends Controller
              'username.required'=>'Bạn chưa nhập tên tài khoản',
        ]);
 
-       $username =$request->username;
-       $password = $request->password;   
-      
-       if(Auth::guard('cus')->attempt($request->only('username','password'))){
-        //echo 'Thanh cong';
-        //echo bcrypt($password);
-        return redirect()->route('frontend.home');
-       }else
-       {
-        //echo 'Khong Thanh cong';
-        //echo bcrypt($password);
-       return redirect()->route('login.dangnhap');
-       }
+            $username =$request->username;
+          $password = $request->password;     
+          {
+            $data=['username'=>$username,'password'=>$password];
+          }     
+          if(Auth::guard('customer')->attempt($data)){
+            return redirect()->route('frontend.home')->with('message', ['type' => 'success', 'msg' => 'Đăng nhập tài khoản thành công!']);
+          }
+          else{
+            return redirect()->route('login.dangnhap');
+          //  echo bcrypt($password);
+          }
     }
 
     public function dangxuat(){
-     
-            Auth::guard('cus')->logout(); 
-            return redirect()->route('login.dangnhap');
+            Auth::guard('customer')->logout(); 
+            return redirect()->route('frontend.home');
            
     }
 

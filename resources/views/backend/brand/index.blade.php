@@ -72,9 +72,9 @@
                                     <a href="{{ route('brand.edit', ['brand' => $brand->id]) }}"
                                         class="btn btn-sm btn-info "><i class="fas fa-edit"></i></a>
                                     <a href="{{ route('brand.show', ['brand' => $brand->id]) }}"
-                                        class="btn btn-sm btn-success"><i class="far fa-eye"></i></a>
+                                        class="btn btn-sm btn-success" ><i class="far fa-eye"></i></a>
                                     <a href="{{ route('brand.delete', ['brand' => $brand->id]) }}"
-                                        class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                        class="btn btn-sm btn-danger" ><i class="fas fa-trash-alt"></i></a>
                                 </td>
                                 <td class="text-center align-middle">{{ $brand->id }}</td>
                             </tr>

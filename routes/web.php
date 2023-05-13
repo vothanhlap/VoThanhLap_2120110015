@@ -27,7 +27,6 @@
     use App\Http\Controllers\backend\UserController;
     use App\Http\Controllers\backend\DashboardController;
     use App\Http\Controllers\backend\CustomerController;
-
     //trang chu
         Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
         //tim kiem 
@@ -40,27 +39,22 @@
         Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
         Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
         Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
-        Route::get('delete-list-Cart/{id}', [CartController::class, 'deletelistCart']);
-        
+        Route::get('delete-list-Cart/{id}', [CartController::class, 'deletelistCart']);   
         //dang xuat
         Route::get('dang-nhap', [DangnhapController::class, 'dangxuat'])->name('login.dangxuat');  
-
         // //khai bao route cho trang nguoi dung
-       
-            //dang nhap tai khoan khach hang
+        //dang nhap tai khoan khach hang
         Route::get('dang-nhap', [DangnhapController::class, 'dangnhap'])->name('login.dangnhap');
-        Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('xulydangnhap');  
-        
-        Route::get('dang-xuat', [DangnhapController::class, 'dangxuat'])->name('login.dangxuat');
+        Route::post('dang-nhap', [DangnhapController::class, 'xulydangnhap'])->name('xulydangnhap');     
         //dang ky
         Route::get('dang-ki', [DangnhapController::class, 'dangki'])->name('login.dangki');
         Route::post('dang-ki', [DangnhapController::class, 'xulydangki'])->name('login.xulydangki');
         
+        Route::get('dang-xuat', [DangnhapController::class, 'dangxuat'])->name('login.dangxuat');
         //thanh toan
         Route::get('thanh-toan', [CheckoutController::class, 'checkout'])->name('giohang.checkout');
         // Dat hang thanh cong
         Route::get('dat-hang-thanh-cong', [CheckoutController::class, 'dathangthanhcong'])->name('giohang.dathangthanhcog');
-
         // khai bao route dang nhap - dang xuat
         route::get('login', [AuthController::class, 'getlogin'])->name('login');
         Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');
