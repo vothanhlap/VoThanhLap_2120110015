@@ -216,7 +216,7 @@
                             </div>
                         </div>
                         @php
-                            $tt = 0;
+                            $tt = '0';
                             if (Session::has('Cart') != null) {
                                 $tt = Session::get('Cart')->tongsoluong;
                             }

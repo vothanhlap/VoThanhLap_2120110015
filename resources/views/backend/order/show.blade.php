@@ -29,7 +29,7 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <td>Mã Khách Hàng</td>
-                            <td>{{ $order->cus_id }}</td>
+                            <td>MKH 0{{ $order->cus_id }}</td>
                         </tr>
                         <tr>
                             <td>Họ Tên Khách Hàng</td>
@@ -58,20 +58,21 @@
                         <tbody>
 
                             @foreach ($orderdetail as $item)
-                                @php
+                           @php
                                     $arr_image = $item->productimg;
                                     $image = 'hinh.png';
                                     if (count($arr_image) > 0) {
                                         $image = $arr_image[0]['image'];
                                     }
                                     $tongtien = 0;
+                                    
                                 @endphp
-                                
+                                     
                                 <tr>
                                     <td class="text-center" style="width:100px;">
                                         <img class="img-fluid" src="{{ asset('images/product/' . $image) }}" alt="{{ $image }}">
                                         </td>
-                                    <td>name</td>
+                                    <td></td>
                                     <td>{{ number_format($item->price, 0) }} VNĐ</td>
                                     <td>{{ $item->number }}</td>
                                     <td>{{ number_format($item->number * $item->price, 0) }} VNĐ</td>
@@ -110,7 +111,7 @@
                                 </th>
                               
                                 <th>Tổng Tiền</th>
-                                <td>{{$tongtien}}VND</td>
+                                <td>{{$tongtien = ($item->number * $item->price) }}VND</td>
                         
                             </tr>
                         </tfoot>

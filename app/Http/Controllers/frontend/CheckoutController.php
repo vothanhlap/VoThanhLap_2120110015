@@ -13,6 +13,7 @@ use App\Models\Orderdetail;
 use App\Cart;
 use Carbon\Carbon;
 use Session;
+use Mail;
 
 class CheckoutController extends Controller
 {
@@ -56,10 +57,19 @@ class CheckoutController extends Controller
             $order_detail->status = 1;
             $order_detail->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
             $order_detail->save();
+            //Giui mail xac nhan
+            Mail::send('emails.check_order', compact('order','auth'), function ($email) use($auth) {
+                $email->subject('Shopdientu-Xác nhận đơn hàng');
+                $email->to($auth->email, $auth->fullname);
+            });
+            // Huy gio hang
+            //Session::where('cus_id',$auth->id)->delete();
+             $req->session()->forget('Cart');
+           return view ('frontend.giohang.dathangthanhcong',compact('order'));
          }
       }
-      //dd($order);
-     //return view ('frontend.giohang.dathangthanhcong');
+      
+    
    }
 
     

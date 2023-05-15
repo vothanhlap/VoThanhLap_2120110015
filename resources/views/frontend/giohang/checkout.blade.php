@@ -9,7 +9,7 @@
                 <div class="container" style="max-width: 720px;">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h4 class="card-title mb-3">Thông tin thanh toán</h4>
+                            <h4 class="card-title mb-3 text-danger">Thông tin khách hàng</h4>
                             <div class="col form-group">
                                 <label>Họ và tên khách hàng</label>
                                 <input type="text" value="{{Auth::guard('customer')->user()->fullname}}" class="form-control" placeholder="">
@@ -32,6 +32,7 @@
                 </div> <!-- container .//  -->
             </div>
             <div class="col-md-6">
+                <h5>Thông tin đơn hàng (Tổng tiền: {{ number_format(Session::get("Cart")->tonggia, 0) }} VNĐ)</h5>
                <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -66,14 +67,7 @@
                       </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>
-                            <td>Tổng tiền</td>
-                            <td>{{ number_format(Session::get("Cart")->tonggia, 0) }}</td>
-                        </th>
-                    </tr>
-                </tfoot>
+            
                </table>
             </div>
         </div>
@@ -85,10 +79,4 @@
     </div>
     </section>
 @endsection
-<script>
 
-    $('.payment').click(function(){
-
-
-    });
-</script>
