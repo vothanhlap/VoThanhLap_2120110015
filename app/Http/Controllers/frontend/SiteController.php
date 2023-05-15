@@ -127,8 +127,10 @@ class SiteController extends Controller
         }
 
         $list_product = Product::whereIn('category_id',$arrcatid)->where('status','=','1')->orderBy('created_at','desc')
-        ->paginate(12);
-        return view ('frontend.product.product-category',compact('list_product','row_category'));
+        ->paginate(8);
+        $list_category = Category::where('status','=',1)->get();
+        $list_brand = brand::where('status','=',1)->get();
+        return view ('frontend.product.product-category',compact('list_category','list_brand','list_product','row_category'));
      }
       // san pham theo thuong hieu
       public function product_brand ($slug)
@@ -142,8 +144,10 @@ class SiteController extends Controller
          $arrbraid = array();
           array_push($arrbraid, $braid);
           $list_product= Product::whereIn('brand_id',$arrbraid)->where('status','=','1')->orderBy('created_at','desc')
-          ->paginate(12);
-          return view ('frontend.product.product-brand',compact('row_brand','list_product'));
+          ->paginate(8);
+          $list_category = Category::where('status','=',1)->get();
+          $list_brand = brand::where('status','=',1)->get();
+          return view ('frontend.product.product-brand',compact('list_category','list_brand','row_brand','list_product'));
       }
        //chi tiet san pham
        public function product_detail ($product)

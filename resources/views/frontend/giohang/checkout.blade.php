@@ -32,7 +32,49 @@
                 </div> <!-- container .//  -->
             </div>
             <div class="col-md-6">
-            
+               <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th style="width:10px" class="text-center">#</th>
+                        <th style="width:70px" class="text-center">Hình</th>
+                        <th  class="text-center">Tên sản phẩm</th>
+                        <th style="width:30px" class="text-center">SL</th>
+                        <th style="width:50px" class="text-center">Đơn giá</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Session::get("Cart")->products as $item)
+                    @php
+                         $mo_ta = $item['productinfo']->name;
+                        $rut_gon1 = substr($mo_ta, 0, 100) . '...';
+
+                        $product_image= $item['image'];
+                        $hinh="";
+                        if(count($product_image)>0)
+                        {
+                            $hinh=$product_image[0]["image"];
+                        } 
+                    @endphp
+                    <tr>
+                        <td class="text-center align-middle"><input type="checkbox"></td>
+                        <td class="text-center align-middle"> <img style="width:80px" src="{{ asset('images/product/' . $hinh) }}" alt="{{$hinh}}"></td>
+                        <td class=" align-middle" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">{{$item['productinfo']->name}}</td>
+                        <td class=" align-middle">{{ $item['soluong'] }}</td>
+                        <td class=" align-middle">{{ number_format($item['productinfo']->price_buy) }}</td>
+
+                      </tr>
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            <td>Tổng tiền</td>
+                            <td>{{ number_format(Session::get("Cart")->tonggia, 0) }}</td>
+                        </th>
+                    </tr>
+                </tfoot>
+               </table>
             </div>
         </div>
        </div>

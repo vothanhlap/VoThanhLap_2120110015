@@ -93,7 +93,7 @@ class DangnhapController extends Controller
                 $customer->password = bcrypt($request->password);
                 $customer->address = $request->address;
                 $customer->phone = $request->phone;
-                $customer->roles = 1;
+                $customer->roles = 2;
                 $customer->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
                 $customer->created_by ='admin'; 
                 $customer->status = 1; 

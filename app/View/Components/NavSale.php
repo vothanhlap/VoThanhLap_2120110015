@@ -27,7 +27,10 @@ class NavSale extends Component
             ['status','=','1'],
             ['sale','=','1'],
         ];
-        $list_product = Product::where($data)->orderBy('created_at','desc')->take(4)->get();
+        $list_product = Product:: 
+        where($data)->orderBy('created_at','desc')
+        ->take(4)
+        ->get();
         return view('components.nav-sale',compact('list_product'));
     }
 }

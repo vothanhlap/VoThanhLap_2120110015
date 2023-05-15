@@ -14,25 +14,13 @@
            <div class="card card-product-grid" style="height: 250px">
                 <img style="height: 150px;" class="img-fluid" src="{{ asset('images/product/'.$image)}}">
                <figcaption class="info-wrap">
-                   <a href="#" class="title text-truncate">{{$item->name}}</a>
+                   <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="title text-truncate">{{$item->name}}</a>
                    <div class="price mt-1">
                        {{ number_format($item->price_buy,0) }} VNĐ
                    </div> <!-- price-wrap.// -->
                    <div>
-                       <div class="servece-desc">
-                           <div class="row">
-                               <div class="col-md-6 text-center">
-                                   <button type="button" class="btn btn-sm btn-info">
-                                       <a href="{{route('frontend.slug',['slug'=>$item->slug])}}"><i class="far fa-eye"></i></a>
-                                   </button>
-                               </div>
-                               <div class="col-md-6 text-center">
-                                   <button type="button" class="btn btn-sm btn-info">
-                                       <a onclick="AddCart({{$item->id}})" href="javaCrip:"><i class="fa fa-shopping-cart"></i></a>
-                                   </button>
-                               </div>
-                           </div>
-                       </div>
+                    <a onclick="AddCart({{$item->id}})" href="javaCrip:"><button type="submit" class=" btn btn-sm border border-warning mt-2">Thêm vào giỏ hàng</button></a>
+                      
                     </div>
                </figcaption>
                

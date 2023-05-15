@@ -213,19 +213,7 @@ class ProductController extends Controller
         $user_name = Auth::user()->name;
         $product = Product::find($id);
         $path_dir = "images/product/";
-        
-        // if ($product == null) 
-        // {
-        //     return redirect()->route('product.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại!']);
-        // }else
-        // {
-        //     if ($product->delete()) {
-               
-        //     }   
-        // } 
-
         }
-        // return redirect()->route('product.trash')->with('message', ['type' => 'dangers', 'msg' => 'Xóa sản phẩm không thành công!']);
     #GET:admin/product/status/{id}
     public function status($id)
     {

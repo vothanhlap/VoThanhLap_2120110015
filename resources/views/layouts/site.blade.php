@@ -26,6 +26,32 @@
 </head>
 @yield('header')
 <style>
+@-webkit-keyframes my {
+	 0% { color: #ee1515; } 
+	 50% { color: #fff;  } 
+	 100% { color: #ee1515;  } 
+ }
+ @-moz-keyframes my { 
+	 0% { color: #ee1515;  } 
+	 50% { color: #fff;  }
+	 100% { color: #ee1515;  } 
+ }
+ @-o-keyframes my { 
+	 0% { color: #ee1515; } 
+	 50% { color: #fff; } 
+	 100% { color: #ee1515;  } 
+ }
+ @keyframes my { 
+	 0% { color: #ee1515;  } 
+	 50% { color: #fff;  }
+	 100% { color: #ee1515;  } 
+ } 
+ .test {   
+	 -webkit-animation: my 700ms infinite;
+	 -moz-animation: my 700ms infinite; 
+	 -o-animation: my 700ms infinite; 
+	 animation: my 700ms infinite;
+}
     .product-name {
         text-transform: capitalize;
         font-size: 18px;

@@ -43,7 +43,21 @@ class CheckoutController extends Controller
      // $order->note = $req->note;
        $order->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
       $order->status = 1;
-      $order->save();
+      if($order->save()){
+         $order_id = $order->id;
+         foreach (Session::get("Cart")->products as $item){
+            $order_detail = new Orderdetail;
+            $order_detail->order_id = $order_id;
+            $order_detail->product_id = $item['productinfo']->id;
+            $order_detail->number = $item['soluong'];
+            $order_detail->price = $item['productinfo']->price_buy;
+            $order_detail->amount = (int)$item['productinfo']->price_buy*(int)$item['soluong'];
+            $order_detail->created_by = 1;
+            $order_detail->status = 1;
+            $order_detail->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+            $order_detail->save();
+         }
+      }
       //dd($order);
      //return view ('frontend.giohang.dathangthanhcong');
    }

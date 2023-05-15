@@ -47,7 +47,6 @@
                         <thead>
 
                             <tr>
-                                <th>Mã sản phẩm</th>
                                 <th class="text-center" style="width:100px">Hình </th>
                                 <th>Tên Sản phẩm</th>
                                 <th>Giá Sản Phẩm</th>
@@ -69,7 +68,6 @@
                                 @endphp
                                 
                                 <tr>
-                                    <td class="text-center">{{ $item->product_id }}</td>
                                     <td class="text-center" style="width:100px;">
                                         <img class="img-fluid" src="{{ asset('images/product/' . $image) }}" alt="{{ $image }}">
                                         </td>
