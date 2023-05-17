@@ -23,9 +23,6 @@
                             <strong class="text-danger text-uppercase">TẤT CẢ ĐƠN HÀNG</strong>
                         </div>
                         <div class="col-md-6 text-right">
-                            {{-- <a href="{{route('orderdetail.index')}}"class="btn btn-sm btn-info">
-                                <i class="fas fa-eye"></i> Xem chi tiết đơn hàng
-                            </a> --}}
                             <a href="{{ route('order.trash') }}"class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash"></i> Thùng rác
                             </a>
@@ -75,7 +72,6 @@
                                                 <td>{{$order->id}}</td>
                                             </tr>
                                         @endforeach
-            
                                     </tbody>
                                 </table>
                          

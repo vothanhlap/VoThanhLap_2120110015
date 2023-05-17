@@ -140,12 +140,6 @@
                                     <p style="color:greenyellow">Danh Sách Đơn Hàng</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('orderdetail.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p style="color:greenyellow">Chi tiết đơn Hàng</p>
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">

@@ -41,13 +41,13 @@
                                     @endif
                                 </div>
                                 <div class="mb-3">
-                                    <label for="username" class="text-danger">Tên Username</label>
-                                    <input type="text" name="username" value="{{ old('username', $user->username) }}"
+                                    <label  for="username" class="text-danger">Tên Username</label>
+                                    <input type="text" readonly name="username" value="{{ old('username', $user->username) }}"
                                         id="username" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="text-danger">Mật khẩu</label>
-                                    <input type="text" name="password" value="{{ old('password', $user->password) }}"
+                                    <input type="text" readonly name="password" value="{{ old('password', $user->password) }}"
                                         id="password" class="form-control">
                                 </div>
                                 <div class="mb-3">

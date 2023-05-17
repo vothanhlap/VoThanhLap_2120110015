@@ -71,10 +71,11 @@ class OrderController extends Controller
     //chi tiet don hang
     public function show(string $id )
     {
-       
         $user_name = Auth::user()->name;
-        $orderdetail  = Orderdetail::where('status', '!=', 0)->get();
         $order = Order::find($id);
+        $orderdetail  = Orderdetail::where('status', '!=', 0)
+        ->whereIn('order_id',[$id])
+        ->orderBy('created_at', 'desc')->get();
         if ($order == null) {
             return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
         } else {
@@ -108,7 +109,6 @@ class OrderController extends Controller
         } else {
             $order->status = 2;
             $order->updated_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-            $order->updated_by = 1;
             $order->save();
             return redirect()->route('order.trash')->with('message', ['type' => 'success', 'msg' => 'Khôi phục thành công !']);
         }
@@ -116,13 +116,27 @@ class OrderController extends Controller
 
     public function Huy($id)
     {
+        $order = Order::find($id);
+        if ($order == null) {
+            return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        }
+        if( $order->status = 1 ||  $order->status = 2){
+            $order->status = 6;
+            $order->save();
+            return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đơn hàng đã được hủy thành công!']);
+        }
+        else
+        {
+            return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Thất bại !']);
+        }
+        
         
     }
 
     public function Xacminh($id)
     {
         
-        
+       
     }
 
     public function Vanchuyen($id)

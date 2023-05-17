@@ -48,41 +48,47 @@
 
                             <tr>
                                 <th class="text-center" style="width:100px">Hình </th>
-                                <th>Tên Sản phẩm</th>
-                                <th>Giá Sản Phẩm</th>
-                                <th>Số Lượng</th>
-                                <th>Thành Tiền</th>
-                                <th>ID</th>
+                                <th class="text-center">Tên Sản phẩm</th>
+                                <th class="text-center">Giá Sản Phẩm</th>
+                                <th style="with:50px" class="text-center">Số Lượng</th>
+                                <th class="text-center">Thành Tiền</th>
+                                <th class="text-center">ID</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach ($orderdetail as $item)
                            @php
                                     $arr_image = $item->productimg;
                                     $image = 'hinh.png';
                                     if (count($arr_image) > 0) {
                                         $image = $arr_image[0]['image'];
-                                    }
-                                    $tongtien = 0;
-                                    
-                                @endphp
-                                     
+                                    }   
+                                    $sanpham = $item->sanpham;
+                                    $namepro = 'san pham A';
+                                    $namepro = $sanpham->name;
+                                @endphp        
+                               @php
+                                   $tong += ($item->amount );
+                                  
+                               @endphp
                                 <tr>
                                     <td class="text-center" style="width:100px;">
+                                      
                                         <img class="img-fluid" src="{{ asset('images/product/' . $image) }}" alt="{{ $image }}">
                                         </td>
-                                    <td></td>
-                                    <td>{{ number_format($item->price, 0) }} VNĐ</td>
-                                    <td>{{ $item->number }}</td>
-                                    <td>{{ number_format($item->number * $item->price, 0) }} VNĐ</td>
-                                    <td>{{ $item->id }}</td>
-                                </tr>
+                                    <td class="text-start">{{$namepro}}</td>
+                                    <td class="text-center" style="width:180px;">{{ number_format($item->price, 0) }} VNĐ</td>
+                                    <td class="text-center" style="width:100px;">{{ $item->number }}</td>
+                                    <td class="text-center" style="width:180px;">{{ number_format($item->amount, 0) }} VNĐ</td>
+                                    <td class="text-center"style="width:40px;">{{ $item->id }}</td>
+                                </tr>           
                             @endforeach
+                            
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="4" class="text-center py-2">
+                                <th colspan="3" class="text-center py-2">
                                     <a href="{{ route('order.huy', ['order' => $order->id]) }}"
                                         class="btn btn-sm btn-danger " style="margin-right:5px">
                                         <i class="fas fa-window-close"></i>
@@ -109,20 +115,15 @@
                                         Xuất Hóa Đơn
                                     </a>
                                 </th>
-                              
-                                <th>Tổng Tiền</th>
-                                <td>{{$tongtien = ($item->number * $item->price) }}VND</td>
-                        
+                                <th></th>
+                                <th class="text-center text-danger">{{number_format($tong),0}} VND</th>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-
                 <!-- /.card-footer-->
             </div>
             <!-- /.card -->
-
-
         </section>
         <!-- /.content -->
     </div>
