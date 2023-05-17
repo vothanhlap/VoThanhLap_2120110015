@@ -19,7 +19,7 @@ class MenuController extends Controller
     public function index()
     {
         $user_name = Auth::user()->name;
-        $list_menu = Menu::where('status', '!=', 0)->get();
+        $list_menu = Menu::where('status', '!=', 0)->orderBy('created_at', 'desc')->get();
         $list_category = Category::where('status', '!=', 0)->get();
         $list_brand = Brand::where('status', '!=', 0)->get();
         $list_topic = Topic::where('status', '!=', 0)->get();

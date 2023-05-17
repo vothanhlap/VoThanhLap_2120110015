@@ -411,6 +411,8 @@
             });
         });
 
+      
+
         function RenderCart(response) {
             $("#change-item-cart").empty();
             $("#change-item-cart").html(response);
@@ -429,6 +431,15 @@
             });
         }
 
+        function savelistCart(id) {
+            $.ajax({
+                url: 'save-item-list-Cart/' + id + '/'+$("#quanty-item-"+id).val(),
+                type: 'GET',
+            }).done(function(response) {
+                RenderListCart(response);
+                alertify.success('Cập nhật sản phẩm thành công');
+            });
+        }
         function RenderListCart(response) {
             $("#list-cart").empty();
             $("#list-cart").html(response);
@@ -443,8 +454,30 @@
             });
         });
      </script>
-   
-    
+     <script>
+        (function($) {
+  showSwal = function(type) {
+    'use strict';
+     if (type === 'success-message') {
+      swal({
+        title: 'Thành công!',
+        //text: 'Bạn đã đăng nhập thành công',
+        type: 'success',
+        button: {
+          text: "Continue",
+          value: true,
+          visible: true,
+          className: "btn btn-primary"
+        }
+      })
+
+    }else{
+        swal("Lỗi đăng nhập !");
+    } 
+  }
+
+})(jQuery);
+     </script> 
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- CSS -->
@@ -456,6 +489,8 @@
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </body>
 @yield('footer')
 

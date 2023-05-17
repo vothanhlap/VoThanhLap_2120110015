@@ -99,7 +99,7 @@
                     @endif
                     </div> <!-- form-group end.// -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block"> Đăng ký </button>
+                        <button type="submit" class="btn btn-primary btn-block" onclick="showSwal('success-message')"> Đăng ký </button>
                     </div> <!-- form-group// -->
                     <div class="form-group">
                         <label class="custom-control custom-checkbox"> 

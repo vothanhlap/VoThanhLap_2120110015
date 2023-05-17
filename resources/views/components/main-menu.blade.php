@@ -4,18 +4,5 @@
             <x-menu-item :menu="$rowmenu"/>
    @endforeach
   </ul>
-    <ul class="navbar-nav ml-md-auto">
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Tải ứng dụng</a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <img src="" alt="Hinh">
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">English</a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">Russian</a>
-          </div>
-        </li>
-     </ul>
+  
   </div> <!-- collapse .// -->

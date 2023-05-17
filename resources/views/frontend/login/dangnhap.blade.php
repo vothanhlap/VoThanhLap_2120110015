@@ -33,7 +33,7 @@
                 <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label">Nhớ mật khẩu</div> </label>
               </div> <!-- form-group form-check .// -->
               <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block">ĐĂNG NHÂP</button>
+                  <button type="submit" class="btn btn-primary btn-block" onclick="showSwal('success-message')">ĐĂNG NHÂP</button>
               </div> <!-- form-group// -->    
           </form>
           </div> <!-- card-body.// -->

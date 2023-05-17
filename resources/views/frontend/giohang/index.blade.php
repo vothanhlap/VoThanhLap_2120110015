@@ -13,7 +13,7 @@
                                 <th class="text-center" width="20">#</th>
                                 <th class="text-center">TẤT CẢ SẢN PHẨM</th>
                                 <th class="text-center" width="120"> ĐƠN GIÁ</th>
-                                <th class="text-center" width="80">SỐ LƯỢNG</th>
+                                <th class="text-center" width="80">SL</th>
                                 <th class="text-center" width="120">THÀNH TIỀN</th>
                                 <th class="text-center" width="150">CHỨC NĂNG</th>
 
@@ -45,10 +45,11 @@
                                     </figure>
                                 </td>
                                 <td class="text-center align-middle">
-                                    {{number_format($item['productinfo']->price_buy)}}
+                                    <p>{{number_format($item['productinfo']->price_buy)}}</p>
+                                    
                                 </td>
                                 <td class="text-center align-middle">
-                                    <input class="form-control text-center" type="text" value="{{ $item['soluong'] }}">
+                                    <input id="quanty-item-{{$item['productinfo']->id}}" class="form-control text-center" type="text" value="{{ $item['soluong'] }}">
                                 </td>
                                 <td class="text-center align-middle">
                                     <div class="price-wrap">
@@ -58,7 +59,7 @@
                                 <td class="align-middle">
                                     <a class="btn btn-light" onclick="deletelistCart({{$item['productinfo']->id}});">
                                         Xoá</a>
-                                        <a class="btn btn-light" >
+                                        <a class="btn btn-light" onclick="savelistCart({{$item['productinfo']->id}});">
                                             Sửa</a>
                                 </td>
 

@@ -39,7 +39,11 @@
         Route::get('gio-hang', [CartController::class, 'index'])->name('giohang.index');
         Route::get('addcart/{id}', [CartController::class, 'addcart'])->name('giohang.addcart');
         Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
-        Route::get('delete-list-Cart/{id}', [CartController::class, 'deletelistCart']);   
+        Route::get('delete-list-Cart/{id}', [CartController::class, 'deletelistCart']); 
+        Route::get('save-item-list-Cart/{id}/{quanty}', [CartController::class, 'savelistCart']); 
+        
+        
+        
         //dang xuat
         Route::get('dang-nhap', [DangnhapController::class, 'dangxuat'])->name('login.dangxuat');  
         // //khai bao route cho trang nguoi dung

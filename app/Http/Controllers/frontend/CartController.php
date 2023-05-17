@@ -52,8 +52,8 @@ class CartController extends Controller
 
     //Xoa list cart
       //xoa 
-      public function deletelistCart(Request $req, $id){     
-       
+      public function deletelistCart(Request $req, $id)
+      {     
         $oldcart = Session('Cart') ? Session('Cart') :null;
         $newCart = new Cart( $oldcart);
         $newCart->deleteCart($id);
@@ -65,4 +65,15 @@ class CartController extends Controller
         
         return view ('frontend.giohang.list-cart');
 }   
+
+    public function savelistCart (Request $req, $id, $quanty){
+        $oldcart = Session('Cart') ? Session('Cart') :null;
+        $newCart = new Cart( $oldcart);
+        $newCart->updateCart($id, $quanty);
+        $req->session()->put('Cart',$newCart);
+        return view ('frontend.giohang.list-cart');
+
+
+    }
+
 }
