@@ -126,8 +126,8 @@
     });
       //user
       Route::resource('user', UserController::class);
-        route::get('user_trash', [UserController::class, 'trash'])->name('user.trash');
-        route::prefix('user')->group(function () {
+          route::get('user_trash', [UserController::class, 'trash'])->name('user.trash');
+          route::prefix('user')->group(function () {
           route::get('status/{user}', [UserController::class, 'status'])->name('user.status');
           route::get('delete/{user}', [UserController::class, 'delete'])->name('user.delete');
           route::get('restore/{user}', [UserController::class, 'restore'])->name('user.restore');

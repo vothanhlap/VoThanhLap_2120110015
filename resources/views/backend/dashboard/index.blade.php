@@ -1,7 +1,16 @@
 @extends('layouts.admin')
-@section('title', 'QUAN LY ADMN')
+@section('title', 'Quản lý shop')
 @extends('backend.dashboard.menuadmin')
 @section('content')
+@section('header')
+<link rel="stylesheet" href="{{ asset('public/jquery.dataTables.min.css') }}">
+@endsection
+@section('footer')
+    <script src="{{ asset('public/jquery.dataTables.min.js') }}"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
+@endsection
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -69,7 +78,7 @@
                   <!-- small box -->
                   <div class="small-box bg-danger">
                       <div class="inner">
-                          <h3>100,000VND</h3>
+                          <h3>{{number_format($order_count,0)}}đ</h3>
                           <p>Danh thu</p>
                       </div>
                       <div class="icon">
@@ -82,6 +91,37 @@
           </div>
           <!-- /.row -->      
       </div><!-- /.container-fluid -->
+      <h4 class="text-center mt-4">Danh sách đơn hàng</h4>
+     <div class="container">
+        <table class="table table-bordered table-striped" id="myTable">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">MSP</th>
+                    <th class="text-center">Ngày đặt</th>
+                    <th class="text-center">Tên sản phẩm</th>
+                    <th class="text-center">SL</th>
+                    <th class="text-center">Đơn giá</th>
+                    <th class="text-center">Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($list_order as $item)
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox" name="checkbox" id="checkbox">
+                    </td>
+                    <td>MSP{{$item->id}}</td>
+                    <td>{{$item->created_at}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                @endforeach
+            </tbody>
+          </table>
+     </div>
   </section>
   <!-- /.content -->
 </div>

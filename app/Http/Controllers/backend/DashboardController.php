@@ -9,6 +9,7 @@ use App\Models\ProductStore;
 use App\Models\Post;
 use App\Models\Customer;
 use App\Models\Orderdetail;
+use App\Models\Order;
 use App\Models\User;
 
 class DashboardController extends Controller
@@ -19,7 +20,11 @@ class DashboardController extends Controller
         $product_count=ProductStore::sum('qty');
         $post_count=Post::count();
         $custumer_count=User::count();
-        return view('backend.dashboard.index',compact('custumer_count','post_count','product_count','user_name'));
+        $order_count=Orderdetail::sum('amount');
+        $list_order = Order::join('vtl_Order_detail','vtl_Order_detail.order_id','=','vtl_order.id')
+        ->select('vtl_Order_detail.*')
+        ->where('vtl_order.status','=',1)->get();
+        return view('backend.dashboard.index',compact('list_order','order_count','custumer_count','post_count','product_count','user_name'));
     }
 
         public function show(string $id){
