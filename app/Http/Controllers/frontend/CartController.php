@@ -47,9 +47,6 @@ class CartController extends Controller
             
             return view ('frontend.giohang.cart-item');
     }
-
-   
-
     //Xoa list cart
       //xoa 
       public function deletelistCart(Request $req, $id)
@@ -61,8 +58,7 @@ class CartController extends Controller
             $req->session()->put('Cart',$newCart);
         }else{
             $req->session()->forget('Cart');
-        }
-        
+        }   
         return view ('frontend.giohang.list-cart');
 }   
 

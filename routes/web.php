@@ -42,6 +42,7 @@
         Route::get('delete-list-Cart/{id}', [CartController::class, 'deletelistCart']); 
         Route::get('save-item-list-Cart/{id}/{quanty}', [CartController::class, 'savelistCart']); 
         
+      
         
         
         //dang xuat
@@ -172,8 +173,10 @@
        route::get('xac-minh/{order}', [OrderController::class, 'Xacminh'])->name('order.xacminh');
        route::get('van-chuyen/{order}', [OrderController::class, 'Vanchuyen'])->name('order.vanchuyen');
        route::get('thanh-cong/{order}', [OrderController::class, 'Thanhcong'])->name('order.thanhcong');
-       route::get('xuat-hoa-don/{order}', [OrderController::class, 'Xuathoadon'])->name('order.xuathoadon');
-   });
+       route::get('/dynamic_pdf/{order}', [OrderController::class, 'Xuathoadon'])->name('order.xuathoadon');
+       route::get('/dynamic_pdf/pdf/{order}', [OrderController::class, 'pdf'])->name('order.pdf');
+  
+    });
    //orderdetail
     Route::resource('orderdetail', OrderdetailController::class);
         route::get('orderdetail_trash', [OrderdetailController::class, 'trash'])->name('orderdetail.trash');

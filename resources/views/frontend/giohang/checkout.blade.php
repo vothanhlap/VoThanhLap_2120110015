@@ -57,11 +57,12 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width:10px" class="text-center">#</th>
+                                  
                                     <th style="width:70px" class="text-center">Hình</th>
                                     <th class="text-center">Tên sản phẩm</th>
                                     <th style="width:30px" class="text-center">SL</th>
                                     <th style="width:50px" class="text-center">Đơn giá</th>
+                                    <th style="width:50px" class="text-center">Thành tiền</th>
 
                                 </tr>
                             </thead>
@@ -78,7 +79,7 @@
                                         }
                                     @endphp
                                     <tr>
-                                        <td class="text-center align-middle"><input type="checkbox"></td>
+                                       
                                         <td class="text-center align-middle"> <img style="width:80px"
                                                 src="{{ asset('images/product/' . $hinh) }}" alt="{{ $hinh }}"></td>
                                         <td class=" align-middle"
@@ -88,6 +89,7 @@
                                         <td class=" align-middle">
                                             {{ number_format($item['productinfo']->price_buy) }}</td>
 
+                                            <td class="text-center align-middle">{{number_format( ($item['soluong'])*($item['productinfo']->price_buy)) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

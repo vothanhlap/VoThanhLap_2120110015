@@ -231,7 +231,7 @@
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
                                             {{ $tt }}
                                         @else
-                                            <span id="total-quanty-show"
+                                            <span id="total-quanty-show" 
                                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
                                                 {{ $tt }}
                                     @endif

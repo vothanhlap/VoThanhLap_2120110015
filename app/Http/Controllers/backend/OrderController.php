@@ -13,6 +13,7 @@ use App\Http\Requests\orderUpdateRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -142,6 +143,8 @@ class OrderController extends Controller
     public function Vanchuyen($id)
     {
        echo 'Đơn hang đươc vân chuyển';
+
+       var_dump();
     }
 
     public function Thanhcong($id)
@@ -149,9 +152,131 @@ class OrderController extends Controller
        echo 'Đơn hang đươc giao đến khách hàng thành công';
     }
 
-    public function Xuathoadon($id)
+    public function Xuathoadon(string $id)
     {
-        echo 'Đơn hang đã được xuất file';
+        $order = Order::find($id);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->convert_customer_data_to_html($id));
+        return $pdf->stream();
     }
+
+    function convert_customer_data_to_html($id)
+    {
+        $user_name = Auth::user()->name;
+        $order = Order::find($id);
+        $orderdetail  = Orderdetail::join('vtl_product','vtl_product.id','=','vtl_order_detail.product_id')
+        ->select('vtl_order_detail.*','vtl_product.name as pro')
+        ->where('vtl_order_detail.status', '!=', 0)
+        ->whereIn('order_id',[$id])
+        ->orderBy('created_at', 'desc')->get();
+        $output='';
+        $output .= '
+        <style>
+                body{
+                    font-family:DejaVu Sans;
+                }
+              </style>
+              <span>
+                 Shopdientu.com
+              </span>
+              
+             <h4 align="center">
+             HÓA ĐƠN GIÁ TRỊ GIA TĂNG
+             </br>(Bản thể hiện hóa đơn điện tử)
+             </br>Ngày...Tháng...Năm...
+             </h4>    
+        ';
+        
+        $output .='
+        
+           <p>MKH: MKH0'.$order->cus_id.'</p> 
+           <p>Họ và tên người mua:'.$order->fullname.'</p>
+           <p>Số điện thoại: '.$order->phone.'</p>     
+           <p>Email: '.$order->email.'</p>  
+          
+        ';
+         $output .= '<br/>';
+
+        $output .= '<style>
+                body{
+                    font-family:DejaVu Sans;
+                }
+              </style>   
+             <table width="100%" style="border-collapse: collapse; border: 0px;">
+             <thead>
+             <tr>
+                <th style="border: 1px solid; padding:12px;" width="45%">Tên SP</th>
+                <th style="border: 1px solid; padding:12px;" width="10%">Đơn giá</th>
+                <th style="border: 1px solid; padding:12px;" width="5%">SL</th>
+                <th style="border: 1px solid; padding:12px;" width="20%">Thành tiền</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid; text-align: center"; padding:12px;" width="45%">1</td>
+                <td style="border: 1px solid; text-align: center"; padding:12px;" width="10%">2</td>
+                <td style="border: 1px solid; text-align: center"; padding:12px;" width="5%">3</td>
+                <td style="border: 1px solid; text-align: center"; padding:12px;" width="20%">2x3</td>
+            </tr>
+             </thead>
+             <tbody>
+             ';  
+             $tong = 0;
+             
+             foreach ($orderdetail as $product){
+                $thanhtien = $product->price * $product->number;
+                $tong +=$thanhtien;
+                $output .= '
+              <tr>
+             
+              <td style="border: 1px solid; padding:12px;" width="30%">'.$product->pro.'</td>
+              <td style="border: 1px solid; padding:12px;" width="15%">'.number_format($product->price, 0).'VNĐ</td>
+              <td style="border: 1px solid; padding:12px; text-align: center"; width="15%">'.$product->number.'</td>
+              <td style="border: 1px solid; padding:12px;" width="20%">'.number_format($thanhtien, 0).'VNĐ</td>
+              </tr>
+              ';
+             }
+            $output .='
+            </tbody>
+            </table>
+            ';
+            $output .= '<br/>';
+            $output .='
+            <span style="font-weight: bold;" >Hình thức thanh toán:</span>Thanh toán khi nhân hàng </br>
+            <span style="font-weight: bold;">Phí vận chuyển :</span>free ship </br>
+            <span style="font-weight: bold;">Thành tiền: </span>'.number_format($tong, 0).'VNĐ
+            ';
+            $output .= '<br/>';
+            $output .= '<br/>';
+            $output .= '
+            <table >
+            <thead>
+            <tr>
+               <th width="200px">Người lập phiếu</th>
+               <th width="800px">Người nhân</th>
+           </tr>
+            </thead>
+            
+            </table>
+            ';
+            $output .= '<br/>';
+            $output .= '<br/>';
+            $output .= '<br/>      
+            <p style ="margin-left: 35px;">
+             '.$user_name.'
+             </p> 
+            ';
+            
+            $output .='
+            <p style="text-align: center; font-style: italic; font-size: small;">Xin cảm ơn quý khách hàng đã tin tưởng và ủng hộ shop của chúng tôi.
+              Nếu có bất cứ thông tin nào về sản phẩm của chúng tôi xin quý khách hàng liên hệ chúng tôi qua địa chỉ laptopvui80@gmail.com.
+            </p>
+            ';
+         
+          
+        return $output;
+    }
+
+
+
+ 
 
 }

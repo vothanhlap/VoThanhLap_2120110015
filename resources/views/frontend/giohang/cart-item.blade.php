@@ -1,5 +1,5 @@
 @if (Session::has("Cart")!= null)
-<div class="modal-body">
+ <div class="modal-body">
         <table class="table table-bordered ">
             <tbody>
                 @foreach (Session::get("Cart")->products as $item)
