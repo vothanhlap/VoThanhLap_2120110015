@@ -48,7 +48,8 @@
             </tfoot>
         </table>
     </div>
-
+    @else
+    <p class="text-center">Không có sản phẩm trong giỏ hàng</p>
 @endif
 
 

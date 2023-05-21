@@ -79,16 +79,13 @@
 
                 <div class="form-row  mt-4">
                     <div class="form-group col-md">
-                        <li class="btn btn-info">
+                        <li class="btn btn-light">
                             <i class="fas fa-shopping-cart"></i>
-                            <a onclick="AddCart({{ $product->id }})" href="javaCrip:"><span class="text">Thêm vào giỏ
-                                    hàng</span></a>
+                            <a onclick="AddCart({{ $product->id }})" href="javaCrip:"><span class="text">Thêm vào giỏ hàng</span></a>
                         </li>
                         <a href="#" class="btn btn-light">
                             <i class="fas fa-envelope"></i> <span class="text">Liên hệ nhà cung cấp</span>
                         </a>
-                        {{-- //{{ route('giohang.addcart', ['id' => $product->id]) }}
-                    // {{ route('category.edit', ['category' => $category->id]) }} --}}
                     </div> <!-- col.// -->
                 </div> <!-- row.// -->
 

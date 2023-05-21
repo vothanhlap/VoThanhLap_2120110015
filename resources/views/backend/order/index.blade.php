@@ -67,8 +67,19 @@
                                                 <td>{{ $order->email }}</td>
                                                 <td>{{ $order->phone }}</td>
                                                 <td class="text-center align-middle">{{ $order->created_at }}</td>
-                                                <td class="text-center align-middle"><a href="{{ route('order.show', ['order' => $order->id]) }}"
-                                                    class="btn btn-sm btn-success"><i class="far fa-eye"></i></a></td>
+                                                <td class="text-center align-middle">
+                                                    @if ($order->status == 1)
+                                                    <a href="{{ route('order.status', ['order' => $order->id]) }}"
+                                                        class="btn btn-sm btn-success"><i class="fas fa-toggle-on"></i> </a>
+                                                @else
+                                                    <a href="{{ route('order.status', ['order' => $order->id]) }}"
+                                                        class="btn btn-sm btn-danger"><i class="fas fa-toggle-off"></i> </a>
+                                                @endif
+                                                    <a href="{{ route('order.show', ['order' => $order->id]) }}"
+                                                    class="btn btn-sm btn-info"><i class="far fa-eye"></i></a>
+                                                    <a href="{{ route('order.delete', ['order' => $order->id]) }}"
+                                                        class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                                </td>
                                                 <td>{{$order->id}}</td>
                                             </tr>
                                         @endforeach

@@ -44,7 +44,7 @@ class ProductHome extends Component
         ->where('vtl_product.status','=','1')
         ->select('vtl_product.*', 'vtl_brand.name as braname')
         ->orderBy('vtl_product.created_at','desc')
-        ->take(8)
+        ->take(12)
         ->get();
         return view('components.product-home',compact('list_product'));
     }

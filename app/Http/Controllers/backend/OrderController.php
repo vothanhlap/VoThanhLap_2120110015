@@ -176,27 +176,36 @@ class OrderController extends Controller
                     font-family:DejaVu Sans;
                 }
               </style>
-              <span>
-                 Shopdientu.com
-              </span>
-              
-             <h4 align="center">
-             HÓA ĐƠN GIÁ TRỊ GIA TĂNG
-             </br>(Bản thể hiện hóa đơn điện tử)
-             </br>Ngày...Tháng...Năm...
-             </h4>    
-        ';
-        
-        $output .='
-        
-           <p>MKH: MKH0'.$order->cus_id.'</p> 
-           <p>Họ và tên người mua:'.$order->fullname.'</p>
+              <table > 
+              <tr>
+              <td >
+              Shoplaptop.com
+              </td>
+               
+              </tr>
+              </table>
+        ';     
+       
+        $output .=' 
+        <table width="100%" style="border-collapse: collapse; border: 0px;">
+        <tr>
+        <td style="border: 1px solid; padding:12px;" width="50%">
+        <p style="font-weight: bold;">Từ:</p> 
+           <p>Shopdientu</p>
+           <p>Số điện thoại:0372177993</p>     
+           <p>Email:laptopvui80@gmail.com</p>
+        </td>
+        <td style="border: 1px solid; padding:12px;" width="50%">
+        <p style="font-weight: bold;">Đến:</p> 
+           <p>Họ và tên KH:'.$order->fullname.'</p>
            <p>Số điện thoại: '.$order->phone.'</p>     
            <p>Email: '.$order->email.'</p>  
-          
+           <p>Địa chỉ người nhận:</p>  
+        </td>
+    </tr>
+        </table> 
         ';
-         $output .= '<br/>';
-
+      
         $output .= '<style>
                 body{
                     font-family:DejaVu Sans;
@@ -219,14 +228,12 @@ class OrderController extends Controller
              </thead>
              <tbody>
              ';  
-             $tong = 0;
-             
+             $tong = 0;           
              foreach ($orderdetail as $product){
                 $thanhtien = $product->price * $product->number;
                 $tong +=$thanhtien;
                 $output .= '
-              <tr>
-             
+              <tr>           
               <td style="border: 1px solid; padding:12px;" width="30%">'.$product->pro.'</td>
               <td style="border: 1px solid; padding:12px;" width="15%">'.number_format($product->price, 0).'VNĐ</td>
               <td style="border: 1px solid; padding:12px; text-align: center"; width="15%">'.$product->number.'</td>
@@ -238,40 +245,25 @@ class OrderController extends Controller
             </tbody>
             </table>
             ';
-            $output .= '<br/>';
+           
             $output .='
-            <span style="font-weight: bold;" >Hình thức thanh toán:</span>Thanh toán khi nhân hàng </br>
-            <span style="font-weight: bold;">Phí vận chuyển :</span>free ship </br>
-            <span style="font-weight: bold;">Thành tiền: </span>'.number_format($tong, 0).'VNĐ
-            ';
-            $output .= '<br/>';
-            $output .= '<br/>';
-            $output .= '
-            <table >
-            <thead>
+            <table width="100%" style="border-collapse: collapse; border: 0px;"> 
             <tr>
-               <th width="200px">Người lập phiếu</th>
-               <th width="800px">Người nhân</th>
-           </tr>
-            </thead>
-            
-            </table>
+            <td style="border: 1px solid; padding:12px;" width="75%">
+            Tiền thu người nhận:'.number_format($tong, 0).'VNĐ 
+            </td>
+            <td style="border: 1px solid; padding:12px;" width="25%">
+           Ngày đặt hàng: <br/>'.$order->created_at.' 
+            </td>
+            </tr>
+            </table>        
             ';
-            $output .= '<br/>';
-            $output .= '<br/>';
-            $output .= '<br/>      
-            <p style ="margin-left: 35px;">
-             '.$user_name.'
-             </p> 
-            ';
-            
+            $output .= '<br/>';   
             $output .='
             <p style="text-align: center; font-style: italic; font-size: small;">Xin cảm ơn quý khách hàng đã tin tưởng và ủng hộ shop của chúng tôi.
               Nếu có bất cứ thông tin nào về sản phẩm của chúng tôi xin quý khách hàng liên hệ chúng tôi qua địa chỉ laptopvui80@gmail.com.
             </p>
-            ';
-         
-          
+            ';     
         return $output;
     }
 

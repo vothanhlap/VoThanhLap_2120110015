@@ -57,13 +57,15 @@ class CheckoutController extends Controller
             $order_detail->status = 1;
             $order_detail->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
            //dd($order_detail);
-            $order_detail->save();
+           $order_detail->save();
+            
          }
             //Giui mail xac nhan
             Mail::send('emails.check_order', compact('order','auth'), function ($email) use($auth) {
                 $email->subject('Shopdientu-Xác nhận đơn hàng');
                 $email->to($auth->email, $auth->fullname);
             });
+            
             // Huy gio hang
              $req->session()->forget('Cart');
            return view ('frontend.giohang.dathangthanhcong',compact('order'));

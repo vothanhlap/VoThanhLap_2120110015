@@ -32,7 +32,8 @@
         //tim kiem 
         Route::get("timkiem/", [SiteController::class, 'timkiem'])->name('frontend.timkiem');
         //lien he
-        Route::get('lien-he', [LienheController::class, 'index'])->name('contact.index');
+        Route::get('lien-he', [LienheController::class, 'getcontact'])->name('contact.getcontact');
+        Route::post('lien-he', [LienheController::class, 'postcontact'])->name('contact.postcontact');
         // san pham
         Route::get('tat-ca-san-pham', [SiteController::class, 'tatcasanpham'])->name('frontend.tatcasanpham'); 
         //gio hang

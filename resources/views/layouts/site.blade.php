@@ -302,8 +302,7 @@
                                                                         {{ number_format(Session::get('Cart')->tonggia, 0) }}
                                                                         VNĐ
                                                                     </h6>
-                                                                    {{-- <small>{{ Session::get("Cart")->tongsoluong }} sản
-                                                                    phẩm</small> --}}
+                                                                    
                                                                 </th>
                                                             </tr>
                                                         </tfoot>

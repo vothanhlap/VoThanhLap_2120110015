@@ -21,9 +21,10 @@ class DashboardController extends Controller
         $post_count=Post::count();
         $custumer_count=User::count();
         $order_count=Orderdetail::sum('amount');
-        $list_order = Order::join('vtl_Order_detail','vtl_Order_detail.order_id','=','vtl_order.id')
-        ->select('vtl_Order_detail.*')
-        ->where('vtl_order.status','=',1)->get();
+        $list_order = Order::
+        where('status','=',1)
+        ->orderBy('created_at', 'desc')
+        ->get();
         return view('backend.dashboard.index',compact('list_order','order_count','custumer_count','post_count','product_count','user_name'));
     }
 

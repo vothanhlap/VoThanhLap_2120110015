@@ -42,7 +42,7 @@
                       <div class="icon">
                           <i class="ion ion-bag"></i>
                       </div>
-                      <a href="#" class="small-box-footer">Xem thêm<i class="fas fa-arrow-circle-right"></i></a>
+                      <a href="{{route('product.index')}}" class="small-box-footer">Xem thêm<i class="fas fa-arrow-circle-right"></i></a>
                   </div>
               </div>
               <!-- ./col -->
@@ -56,7 +56,7 @@
                       <div class="icon">
                         <i class="fas fa-mail-bulk"></i>
                       </div>
-                      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                      <a href="{{route('post.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                   </div>
               </div>
               <!-- ./col -->
@@ -70,7 +70,7 @@
                       <div class="icon">
                           <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                      <a href="{{route('user.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                   </div>
               </div>
               <!-- ./col -->
@@ -84,14 +84,14 @@
                       <div class="icon">
                           <i class="ion ion-pie-graph"></i>
                       </div>
-                      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                      <a href="{{route('order.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                   </div>
               </div>
               <!-- ./col -->
           </div>
           <!-- /.row -->      
       </div><!-- /.container-fluid -->
-      <h4 class="text-center mt-4">Danh sách đơn hàng</h4>
+      {{-- <h4 class="text-center mt-4">Danh sách đơn hàng</h4>
      <div class="container">
         <table class="table table-bordered table-striped" id="myTable">
             <thead>
@@ -111,17 +111,17 @@
                     <td class="text-center">
                         <input type="checkbox" name="checkbox" id="checkbox">
                     </td>
-                    <td>MSP{{$item->id}}</td>
+                    <td>MSP10032002{{$item->id}}</td>
                     <td>{{$item->created_at}}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$item->number}}</td>
+                    <td>{{number_format(($item->price),0)}} VND</td>
+                    <td>{{number_format(($item->price)*($item->number),0)}} VND</td>
                 </tr>
                 @endforeach
             </tbody>
           </table>
-     </div>
+     </div> --}}
   </section>
   <!-- /.content -->
 </div>
