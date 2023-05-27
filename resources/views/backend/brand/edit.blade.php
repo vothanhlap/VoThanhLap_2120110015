@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Cập nhật mục sản phẩm')
 @extends('backend.dashboard.menuadmin')
+
 @section('content')
     <form action="{{ route('brand.update', ['brand' => $brand->id]) }}" method="post" enctype="multipart/form-data">
         @method('PUT')
@@ -41,8 +42,8 @@
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="metakey  " >Từ khóa <span class="text-danger">(*)</span></label>
-                                        <textarea name="metakey" id="metakey" rows="4" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey', $brand->metakey) }}</textarea>
+                                        <label for="metakey">Từ khóa <span class="text-danger">(*)</span></label>
+                                        <textarea name="metakey" id="metakey1"  rows="4" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey', $brand->metakey) }}</textarea>
                                         @if ($errors->has('metakey'))
                                             <div class="text-danger">
                                                 {{ $errors->first('metakey') }}
@@ -51,7 +52,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="metadesc" >Mô tả <span class="text-danger">(*)</span></label>
-                                        <textarea name="metadesc" id="metadesc" rows="4" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc', $brand->metadesc) }}</textarea>
+                                        <textarea name="metadesc" id="metadesc1" rows="4" class="form-control" placeholder="Nhập mô tả">{{ old('metadesc', $brand->metadesc) }}</textarea>
                                         @if ($errors->has('metadesc'))
                                             <div class="text-danger">
                                                 {{ $errors->first('metadesc') }}

@@ -99,3 +99,10 @@
         </div>
     </form>
 @endsection
+@section('footer')
+<script type="text/javascript" src="{{ asset('public/dist/ckeditor/ckeditor.js') }}"></script>
+    <script>
+          CKEDITOR.replace('ckeditor15')
+          CKEDITOR.replace('ckeditor16')
+    </script>
+@endsection

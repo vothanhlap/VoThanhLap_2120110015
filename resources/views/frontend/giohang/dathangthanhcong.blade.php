@@ -8,8 +8,10 @@
       </section>
       
       <div class="card-body">
-
         <a href="{{ route('frontend.home') }}" class="btn btn-light"> <i
                 class="fa fa-chevron-left"></i>Tiếp tục mua sắm </a>
+
+                <a href="{{ route('frontend.home') }}" class="btn btn-light"> <i
+                class="fa fa-chevron-left"></i>Theo dõi trạng thái đơn hàng </a>
     </div>
 @endsection

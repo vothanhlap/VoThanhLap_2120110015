@@ -31,8 +31,7 @@
                       <div class="card-body">
                         <a href="{{route('frontend.slug',['slug'=>$item->slug])}}"><p  class="card-title text-truncate  ">{{$rut_gon }}</p></a>
                         
-                        <div class="row text-center">
-                            
+                        <div class="row ">
                             <div class="col">
                                 <p class="card-text">{{ number_format($item->price_buy,0) }}đ</p>
                             </div>

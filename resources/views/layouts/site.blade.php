@@ -453,30 +453,7 @@
             });
         });
      </script>
-     <script>
-        (function($) {
-  showSwal = function(type) {
-    'use strict';
-     if (type === 'success-message') {
-      swal({
-        title: 'Thành công!',
-        //text: 'Bạn đã đăng nhập thành công',
-        type: 'success',
-        button: {
-          text: "Continue",
-          value: true,
-          visible: true,
-          className: "btn btn-primary"
-        }
-      })
-
-    }else{
-        swal("Lỗi đăng nhập !");
-    } 
-  }
-
-})(jQuery);
-     </script> 
+     
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- CSS -->

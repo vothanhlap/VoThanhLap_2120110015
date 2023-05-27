@@ -64,35 +64,9 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('public/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('public/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('public/dist/js/pages/dashboard.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/dist/ckeditor/ckeditor.js') }}"></script>
-    <script>
-
-        CKEDITOR.replace('ckeditor1')
-        CKEDITOR.replace('ckeditor2')
-        CKEDITOR.replace('ckeditor3')
-        CKEDITOR.replace('ckeditor4')
-        CKEDITOR.replace('ckeditor5')
-        CKEDITOR.replace('ckeditor6')
-        CKEDITOR.replace('ckeditor7')
-        CKEDITOR.replace('ckeditor8')
-        CKEDITOR.replace('ckeditor9')
-        CKEDITOR.replace('ckeditor10')
-        CKEDITOR.replace('ckeditor11')
-        CKEDITOR.replace('ckeditor12')
-        CKEDITOR.replace('ckeditor13')
-        CKEDITOR.replace('ckeditor14')
-        CKEDITOR.replace('ckeditor15')
-        CKEDITOR.replace('ckeditor16')
-        CKEDITOR.replace('ckeditor17')
-        CKEDITOR.replace('ckeditor18')
-        CKEDITOR.replace('ckeditor19')
-        CKEDITOR.replace('ckeditor20')
-        CKEDITOR.replace('ckeditor21')
-        CKEDITOR.replace('ckeditor22')
-    </script>
+  
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>

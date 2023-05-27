@@ -70,9 +70,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label for="parent_id" class="text-danger">Danh mục cha <span class="text-danger">(*)</span></label>
-                                        <select class="form-control" name="parent_id" id="parent_id">
-                                            <option value="0">-- Cấp cha --</option>
+                                        <label for="topic_id" class="text-danger">Danh mục cha <span class="text-danger">(*)</span></label>
+                                        <select class="form-control" name="topic_id" id="topic_id">
+                                            <option value="{{ old('topic_id',$page->topic_id) }}">-- Cấp cha --</option>
                                             {!! $html_topic_id !!}
                                         </select>
                                     </div>
@@ -107,4 +107,12 @@
             <!-- /.content -->
         </div>
     </form>
+@endsection
+@section('footer')
+<script type="text/javascript" src="{{ asset('public/dist/ckeditor/ckeditor.js') }}"></script>
+    <script>
+          CKEDITOR.replace('ckeditor20')
+          CKEDITOR.replace('ckeditor21')
+          CKEDITOR.replace('ckeditor22')
+    </script>
 @endsection

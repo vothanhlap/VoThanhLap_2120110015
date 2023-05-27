@@ -53,7 +53,7 @@
                                         <label for="image" class="text-danger">Hình đại diện</label>
                                         <input type="file" name="image" value="{{ old('image') }}" id="image"
                                             class="form-control" />
-                                    </div>32
+                                    </div>
                                    
                                 </div>
                                 <div class="col-md-3">

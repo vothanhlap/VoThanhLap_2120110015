@@ -2,11 +2,19 @@
     <div class="col-md-9">
         <div class="mb-3">
             <label for="name">Tên sản phẩm <span class="text-danger">(*)</span></label>
-            <input type="text" name="name" value="{{ old('name') }}"" id="name" class="form-control" placeholder="Nhập tên sản phẩm"> 
+            <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control" placeholder="Nhập tên sản phẩm"> 
             @if ($errors->has('name'))
               <div class="text-danger">{{$errors->first('name')}}</div>
             @endif 
         </div>
+        <div class="mb-3">
+          <label for="metakey">Từ khóa <span class="text-danger">(*)</span></label>
+          <textarea rows="4" id="ckeditor11" name="metakey"  class="form-control"
+          placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
+          @if ($errors->has('metakey'))
+          <div class="text-danger">{{$errors->first('metakey')}}</div>
+        @endif 
+      </div>
         <div class="mb-3">
             <label for="detail">Chi tiết <span class="text-danger">(*)</span></label>
             <textarea  rows="4" name="detail" id="ckeditor10" class="form-control"
@@ -15,14 +23,7 @@
             <div class="text-danger">{{$errors->first('detail')}}</div>
           @endif 
         </div>
-        <div class="mb-3">
-            <label for="metakey">Từ khóa <span class="text-danger">(*)</span></label>
-            <textarea rows="4" name="metakey" id="ckeditor11" class="form-control"
-            placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
-            @if ($errors->has('metakey'))
-            <div class="text-danger">{{$errors->first('metakey')}}</div>
-          @endif 
-        </div>
+        
         <div class="mb-3">
             <label for="metadesc">Mô tả <span class="text-danger">(*)</span></label>
             <textarea rows="4" name="metadesc" id="ckeditor12" class="form-control"

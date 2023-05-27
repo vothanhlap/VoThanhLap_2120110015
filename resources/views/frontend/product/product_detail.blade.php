@@ -40,7 +40,7 @@
                 </div> <!-- rating-wrap.// -->
 
                 <div class="mb-3">
-                    <var class="price h4"> {{ number_format($product->price_buy, 0) }} VNĐ</var>
+                    <var class="price h4"> {{ number_format($product->price_buy, 0) }}đ</var>
                 </div> <!-- price-detail-wrap .// -->
 
 

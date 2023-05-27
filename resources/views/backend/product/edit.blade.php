@@ -83,3 +83,11 @@
         <!-- /.content-wrapper -->
     </form>
 @endsection
+@section('footer')
+<script type="text/javascript" src="{{ asset('public/dist/ckeditor/ckeditor.js') }}"></script>
+    <script>
+          CKEDITOR.replace('ckeditor7')
+          CKEDITOR.replace('ckeditor8')
+          CKEDITOR.replace('ckeditor9')
+    </script>
+@endsection

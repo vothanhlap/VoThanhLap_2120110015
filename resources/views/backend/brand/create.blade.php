@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Thêm thương hiệu sản phẩm')
 @extends('backend.dashboard.menuadmin')
+
 @section('content')
     <form action="{{ route('brand.store') }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -43,7 +44,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="metakey">Từ khóa<span class="text-danger">(*)</span></label>
-                                    <textarea name="metakey" rows="3" id="metakey" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
+                                    <textarea name="metakey" id="metakey" rows="3" class="form-control" placeholder="Từ khóa tìm kiếm">{{ old('metakey') }}</textarea>
                                     @if ($errors->has('metakey'))
                                         <div class="text-danger">
                                             {{ $errors->first('metakey') }}

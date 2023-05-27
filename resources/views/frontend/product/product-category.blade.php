@@ -66,7 +66,7 @@
                         <figcaption class="info-wrap" style="height: 100px; width:200px">
                             <a href="{{route('frontend.slug',['slug'=>$item->slug])}}" class="title text-truncate">{{$item->name}}</a>
                             <div class="price  mb-2">
-                                {{ number_format($item->price_buy,0) }} VNĐ
+                                {{ number_format($item->price_buy,0) }}đ
                             </div> <!-- price-wrap.// -->
                             <div>
                                 <a onclick="AddCart({{$item->id}})" href="javaCrip:"><button type="submit" class=" btn btn-sm border border-warning ">Thêm vào giỏ hàng</button></a>
