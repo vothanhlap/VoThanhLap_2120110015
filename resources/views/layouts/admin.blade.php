@@ -63,20 +63,19 @@
     <script src="{{ asset('public/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('public/dist/js/adminlte.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  
     <script src="{{ asset('public/dist/js/pages/dashboard.js') }}"></script>
   
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script>
+    {{-- <script>
         $(document).ready(function(){
          $('#btn').click(function(e){
              e.prevenDefault();
              alertify.success('Thêm sản phẩm thành công')
          });
      });
-  </script>
+  </script> --}}
     @yield('footer')
 </body>
 </html>

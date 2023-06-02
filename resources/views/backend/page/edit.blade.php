@@ -108,11 +108,11 @@
         </div>
     </form>
 @endsection
-@section('footer')
+{{-- @section('footer')
 <script type="text/javascript" src="{{ asset('public/dist/ckeditor/ckeditor.js') }}"></script>
     <script>
           CKEDITOR.replace('ckeditor20')
           CKEDITOR.replace('ckeditor21')
           CKEDITOR.replace('ckeditor22')
     </script>
-@endsection
+@endsection --}}

@@ -215,25 +215,19 @@
                                 </ul>
                             </div>
                         </div>
-                        @php
-                            $tt = '0';
-                            if (Session::has('Cart') != null) {
-                                $tt = Session::get('Cart')->tongsoluong;
-                            }
-                        @endphp
                         <div class="widgets-wrap float-md-left mt-3 mr-3">
                             <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                 <div class=" mt-1 ">
                                     <i class="fa fa-shopping-cart"></i>
                                     Giỏ hàng
-                                    @if ($tt != null)
+                                    @if (Session::has('Cart') != null )
                                         <span id="total-quanty-show"
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
-                                            {{ $tt }}
+                                            {{ Session::get('Cart')->tongsoluong}} </span>
                                         @else
                                             <span id="total-quanty-show" 
                                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
-                                                {{ $tt }}
+                                                0 </span>
                                     @endif
                                 </div>
                             </a>
@@ -302,7 +296,7 @@
                                                                         {{ number_format(Session::get('Cart')->tonggia, 0) }}
                                                                         VNĐ
                                                                     </h6>
-                                                                    
+                                                                    <input hidden id="total-quanty-cart"  type="number" class="form-control" value="{{ Session::get("Cart")->tongsoluong }}">
                                                                 </th>
                                                             </tr>
                                                         </tfoot>
@@ -409,14 +403,10 @@
                 alertify.success('Xóa sản phẩm thành công');
             });
         });
-
-      
-
         function RenderCart(response) {
             $("#change-item-cart").empty();
             $("#change-item-cart").html(response);
             $("#total-quanty-show").text($("#total-quanty-cart").val());
-
         }
     </script>
     <script>
@@ -429,7 +419,7 @@
                 alertify.success('Xóa sản phẩm thành công');
             });
         }
-
+    
         function savelistCart(id) {
             $.ajax({
                 url: 'save-item-list-Cart/' + id + '/'+$("#quanty-item-"+id).val(),
@@ -442,17 +432,9 @@
         function RenderListCart(response) {
             $("#list-cart").empty();
             $("#list-cart").html(response);
-
+            
         }
     </script>
-     <script>
-           $(document).ready(function(){
-            $('#info_confirm').click(function(e){
-                e.prevenDefault();
-                alertify.success('Thêm sản phẩm thành công')
-            });
-        });
-     </script>
      
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
@@ -464,7 +446,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
-
+    {{-- <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </body>

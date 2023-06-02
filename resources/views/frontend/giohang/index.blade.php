@@ -49,6 +49,7 @@
                                     
                                 </td>
                                 <td class="text-center align-middle">
+                                    
                                     <input id="quanty-item-{{$item['productinfo']->id}}" class="form-control text-center" type="text" value="{{ $item['soluong'] }}">
                                 </td>
                                 <td class="text-center align-middle">
@@ -98,9 +99,9 @@
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt class="font-weight-bold">Tổng số lượng</dt>
-                            <dd class="text-right ">
+                            <dd  class="text-right ">
                                 @if (Session::has("Cart")!= null)
-                                {{Session::get("Cart")->tongsoluong}}
+                                <p >{{Session::get("Cart")->tongsoluong}}</p>
                                 @else
                                 0
                                 @endif
@@ -130,4 +131,16 @@
     </div>
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+@endsection
+
+@section('footer')
+
+ <script>
+       $(document).ready(function(){
+        $('#info_confirm').click(function(e){
+            e.prevenDefault();
+            alertify.success('Thêm sản phẩm thành công')
+        });
+    });
+ </script>
 @endsection

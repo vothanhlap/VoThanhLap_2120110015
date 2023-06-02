@@ -37,7 +37,7 @@
                             </figure>
                         </td>
                         <td class="text-center align-middle"><p>{{number_format($item['productinfo']->price_buy)}}</p></td>
-                        <td class="align-middle">
+                        <td  class="align-middle">
                             <input id="quanty-item-{{$item['productinfo']->id}}" class="form-control text-center" type="text" value="{{ $item['soluong'] }}">
                         </td>
                         <td class="align-middle">
@@ -51,7 +51,6 @@
                                 <a class="btn btn-light" onclick="savelistCart({{$item['productinfo']->id}});">
                                     Sửa</a>
                         </td>
-                        
                     </tr>
                     @endforeach
                     @endif
@@ -87,9 +86,9 @@
             <div class="card-body">
                 <dl class="dlist-align">
                     <dt class="font-weight-bold">Tổng số lượng</dt>
-                    <dd class="text-right ">
+                    <dd  class="text-right ">
                         @if (Session::has("Cart")!= null)
-                            {{Session::get("Cart")->tongsoluong}}
+                            <p>{{Session::get("Cart")->tongsoluong}}</p>
                         @else
                             0 
                         @endif
