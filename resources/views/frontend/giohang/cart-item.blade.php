@@ -42,7 +42,7 @@
                         {{ number_format(Session::get('Cart')->tonggia, 0) }}
                         VNĐ
                     </h6>
-                    <input hidden id="total-quanty-cart"  type="number" class="form-control" value="{{ Session::get("Cart")->tongsoluong }}">
+                    {{-- <input hidden id="total-quanty-cart"  type="number" class="form-control" value="{{ Session::get("Cart")->tongsoluong }}"> --}}
             </tr>
         </tfoot>
     </table>

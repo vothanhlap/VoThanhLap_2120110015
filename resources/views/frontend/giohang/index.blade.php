@@ -6,11 +6,14 @@
     <div class="container" id="list-cart">
         <div class="row">
             <main class="col-md-9">
+                <h4 class="text-center">THÔNG TIN GIỎ HÀNG </h4>
+                @includeIf('backend.message_alert')
                 <div class="card">
                     <table class="table table-bordered  ">
                         <thead class="text-muted">
                             <tr class="small ">
                                 <th class="text-center" width="20">#</th>
+                                <th class="text-center">HINH</th>
                                 <th class="text-center">TẤT CẢ SẢN PHẨM</th>
                                 <th class="text-center" width="120"> ĐƠN GIÁ</th>
                                 <th class="text-center" width="80">SL</th>
@@ -19,38 +22,41 @@
 
                             </tr>
                         </thead>
-                       
+
                         <tbody>
                             @if (Session::has("Cart")!= null)
                             @foreach (Session::get("Cart")->products as $item)
                             @php
                             $product_image= $item['image'];
-                           $hinh="";
-                           if(count($product_image)>0)
-                           {
-                               $hinh=$product_image[0]["image"];
-                           } 
-                       @endphp
+                            $hinh="";
+                            if(count($product_image)>0)
+                            {
+                            $hinh=$product_image[0]["image"];
+                            }
+                            @endphp
                             <tr>
                                 <td class="text-center align-middle">
                                     <input type="checkbox">
                                 </td>
-                                <td>
-                                    <figure class="itemside">
-                                        <div class="aside"><img src="{{ asset('images/product/' . $hinh) }}" alt="{{$hinh}}" class="img-sm"></div>
-                                        <figcaption class="info">
-                                            <a href="#" class="title text-dark">{{$item['productinfo']->name}}</a>
-                                            <p class="text-muted small">Màu: , <br> Thương hiệu: </p>
-                                        </figcaption>
+                                <td class=" align-middle">
+                                    <figure class="itemside ">
+                                        <div class="aside"><img src="{{ asset('images/product/' . $hinh) }}"
+                                                alt="{{$hinh}}" class="img-sm"></div>
                                     </figure>
+                                </td>
+                                <td class=" align-middle">
+                                    <figcaption class="info ">
+                                        <a href="#" class="title text-dark">{{$item['productinfo']->name}}</a>
+                                    </figcaption>
                                 </td>
                                 <td class="text-center align-middle">
                                     <p>{{number_format($item['productinfo']->price_buy)}}</p>
-                                    
+
                                 </td>
                                 <td class="text-center align-middle">
-                                    
-                                    <input id="quanty-item-{{$item['productinfo']->id}}" class="form-control text-center" type="text" value="{{ $item['soluong'] }}">
+                                   
+                                    <input id="quanty-item-{{$item['productinfo']->id}}"
+                                        class="form-control text-center" type="text" value="{{ $item['soluong'] }}">
                                 </td>
                                 <td class="text-center align-middle">
                                     <div class="price-wrap">
@@ -60,8 +66,8 @@
                                 <td class="align-middle">
                                     <a class="btn btn-light" onclick="deletelistCart({{$item['productinfo']->id}});">
                                         Xoá</a>
-                                        <a class="btn btn-light" onclick="savelistCart({{$item['productinfo']->id}});">
-                                            Sửa</a>
+                                    <a class="btn btn-light" onclick="savelistCart({{$item['productinfo']->id}});">
+                                        Sửa</a>
                                 </td>
 
                             </tr>
@@ -99,9 +105,9 @@
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt class="font-weight-bold">Tổng số lượng</dt>
-                            <dd  class="text-right ">
+                            <dd class="text-right ">
                                 @if (Session::has("Cart")!= null)
-                                <p >{{Session::get("Cart")->tongsoluong}}</p>
+                                <p>{{Session::get("Cart")->tongsoluong}}</p>
                                 @else
                                 0
                                 @endif
@@ -110,16 +116,16 @@
                         <dl class="dlist-align">
                             <dt class="font-weight-bold">Giảm giá</dt>
                             <dd class="text-right ">
-                                
+
                             </dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt class="font-weight-bold">Tổng giá :</dt>
                             <dd class="text-right ">
                                 @if (Session::has("Cart")!= null)
-                                {{ number_format(Session::get("Cart")->tonggia, 0) }} VNĐ
+                                {{ number_format(Session::get("Cart")->tonggia, 0) }}đ
                                 @else
-                                0,0 VNĐ
+                                0,0đ
                                 @endif
 
                             </dd>
@@ -135,12 +141,39 @@
 
 @section('footer')
 
- <script>
-       $(document).ready(function(){
-        $('#info_confirm').click(function(e){
+<script>
+    $(document).ready(function () {
+        $('#info_confirm').click(function (e) {
             e.prevenDefault();
             alertify.success('Thêm sản phẩm thành công')
         });
     });
- </script>
+</script>
+<script>
+    function deletelistCart(id) {
+        $.ajax({
+            url: 'delete-list-Cart/' + id,
+            type: 'GET',
+        }).done(function(response) {
+            RenderListCart(response);
+            alertify.success('Xóa sản phẩm thành công');
+        });
+    }
+
+    function savelistCart(id) {
+        $.ajax({
+            url: 'save-item-list-Cart/' + id + '/'+$("#quanty-item-"+id).val(),
+            type: 'GET',
+        }).done(function(response) {
+            RenderListCart(response);
+            alertify.success('Cập nhật sản phẩm thành công');
+        });
+    }
+    function RenderListCart(response) {
+        $("#list-cart").empty();
+        $("#list-cart").html(response);
+        $("#total-quanty-show").text($("#total-quanty-cart").val());
+        
+    }
+</script>
 @endsection

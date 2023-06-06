@@ -48,8 +48,24 @@
                             <td>{{ $customer->email }}</td>
                         </tr>
                         <tr>
+                            <td>Tên tài khoản</td>
+                            <td>{{ $customer->username }}</td>
+                        </tr>
+                        <tr>
+                            <td>Mật khẩu</td>
+                            <td>{{ $customer->password }}</td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ</td>
+                            <td>{{ $customer->address }}</td>
+                        </tr>
+                        <tr>
                             <td>Số điện thoại</td>
                             <td>{{ $customer->phone }}</td>
+                        </tr>
+                        <tr>
+                            <td>Vài trò</td>
+                            <td>Khách hàng</td>
                         </tr>
                         <tr>
                             <td>Giới tính</td>

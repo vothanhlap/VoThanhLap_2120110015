@@ -61,6 +61,7 @@
         Route::get('thanh-toan', [CheckoutController::class, 'checkout'])->name('giohang.checkout');
         // Dat hang thanh cong
         Route::get('dat-hang-thanh-cong', [CheckoutController::class, 'dathangthanhcong'])->name('giohang.dathangthanhcog');
+        Route::get('theo-doi-don-hang', [CheckoutController::class, 'theodoidonhang'])->name('giohang.status');
         // khai bao route dang nhap - dang xuat
         route::get('login', [AuthController::class, 'getlogin'])->name('login');
         Route::post('login', [AuthController::class,'postlogin'])->name('postlogin');

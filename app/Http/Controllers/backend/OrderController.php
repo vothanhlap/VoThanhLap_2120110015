@@ -118,38 +118,58 @@ class OrderController extends Controller
     public function Huy($id)
     {
         $order = Order::find($id);
-        if ($order == null) {
-            return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
-        }
-        if( $order->status = 1 ||  $order->status = 2){
-            $order->status = 6;
-            $order->save();
-            return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đơn hàng đã được hủy thành công!']);
+        if ($order != null) {
+        $order->status = 6;
+        $order->save();
+        return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đơn hàng đã được hủy thành công!']);
         }
         else
         {
-            return redirect()->route('order.index')->with('message', ['type' => 'danger', 'msg' => 'Thất bại !']);
+            return redirect()->route('order.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
         }
-        
-        
     }
 
     public function Xacminh($id)
     {
-        
+        $order = Order::find($id);
+        if ($order != null) {
+        $order->status = 2;
+        $order->save();
+        return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đơn hàng đã xác minh!']);
+        }
+        else
+        {
+            return redirect()->route('order.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        }
        
     }
 
     public function Vanchuyen($id)
     {
-       echo 'Đơn hang đươc vân chuyển';
-
-       var_dump();
+        $order = Order::find($id);
+        if ($order != null) {
+        $order->status = 3;
+        $order->save();
+        return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đơn hàng đã được giao bởi đơn vị vận chuyển!']);
+        }
+        else
+        {
+            return redirect()->route('order.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        }
     }
 
     public function Thanhcong($id)
     {
-       echo 'Đơn hang đươc giao đến khách hàng thành công';
+        $order = Order::find($id);
+        if ($order != null) {
+        $order->status = 1;
+        $order->save();
+        return redirect()->route('order.index')->with('message', ['type' => 'success', 'msg' => 'Đơn hàng đã được giao thành công!']);
+        }
+        else
+        {
+            return redirect()->route('order.trash')->with('message', ['type' => 'danger', 'msg' => 'Mẫu tin không tồn tại !']);
+        }
     }
 
     public function Xuathoadon(string $id)
@@ -200,7 +220,7 @@ class OrderController extends Controller
            <p>Họ và tên KH:'.$order->fullname.'</p>
            <p>Số điện thoại: '.$order->phone.'</p>     
            <p>Email: '.$order->email.'</p>  
-           <p>Địa chỉ người nhận:</p>  
+           <p>Địa chỉ người nhận:'.$order->district.' </p>  
         </td>
     </tr>
         </table> 
@@ -250,7 +270,9 @@ class OrderController extends Controller
             <table width="100%" style="border-collapse: collapse; border: 0px;"> 
             <tr>
             <td style="border: 1px solid; padding:12px;" width="75%">
-            Tiền thu người nhận:'.number_format($tong, 0).'VNĐ 
+            - Tiền thu người nhận:'.number_format($tong, 0).'VNĐ  <br>
+            - Phí giao hàng: 0 VNĐ <br>
+            - Hình thức thanh toán: Thanh toán bằng tiền mặt
             </td>
             <td style="border: 1px solid; padding:12px;" width="25%">
            Ngày đặt hàng: <br/>'.$order->created_at.' 
@@ -261,7 +283,7 @@ class OrderController extends Controller
             $output .= '<br/>';   
             $output .='
             <p style="text-align: center; font-style: italic; font-size: small;">Xin cảm ơn quý khách hàng đã tin tưởng và ủng hộ shop của chúng tôi.
-              Nếu có bất cứ thông tin nào về sản phẩm của chúng tôi xin quý khách hàng liên hệ chúng tôi qua địa chỉ laptopvui80@gmail.com.
+              Nếu có bất cứ thông tin nào về sản phẩm của chúng tôi xin quý khách hàng liên hệ chúng tôi qua địa chỉ laptopvui80@gmail.com.Hoặc có thể liên hệ qua Hotline: +84 372 177 993
             </p>
             ';     
         return $output;

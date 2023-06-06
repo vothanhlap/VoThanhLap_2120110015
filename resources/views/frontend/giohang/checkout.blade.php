@@ -3,6 +3,7 @@
 @section('content')
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
+    
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-6">
@@ -12,24 +13,31 @@
                             <h4 class="card-title mb-3 text-danger">Thông tin khách hàng</h4>
                             <div class="col form-group">
                                 <label>Họ và tên khách hàng</label>
-                                <input type="text" value="{{ Auth::guard('customer')->user()->fullname }}"
+                                <input readonly type="text" value="{{ Auth::guard('customer')->user()->fullname }}"
                                     class="form-control" placeholder="">
                             </div>
                             <div class="col form-group">
                                 <label>Email</label>
-                                <input type="email" value="{{ Auth::guard('customer')->user()->email }}"
+                                <input readonly type="email" value="{{ Auth::guard('customer')->user()->email }}"
                                     class="form-control" placeholder="">
                             </div>
                             <div class="col form-group">
                                 <label>Số điện thoại</label>
-                                <input type="text" value="{{ Auth::guard('customer')->user()->phone }}"
+                                <input readonly type="text" value="{{ Auth::guard('customer')->user()->phone }}"
                                     class="form-control" placeholder="">
                             </div>
                             <div class="form-group ">
                                 <label>Địa chỉ</label>
-                                <textarea class="form-control"
+                                <textarea readonly class="form-control"
                                     rows="3">{{ Auth::guard('customer')->user()->address }}</textarea>
                             </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  Chỉnh sửa
+                                </label>
+                              </div>
 
                         </div>
                     </div>
@@ -37,7 +45,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="card mb-4">
+                {{-- <div class="card mb-4">
                     <div class="card-body">
                         <h4 class="card-title mb-4">Payment</h4>
                         <form role="form" style="max-width:380px;">
@@ -51,7 +59,7 @@
                             </div> <!-- row.// -->
                         </form>
                     </div> <!-- card-body.// -->
-                </div> <!-- card .// -->
+                </div> <!-- card .// --> --}}
                 @if (Session::has('Cart') != null)
                 <h5>Thông tin đơn hàng (Tổng tiền:
                     {{ number_format(Session::get('Cart')->tonggia, 0) }} VNĐ)</h5>

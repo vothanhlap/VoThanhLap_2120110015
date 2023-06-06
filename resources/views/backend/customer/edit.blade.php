@@ -40,30 +40,41 @@
                                         </div>
                                     @endif
                                 </div>
-                               
-                                <div class="mb-3">
-                                    <label for="email" class="text-danger">Email</label>
-                                    <input type="text" name="email" value="{{ old('email', $customer->email) }}"
-                                        id="email" class="form-control">
-                                </div>
                                 <div class="mb-3">
                                     <label for="address" class="text-danger">Địa chỉ</label>
                                     <input type="text" name="address" value="{{ old('address', $customer->address) }}"
                                         id="address" class="form-control">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="email" class="text-danger">Email</label>
+                                    <input readonly type="text" name="email" value="{{ old('email', $customer->email) }}"
+                                        id="email" class="form-control">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="username" class="text-danger">Tài khoản</label>
+                                    <input readonly type="text" name="username" value="{{ old('username', $customer->username) }}"
+                                        id="username" class="form-control">
+                                </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="phone" class="text-danger">Số điện thoại</label>
-                                    <input type="text" name="phone" value="{{ old('phone', $customer->phone) }}"
+                                    <input readonly type="text" name="phone" value="{{ old('phone', $customer->phone) }}"
                                         id="phone" class="form-control">
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="roles" class="text-danger">Giới tính</label>
-                                    <select class="form-control" name="roles" id="roles">
+                                    <label for="geder" class="text-danger">Giới tính</label>
+                                    <select class="form-control" name="geder" id="geder">
                                         <option value="1">Nam</option>
                                         <option value="0">Nữ</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="roles" class="text-danger">Vài trò</label>
+                                    <select class="form-control" name="roles" id="roles">
+                                        <option @readonly(true) value="{{ old('roles', $customer->roles) }}">Khách hàng</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">

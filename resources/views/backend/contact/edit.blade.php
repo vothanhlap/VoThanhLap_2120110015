@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Cập nhật mục sản phẩm')
+@section('title', 'Trả lời liên hệ')
 @extends('backend.dashboard.menuadmin')
 @section('content')
     <form action="{{ route('contact.update', ['contact' => $contact->id]) }}" method="post" enctype="multipart/form-data">
@@ -13,12 +13,10 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6">
-                                        <strong class="text-danger text-uppercase">CẬP NHẬT liên hệ</strong>                
+                                        <strong class="text-danger text-uppercase">Trả lời liên hệ</strong>                
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <button type="submit" class="btn btn-sm btn-success">
-                                        <i class="fas fa-save"></i> Lưu[Cập nhật]
-                                    </button>
+                                   
                                     <a href="{{ route('contact.index') }}"class="btn btn-sm btn-info">
                                           <i class="fas fa-long-arrow-alt-left"></i> Quay lại danh sách
                                     </a>
@@ -28,55 +26,38 @@
     
                         <div class="card-body">
                             @includeIf('backend.message_alert')
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="mb-3">
-                                        <label for="name">Tên liên hệ<span class="text-danger">(*)</span></label>
-                                        <input type="text" name="name" value="{{ old('name',$contact->name) }}" id="name"
-                                            class="form-control" placeholder="Nhập tên liên hẹ">
-                                        @if ($errors->has('name'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('name') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="phone">Số điện thoại<span class="text-danger">(*)</span></label>
-                                        <input name="phone"  id="phone" value="{{ old('phone',$contact->phone) }}" class="form-control" placeholder="Nhập số điện thoại ">
-                                        @if ($errors->has('phone'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('phone') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email">Email<span class="text-danger">(*)</span></label>
-                                        <input name="email"  id="email" value="{{ old('email',$contact->email) }}" class="form-control" placeholder="Nhập địa chỉ email ">
-                                        @if ($errors->has('email'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('email') }}
-                                            </div>
-                                        @endif
-                                    </div>  
-                                </div>
-                                <div class="col-md-3">                                 
-                                    <div class="mb-3">
-                                        <label for="status">Trạng thái</label>
-                                        <select class="form-control" name="status" id="status">
-                                            <option value="1">Xuất bản</option>
-                                            <option value="0">Chưa xuất bản</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 style="color:#f016f0">THÔNG TIN KHÁCH HÀNG</h3>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <td>Tên khách hàng</td>
+                                    <td>{{ $contact->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>{{ $contact->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số điện thoại</td>
+                                    <td>{{ $contact->phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ</td>
+                                    <td>{{ $contact->address }}</td>
+                                </tr>
+                            </table>
+                            <h3 class="py-3" style="color:#f016f0">THÔNG TIN TRẢ LỜI KHÁCH HÀNG</h3>
+                             <p>Nội dụng trả lời của khách hàng</p>
+                            <textarea readonly name="" id="" cols="140" rows="5"></textarea>    
+                            <p>Võ Thành Lập</p>
+                           <input type="text" class="form-control" value="{{ old('note_cus', $contact->note_cus) }}">
                         </div>
                         <!-- /.card-body -->
+                      
                     </div>
                     <!-- /.card -->
             </section>
-
             <!-- Main content -->
             <!-- /.content -->
         </div>
-    </form>
+    </form> 
 @endsection

@@ -74,9 +74,8 @@
                             </td>
                         </tr>
                     </table>
+                    <a class="text-center" href="">Xem thêm</a>
                 </div>
-
-
                 <div class="form-row  mt-4">
                     <div class="form-group col-md">
                         <li class="btn btn-light">

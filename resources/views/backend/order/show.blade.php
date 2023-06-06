@@ -61,7 +61,7 @@
                                 <th class="text-center">Giá Sản Phẩm</th>
                                 <th style="with:50px" class="text-center">Số Lượng</th>
                                 <th class="text-center">Thành Tiền</th>
-                                <th class="text-center">ID</th>
+                                {{-- <th class="text-center">ID</th> --}}
                                
                             </tr>
                         </thead>
@@ -90,7 +90,7 @@
                                     <td class="text-center" style="width:180px;">{{ number_format($item->price, 0) }} VNĐ</td>
                                     <td class="text-center" style="width:100px;">{{ $item->number }}</td>
                                     <td class="text-center" style="width:180px;">{{ number_format($item->amount, 0) }} VNĐ</td>
-                                    <td class="text-center"style="width:40px;">{{ $item->id }}</td>
+                                    {{-- <td class="text-center"style="width:40px;">{{ $item->id }}</td> --}}
                                 </tr>           
                             @endforeach
                             

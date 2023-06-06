@@ -78,7 +78,7 @@
                                     <label for="roles" class="text-danger">Giới tính</label>
                                     <select class="form-control" name="roles" id="roles">
                                         <option value="1">Nam</option>
-                                        <option value="0">Nữ</option>
+                                        <option value="3">Nữ</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
